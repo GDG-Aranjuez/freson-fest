@@ -7,54 +7,150 @@ import { withBase } from "@/utils/path";
 ---
 
 <Section class="bg-page" ariaLabelledby="speakers-heading">
-  <Container>
-    <div class="mx-auto w-full max-w-[1200px]">
-      <p class="type-eyebrow-medium pb-size-4 text-muted"
-        >{speakersSection.label}</p
-      >
+  <!-- Header con padding lateral usando Container -->
+  <div class="px-size-4 md:px-size-6 lg:px-0">
+    <Container>
+      <div class="mx-auto w-full max-w-[1200px]">
+        <div class="pb-size-4"></div>
+        <h2 id="speakers-heading" class="type-h4 pb-size-4 text-brand">
+          {speakersSection.heading}
+        </h2>
+        <h3 class="type-h2 pb-size-9 lg:pb-size-10 mb-size-6 text-heading">
+          Conoce a los referentes del tech que usas cada día
+        </h3>
+      </div>
+    </Container>
+  </div>
 
-      <h2 id="speakers-heading" class="type-h2 pb-size-9 lg:pb-size-10">
-        {speakersSection.heading}
-      </h2>
+  <!-- Scroll horizontal (mobile) / Grid (desktop) — full-bleed -->
+  <div class="overflow-hidden">
+    <!-- Mobile: horizontal scroll -->
+    <div class="flex lg:hidden overflow-x-auto scroll-smooth snap-x snap-mandatory gap-size-4">
+      <!-- Padding inicial para que primera card no toque el borde -->
+      <div class="flex-shrink-0 w-size-4"></div>
+      
+      {
+        speakersSection.speakers.map((speaker, index) => (
+          <div
+            class="flex-shrink-0 w-[85vw] md:w-[80vw] snap-start relative overflow-hidden rounded-sm aspect-[2/3] group flex flex-col"
+          >
+            <!-- Badge Placeholder -->
+            {speaker.isPlaceholder && (
+              <div class="absolute top-size-2 right-size-2 z-10 bg-brand px-size-2 py-size-1 rounded text-xs font-bold text-on-brand">
+                PLACEHOLDER
+              </div>
+            )}
 
-      <div
-        class="grid grid-cols-1 gap-size-7 lg:grid-cols-4 lg:auto-rows-fr lg:gap-size-8"
-      >
-        {
-          speakersSection.speakers.map((speaker, index) => (
-            <article class="flex h-full flex-col overflow-hidden rounded-sm border border-stroke bg-surface focus-within:ring-1 focus-within:ring-stroke-brand lg:min-h-[calc(var(--spacing-size-16)*3)]">
-              <img
-                src={withBase(speaker.image.src)}
-                alt={speaker.image.alt}
-                width="420"
-                height="315"
-                loading={index < 4 ? "eager" : "lazy"}
-                class="aspect-[4/3] w-full object-cover"
-              />
+            <!-- Contenedor con overlay y contenido -->
+            <div class="relative flex-1 flex flex-col justify-end">
+              <!-- Overlay/Scrim semitransparente -->
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-600/95 via-stone-600/60 to-transparent"></div>
 
-              <div class="flex flex-1 flex-col gap-size-4 p-size-6">
-                <h3 class="type-h5 text-heading">{speaker.name}</h3>
-                <p class="type-paragraph-s text-subtitle">{speaker.role}</p>
-                <p class="type-paragraph-s text-body">{speaker.description}</p>
+              <!-- Contenido: nombre, rol, descripción, iconos sociales -->
+              <div class="relative flex flex-col justify-end p-size-4 text-heading h-full">
+                <h3 class="type-h5 font-bold mb-size-1">{speaker.name}</h3>
+                <p class="type-paragraph-s text-muted mb-size-1">{speaker.experience} años exp.</p>
+                <p class="type-paragraph-s text-subtitle mb-size-2">{speaker.role}</p>
+                <p class="type-paragraph-s text-body line-clamp-1 mb-size-2">{speaker.description}</p>
 
-                <div class="mt-auto flex items-center gap-size-4 pt-size-2">
+                <!-- Tecnologías (tags) -->
+                <div class="flex flex-wrap gap-size-2 mb-size-3">
+                  {speaker.technologies.slice(0, 2).map((tech) => (
+                    <span class="type-label text-xs px-size-2 py-size-1 bg-stone-500/60 rounded text-muted">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <!-- Iconos sociales -->
+                <div class="flex items-center gap-size-3">
                   {speaker.socialLinks.map((socialLink) => (
                     <a
                       href={socialLink.href}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={socialLink.label}
-                      class="inline-flex size-9 items-center justify-center rounded-sm bg-surface-raised text-subtitle transition-colors hover:bg-surface-raised/80 hover:text-heading"
+                      class="inline-flex size-8 items-center justify-center rounded-sm bg-stone-500/80 text-subtitle transition-colors hover:bg-brand hover:text-on-brand"
                     >
-                      <Icon name={socialLink.icon} size={16} />
+                      <Icon name={socialLink.icon} size={14} />
                     </a>
                   ))}
                 </div>
               </div>
-            </article>
-          ))
-        }
-      </div>
+            </div>
+          </div>
+        ))
+      }
+
+      <!-- Padding final -->
+      <div class="flex-shrink-0 w-size-4"></div>
     </div>
-  </Container>
+
+    <!-- Desktop: grid de 4 columnas -->
+    <div class="hidden lg:block">
+      <Container>
+        <div class="mx-auto w-full max-w-[1200px]">
+          <div class="grid grid-cols-4 gap-size-8 auto-rows-fr">
+            {
+              speakersSection.speakers.map((speaker, index) => (
+                <a href={`/speakers/${speaker.slug}`} class="flex h-full flex-col overflow-hidden rounded-sm border border-stroke bg-surface focus-within:ring-1 focus-within:ring-stroke-brand min-h-[calc(var(--spacing-size-16)*3)] hover:border-brand transition-colors relative">
+                  <!-- Badge Placeholder -->
+                  {speaker.isPlaceholder && (
+                    <div class="absolute top-size-2 right-size-2 z-10 bg-brand px-size-2 py-size-1 rounded text-xs font-bold text-on-brand">
+                      PLACEHOLDER
+                    </div>
+                  )}
+
+                  <div class="flex flex-1 flex-col gap-size-4 p-size-6">
+                    <h3 class="type-h5 text-heading">{speaker.name}</h3>
+                    <p class="type-paragraph-s text-muted">{speaker.experience} años exp.</p>
+                    <p class="type-paragraph-s text-subtitle">{speaker.role}</p>
+                    <p class="type-paragraph-s text-body">{speaker.description}</p>
+
+                    <!-- Tecnologías (tags) -->
+                    <div class="flex flex-wrap gap-size-2 my-size-2">
+                      {speaker.technologies.slice(0, 3).map((tech) => (
+                        <span class="type-label text-xs px-size-2 py-size-1 bg-surface-raised rounded text-muted">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div class="mt-auto flex items-center gap-size-4 pt-size-2">
+                      {speaker.socialLinks.map((socialLink) => (
+                        <a
+                          href={socialLink.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={socialLink.label}
+                          class="inline-flex size-9 items-center justify-center rounded-sm bg-surface-raised text-subtitle transition-colors hover:bg-surface-raised/80 hover:text-heading"
+                        >
+                          <Icon name={socialLink.icon} size={16} />
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </a>
+              ))
+            }
+          </div>
+        </div>
+      </Container>
+    </div>
+  </div>
+
+  <!-- CTA final -->
+  <div class="px-size-4 md:px-size-6 lg:px-0 pt-size-8">
+    <Container>
+      <div class="mx-auto w-full max-w-[1200px] flex justify-end">
+        <a
+          href="/ponentes"
+          class="type-paragraph-s text-brand hover:text-brand-hover transition-colors flex items-center gap-size-2"
+        >
+          Conoce todos los ponentes
+          <span class="text-lg">→</span>
+        </a>
+      </div>
+    </Container>
+  </div>
 </Section>
