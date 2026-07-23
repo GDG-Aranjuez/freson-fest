@@ -1,0 +1,90 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { speakersSection } from "@/data/speakers";
+import { withBase } from "@/utils/path";
+
+export function getStaticPaths() {
+  return speakersSection.speakers.map((speaker) => ({
+    params: { slug: speaker.slug },
+    props: { speaker },
+  }));
+}
+
+const { speaker } = Astro.props;
+---
+
+<BaseLayout title={speaker.name} description={`${speaker.role} - ${speaker.talk.title}`}>
+  <Section class="bg-page">
+    <Container>
+      <div class="mx-auto w-full max-w-[900px]">
+        <!-- Breadcrumb -->
+        <nav class="mb-size-8" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-size-2 type-paragraph-s text-muted">
+            <li><a href="/" class="text-brand hover:text-brand-hover">Inicio</a></li>
+            <li>/</li>
+            <li><a href="/speakers" class="text-brand hover:text-brand-hover">Speakers</a></li>
+            <li>/</li>
+            <li class="text-heading">{speaker.name}</li>
+          </ol>
+        </nav>
+
+        <!-- Header del ponente -->
+        <div class="mb-size-12">
+          <!-- Información del ponente -->
+          <div>
+            <p class="type-eyebrow-medium pb-size-4 text-brand uppercase tracking-wider">{speaker.role}</p>
+
+            <h1 class="type-h2 pb-size-4 text-heading">{speaker.name}</h1>
+
+            <p class="type-paragraph-m text-subtitle mb-size-6">{speaker.experience} años de experiencia</p>
+
+            <div class="prose prose-invert max-w-none mb-size-8">
+              <p class="type-paragraph-l text-body">{speaker.description}</p>
+            </div>
+
+            <!-- Tecnologías -->
+            <div class="mb-size-8">
+              <p class="type-h5 text-heading mb-size-3">Especialidades</p>
+              <div class="flex flex-wrap gap-size-2">
+                {speaker.technologies.map((tech) => (
+                  <span class="type-label px-size-3 py-size-2 bg-surface-raised rounded text-subtitle">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charla -->
+        <Section class="bg-surface rounded-sm">
+          <div class="p-size-8">
+            <h2 class="type-h3 text-heading mb-size-4">Charla</h2>
+
+            <h3 class="type-h4 text-heading mb-size-3">{speaker.talk.title}</h3>
+
+            <p class="type-paragraph-m text-body mb-size-4">{speaker.talk.description}</p>
+
+            <div class="flex items-center gap-size-2 text-muted type-paragraph-s">
+              <span>⏱️</span>
+              <span>{speaker.talk.duration} minutos</span>
+            </div>
+          </div>
+        </Section>
+
+        <!-- Back button -->
+        <div class="mt-size-12">
+          <a
+            href="/speakers"
+            class="type-paragraph-s text-brand hover:text-brand-hover transition-colors inline-flex items-center gap-size-2"
+          >
+            ← Volver a speakers
+          </a>
+        </div>
+      </div>
+    </Container>
+  </Section>
+</BaseLayout>
