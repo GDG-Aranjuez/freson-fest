@@ -1,0 +1,88 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { locationSection } from "@/data/location";
+import { withBase } from "@/utils/path";
+---
+
+<Section class="bg-page" ariaLabelledby="location-heading">
+  <Container>
+    <div
+      class="mx-auto flex w-full max-w-[1040px] flex-col lg:grid lg:grid-cols-[minmax(0,380px)_minmax(0,1fr)] lg:items-stretch lg:gap-x-size-13"
+    >
+      <header
+        class="order-1 pb-size-8 lg:order-none lg:col-start-1 lg:row-start-1"
+      >
+        <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+          {locationSection.eyebrow}
+        </p>
+        <h2 id="location-heading" class="type-h4 pb-size-5 lg:pb-size-7">
+          {locationSection.heading}
+        </h2>
+        <address class="type-paragraph-m not-italic text-body">
+          <span class="block">{locationSection.venue}</span>
+          {
+            locationSection.addressLines.map((line) => (
+              <span class="block">{line}</span>
+            ))
+          }
+        </address>
+      </header>
+
+      <ul
+        class="order-4 flex list-none flex-col p-0 py-size-6 lg:order-none lg:col-start-1 lg:row-start-2 lg:pb-size-9 lg:pt-size-6"
+      >
+        {
+          locationSection.instructions.map((item) => (
+            <li class="flex items-center gap-size-4 py-size-3">
+              <span
+                class="inline-flex size-5 shrink-0 items-center justify-center overflow-clip"
+                aria-hidden="true"
+              >
+                {"icon" in item ? (
+                  <img
+                    src={withBase(item.icon.src)}
+                    alt={item.icon.alt}
+                    width="20"
+                    height="20"
+                    class="size-full object-contain"
+                  />
+                ) : (
+                  <span class="type-caption w-full text-center font-medium text-body">
+                    {item.letter}
+                  </span>
+                )}
+              </span>
+              <span class="type-paragraph-s text-body">{item.label}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div
+        class="order-3 pb-size-8 pt-size-6 lg:order-none lg:col-start-1 lg:row-start-3 lg:pb-size-5 lg:pt-size-7"
+      >
+        <a
+          href={locationSection.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary flex w-full"
+        >
+          {locationSection.cta.label}
+        </a>
+      </div>
+
+      <div
+        class="order-2 relative mb-size-9 mt-size-7 h-[200px] w-full overflow-hidden rounded-sm lg:order-none lg:col-start-2 lg:row-span-3 lg:row-start-1 lg:m-0 lg:h-auto lg:min-h-full"
+      >
+        <iframe
+          title={locationSection.map.title}
+          src={locationSection.map.embedSrc}
+          class="absolute inset-0 size-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </Container>
+</Section>
