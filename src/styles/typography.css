@@ -307,38 +307,32 @@
   @media (width >= 64rem) {
     .countdown-num {
       font-size: var(--font-size-highlight-lg);
-      opacity: 1;
     }
   }
 
   .countdown-label {
     font-family: var(--font-body);
-    font-size: var(--font-size-eyebrow);
-    font-weight: 300;
-    line-height: 1;
-    color: var(--color-subtitle);
+    font-size: var(--font-size-caption);
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--color-body);
   }
 
   @media (width >= 64rem) {
     .countdown-label {
-      font-size: var(--font-size-eyebrow-lg);
+      font-size: var(--font-size-caption-lg);
     }
   }
 
   .countdown-sep {
     font-family: var(--font-display);
-    font-size: var(--spacing-size-7);
-    font-weight: 800;
-    line-height: 1.2;
-    height: 2.375rem;
+    font-size: var(--font-size-h3);
+    font-weight: 600;
+    line-height: 1.1;
+    height: 4.8125rem;
     display: flex;
     align-items: center;
-    color: var(--color-countdown-sep);
-  }
-
-  @media (width >= 64rem) {
-    .countdown-sep {
-      font-weight: 700;
-    }
+    color: var(--color-body);
+    opacity: 0.4;
   }
 }

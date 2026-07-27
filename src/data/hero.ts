@@ -1,13 +1,13 @@
 export const hero = {
   dateLead: "24 de Octubre",
   dateYear: "2026",
-  titleLead: "Aranjuez tiene algo que decirle al",
-  titleHighlight: "mundo tech.",
+  titleLead: "Aranjuez tiene algo que decirle",
+  titleHighlight: "mundo tech",
   subtitle:
     "Y tú estás invitado. Sin postureo, sin distancia, solo gente real haciendo cosas reales.",
   cta: {
     href: "/entradas",
-    label: "Reserva tu plaza",
+    label: "Consigue tu entrada",
   },
   footnote: "Plazas disponibles · Aforo limitado",
   benefit: {
