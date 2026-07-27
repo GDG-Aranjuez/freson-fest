@@ -1,0 +1,38 @@
+---
+import { withBase } from "@/utils/path";
+
+interface Props {
+  href: string;
+  label: string;
+  class?: string;
+  external?: boolean;
+}
+
+const { href, label, class: className = "", external = false } = Astro.props;
+const resolvedHref =
+  external || href.startsWith("http") ? href : withBase(href);
+---
+
+<a
+  href={resolvedHref}
+  class:list={["btn-ghost gap-size-3", className]}
+  target={external || href.startsWith("http") ? "_blank" : undefined}
+  rel={external || href.startsWith("http") ? "noopener noreferrer" : undefined}
+>
+  <span>{label}</span>
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    aria-hidden="true"
+    class="size-6 shrink-0"
+  >
+    <path
+      d="M7 17L17 7M17 7H9M17 7V15"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+</a>
