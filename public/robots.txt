@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://gdg-aranjuez.github.io/devfest-aranjuez-2026/sitemap-index.xml
+Sitemap: https://gdg-aranjuez.github.io/freson-fest/sitemap-index.xml
