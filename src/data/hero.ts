@@ -1,6 +1,7 @@
+import { eventDate } from "@/utils/event-date";
+
 export const hero = {
-  dateLead: "24 de Octubre",
-  dateYear: "2026",
+  ...eventDate,
   titleLead: "Aranjuez tiene algo que decirle",
   titleHighlight: "mundo tech",
   subtitle:
