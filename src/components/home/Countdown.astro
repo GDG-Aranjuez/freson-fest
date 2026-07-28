@@ -9,7 +9,7 @@ const { class: className = "" } = Astro.props;
 ---
 
 <div
-  class:list={["hero-countdown flex items-start gap-size-5", className]}
+  class:list={["hero-countdown flex items-end gap-size-6", className]}
   data-event-start={site.event.startDateTime}
   aria-label="Cuenta atrás para el evento"
   role="timer"

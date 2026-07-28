@@ -1,6 +1,6 @@
 # Contributing to GDG Aranjuez
 
-Thank you for helping build the official website for **GDG Aranjuez** and **DevFest 2026**. This guide explains how to collaborate on the repository.
+Thank you for helping build the official website for **GDG Aranjuez** and **FresON Fest 2026**. This guide explains how to collaborate on the repository.
 
 ## Code of conduct
 
@@ -16,8 +16,8 @@ This project follows our [Code of Conduct](./CODE_OF_CONDUCT.md). By participati
 ### Local setup
 
 ```sh
-git clone https://github.com/GDG-Aranjuez/devfest-aranjuez-2026.git
-cd devfest-aranjuez-2026
+git clone https://github.com/GDG-Aranjuez/freson-fest.git
+cd freson-fest
 pnpm install
 pnpm dev
 ```
@@ -65,9 +65,9 @@ See also [AGENTS.md](./AGENTS.md) for layout and responsive conventions.
 
 ## Workflow
 
-1. **Search [existing issues](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/issues)** to avoid duplicate work.
+1. **Search [existing issues](https://github.com/GDG-Aranjuez/freson-fest/issues)** to avoid duplicate work.
 2. **Open an issue** for larger changes so maintainers can align on scope.
-3. **Fork the [repository](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026)** and create a branch from `main`.
+3. **Fork the [repository](https://github.com/GDG-Aranjuez/freson-fest)** and create a branch from `main`.
 4. **Make focused changes** with clear commits.
 5. **Verify your changes** before opening a pull request:
 
@@ -105,9 +105,9 @@ Most pages are driven by data files and shared layouts. Before editing markup, c
 
 ## Deployment
 
-Merging to `main` triggers the GitHub Pages deployment workflow at [gdg-aranjuez.github.io/devfest-aranjuez-2026](https://gdg-aranjuez.github.io/devfest-aranjuez-2026/). Pull requests run CI only and do not deploy.
+Merging to `main` triggers the GitHub Pages deployment workflow at [gdg-aranjuez.github.io/freson-fest](https://gdg-aranjuez.github.io/freson-fest/). Pull requests run CI only and do not deploy.
 
 ## Questions
 
-- **Website or repo questions:** open a [GitHub issue](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/issues).
+- **Website or repo questions:** open a [GitHub issue](https://github.com/GDG-Aranjuez/freson-fest/issues).
 - **Community or event questions:** contact the organizers at [gdgaranjuez@gmail.com](mailto:gdgaranjuez@gmail.com).

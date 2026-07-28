@@ -4,7 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
 const site = "https://gdg-aranjuez.github.io";
-const base = "/devfest-aranjuez-2026/";
+const base = "/freson-fest/";
 
 // https://astro.build/config
 export default defineConfig({

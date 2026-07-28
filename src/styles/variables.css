@@ -108,7 +108,7 @@
 
   --color-gradient: var(--palette-amber-100);
   --color-pill-stroke: var(--palette-stone-100); /* Brego pill */
-  --color-countdown-sep: var(--palette-orange-700);
+  --color-countdown-sep: var(--palette-orange-50);
   --color-inverse: var(--palette-stone-50); /* ticker / inverse surfaces */
 
   --spacing-size-0: 0;

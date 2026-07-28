@@ -1,17 +1,15 @@
 # FresON Fest 2026
 
-[![CI](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/actions/workflows/ci.yaml/badge.svg)](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/actions/workflows/ci.yaml)
-[![Deploy](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/actions/workflows/deploy.yaml/badge.svg)](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/actions/workflows/deploy.yaml)
-[![License: MIT](https://img.shields.io/github/license/GDG-Aranjuez/devfest-aranjuez-2026)](./LICENSE)
+[![CI](https://github.com/GDG-Aranjuez/freson-fest/actions/workflows/ci.yaml/badge.svg)](https://github.com/GDG-Aranjuez/freson-fest/actions/workflows/ci.yaml)
+[![Deploy](https://github.com/GDG-Aranjuez/freson-fest/actions/workflows/deploy.yaml/badge.svg)](https://github.com/GDG-Aranjuez/freson-fest/actions/workflows/deploy.yaml)
+[![License: MIT](https://img.shields.io/github/license/GDG-Aranjuez/freson-fest)](./LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
 
 Official website for **FresON Fest 2026**, organized by **GDG Aranjuez** — October 24, 2026 in Aranjuez, Spain.
 
-**Live site:** [gdg-aranjuez.github.io/devfest-aranjuez-2026](https://gdg-aranjuez.github.io/devfest-aranjuez-2026/)
+**Live site:** [gdg-aranjuez.github.io/freson-fest](https://gdg-aranjuez.github.io/freson-fest/)
 
-**Repository:** [github.com/GDG-Aranjuez/devfest-aranjuez-2026](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026)
-
-> The GitHub repository slug still uses `devfest-aranjuez-2026` for deploy URLs. Branding in the site and docs is **FresON Fest**.
+**Repository:** [github.com/GDG-Aranjuez/freson-fest](https://github.com/GDG-Aranjuez/freson-fest)
 
 ## Stack
 
@@ -29,8 +27,8 @@ Official website for **FresON Fest 2026**, organized by **GDG Aranjuez** — Oct
 ### Setup
 
 ```sh
-git clone https://github.com/GDG-Aranjuez/devfest-aranjuez-2026.git
-cd devfest-aranjuez-2026
+git clone https://github.com/GDG-Aranjuez/freson-fest.git
+cd freson-fest
 pnpm install
 pnpm dev
 ```
@@ -74,7 +72,7 @@ Tokens and UI conventions (colors, type, buttons, spacing) live in [docs/design-
 
 Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) before opening a pull request.
 
-- [Open an issue](https://github.com/GDG-Aranjuez/devfest-aranjuez-2026/issues)
+- [Open an issue](https://github.com/GDG-Aranjuez/freson-fest/issues)
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 ## Contact
