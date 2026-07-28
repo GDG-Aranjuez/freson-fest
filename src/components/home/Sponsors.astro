@@ -1,6 +1,6 @@
 ---
-import Section from "../ui/Section.astro";
 /* eslint-disable prettier/prettier */
+import Section from "../ui/Section.astro";
 
 const sponsorCategories = [
   {
@@ -65,7 +65,6 @@ const sponsorCategories = [
                             <div class="w-3.5 h-3.5 bg-white rounded-sm inline-block shrink-0"></div>
                     </div>
                 </div>
-                <!-- GRID 2 COLUMNAS -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
                     {group.sponsors.map((sponsor) => (
                         <div class="flex flex-col items-center text-center space-y-3">
@@ -80,7 +79,6 @@ const sponsorCategories = [
                                 <div class="w-full h-full  bg-[radial-gradient(#D1D5DB_1px,transparent_1px)][background-size:12px_12px] bg-neutral-100"></div>
                             )}
                             </div>
-                            <!-- MICROCOPY -->
                             <p class="font-body text-xs text-neutral-400 font-light max-w-xs">
                                 {sponsor.description}
                             </p>
@@ -90,7 +88,6 @@ const sponsorCategories = [
             </div>
         ))}
     </div>
-    <!--CTA -->
     <div class="mt-20 flex justify-center items-center">
         <a href="#" class="font-body text-amber-600 
         hover:text-amber-500 transition-colors border-b-2 border-amber-600  pb-1 tracking-wider text-xs font-semibold uppercase flex items-center gap-1.5 shrimk-0" >
