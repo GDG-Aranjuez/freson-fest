@@ -1,0 +1,69 @@
+---
+import Section from "../ui/Section.astro";
+import { sponsorCategories } from "@/data/sponsorsData";
+---
+
+<Section
+  class="bg-black text-white px-6 py-16 md:px-16 lg:px-24 font-sans min-h-screen flex flex-col justify-between"
+>
+  <div>
+    <header class="max-w-3xl mb-16">
+      <span
+        class="font-body text-amber-600 tracking-wider text-xs font-semibold uppercase block mb-3"
+      >
+        PATROCINADORES
+      </span>
+      <h2
+        class="font-display text-3xl md:text-5xl font-display font-semibold leading-tight"
+      >
+        Quienes confían en nosotros y ayudan a que esto sea posible
+      </h2>
+    </header>
+
+    <div class="space-y-16">
+      {
+        sponsorCategories.map((group) => (
+          <div class="space-y-8">
+            <div class="flex items-center justify-center gap-4 max-w-4xl mx-auto">
+              <div class="flex-grow border-b border-neutral-800" />
+              <div class="font-display flex items-center gap-2 text-sm md:text-base font-medium text-neutral-300">
+                <span class="leading-none">{group.categoryName}</span>
+                <div class="w-3.5 h-3.5 bg-white rounded-sm inline-block shrink-0" />
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
+              {group.sponsors.map((sponsor) => (
+                <div class="flex flex-col items-center text-center space-y-3">
+                  <div class="w-full max-w-[200px] aspect-[4/3] bg-neutral-200 rounded-sm flex items-center justify-center overflow-hidden">
+                    {sponsor.image ? (
+                      <img
+                        src={sponsor.image}
+                        alt="Logo patrocinador"
+                        class="w-full h-full object-contain p-2"
+                      />
+                    ) : (
+                      <div class="w-full h-full  bg-[radial-gradient(#D1D5DB_1px,transparent_1px)][background-size:12px_12px] bg-neutral-100" />
+                    )}
+                  </div>
+                  <p class="font-body text-xs text-neutral-400 font-light max-w-xs">
+                    {sponsor.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="mt-20 flex justify-center items-center">
+      <a
+        href="#"
+        class="font-body text-amber-600
+        hover:text-amber-500 transition-colors border-b-2 border-amber-600 pb-1 tracking-wider text-xs font-semibold uppercase flex items-center gap-1.5 shrink-0"
+      >
+        ¿QUIERES SER PATROCINADOR?
+        <span class="text-sm">→</span>
+      </a>
+    </div>
+  </div>
+</Section>
