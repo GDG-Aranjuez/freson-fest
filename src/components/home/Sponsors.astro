@@ -2,13 +2,20 @@
 import Section from "../ui/Section.astro";
 import { sponsorCategories } from "@/data/sponsorsData";
 ---
-<Section class="bg-black text-white px-6 py-16 md:px-16 lg:px-24 font-sans min-h-screen flex flex-col justify-between">
+<Section
+  class="bg-black text-white px-6 py-16 md:px-16 lg:px-24 font-sans min-h-screen flex flex-col justify-between"
+>
   <div>
     <header class="max-w-3xl mb-16">
-      <span class="font-body text-amber-600 tracking-wider text-xs font-semibold uppercase block mb-3">
+      <span
+        class="font-body text-amber-600 tracking-wider text-xs font-semibold uppercase block mb-3"
+      >
         PATROCINADORES
       </span>
-      <h2 class="font-display text-3xl md:text-5xl font-semibold leading-tight">
+
+      <h2
+        class="font-display text-3xl md:text-5xl font-semibold leading-tight"
+      >
         Quienes confían en nosotros y ayudan a que esto sea posible
       </h2>
     </header>
@@ -18,6 +25,7 @@ import { sponsorCategories } from "@/data/sponsorsData";
         <div class="space-y-8">
           <div class="flex items-center justify-center gap-4 max-w-4xl mx-auto">
             <div class="flex-grow border-b border-neutral-800" />
+
             <div class="font-display flex items-center gap-2 text-sm md:text-base font-medium text-neutral-300">
               <span class="leading-none">{group.categoryName}</span>
               <div class="w-3.5 h-3.5 bg-white rounded-sm inline-block shrink-0" />
@@ -38,6 +46,7 @@ import { sponsorCategories } from "@/data/sponsorsData";
                     <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
                   )}
                 </div>
+
                 <p class="font-body text-xs text-neutral-400 font-light max-w-xs">
                   {sponsor.description}
                 </p>
@@ -47,6 +56,7 @@ import { sponsorCategories } from "@/data/sponsorsData";
         </div>
       ))}
     </div>
+
     <div class="mt-20 flex justify-center items-center">
       <a
         href="#"
