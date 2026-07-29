@@ -1,12 +1,12 @@
 /* eslint-disable prettier/prettier */
 export interface Sponsor {
-    image?: string;
-    description: string;
+  image?: string;
+  description: string;
 }
 
 export interface SponsorCategory {
-    categoryName: string;
-    sponsors: Sponsor[];
+  categoryName: string;
+  sponsors: Sponsor[];
 }
 
 export const sponsorCategories: SponsorCategory[] = [
