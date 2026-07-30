@@ -7,24 +7,28 @@ import { withBase } from "@/utils/path";
 
 <footer class="bg-page">
   <div class="md:hidden">
-    <Container class="flex flex-col items-center pt-size-13 pb-size-8">
-      <div class="flex w-full max-w-[380px] flex-col items-center pb-size-6">
+    <Container class="flex flex-col items-center py-size-10">
+      <div
+        class="flex w-full max-w-[380px] flex-col items-center border-t border-stroke-strong pt-size-9 pb-size-6"
+      >
         <div class="flex w-full flex-col items-center pb-size-10">
           <div class="flex w-full flex-col items-center pb-size-8">
             <div
               class="flex w-full max-w-[320px] flex-col items-center px-size-5 pb-size-6"
             >
-              <p class="type-paragraph-m text-center text-body">
+              <p
+                class="type-paragraph-m whitespace-pre-line text-center text-body"
+              >
                 {footerMeta.tagline}
               </p>
             </div>
             <a href={withBase("/")} class="inline-flex pb-size-7">
               <img
-                src={withBase("/brand/imagotipo-navbar.png")}
+                src={withBase("/brand/imagotipo-navbar.svg")}
                 alt="FresON fest"
                 width="110"
-                height="40"
-                class="h-[40px] w-[110px]"
+                height="43"
+                class="h-[43px] w-[110px]"
               />
             </a>
             <div class="flex w-full flex-col items-center pt-size-6">
@@ -35,14 +39,14 @@ import { withBase } from "@/utils/path";
                 href={footerMeta.gdg.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex"
+                class="inline-flex h-12 w-[300px] items-center justify-center"
               >
                 <img
                   src={withBase(footerMeta.gdg.logo)}
                   alt={footerMeta.gdg.alt}
-                  width="121"
-                  height="26"
-                  class="h-[26px] w-[121px] object-contain object-left"
+                  width="282"
+                  height="24"
+                  class="h-6 w-[282px]"
                 />
               </a>
             </div>
@@ -82,7 +86,7 @@ import { withBase } from "@/utils/path";
       </div>
 
       <div
-        class="flex w-full max-w-[380px] flex-col border-t border-stroke-strong pt-size-7"
+        class="flex w-full max-w-[380px] flex-col border-t border-stroke-strong pt-size-7 pb-size-8"
       >
         <a
           href={withBase(footerMeta.help.href)}
@@ -101,13 +105,11 @@ import { withBase } from "@/utils/path";
         <div class="flex flex-col gap-size-4">
           <a
             href={withBase(footerMeta.conduct.href)}
-            class="py-size-5 text-center type-caption font-medium text-body hover:text-heading transition-colors"
+            class="py-size-5 text-center type-paragraph-l text-body hover:text-heading transition-colors"
           >
             {footerMeta.conduct.label}
           </a>
-          <p
-            class="pt-size-5 text-center type-caption font-medium text-subtitle"
-          >
+          <p class="py-size-5 text-center type-paragraph-l text-subtitle">
             {footerMeta.copyright}
           </p>
         </div>
@@ -123,22 +125,22 @@ import { withBase } from "@/utils/path";
         class="flex w-full max-w-[1200px] items-center border-t border-stroke-strong pt-size-13 pb-size-10"
       >
         <div class="flex min-w-0 flex-1 flex-col items-start">
-          <div class="flex w-full flex-col items-start pb-size-8">
-            <div class="flex w-full flex-col items-start pb-size-6">
+          <div class="flex w-full flex-col items-start pb-size-9">
+            <div class="flex w-full flex-col items-start pb-size-7">
               <p class="type-paragraph-m max-w-[320px] pb-size-6 text-body">
                 {footerMeta.tagline}
               </p>
               <a href={withBase("/")} class="inline-flex">
                 <img
-                  src={withBase("/brand/imagotipo-navbar.png")}
+                  src={withBase("/brand/imagotipo-navbar.svg")}
                   alt="FresON fest"
                   width="110"
-                  height="40"
-                  class="h-[40px] w-[110px]"
+                  height="43"
+                  class="h-[43px] w-[110px]"
                 />
               </a>
             </div>
-            <div class="flex w-full flex-col items-start pt-size-6">
+            <div class="flex w-full flex-col items-start pt-size-5">
               <p class="type-paragraph-m pb-size-6 text-subtitle">
                 {footerMeta.collaborationLabel}
               </p>
@@ -146,14 +148,14 @@ import { withBase } from "@/utils/path";
                 href={footerMeta.gdg.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex"
+                class="inline-flex h-12 w-[300px] items-center"
               >
                 <img
                   src={withBase(footerMeta.gdg.logo)}
                   alt={footerMeta.gdg.alt}
-                  width="135"
-                  height="29"
-                  class="h-[29px] w-[135px] object-contain object-left"
+                  width="282"
+                  height="24"
+                  class="h-6 w-[282px]"
                 />
               </a>
             </div>
@@ -164,12 +166,12 @@ import { withBase } from "@/utils/path";
         </div>
 
         <nav
-          class="flex items-end self-stretch"
+          class="flex min-w-0 flex-1 items-start"
           aria-label="Enlaces del pie de página"
         >
           {
             footerSections.map(({ title, links }) => (
-              <div class="flex w-[200px] flex-col items-start">
+              <div class="flex min-w-0 flex-1 flex-col items-start">
                 <h3 class="w-full pb-size-5 font-body text-base leading-[1.4] font-normal text-heading">
                   {title}
                 </h3>

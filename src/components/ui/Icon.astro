@@ -1,5 +1,5 @@
 ---
-import { iconPaths, type IconName } from "@/types/icon";
+import { icons, type IconName } from "@/types/icon";
 
 interface Props {
   name: IconName;
@@ -8,15 +8,16 @@ interface Props {
 }
 
 const { name, size = 24, class: className = "" } = Astro.props;
+const icon = icons[name];
 ---
 
 <svg
   width={size}
   height={size}
-  viewBox="0 0 24 24"
+  viewBox={icon.viewBox}
   fill="currentColor"
   class={className}
   aria-hidden="true"
 >
-  <path d={iconPaths[name]}></path>
+  {icon.paths.map(({ d, opacity }) => <path d={d} opacity={opacity} />)}
 </svg>
