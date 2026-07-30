@@ -1,6 +1,7 @@
 ---
 import DesktopNav from "@/components/layout/DesktopNav.astro";
 import MobileNav from "@/components/layout/MobileNav.astro";
+import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
 import { mainNavLinks, ticketsCta } from "@/data/nav";
 import { withBase } from "@/utils/path";
@@ -23,9 +24,9 @@ const pathname = Astro.url.pathname;
     </a>
 
     <DesktopNav links={mainNavLinks} pathname={pathname}>
-      <a href={withBase(ticketsCta.href)} class="btn-primary h-10">
+      <Button href={ticketsCta.href} size="small">
         {ticketsCta.label}
-      </a>
+      </Button>
     </DesktopNav>
 
     <button

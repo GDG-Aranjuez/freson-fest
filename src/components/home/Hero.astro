@@ -1,10 +1,10 @@
 ---
 import Countdown from "@/components/home/Countdown.astro";
+import BenefitLink from "@/components/shared/BenefitLink.astro";
 import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { hero } from "@/data/hero";
-import { withBase } from "@/utils/path";
 ---
 
 <Section
@@ -52,26 +52,7 @@ import { withBase } from "@/utils/path";
           </div>
 
           <div class="flex w-full justify-center pt-size-6 lg:justify-start">
-            <a
-              href={hero.benefit.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex h-10 w-full max-w-full items-center justify-center rounded-full border-[0.5px] border-pill-stroke px-size-5 py-size-4 text-body lg:h-12"
-            >
-              <img
-                src={withBase("/brand/paw-icon.svg")}
-                alt=""
-                width="24"
-                height="28"
-                class="h-7 w-6 shrink-0"
-                aria-hidden="true"
-              />
-              <span
-                class="type-caption px-size-5 py-size-1 font-medium whitespace-nowrap"
-              >
-                {hero.benefit.label}
-              </span>
-            </a>
+            <BenefitLink href={hero.benefit.href} label={hero.benefit.label} />
           </div>
         </div>
       </div>
