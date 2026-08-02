@@ -4,15 +4,17 @@ import Quote from "@/components/home/Quote.astro";
 import Speakers from "@/components/home/Speakers.astro";
 import TechTicker from "@/components/home/TechTicker.astro";
 import PorQueVenir from "@/components/home/PorQueVenir.astro";
-import Agenda from "@/components/home/Agenda.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { speakers } from "@/data/speakers";
 ---
 
 <BaseLayout>
   <Hero />
   <TechTicker />
-  <Speakers />
-  <Agenda />
+
+  <!-- PASAMOS LOS DATOS AL COMPONENTE -->
+  <Speakers speakers={speakers} />
+
   <PorQueVenir />
   <Quote />
 </BaseLayout>
