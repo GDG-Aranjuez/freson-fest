@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { eventDate } from "@/utils/event-date";
 
 export const hero = {
@@ -38,7 +38,7 @@ export const faqs = {
     label: "VER MÁS PREGUNTAS",
   },
 } as const;
-=======
+
 import type { AgendaContent } from "@/types/agenda";
 
 export const agenda: AgendaContent = {
@@ -119,4 +119,4 @@ export const agenda: AgendaContent = {
     label: "DESCUBRE LA AGENDA COMPLETA",
   },
 };
->>>>>>> ce7d921 (resolve conflict)
+
