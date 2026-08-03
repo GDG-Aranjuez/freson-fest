@@ -1,0 +1,107 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { highlights } from "@/data/highlights";
+import { withBase } from "@/utils/path";
+---
+
+<Section
+  class="!pt-size-13 !pb-size-9 lg:!pb-size-15"
+  ariaLabelledby="highlights-heading"
+>
+  <Container>
+    <header class="py-size-8 lg:pb-size-8 lg:pt-0">
+      <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+        {highlights.eyebrow}
+      </p>
+      <h2 id="highlights-heading" class="type-h2 max-w-[700px]">
+        {highlights.title}
+      </h2>
+    </header>
+
+    <ul
+      class="grid list-none grid-cols-1 p-0 pb-size-9 pt-size-4 lg:grid-cols-2 lg:pb-size-10"
+    >
+      {
+        highlights.items.map((item, index) => (
+          <li
+            class:list={[
+              "flex flex-col gap-size-5 border-b border-stroke pt-size-8 pb-size-7",
+              "lg:gap-size-4 lg:border-b-0 lg:border-t lg:pt-size-7 lg:pb-size-9",
+              index % 2 === 0
+                ? "lg:pr-size-8"
+                : "lg:border-l lg:pl-size-8 lg:pr-size-8",
+            ]}
+          >
+            <span class="type-h4 text-highlighted lg:text-[length:var(--font-size-highlight-lg)]">
+              {item.number}
+            </span>
+            <h3 class="type-h4">{item.title}</h3>
+            <p class="type-paragraph-l lg:leading-[1.2]">
+              {typeof item.description === "string"
+                ? item.description
+                : item.description.map((part) =>
+                    part.type === "link" ? (
+                      <a
+                        href={part.href}
+                        class="link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {part.value}
+                      </a>
+                    ) : (
+                      part.value
+                    )
+                  )}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      class="flex flex-col gap-size-4 pb-size-7 pt-size-10 lg:pb-size-8 lg:pt-size-11"
+    >
+      <div
+        class="relative h-[201px] w-full overflow-hidden rounded-sm lg:aspect-[1200/609] lg:h-auto"
+      >
+        <img
+          src={withBase(highlights.images.stage.src)}
+          alt={highlights.images.stage.alt}
+          width="1772"
+          height="1017"
+          class="absolute inset-0 size-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="flex h-[120px] gap-size-4 lg:h-auto">
+        <div
+          class="relative h-full min-w-0 flex-1 overflow-hidden rounded-sm lg:aspect-[167.5/120] lg:h-auto"
+        >
+          <img
+            src={withBase(highlights.images.selfie.src)}
+            alt={highlights.images.selfie.alt}
+            width="1777"
+            height="1021"
+            class="absolute inset-0 size-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        <div
+          class="relative h-full min-w-0 flex-1 overflow-hidden rounded-sm lg:aspect-[167.5/120] lg:h-auto"
+        >
+          <img
+            src={withBase(highlights.images.audience.src)}
+            alt={highlights.images.audience.alt}
+            width="1772"
+            height="1020"
+            class="absolute inset-0 size-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

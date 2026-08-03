@@ -1,0 +1,360 @@
+---
+/* eslint-disable prettier/prettier */
+// PreviousEditions.astro
+
+import "../../styles/variables.css";
+import Section from "../ui/Section.astro";
+const slides = [
+  { id: 1, title: "DevFest 2025", image: "", desc: "Gran cierre del evento." },
+  { id: 2, title: "DevFest 2024", image: "", desc: "Apertura del evento." },
+  { id: 3, title: "DevFest 2023", image: "", desc: "Próximamente." },
+  { id: 4, title: "DevFest 2022", image: "", desc: "Próximamente." },
+];
+---
+
+<Section class="carousel-section">
+  <h2 class="main-title">Lo que vivimos en ediciones anteriores</h2>
+
+  <carousel-edition>
+    <div class="carousel-container">
+      {
+        slides.map((slide, index) => (
+          <div class="carousel-slide" data-index={index}>
+            <div class="slide-info top-info">
+              <h3 class="slide-title">{slide.title}</h3>
+            </div>
+            <div class="image-box">
+              <span class="img-label principal">Imagen principal</span>
+              <span class="img-label lateral">Imagen lateral</span>
+            </div>
+
+            <div class="slide-info bottom-info">
+              <p class="slide-desc">{slide.desc}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+    <div class="carousel-controls">
+      <button class="carousel-prev" type="button" aria-label="Anterior">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><polyline points="15 18 9 12 15 6"></polyline></svg
+        >
+      </button>
+      <button class="carousel-next" type="button" aria-label="Siguiente">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><polyline points="9 18 15 12 9 6"></polyline></svg
+        >
+      </button>
+    </div>
+  </carousel-edition>
+</Section>
+
+<style>
+  .carousel-section {
+    padding: 4rem 1rem;
+    font-family: var(--font-display);
+    text-align: center;
+    overflow: hidden;
+    perspective: 1000px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .main-title {
+    font-size: var(--font-size-highlight);
+    color: var(--color-heading);
+    font-weight: 600;
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+  .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 1040px;
+    height: 573px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    touch-action: pan-y;
+  }
+  .carousel-slide {
+    position: absolute;
+    width: 35%;
+    height: 100%;
+    transition:
+      transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+      opacity 0.6s ease-in-out,
+      z-index 0s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    filter: blur(0.8px) brightness(1);
+  }
+
+  /* Carousel status*/
+  .carousel-slide.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0) scale(1) translateZ(0);
+    z-index: 20;
+    cursor: default;
+    filter: blur(0) brightness(1);
+  }
+  .carousel-slide.prev {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-100%) scale(0.65) rotateY(15deg) translateZ(-100px);
+    z-index: 10;
+  }
+  .carousel-slide.next {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(100%) scale(0.65) rotateY(-15deg) translateZ(-100px);
+    z-index: 10;
+  }
+  .carousel-slide.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(0) scale(0.4) translateZ(-200px);
+    z-index: 0;
+    pointer-events: none;
+  }
+  .image-box {
+    background-color: #ccc;
+    width: 110%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    color: #999;
+    font-size: 0.9rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+    transition: box-shadow 0.3s ease;
+  }
+  .carousel-slide.active .image-box {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  .img-label.principal {
+    display: none;
+  }
+  .img-label.lateral {
+    display: block;
+  }
+  .carousel-slide.active .img-label.principal {
+    display: block;
+  }
+  .carousel-slide.active .img-label.lateral {
+    display: none;
+  }
+
+  .slide-info {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease;
+    text-align: left;
+    transform: translateZ(50px);
+  }
+  .carousel-slide.active .slide-info {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0.25s;
+  }
+  .top-info {
+    margin-bottom: 1rem;
+    height: 30px;
+    text-align: center;
+  }
+  .bottom-info {
+    margin-top: 1rem;
+    height: 65px;
+  }
+  .slide-title {
+    font-family: var(--font-body);
+    color: var(--color-subtitle);
+    font-size: var(--font-size-label-lg);
+    margin: 0;
+  }
+  .slide-desc {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-text-body);
+    align-items: center;
+    line-height: 1.5;
+    display: -webkit-box;
+    --webkit-line-clamp: 3;
+    --webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .carousel-controls {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    cursor: pointer;
+    background-color: var(--palette-stone-400);
+    border-radius: 3px;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  button:hover {
+    background: var(--palette-orange-400);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .main-title {
+      font-size: var(--font-size-h3-lg);
+      line-height: 1.2;
+
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+    }
+    .carousel-container {
+      height: 350px;
+    }
+    .carousel-slide {
+      width: 50%;
+    }
+    .carousel-slide.prev {
+      transform: translateX(-65%) scale(0.7) rotateY(10deg) translateZ(-50px);
+    }
+    .carousel-slide.next {
+      transform: translateX(65%) scale(0.7) rotateY(-10deg) translateZ(-50px);
+    }
+    .slide-desc {
+      font-size: 0.8rem;
+    }
+    .carousel-controls button {
+      width: 30px;
+      height: 30px;
+      padding: 4px;
+      font-size: 10px;
+    }
+  }
+</style>
+
+<script>
+  class EditionCarousel extends HTMLElement {
+    currentIndex: number = 0;
+    slides: HTMLElement[] = [];
+    prevBtn: HTMLButtonElement | null = null;
+    nextBtn: HTMLButtonElement | null = null;
+
+    touchStartX: number = 0;
+    touchEndX: number = 0;
+
+    connectedCallback() {
+      this.currentIndex = 0;
+      this.slides = Array.from(
+        this.querySelectorAll(".carousel-slide")
+      ) as HTMLElement[];
+      this.prevBtn = this.querySelector(".carousel-prev");
+      this.nextBtn = this.querySelector(".carousel-next");
+
+      if (this.slides.length > 0) {
+        this.init();
+      }
+    }
+    init() {
+      this.updateCarousel();
+      // Eventos del boton en Desktop
+      this.prevBtn?.addEventListener("click", () => this.navigate(-1));
+      this.nextBtn?.addEventListener("click", () => this.navigate(1));
+
+      this.slides.forEach((slide: HTMLElement, index: number) => {
+        slide.addEventListener("click", () => {
+          if (
+            slide.classList.contains("prev") ||
+            slide.classList.contains("next")
+          ) {
+            this.currentIndex = index;
+            this.updateCarousel();
+          }
+        });
+      });
+      // Eventos de touch en Mobile
+      this.addEventListener(
+        "touchstart",
+        (e: TouchEvent) => {
+          this.touchStartX = e.changedTouches[0].screenX;
+        },
+        { passive: true }
+      );
+      this.addEventListener(
+        "touchend",
+        (e: TouchEvent) => {
+          this.touchEndX = e.changedTouches[0].screenX;
+          this.handleSwipe();
+        },
+        { passive: true }
+      );
+    }
+
+    handleSwipe() {
+      const swipeDistance = this.touchEndX - this.touchStartX;
+      const swipeThreshold = 50;
+      if (swipeDistance > swipeThreshold) {
+        this.navigate(-1);
+      } else if (swipeDistance < -swipeThreshold) {
+        this.navigate(1);
+      }
+    }
+    navigate(direction: number) {
+      this.currentIndex =
+        (this.currentIndex + direction + this.slides.length) %
+        this.slides.length;
+      this.updateCarousel();
+    }
+    updateCarousel() {
+      this.slides.forEach((slide: HTMLElement, index: number) => {
+        slide.classList.remove("active", "prev", "next", "hidden");
+        if (index === this.currentIndex) {
+          slide.classList.add("active");
+        } else if (
+          index ===
+          (this.currentIndex - 1 + this.slides.length) % this.slides.length
+        ) {
+          slide.classList.add("prev");
+        } else if (index === (this.currentIndex + 1) % this.slides.length) {
+          slide.classList.add("next");
+        } else {
+          slide.classList.add("hidden");
+        }
+      });
+    }
+  }
+  customElements.define("carousel-edition", EditionCarousel);
+</script>

@@ -1,0 +1,63 @@
+---
+import { withBase } from "@/utils/path";
+
+type Variant = "primary" | "secondary";
+type Size = "default" | "small";
+
+interface Props {
+  variant?: Variant;
+  size?: Size;
+  block?: boolean;
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  class?: string;
+  external?: boolean;
+}
+
+const {
+  variant = "primary",
+  size = "default",
+  block = false,
+  href,
+  type = "button",
+  disabled = false,
+  class: className = "",
+  external = false,
+} = Astro.props;
+
+const isLink = typeof href === "string";
+const resolvedHref = isLink
+  ? external || href.startsWith("http")
+    ? href
+    : withBase(href)
+  : undefined;
+const isExternal =
+  isLink && (external || Boolean(href && href.startsWith("http")));
+
+const classes = [
+  variant === "secondary" ? "btn-secondary" : "btn-primary",
+  variant === "primary" && size === "small" && "btn-primary--small",
+  variant === "primary" && block && "btn-primary--block",
+  className,
+];
+---
+
+{
+  isLink ? (
+    <a
+      href={resolvedHref}
+      class:list={classes}
+      aria-disabled={disabled ? "true" : undefined}
+      tabindex={disabled ? -1 : undefined}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class:list={classes} disabled={disabled}>
+      <slot />
+    </button>
+  )
+}

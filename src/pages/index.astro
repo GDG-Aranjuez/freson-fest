@@ -1,9 +1,12 @@
 ---
 import Hero from "@/components/home/Hero.astro";
+import Highlights from "@/components/home/Highlights.astro";
+import Location from "@/components/home/Location.astro";
+import PreviousEditions from "@/components/home/PreviousEditions.astro";
 import Quote from "@/components/home/Quote.astro";
 import Speakers from "@/components/home/Speakers.astro";
+import Sponsors from "@/components/home/Sponsors.astro";
 import TechTicker from "@/components/home/TechTicker.astro";
-import PorQueVenir from "@/components/home/PorQueVenir.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { speakers } from "@/data/speakers";
 ---
@@ -12,9 +15,17 @@ import { speakers } from "@/data/speakers";
   <Hero />
   <TechTicker />
 
+
   <!-- PASAMOS LOS DATOS AL COMPONENTE -->
   <Speakers speakers={speakers} />
 
   <PorQueVenir />
+
+  <Highlights />
+  <Speakers />
+
   <Quote />
+  <PreviousEditions />
+  <Sponsors />
+  <Location />
 </BaseLayout>

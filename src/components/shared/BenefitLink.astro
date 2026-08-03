@@ -1,0 +1,38 @@
+---
+import { withBase } from "@/utils/path";
+
+interface Props {
+  href: string;
+  label: string;
+  class?: string;
+}
+
+const { href, label, class: className = "" } = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={["btn-destination", className]}
+>
+  <span class="btn-destination__icon" aria-hidden="true">
+    <img
+      src={withBase("/brand/paw-icon-light.svg")}
+      alt=""
+      width="21"
+      height="18"
+      class="btn-destination__paw btn-destination__paw--default"
+    />
+    <img
+      src={withBase("/brand/paw-icon-duotone.svg")}
+      alt=""
+      width="21"
+      height="18"
+      class="btn-destination__paw btn-destination__paw--hover"
+    />
+  </span>
+  <span class="type-caption px-size-5 py-size-1 font-medium whitespace-nowrap">
+    {label}
+  </span>
+</a>

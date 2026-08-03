@@ -1,8 +1,8 @@
 ---
+import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { comingSoonContent } from "@/data/coming-soon";
-import { withBase } from "@/utils/path";
 
 interface Props {
   title?: string;
@@ -30,12 +30,9 @@ const headingId = "coming-soon-heading";
 
       <p class="type-subtitle mx-auto pb-size-9 lg:mx-0">{description}</p>
 
-      <a
-        href={withBase(comingSoonContent.backHref)}
-        class="btn-primary btn-primary--block"
-      >
+      <Button href={comingSoonContent.backHref} block>
         {comingSoonContent.backLabel}
-      </a>
+      </Button>
     </div>
   </Container>
 </Section>

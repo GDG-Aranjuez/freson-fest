@@ -13,11 +13,13 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   scrollbar-gutter: stable;
+  overflow-x: hidden;
 }
 
 body {
   background-color: var(--color-page);
   color: var(--color-body);
+  overflow-x: hidden;
 }
 
 .sr-only {
