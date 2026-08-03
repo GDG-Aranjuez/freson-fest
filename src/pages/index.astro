@@ -8,13 +8,22 @@ import Speakers from "@/components/home/Speakers.astro";
 import Sponsors from "@/components/home/Sponsors.astro";
 import TechTicker from "@/components/home/TechTicker.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { speakers } from "@/data/speakers";
 ---
 
 <BaseLayout>
   <Hero />
   <TechTicker />
+
+
+  <!-- PASAMOS LOS DATOS AL COMPONENTE -->
+  <Speakers speakers={speakers} />
+
+  <PorQueVenir />
+
   <Highlights />
   <Speakers />
+
   <Quote />
   <PreviousEditions />
   <Sponsors />
