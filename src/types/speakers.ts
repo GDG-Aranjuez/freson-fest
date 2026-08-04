@@ -1,4 +1,3 @@
-
 export interface Speaker {
   id: number;
   name: string;
@@ -7,4 +6,3 @@ export interface Speaker {
   Empresa: string;
   image: string;
 }
-

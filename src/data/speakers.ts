@@ -22,7 +22,7 @@ export const speakers: Speaker[] = [
     name: "Lucía",
     lastName: "Fernández",
     role: "Backend Developer",
-   Empresa: "Google Developer Groups",
+    Empresa: "Google Developer Groups",
     image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
