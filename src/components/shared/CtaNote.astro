@@ -1,5 +1,5 @@
 ---
-import { withBase } from "@/utils/path";
+import Button from "@/components/ui/Button.astro";
 
 interface Props {
   href: string;
@@ -7,7 +7,6 @@ interface Props {
   footnote: string;
   class?: string;
   block?: boolean;
-  /** Footnote alignment. Desktop hero uses start; MidCta stays center. */
   noteAlign?: "center" | "start";
 }
 
@@ -22,12 +21,9 @@ const {
 ---
 
 <div class:list={["flex w-full flex-col items-stretch", className]}>
-  <a
-    href={withBase(href)}
-    class:list={["btn-primary", block && "btn-primary--block"]}
-  >
+  <Button href={href} block={block}>
     {label}
-  </a>
+  </Button>
   <p
     class:list={[
       "type-caption py-size-6 font-medium text-body",

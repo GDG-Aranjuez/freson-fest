@@ -93,18 +93,50 @@ El countdown del hero es caso aparte: `.countdown-num`, `.countdown-label`, `.co
 
 ## Botones
 
-- `.btn-primary` — CTA (entradas, volver…)
-- `.btn-primary--block` — full width en mobile; en desktop se encoge solo
-- `.btn-ghost` — acción secundaria / texto con flecha
-- `.btn-menu` — links del nav
+Capa de componentes + clases CSS. Prefiere el componente; las clases son la implementación.
 
-Hover, active y disabled ya están cableados. No hace falta rearmar el botón con `bg-brand text-on-brand` a mano.
+### Componentes
 
-```html
-<a href="/entradas" class="btn-primary">Entradas</a>
-<button type="button" class="btn-ghost">Ver más</button>
+| Componente           | Figma                         | Uso                               |
+| -------------------- | ----------------------------- | --------------------------------- |
+| `ui/Button`          | Buttons (primary / secondary) | CTA genérico (`<a>` o `<button>`) |
+| `shared/CtaNote`     | Button CTA + Note             | Primary + footnote debajo         |
+| `shared/GhostLink`   | Ghost button                  | Texto + flecha (+ underline)      |
+| `shared/BenefitLink` | Button destination            | Pill Brego                        |
+
+```astro
+import Button from "@/components/ui/Button.astro"; import CtaNote from
+"@/components/shared/CtaNote.astro"; import GhostLink from
+"@/components/shared/GhostLink.astro";
+
+<Button href="/entradas">Consigue tu entrada</Button>
+<Button href="/entradas" size="small">Entradas</Button>
+<Button href="/entradas" block>Consigue tu entrada</Button>
+<Button variant="secondary" type="button">Ver más</Button>
+
+<CtaNote
+  href="/entradas"
+  label="Consigue tu entrada"
+  footnote="Aforo limitado"
+/>
+<GhostLink href="/ediciones" label="VER EDICIÓN" />
 ```
 
+Props de `Button`: `variant` (`primary` \| `secondary`), `size` (`default` \| `small`), `block`, `href` (si hay → link), `disabled`, `external`.
+
+### Clases (por si hace falta markup suelto)
+
+| Clase                                  | Para                                            |
+| -------------------------------------- | ----------------------------------------------- |
+| `.btn-primary`                         | CTA grande (L, default)                         |
+| `.btn-primary--small`                  | CTA compacto (nav, 40px)                        |
+| `.btn-primary--block`                  | full width en mobile; en desktop se encoge solo |
+| `.btn-secondary`                       | texto sin fondo                                 |
+| `.btn-ghost` / `.btn-ghost--underline` | ghost (vía `GhostLink`)                         |
+| `.btn-destination`                     | pill Brego (vía `BenefitLink`)                  |
+| `.btn-menu`                            | links del nav                                   |
+
+Hover, active y disabled ya están cableados en CSS.
 ---
 
 ## Espaciado y radios

@@ -92,9 +92,12 @@
   --color-action-primary-hover-bg: var(--palette-orange-200);
   --color-action-primary-hover-text: var(--palette-stone-600);
   --color-action-primary-pressed-bg: var(--palette-orange-400);
-  --color-action-primary-pressed-text: var(--palette-stone-50);
   --color-action-primary-disabled-bg: var(--palette-stone-300);
   --color-action-primary-disabled-text: var(--palette-stone-50);
+  --color-action-secondary-text: var(--palette-orange-25);
+  --color-action-secondary-hover-text: var(--palette-orange-100);
+  --color-action-secondary-pressed-text: var(--palette-orange-400);
+  --color-action-secondary-disabled-text: var(--palette-stone-200);
   --color-action-ghost-text: var(--palette-orange-200);
   --color-action-ghost-hover-text: var(--palette-orange-100);
   --color-action-ghost-pressed-text: var(--palette-orange-400);
@@ -157,7 +160,7 @@
   --spacing-section-py-desktop: var(--spacing-size-13);
   --spacing-hero-py-desktop: var(--spacing-size-13);
 
-  --animate-ticker: ticker-scroll 55s linear infinite reverse;
+  --animate-ticker: ticker-scroll 55s linear infinite;
 }
 
 @keyframes ticker-scroll {

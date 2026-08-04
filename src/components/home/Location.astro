@@ -1,4 +1,5 @@
 ---
+import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { locationSection } from "@/data/location";
@@ -62,14 +63,9 @@ import { withBase } from "@/utils/path";
       <div
         class="order-3 pb-size-8 pt-size-6 lg:order-none lg:col-start-1 lg:row-start-3 lg:pb-size-5 lg:pt-size-7"
       >
-        <a
-          href={locationSection.cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-primary flex w-full"
-        >
+        <Button href={locationSection.cta.href} external class="w-full">
           {locationSection.cta.label}
-        </a>
+        </Button>
       </div>
 
       <div

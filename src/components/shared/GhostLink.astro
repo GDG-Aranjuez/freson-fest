@@ -6,18 +6,33 @@ interface Props {
   label: string;
   class?: string;
   external?: boolean;
+  underline?: boolean;
+  iconPosition?: "right" | "left";
 }
 
-const { href, label, class: className = "", external = false } = Astro.props;
+const {
+  href,
+  label,
+  class: className = "",
+  external = false,
+  underline = true,
+  iconPosition = "right",
+} = Astro.props;
 const resolvedHref =
   external || href.startsWith("http") ? href : withBase(href);
+const isExternal = external || href.startsWith("http");
 ---
 
 <a
   href={resolvedHref}
-  class:list={["btn-ghost gap-size-3", className]}
-  target={external || href.startsWith("http") ? "_blank" : undefined}
-  rel={external || href.startsWith("http") ? "noopener noreferrer" : undefined}
+  class:list={[
+    "btn-ghost gap-size-3",
+    underline && "btn-ghost--underline",
+    iconPosition === "left" && "flex-row-reverse",
+    className,
+  ]}
+  target={isExternal ? "_blank" : undefined}
+  rel={isExternal ? "noopener noreferrer" : undefined}
 >
   <span>{label}</span>
   <svg
