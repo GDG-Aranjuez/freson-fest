@@ -1,4 +1,5 @@
-export type SessionType = "Charla" | "Taller" | "Networking" | "Keynote" | "Panel";
+export type SessionType =
+  "Charla" | "Taller" | "Networking" | "Keynote" | "Panel";
 
 export interface AgendaSession {
   id: string;

@@ -15,26 +15,26 @@ const {
   viewAllLabel = "Ver todos los ponentes",
 } = Astro.props;
 ---
+
 <section
-id="ponentes"
-  class="
-    w-full
+  id="ponentes"
+  class="w-full
     overflow-hidden
     bg-[#1A1814]
     px-5
     py-8
      lg:px-20
-    lg:py-20
-  "
+    lg:py-20"
   aria-label="Lista de ponentes"
 >
   {
     speakers.length === 0 ? (
-      <p class="text-gray-400 text-sm px-4">
-        No hay ponentes disponibles.
-      </p>
+      <p class="text-gray-400 text-sm px-4">No hay ponentes disponibles.</p>
     ) : (
-      <div class="flex flex-col gap-8 lg:w-full lg:max-w-[1040px] lg:min-h-[276px]" data-speaker-carousel>
+      <div
+        class="flex flex-col gap-8 lg:w-full lg:max-w-[1040px] lg:min-h-[276px]"
+        data-speaker-carousel
+      >
         <div>
           <p
             class="
@@ -66,7 +66,7 @@ id="ponentes"
           </h2>
         </div>
 
-        <div  class=" flex  items-center gap-[10px] ml-auto">
+        <div class=" flex  items-center gap-[10px] ml-auto">
           <div
             class="
               flex
@@ -142,9 +142,9 @@ id="ponentes"
           </div>
         </div>
 
-<div
-  id="speaker-carousel"
-  class="
+        <div
+          id="speaker-carousel"
+          class="
     flex
     w-full
     gap-4
@@ -163,12 +163,11 @@ id="ponentes"
     lg:px-0
     lg:pt-0
   "
->
-          {
-            speakers.map((speaker) => (
+        >
+          {speakers.map((speaker) => (
             <article
-  id={`speaker-${speaker.id}`}
-  class="
+              id={`speaker-${speaker.id}`}
+              class="
    flex-shrink-0
     snap-center
 
@@ -190,11 +189,11 @@ id="ponentes"
     border
     border-[#272421]
   "
->
-                <img
-                  src={speaker.image}
-                  alt={`Retrato del ponente ${speaker.name} ${speaker.lastName}`}
-                  class="
+            >
+              <img
+                src={speaker.image}
+                alt={`Retrato del ponente ${speaker.name} ${speaker.lastName}`}
+                class="
                     w-full
                     aspect-square
                     object-cover
@@ -203,11 +202,11 @@ id="ponentes"
                       lg:h-[300px]
                       lg:flex-none
                   "
-                  loading="lazy"
-                />
+                loading="lazy"
+              />
 
-                <div
-                  class="
+              <div
+                class="
                     flex
                     flex-col
                     gap-1
@@ -217,45 +216,44 @@ id="ponentes"
                       lg:h-[56px]
                       lg:gap-4
                   "
-                >
-                  <h3
-                    class="
+              >
+                <h3
+                  class="
                       text-white
                       text-[15px]
                       font-bold
                       leading-tight
                       line-clamp-2
                     "
-                  >
-                    {speaker.name} {speaker.lastName}
-                  </h3>
+                >
+                  {speaker.name} {speaker.lastName}
+                </h3>
 
-                  <p
-                    class="
+                <p
+                  class="
                       text-gray-300
                       text-[11px]
                       font-medium
                       leading-tight
                       line-clamp-2
                     "
-                  >
-                    {speaker.role}
-                  </p>
+                >
+                  {speaker.role}
+                </p>
 
-                  <p
-                    class="
+                <p
+                  class="
                       text-gray-500
                       text-[10px]
                       leading-tight
                       line-clamp-2
                     "
-                  >
-                    {speaker.Empresa}
-                  </p>
-                </div>
-              </article>
-            ))
-          }
+                >
+                  {speaker.Empresa}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
 
         <div class="flex justify-end">
@@ -309,14 +307,11 @@ id="ponentes"
 
     root.dataset.carouselInitialized = "true";
 
-    const cards = Array.from(
-      carousel.querySelectorAll<HTMLElement>("article")
-    );
+    const cards = Array.from(carousel.querySelectorAll<HTMLElement>("article"));
 
     const totalSpeakers = cards.length;
 
     let currentIndex = 0;
-
 
     const updateUI = () => {
       counter.textContent = String(currentIndex + 1);
@@ -325,63 +320,45 @@ id="ponentes"
       next.disabled = currentIndex === totalSpeakers - 1;
     };
 
-
     const getCardWidth = () => {
       if (!cards[0]) return 0;
 
       const style = window.getComputedStyle(carousel);
 
-      const gap = Number.parseInt(
-        style.columnGap || style.gap || "0"
-      );
+      const gap = Number.parseInt(style.columnGap || style.gap || "0");
 
       return cards[0].offsetWidth + gap;
     };
 
-
     const goToCard = (index: number) => {
       const maxIndex = totalSpeakers - 1;
 
-      currentIndex = Math.min(
-        Math.max(index, 0),
-        maxIndex
-      );
-
+      currentIndex = Math.min(Math.max(index, 0), maxIndex);
 
       carousel.scrollTo({
         left: getCardWidth() * currentIndex,
         behavior: "smooth",
       });
 
-
       updateUI();
     };
-
 
     prev.addEventListener("click", () => {
       goToCard(currentIndex - 1);
     });
 
-
     next.addEventListener("click", () => {
       goToCard(currentIndex + 1);
     });
 
-
-
     carousel.addEventListener(
       "scroll",
       () => {
-
         const cardWidth = getCardWidth();
 
         if (!cardWidth) return;
 
-
-        const newIndex = Math.round(
-          carousel.scrollLeft / cardWidth
-        );
-
+        const newIndex = Math.round(carousel.scrollLeft / cardWidth);
 
         if (
           newIndex !== currentIndex &&
@@ -391,16 +368,12 @@ id="ponentes"
           currentIndex = newIndex;
           updateUI();
         }
-
       },
       { passive: true }
     );
 
-
     updateUI();
   }
-
-
 
   function initAll() {
     document
@@ -408,11 +381,7 @@ id="ponentes"
       .forEach(initCarousel);
   }
 
-
   initAll();
 
-  document.addEventListener(
-    "astro:page-load",
-    initAll
-  );
+  document.addEventListener("astro:page-load", initAll);
 </script>
