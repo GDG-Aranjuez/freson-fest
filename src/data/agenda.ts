@@ -90,7 +90,6 @@ export const hero = {
     footnote: "Plazas disponibles · Aforo limitado",
   },
 } as const;
-
 export const faqs = {
   heading: "Preguntas frecuentes",
   subtitle:
@@ -117,4 +116,3 @@ export const faqs = {
     label: "VER MÁS PREGUNTAS",
   },
 } as const;
-
