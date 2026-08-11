@@ -1,387 +1,348 @@
 ---
-import type { Speaker } from "../../types/speakers";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { speakers as defaultSpeakers } from "@/data/speakers";
+import type { Speaker } from "@/types/speakers";
+import { withBase } from "@/utils/path";
 
 interface Props {
   speakers?: Speaker[];
   eyebrow?: string;
+  heading?: string;
   viewAllHref?: string;
   viewAllLabel?: string;
 }
 
 const {
-  speakers = [],
+  speakers = defaultSpeakers,
   eyebrow = "Ponentes",
-  viewAllHref = "#ponentes",
+  heading = "Conoce a los referentes del tech que usas cada día.",
+  viewAllHref = "/speakers",
   viewAllLabel = "Ver todos los ponentes",
 } = Astro.props;
+
+const hasSpeakers = speakers.length > 0;
 ---
 
-<section
-  id="ponentes"
-  class="w-full
-    overflow-hidden
-    bg-[#1A1814]
-    px-5
-    py-8
-     lg:px-20
-    lg:py-20"
-  aria-label="Lista de ponentes"
+<Section
+  class="bg-page !pt-size-13 !pb-size-9 lg:!pb-size-15"
+  ariaLabelledby="speakers-heading"
 >
-  {
-    speakers.length === 0 ? (
-      <p class="text-gray-400 text-sm px-4">No hay ponentes disponibles.</p>
-    ) : (
-      <div
-        class="flex flex-col gap-8 lg:w-full lg:max-w-[1040px] lg:min-h-[276px]"
-        data-speaker-carousel
-      >
-        <div>
-          <p
-            class="
-              text-[#F37D16]
-              text-xs
-              font-semibold
-              uppercase
-              tracking-widest
-              mb-2
+  <Container>
+    <div data-speakers-section>
+      <header class="py-size-8 lg:pb-size-8 lg:pt-0">
+        <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+          {eyebrow}
+        </p>
 
-            "
-          >
-            {eyebrow}
-          </p>
+        <h2 id="speakers-heading" class="type-h2 max-w-[700px]">
+          {heading}
+        </h2>
+      </header>
 
-          <h2
-            class="
-              text-white
-              text-[32px]
-              font-bold
-              leading-[40px]
-              max-w-[1040px]
-                 lg:text-[64px]
-                 lg:leading-[72px]
-            "
-          >
-            Conoce a los referentes del tech <br />
-            que usas cada día.
-          </h2>
-        </div>
-
-        <div class=" flex  items-center gap-[10px] ml-auto">
+      {
+        hasSpeakers ? (
+          <>
+            <div
+              class="
+                flex
+                items-center
+                justify-end
+                gap-size-3
+                pb-size-6
+                pt-size-4
+                lg:gap-size-5
+                lg:pb-size-8
+              "
+            >
           <div
-            class="
-              flex
-              items-center
-              justify-center
-              h-[51.5px]
-              px-4
-              bg-[#1A1814]
-              border
-              border-[#272421]
-              rounded-lg
-              text-white
-              font-bold
-            "
-          >
-            <span id="speaker-counter">1</span>
-            <span class="mx-1 text-gray-500">de</span>
-            <span id="speaker-total">{speakers.length}</span>
-          </div>
-
-          <div class="flex items-center gap-[10px]  lg:gap-5">
-            <button
-              id="speaker-prev"
-              class="
-                flex
-                flex-col
-                items-center
-                justify-center
-                w-[73.5px]
-                h-[51.5px]
-                pt-[11px]
-                pb-[11px]
-                bg-[#1A1814]
-                border
-                border-[#272421]
-                rounded-lg
-                text-white
-                hover:bg-[#272421]
-                transition-colors
-                disabled:opacity-50
-                disabled:cursor-not-allowed
-              "
-              aria-label="Anterior ponente"
-            >
-              <span class="text-2xl">‹</span>
-            </button>
-
-            <button
-              id="speaker-next"
-              class="
-                flex
-                flex-col
-                items-center
-                justify-center
-                w-[73.5px]
-                h-[51.5px]
-                pt-[11px]
-                pb-[11px]
-                bg-[#1A1814]
-                border
-                border-[#272421]
-                rounded-lg
-                text-white
-                hover:bg-[#272421]
-                transition-colors
-                disabled:opacity-50
-                disabled:cursor-not-allowed
-              "
-              aria-label="Siguiente ponente"
-            >
-              <span class="text-2xl">›</span>
-            </button>
-          </div>
-        </div>
-
-        <div
-          id="speaker-carousel"
-          class="
+  class="
     flex
-    w-full
-    gap-4
-    sm:gap-6
-    overflow-x-auto
-    snap-x
-    snap-mandatory
-    scroll-smooth
-    hide-scrollbar
-    pt-[60px]
-    px-1
-
-    lg:max-w-[1040px]
-    lg:h-[480px]
-    lg:gap-4
-    lg:px-0
-    lg:pt-0
+    h-[22px]
+    w-[48px]
+    flex-none
+    items-center
+    justify-center
+    gap-[4px]
+    whitespace-nowrap
+    font-normal
+    text-[16px]
+    leading-[1.4]
+    tracking-[0]
+    text-[#D5CABF]
   "
-        >
-          {speakers.map((speaker) => (
-            <article
-              id={`speaker-${speaker.id}`}
-              class="
-   flex-shrink-0
-    snap-center
-
-    w-full
-    max-w-[280px]
-    min-h-[300px]
-
-    lg:w-[300px]
-    lg:h-[396px]
-    lg:max-w-[300px]
-    lg:py-5
-
-    flex
-    flex-col
-    gap-4
-    p-4
-
-    bg-[#1A1814]
-    border
-    border-[#272421]
-  "
-            >
-              <img
-                src={speaker.image}
-                alt={`Retrato del ponente ${speaker.name} ${speaker.lastName}`}
-                class="
-                    w-full
-                    aspect-square
-                    object-cover
-                    rounded-none
-                      lg:w-[300px]
-                      lg:h-[300px]
-                      lg:flex-none
-                  "
-                loading="lazy"
-              />
-
-              <div
-                class="
-                    flex
-                    flex-col
-                    gap-1
-                    overflow-hidden
-                    h-[78px]
-                      lg:w-[268px]
-                      lg:h-[56px]
-                      lg:gap-4
-                  "
+  aria-live="polite"
+  aria-atomic="true"
+>
+  <span data-speaker-counter>1</span>
+  <span>de</span>
+  <span>{speakers.length}</span>
+</div>
+              <Button
+                variant="secondary"
+                size="default"
+                aria-label="Ponente anterior"
+                class="speaker-prev w-[74px] px-0"
+                disabled
               >
-                <h3
+                <span class="text-2xl leading-none" aria-hidden="true">
+                  ‹
+                </span>
+              </Button>
+
+              <Button
+                variant="secondary"
+                size="default"
+                aria-label="Siguiente ponente"
+                class="speaker-next w-[74px] px-0"
+              >
+                <span class="text-2xl leading-none" aria-hidden="true">
+                  ›
+                </span>
+              </Button>
+            </div>
+
+            <div
+              class="
+                speaker-carousel
+                hide-scrollbar
+                flex
+                w-full
+                snap-x
+                snap-mandatory
+                gap-size-4
+                overflow-x-auto
+                scroll-smooth
+                pb-size-9
+                pt-size-4
+                sm:gap-size-5
+                lg:gap-size-8
+                lg:pb-size-10
+              "
+              role="region"
+              aria-label="Carrusel de ponentes"
+              tabindex="0"
+            >
+              {speakers.map((speaker) => (
+                <article
+                  id={`speaker-${speaker.id}`}
                   class="
-                      text-white
-                      text-[15px]
-                      font-bold
-                      leading-tight
-                      line-clamp-2
-                    "
+                    flex
+                    min-h-[396px]
+                    w-[280px]
+                    flex-none
+                    snap-start
+                    flex-col
+                    overflow-hidden
+                    rounded-sm
+                    border
+border-[#272421]
+bg-[#1A1814]
+                    sm:w-[300px]
+                    lg:h-[396px]
+                    lg:w-[300px]
+                  "
+                  data-speaker-card
                 >
-                  {speaker.name} {speaker.lastName}
-                </h3>
+                  <img
+                    src={withBase(speaker.image)}
+                    alt={`Retrato de ${speaker.name} ${speaker.lastName}`}
+                    width="300"
+                    height="300"
+                    class="aspect-square w-full flex-none object-cover"
+                    loading="lazy"
+                  />
 
-                <p
-                  class="
-                      text-gray-300
-                      text-[11px]
-                      font-medium
-                      leading-tight
-                      line-clamp-2
+                  <div
+                    class="
+                      flex
+                      min-h-[96px]
+                      flex-1
+                      flex-col
+                      gap-size-1
+                      p-size-4
                     "
-                >
-                  {speaker.role}
-                </p>
+                  >
+                    <h3
+                      class="
+                        line-clamp-1
+                        text-[15px]
+                        font-bold
+                        leading-tight
+                        text-heading
+                      "
+                    >
+                      {speaker.name} {speaker.lastName}
+                    </h3>
 
-                <p
-                  class="
-                      text-gray-500
-                      text-[10px]
-                      leading-tight
-                      line-clamp-2
-                    "
-                >
-                  {speaker.Empresa}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
+                    <p
+                      class="
+                        line-clamp-1
+                        text-[11px]
+                        font-medium
+                        leading-tight
+                        text-muted
+                      "
+                    >
+                      {speaker.role}
+                    </p>
+                  </div>
+                </article>
+              ))}
+            </div>
 
-        <div class="flex justify-end">
-          <a
-            href={viewAllHref}
-            class="
-              inline-flex
-              items-center
-              gap-1
-              text-[#F37D16]
-              text-xs
-              font-semibold
-              uppercase
-              tracking-wide
-              underline
-              decoration-1
-              underline-offset-4
-              hover:opacity-80
-              transition-opacity
-            "
-          >
-            {viewAllLabel}
-            <span aria-hidden="true">↗</span>
-          </a>
-        </div>
-      </div>
-    )
-  }
-</section>
+            <div
+              class="
+                flex
+                justify-end
+                pb-size-7
+                pt-size-10
+                lg:pb-size-8
+                lg:pt-size-11
+              "
+            >
+              <a
+                href={withBase(viewAllHref)}
+                class="
+                  link
+                  inline-flex
+                  items-center
+                  gap-size-1
+                  text-xs
+                  font-semibold
+                  uppercase
+                  tracking-wide
+                  text-highlighted
+                "
+              >
+                {viewAllLabel}
 
-<style>
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hide-scrollbar {
-    scrollbar-width: none;
-  }
-</style>
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </>
+        ) : (
+          <p class="py-size-8 type-paragraph-l text-muted">
+            No hay ponentes disponibles.
+          </p>
+        )
+      }
+    </div>
+  </Container>
+</Section>
 
 <script>
-  function initCarousel(root: HTMLElement) {
-    const carousel = root.querySelector<HTMLElement>("#speaker-carousel");
-    const prev = root.querySelector<HTMLButtonElement>("#speaker-prev");
-    const next = root.querySelector<HTMLButtonElement>("#speaker-next");
-    const counter = root.querySelector<HTMLElement>("#speaker-counter");
-
-    if (!carousel || !prev || !next || !counter) return;
-
-    if (root.dataset.carouselInitialized === "true") return;
-
-    root.dataset.carouselInitialized = "true";
-
-    const cards = Array.from(carousel.querySelectorAll<HTMLElement>("article"));
-
-    const totalSpeakers = cards.length;
-
-    let currentIndex = 0;
-
-    const updateUI = () => {
-      counter.textContent = String(currentIndex + 1);
-
-      prev.disabled = currentIndex === 0;
-      next.disabled = currentIndex === totalSpeakers - 1;
-    };
-
-    const getCardWidth = () => {
-      if (!cards[0]) return 0;
-
-      const style = window.getComputedStyle(carousel);
-
-      const gap = Number.parseInt(style.columnGap || style.gap || "0");
-
-      return cards[0].offsetWidth + gap;
-    };
-
-    const goToCard = (index: number) => {
-      const maxIndex = totalSpeakers - 1;
-
-      currentIndex = Math.min(Math.max(index, 0), maxIndex);
-
-      carousel.scrollTo({
-        left: getCardWidth() * currentIndex,
-        behavior: "smooth",
-      });
-
-      updateUI();
-    };
-
-    prev.addEventListener("click", () => {
-      goToCard(currentIndex - 1);
-    });
-
-    next.addEventListener("click", () => {
-      goToCard(currentIndex + 1);
-    });
-
-    carousel.addEventListener(
-      "scroll",
-      () => {
-        const cardWidth = getCardWidth();
-
-        if (!cardWidth) return;
-
-        const newIndex = Math.round(carousel.scrollLeft / cardWidth);
-
-        if (
-          newIndex !== currentIndex &&
-          newIndex >= 0 &&
-          newIndex < totalSpeakers
-        ) {
-          currentIndex = newIndex;
-          updateUI();
-        }
-      },
-      { passive: true }
+  function initializeSpeakersCarousels() {
+    const sections = document.querySelectorAll<HTMLElement>(
+      "[data-speakers-section]"
     );
 
-    updateUI();
+    sections.forEach((section) => {
+      if (section.dataset.initialized === "true") {
+        return;
+      }
+
+      const carousel =
+        section.querySelector<HTMLElement>(".speaker-carousel");
+
+      const previousButton =
+        section.querySelector<HTMLButtonElement>(".speaker-prev");
+
+      const nextButton =
+        section.querySelector<HTMLButtonElement>(".speaker-next");
+
+      const counter =
+        section.querySelector<HTMLElement>("[data-speaker-counter]");
+
+      const cards = Array.from(
+        section.querySelectorAll<HTMLElement>("[data-speaker-card]")
+      );
+
+      if (
+        !carousel ||
+        !previousButton ||
+        !nextButton ||
+        !counter ||
+        cards.length === 0
+      ) {
+        return;
+      }
+
+      section.dataset.initialized = "true";
+
+      let currentIndex = 0;
+      let scrollFrame: number | undefined;
+
+      const updateControls = () => {
+        counter.textContent = String(currentIndex + 1);
+        previousButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === cards.length - 1;
+      };
+
+      const scrollToCard = (index: number) => {
+        currentIndex = Math.max(0, Math.min(index, cards.length - 1));
+
+        cards[currentIndex].scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "start",
+        });
+
+        updateControls();
+      };
+
+      const updateCurrentCard = () => {
+        const carouselLeft = carousel.getBoundingClientRect().left;
+
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        cards.forEach((card, index) => {
+          const distance = Math.abs(
+            card.getBoundingClientRect().left - carouselLeft
+          );
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        if (closestIndex !== currentIndex) {
+          currentIndex = closestIndex;
+          updateControls();
+        }
+      };
+
+      previousButton.addEventListener("click", () => {
+        scrollToCard(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        scrollToCard(currentIndex + 1);
+      });
+
+      carousel.addEventListener(
+        "scroll",
+        () => {
+          if (scrollFrame !== undefined) {
+            cancelAnimationFrame(scrollFrame);
+          }
+
+          scrollFrame = requestAnimationFrame(updateCurrentCard);
+        },
+        { passive: true }
+      );
+
+      updateControls();
+    });
   }
 
-  function initAll() {
-    document
-      .querySelectorAll<HTMLElement>("[data-speaker-carousel]")
-      .forEach(initCarousel);
-  }
+  initializeSpeakersCarousels();
 
-  initAll();
-
-  document.addEventListener("astro:page-load", initAll);
+  document.addEventListener(
+    "astro:page-load",
+    initializeSpeakersCarousels
+  );
 </script>

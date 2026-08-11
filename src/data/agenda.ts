@@ -24,7 +24,6 @@ export const agenda: AgendaContent = {
           type: "Keynote",
           speaker: "María García López",
           location: "Auditorio Principal",
-          image: "https://via.placeholder.com/80?text=MGL",
         },
         {
           id: "session-3",
@@ -34,7 +33,6 @@ export const agenda: AgendaContent = {
           speaker: "Carlos Mendez",
           location: "Sala A",
           isActive: true,
-          image: "https://via.placeholder.com/80?text=CM",
         },
         {
           id: "session-4",
@@ -43,7 +41,6 @@ export const agenda: AgendaContent = {
           type: "Charla",
           speaker: "Sofia Chen",
           location: "Auditorio Principal",
-          image: "https://via.placeholder.com/80?text=SC",
         },
         {
           id: "session-5",

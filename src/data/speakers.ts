@@ -7,7 +7,7 @@ export const speakers: Speaker[] = [
     lastName: "García",
     role: "Frontend Developer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+    image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 2,
@@ -15,7 +15,7 @@ export const speakers: Speaker[] = [
     lastName: "Martínez",
     role: "Software Engineer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+    image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 3,
@@ -23,7 +23,7 @@ export const speakers: Speaker[] = [
     lastName: "Fernández",
     role: "Backend Developer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 4,
@@ -31,7 +31,7 @@ export const speakers: Speaker[] = [
     lastName: "Rodríguez",
     role: "DevOps Engineer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+  image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 5,
@@ -39,7 +39,7 @@ export const speakers: Speaker[] = [
     lastName: "López",
     role: "UX/UI Designer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+   image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 6,
@@ -47,7 +47,7 @@ export const speakers: Speaker[] = [
     lastName: "Sánchez",
     role: "Data Engineer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+  image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 7,
@@ -55,7 +55,7 @@ export const speakers: Speaker[] = [
     lastName: "Torres",
     role: "Mobile Developer",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+   image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
   {
     id: 8,
@@ -63,6 +63,6 @@ export const speakers: Speaker[] = [
     lastName: "Díaz",
     role: "Tech Lead",
     Empresa: "Google Developer Groups",
-    image: "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
+   image: "/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg",
   },
 ];
