@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
+import GhostLink from "../shared/GhostLink.astro";
 import Section from "@/components/ui/Section.astro";
 import { speakers as defaultSpeakers } from "@/data/speakers";
 import type { Speaker } from "@/types/speakers";
@@ -18,7 +19,7 @@ const {
   speakers = defaultSpeakers,
   eyebrow = "Ponentes",
   heading = "Conoce a los referentes del tech que usas cada día.",
-  viewAllHref = "/speakers",
+  viewAllHref = "#speakers-heading",
   viewAllLabel = "Ver todos los ponentes",
 } = Astro.props;
 
@@ -56,74 +57,74 @@ const hasSpeakers = speakers.length > 0;
                 lg:pb-size-8
               "
             >
-          <div
+ <div
   class="
-    flex
+    grid
     h-[22px]
     w-[48px]
     flex-none
+    grid-cols-[1fr_auto_1fr]
     items-center
-    justify-center
-    gap-[4px]
     whitespace-nowrap
-    font-normal
+    text-center
     text-[16px]
+    font-normal
     leading-[1.4]
     tracking-[0]
     text-[#D5CABF]
+    tabular-nums
   "
   aria-live="polite"
   aria-atomic="true"
 >
-  <span data-speaker-counter>1</span>
-  <span>de</span>
-  <span>{speakers.length}</span>
+  <span data-speaker-counter class="text-right">1</span>
+  <span class="px-[2px]">de</span>
+  <span class="text-left">{speakers.length}</span>
 </div>
-              <Button
-                variant="secondary"
-                size="default"
-                aria-label="Ponente anterior"
-                class="speaker-prev w-[74px] px-0"
-                disabled
-              >
-                <span class="text-2xl leading-none" aria-hidden="true">
-                  ‹
-                </span>
-              </Button>
 
-              <Button
-                variant="secondary"
-                size="default"
-                aria-label="Siguiente ponente"
-                class="speaker-next w-[74px] px-0"
-              >
-                <span class="text-2xl leading-none" aria-hidden="true">
-                  ›
-                </span>
-              </Button>
-            </div>
+<Button
+  variant="secondary"
+  size="default"
+  type="button"
+  aria-label="Ponente anterior"
+  class="speaker-prev w-[74px] px-0"
+  disabled
+>
+  <span class="text-2xl leading-none" aria-hidden="true">
+    ‹
+  </span>
+</Button>
 
-            <div
-              class="
-                speaker-carousel
-                hide-scrollbar
-                flex
-                w-full
-                snap-x
-                snap-mandatory
-                gap-size-4
-                overflow-x-auto
-                scroll-smooth
-                pb-size-9
-                pt-size-4
-                sm:gap-size-5
-                lg:gap-size-8
-                lg:pb-size-10
-              "
-              role="region"
-              aria-label="Carrusel de ponentes"
-              tabindex="0"
-            >
+<Button
+  variant="secondary"
+  size="default"
+  type="button"
+  aria-label="Siguiente ponente"
+  class="speaker-next w-[74px] px-0"
+>
+  <span class="text-2xl leading-none" aria-hidden="true">
+    ›
+  </span>
+</Button>
+</div>
+
+      <div
+  class="
+    speaker-carousel
+    flex
+    w-full
+    gap-size-4
+    overflow-x-hidden
+    scroll-smooth
+    pb-size-9
+    pt-size-4
+    sm:gap-size-5
+    lg:gap-size-8
+    lg:pb-size-10
+  "
+  role="region"
+  aria-label="Carrusel de ponentes"
+>
               {speakers.map((speaker) => (
                 <article
                   id={`speaker-${speaker.id}`}
@@ -192,35 +193,28 @@ bg-[#1A1814]
               ))}
             </div>
 
-            <div
-              class="
-                flex
-                justify-end
-                pb-size-7
-                pt-size-10
-                lg:pb-size-8
-                lg:pt-size-11
-              "
-            >
-              <a
-                href={withBase(viewAllHref)}
-                class="
-                  link
-                  inline-flex
-                  items-center
-                  gap-size-1
-                  text-xs
-                  font-semibold
-                  uppercase
-                  tracking-wide
-                  text-highlighted
-                "
-              >
-                {viewAllLabel}
-
-                <span aria-hidden="true">↗</span>
-              </a>
-            </div>
+<div
+  class="
+    flex
+    justify-end
+    pb-size-7
+    pt-size-10
+    lg:pb-size-8
+    lg:pt-size-11
+  "
+>
+  <GhostLink
+    href={viewAllHref}
+    label={viewAllLabel}
+    class="
+      text-xs
+      font-semibold
+      uppercase
+      tracking-wide
+      text-highlighted
+    "
+  />
+</div>
           </>
         ) : (
           <p class="py-size-8 type-paragraph-l text-muted">
