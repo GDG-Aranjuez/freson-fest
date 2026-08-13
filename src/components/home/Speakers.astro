@@ -57,8 +57,8 @@ const hasSpeakers = speakers.length > 0;
                 lg:pb-size-8
               "
             >
- <div
-  class="
+              <div
+                class="
     grid
     h-[22px]
     w-[48px]
@@ -74,42 +74,44 @@ const hasSpeakers = speakers.length > 0;
     text-[#D5CABF]
     tabular-nums
   "
-  aria-live="polite"
-  aria-atomic="true"
->
-  <span data-speaker-counter class="text-right">1</span>
-  <span class="px-[2px]">de</span>
-  <span class="text-left">{speakers.length}</span>
-</div>
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <span data-speaker-counter class="text-right">
+                  1
+                </span>
+                <span class="px-[2px]">de</span>
+                <span class="text-left">{speakers.length}</span>
+              </div>
 
-<Button
-  variant="secondary"
-  size="default"
-  type="button"
-  aria-label="Ponente anterior"
-  class="speaker-prev w-[74px] px-0"
-  disabled
->
-  <span class="text-2xl leading-none" aria-hidden="true">
-    ‹
-  </span>
-</Button>
+              <Button
+                variant="secondary"
+                size="default"
+                type="button"
+                aria-label="Ponente anterior"
+                class="speaker-prev w-[74px] px-0"
+                disabled
+              >
+                <span class="text-2xl leading-none" aria-hidden="true">
+                  ‹
+                </span>
+              </Button>
 
-<Button
-  variant="secondary"
-  size="default"
-  type="button"
-  aria-label="Siguiente ponente"
-  class="speaker-next w-[74px] px-0"
->
-  <span class="text-2xl leading-none" aria-hidden="true">
-    ›
-  </span>
-</Button>
-</div>
+              <Button
+                variant="secondary"
+                size="default"
+                type="button"
+                aria-label="Siguiente ponente"
+                class="speaker-next w-[74px] px-0"
+              >
+                <span class="text-2xl leading-none" aria-hidden="true">
+                  ›
+                </span>
+              </Button>
+            </div>
 
-      <div
-  class="
+            <div
+              class="
     speaker-carousel
     flex
     w-full
@@ -122,9 +124,9 @@ const hasSpeakers = speakers.length > 0;
     lg:gap-size-8
     lg:pb-size-10
   "
-  role="region"
-  aria-label="Carrusel de ponentes"
->
+              role="region"
+              aria-label="Carrusel de ponentes"
+            >
               {speakers.map((speaker) => (
                 <article
                   id={`speaker-${speaker.id}`}
@@ -193,8 +195,8 @@ bg-[#1A1814]
               ))}
             </div>
 
-<div
-  class="
+            <div
+              class="
     flex
     justify-end
     pb-size-7
@@ -202,19 +204,19 @@ bg-[#1A1814]
     lg:pb-size-8
     lg:pt-size-11
   "
->
-  <GhostLink
-    href={viewAllHref}
-    label={viewAllLabel}
-    class="
+            >
+              <GhostLink
+                href={viewAllHref}
+                label={viewAllLabel}
+                class="
       text-xs
       font-semibold
       uppercase
       tracking-wide
       text-highlighted
     "
-  />
-</div>
+              />
+            </div>
           </>
         ) : (
           <p class="py-size-8 type-paragraph-l text-muted">
@@ -237,8 +239,7 @@ bg-[#1A1814]
         return;
       }
 
-      const carousel =
-        section.querySelector<HTMLElement>(".speaker-carousel");
+      const carousel = section.querySelector<HTMLElement>(".speaker-carousel");
 
       const previousButton =
         section.querySelector<HTMLButtonElement>(".speaker-prev");
@@ -246,8 +247,9 @@ bg-[#1A1814]
       const nextButton =
         section.querySelector<HTMLButtonElement>(".speaker-next");
 
-      const counter =
-        section.querySelector<HTMLElement>("[data-speaker-counter]");
+      const counter = section.querySelector<HTMLElement>(
+        "[data-speaker-counter]"
+      );
 
       const cards = Array.from(
         section.querySelectorAll<HTMLElement>("[data-speaker-card]")
@@ -335,8 +337,5 @@ bg-[#1A1814]
 
   initializeSpeakersCarousels();
 
-  document.addEventListener(
-    "astro:page-load",
-    initializeSpeakersCarousels
-  );
+  document.addEventListener("astro:page-load", initializeSpeakersCarousels);
 </script>
