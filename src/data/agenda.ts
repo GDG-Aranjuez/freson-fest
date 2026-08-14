@@ -1,5 +1,56 @@
 import { eventDate } from "@/utils/event-date";
 
+export const agenda = {
+  eyebrow: "Agenda",
+  heading: "Todo lo que vas a vivir en este DevFest",
+  activities: [
+    {
+      id: 1,
+      time: "09:00",
+      title: "Título",
+      speaker: "Nombre del ponente",
+      location: "Lugar a desarrollar",
+      type: "talk",
+      expandable: false,
+      description: "",
+    },
+    {
+      id: 2,
+      time: "10:00",
+      title: "Título",
+      speaker: "Nombre del ponente",
+      location: "Lugar a desarrollar",
+      type: "talk",
+      expandable: false,
+      description: "",
+    },
+    {
+      id: 3,
+      time: "10:30",
+      title: "Título",
+      speaker: "Nombre del ponente",
+      location: "Lugar a desarrollar",
+      type: "talk",
+      expandable: true,
+      description: "Descripción de la charla.",
+    },
+    {
+      id: 4,
+      time: "10:30",
+      title: "Título",
+      speaker: "Nombre del ponente",
+      location: "Lugar a desarrollar",
+      type: "workshop",
+      expandable: true,
+      description: "Descripción del taller.",
+    },
+  ],
+  cta: {
+    href: "/agenda",
+    label: "Descubre la agenda completa",
+  },
+} as const;
+
 export const hero = {
   ...eventDate,
   title: "Una experiencia que no te puedes perder",
