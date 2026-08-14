@@ -1,7 +1,7 @@
 ---
+import GhostLink from "@/components/shared/GhostLink.astro";
 import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
-import GhostLink from "../shared/GhostLink.astro";
 import Section from "@/components/ui/Section.astro";
 import { speakers as defaultSpeakers } from "@/data/speakers";
 import type { Speaker } from "@/types/speakers";
@@ -33,11 +33,26 @@ const hasSpeakers = speakers.length > 0;
   <Container>
     <div data-speakers-section>
       <header class="py-size-8 lg:pb-size-8 lg:pt-0">
-        <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+        <p
+          class="
+            type-eyebrow-medium
+            pb-size-6
+            font-['Plus_Jakarta_Sans']
+            uppercase
+            text-highlighted
+          "
+        >
           {eyebrow}
         </p>
 
-        <h2 id="speakers-heading" class="type-h2 max-w-[700px]">
+        <h2
+          id="speakers-heading"
+          class="
+            type-h2
+            max-w-[700px]
+            font-['Bricolage_Grotesque']
+          "
+        >
           {heading}
         </h2>
       </header>
@@ -50,80 +65,156 @@ const hasSpeakers = speakers.length > 0;
                 flex
                 items-center
                 justify-end
-                gap-size-3
+                gap-[10px]
                 pb-size-6
                 pt-size-4
-                lg:gap-size-5
                 lg:pb-size-8
               "
             >
               <div
                 class="
-    grid
-    h-[22px]
-    w-[48px]
-    flex-none
-    grid-cols-[1fr_auto_1fr]
-    items-center
-    whitespace-nowrap
-    text-center
-    text-[16px]
-    font-normal
-    leading-[1.4]
-    tracking-[0]
-    text-[#D5CABF]
-    tabular-nums
-  "
+                  grid
+                  h-[22px]
+                  w-[48px]
+                  flex-none
+                  grid-cols-[1fr_auto_1fr]
+                  items-center
+                  whitespace-nowrap
+                  text-center
+                  font-['Plus_Jakarta_Sans']
+                  text-[16px]
+                  font-normal
+                  leading-[1.4]
+                  tracking-[0]
+                  text-[#D5CABF]
+                  tabular-nums
+                "
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <span data-speaker-counter class="text-right">
-                  1
-                </span>
+                <span data-speaker-counter class="text-right">1</span>
                 <span class="px-[2px]">de</span>
                 <span class="text-left">{speakers.length}</span>
               </div>
 
-              <Button
-                variant="secondary"
-                size="default"
-                type="button"
-                aria-label="Ponente anterior"
-                class="speaker-prev w-[74px] px-0"
-                disabled
-              >
-                <span class="text-2xl leading-none" aria-hidden="true">
-                  ‹
-                </span>
-              </Button>
+          <Button
+  variant="secondary"
+  size="default"
+  type="button"
+  aria-label="Ponente anterior"
+  class="
+  speaker-prev
+ h-[51.5px]
+min-h-[51.5px]
+max-h-[51.5px]
+w-[73.5px]
+min-w-[73.5px]
+max-w-[73.5px]
+rounded-[4px]
+  flex-none
+  border
+  border-[#272421]
+  bg-[#272421]
+  p-0
+  text-stone-400
+"
+  disabled
+>
+  <span
+    class="
+      flex
+      h-[29.5px]
+      w-[73.5px]
+      items-center
+      justify-center
+      opacity-90
+    "
+  >
+    <svg
+      width="25.5"
+      height="25.5"
+      viewBox="0 0 256 256"
+      fill="none"
+      class="h-[25.5px] w-[25.5px] rotate-180"
+      aria-hidden="true"
+    >
+      <path
+        d="M40 128H216M144 56L216 128L144 200"
+        stroke="currentColor"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </span>
+</Button>
 
-              <Button
-                variant="secondary"
-                size="default"
-                type="button"
-                aria-label="Siguiente ponente"
-                class="speaker-next w-[74px] px-0"
-              >
-                <span class="text-2xl leading-none" aria-hidden="true">
-                  ›
-                </span>
-              </Button>
-            </div>
+<Button
+  variant="secondary"
+  size="default"
+  type="button"
+  aria-label="Siguiente ponente"
+  class="
+    speaker-next
+    h-[51.5px]
+min-h-[51.5px]
+max-h-[51.5px]
+w-[73.5px]
+min-w-[73.5px]
+max-w-[73.5px]
+rounded-[4px]
+    flex-none
+    border
+    border-[#272421]
+    bg-[#272421]
+    p-0
+    text-stone-400
+  "
+>
+  <span
+    class="
+      flex
+      h-[29.5px]
+      w-[73.5px]
+      items-center
+      justify-center
+      opacity-90
+    "
+  >
+    <svg
+      width="25.5"
+      height="25.5"
+      viewBox="0 0 256 256"
+      fill="none"
+      class="h-[25.5px] w-[25.5px]"
+      aria-hidden="true"
+    >
+      <path
+        d="M40 128H216M144 56L216 128L144 200"
+        stroke="currentColor"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </span>
+</Button>
+</div>
 
             <div
               class="
-    speaker-carousel
-    flex
-    w-full
-    gap-size-4
-    overflow-x-hidden
-    scroll-smooth
-    pb-size-9
-    pt-size-4
-    sm:gap-size-5
-    lg:gap-size-8
-    lg:pb-size-10
-  "
+                speaker-carousel
+                flex
+                w-full
+                gap-size-4
+                overflow-x-hidden
+                scroll-smooth
+                pb-size-9
+                pt-size-4
+                sm:gap-size-5
+                lg:gap-size-8
+                lg:pb-size-10
+              "
               role="region"
               aria-label="Carrusel de ponentes"
             >
@@ -135,13 +226,12 @@ const hasSpeakers = speakers.length > 0;
                     min-h-[396px]
                     w-[280px]
                     flex-none
-                    snap-start
                     flex-col
                     overflow-hidden
                     rounded-sm
                     border
-border-[#272421]
-bg-[#1A1814]
+                    border-[#272421]
+                    bg-[#1A1814]
                     sm:w-[300px]
                     lg:h-[396px]
                     lg:w-[300px]
@@ -156,65 +246,74 @@ bg-[#1A1814]
                     class="aspect-square w-full flex-none object-cover"
                     loading="lazy"
                   />
+<div
+  class="
+    flex
+    min-h-[96px]
+    flex-1
+    flex-col
+    gap-[4px]
+    p-size-4
+  "
+>
+  <h3
+    class="
+      w-full
+      max-w-[208px]
+      max-h-[52px]
+      overflow-hidden
+      font-['Bricolage_Grotesque']
+      text-[24px]
+      font-medium
+      leading-[1.1]
+      tracking-[0]
+      text-heading
+    "
+  >
+    {speaker.name} {speaker.lastName}
+  </h3>
 
-                  <div
-                    class="
-                      flex
-                      min-h-[96px]
-                      flex-1
-                      flex-col
-                      gap-size-1
-                      p-size-4
-                    "
-                  >
-                    <h3
-                      class="
-                        line-clamp-1
-                        text-[15px]
-                        font-bold
-                        leading-tight
-                        text-heading
-                      "
-                    >
-                      {speaker.name} {speaker.lastName}
-                    </h3>
-
-                    <p
-                      class="
-                        line-clamp-1
-                        text-[11px]
-                        font-medium
-                        leading-tight
-                        text-muted
-                      "
-                    >
-                      {speaker.role}
-                    </p>
-                  </div>
+  <div
+    class="
+      flex
+      min-h-[24px]
+      w-full
+      max-w-[208px]
+      items-center
+      gap-[4px]
+      font-['Plus_Jakarta_Sans']
+      text-muted
+    "
+  >
+    <span>{speaker.role}</span>
+  </div>
+</div>
                 </article>
               ))}
             </div>
 
             <div
               class="
-    flex
-    justify-end
-    pb-size-7
-    pt-size-10
-    lg:pb-size-8
-    lg:pt-size-11
-  "
+                flex
+                justify-end
+                pb-size-7
+                pt-size-10
+                lg:pb-size-8
+                lg:pt-size-11
+              "
             >
               <GhostLink
                 href={viewAllHref}
                 label={viewAllLabel}
                 class="
-      text-xs
-      font-semibold
-      uppercase
-      tracking-wide
-      text-highlighted
-    "
+                  font-['Plus_Jakarta_Sans']
+                  text-[14px]
+                  font-semibold
+                  uppercase
+                  leading-none
+                  tracking-[0.05em]
+                  text-[#F49E52]
+                "
               />
             </div>
           </>
@@ -279,10 +378,9 @@ bg-[#1A1814]
       const scrollToCard = (index: number) => {
         currentIndex = Math.max(0, Math.min(index, cards.length - 1));
 
-        cards[currentIndex].scrollIntoView({
+        carousel.scrollTo({
+          left: cards[currentIndex].offsetLeft - carousel.offsetLeft,
           behavior: "smooth",
-          block: "nearest",
-          inline: "start",
         });
 
         updateControls();
