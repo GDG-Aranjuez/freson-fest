@@ -34,24 +34,20 @@ const hasSpeakers = speakers.length > 0;
     <div data-speakers-section>
       <header class="py-size-8 lg:pb-size-8 lg:pt-0">
         <p
-          class="
-            type-eyebrow-medium
+          class="type-eyebrow-medium
             pb-size-6
             font-['Plus_Jakarta_Sans']
             uppercase
-            text-highlighted
-          "
+            text-highlighted"
         >
           {eyebrow}
         </p>
 
         <h2
           id="speakers-heading"
-          class="
-            type-h2
+          class="type-h2
             max-w-[700px]
-            font-['Bricolage_Grotesque']
-          "
+            font-['Bricolage_Grotesque']"
         >
           {heading}
         </h2>
@@ -92,17 +88,19 @@ const hasSpeakers = speakers.length > 0;
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <span data-speaker-counter class="text-right">1</span>
+                <span data-speaker-counter class="text-right">
+                  1
+                </span>
                 <span class="px-[2px]">de</span>
                 <span class="text-left">{speakers.length}</span>
               </div>
 
-          <Button
-  variant="secondary"
-  size="default"
-  type="button"
-  aria-label="Ponente anterior"
-  class="
+              <Button
+                variant="secondary"
+                size="default"
+                type="button"
+                aria-label="Ponente anterior"
+                class="
   speaker-prev
  h-[51.5px]
 min-h-[51.5px]
@@ -118,10 +116,10 @@ rounded-[4px]
   p-0
   text-stone-400
 "
-  disabled
->
-  <span
-    class="
+                disabled
+              >
+                <span
+                  class="
       flex
       h-[29.5px]
       w-[73.5px]
@@ -129,32 +127,32 @@ rounded-[4px]
       justify-center
       opacity-90
     "
-  >
-    <svg
-      width="25.5"
-      height="25.5"
-      viewBox="0 0 256 256"
-      fill="none"
-      class="h-[25.5px] w-[25.5px] rotate-180"
-      aria-hidden="true"
-    >
-      <path
-        d="M40 128H216M144 56L216 128L144 200"
-        stroke="currentColor"
-        stroke-width="8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </span>
-</Button>
+                >
+                  <svg
+                    width="25.5"
+                    height="25.5"
+                    viewBox="0 0 256 256"
+                    fill="none"
+                    class="h-[25.5px] w-[25.5px] rotate-180"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M40 128H216M144 56L216 128L144 200"
+                      stroke="currentColor"
+                      stroke-width="8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </Button>
 
-<Button
-  variant="secondary"
-  size="default"
-  type="button"
-  aria-label="Siguiente ponente"
-  class="
+              <Button
+                variant="secondary"
+                size="default"
+                type="button"
+                aria-label="Siguiente ponente"
+                class="
     speaker-next
     h-[51.5px]
 min-h-[51.5px]
@@ -170,9 +168,9 @@ rounded-[4px]
     p-0
     text-stone-400
   "
->
-  <span
-    class="
+              >
+                <span
+                  class="
       flex
       h-[29.5px]
       w-[73.5px]
@@ -180,26 +178,26 @@ rounded-[4px]
       justify-center
       opacity-90
     "
-  >
-    <svg
-      width="25.5"
-      height="25.5"
-      viewBox="0 0 256 256"
-      fill="none"
-      class="h-[25.5px] w-[25.5px]"
-      aria-hidden="true"
-    >
-      <path
-        d="M40 128H216M144 56L216 128L144 200"
-        stroke="currentColor"
-        stroke-width="8"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      />
-    </svg>
-  </span>
-</Button>
-</div>
+                >
+                  <svg
+                    width="25.5"
+                    height="25.5"
+                    viewBox="0 0 256 256"
+                    fill="none"
+                    class="h-[25.5px] w-[25.5px]"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M40 128H216M144 56L216 128L144 200"
+                      stroke="currentColor"
+                      stroke-width="8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </Button>
+            </div>
 
             <div
               class="
@@ -246,8 +244,8 @@ rounded-[4px]
                     class="aspect-square w-full flex-none object-cover"
                     loading="lazy"
                   />
-<div
-  class="
+                  <div
+                    class="
     flex
     min-h-[96px]
     flex-1
@@ -255,9 +253,9 @@ rounded-[4px]
     gap-[4px]
     p-size-4
   "
->
-  <h3
-    class="
+                  >
+                    <h3
+                      class="
       w-full
       max-w-[208px]
       max-h-[52px]
@@ -269,12 +267,12 @@ rounded-[4px]
       tracking-[0]
       text-heading
     "
-  >
-    {speaker.name} {speaker.lastName}
-  </h3>
+                    >
+                      {speaker.name} {speaker.lastName}
+                    </h3>
 
-  <div
-    class="
+                    <div
+                      class="
       flex
       min-h-[24px]
       w-full
@@ -284,10 +282,10 @@ rounded-[4px]
       font-['Plus_Jakarta_Sans']
       text-muted
     "
-  >
-    <span>{speaker.role}</span>
-  </div>
-</div>
+                    >
+                      <span>{speaker.role}</span>
+                    </div>
+                  </div>
                 </article>
               ))}
             </div>
