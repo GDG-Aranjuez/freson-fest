@@ -18,7 +18,7 @@ interface Props {
 const {
   speakers = defaultSpeakers,
   eyebrow = "Ponentes",
-  heading = "Conoce a los referentes del tech que usas cada día.",
+  heading = "Los referentes detrás del tech que usas",
   viewAllHref = "#speakers-heading",
   viewAllLabel = "Ver todos los ponentes",
 } = Astro.props;
@@ -58,147 +58,165 @@ const hasSpeakers = speakers.length > 0;
           <>
             <div
               class="
-                flex
-                items-center
-                justify-end
-                gap-[10px]
-                pb-size-6
-                pt-size-4
-                lg:pb-size-8
-              "
+    flex
+    items-center
+    justify-between
+    pb-size-6
+    pt-size-4
+    lg:justify-end
+    lg:gap-[20px]
+    lg:pb-size-8
+  "
             >
               <div
                 class="
-                  grid
-                  h-[22px]
-                  w-[48px]
-                  flex-none
-                  grid-cols-[1fr_auto_1fr]
-                  items-center
-                  whitespace-nowrap
-                  text-center
-                  font-['Plus_Jakarta_Sans']
-                  text-[16px]
-                  font-normal
-                  leading-[1.4]
-                  tracking-[0]
-                  text-[#D5CABF]
-                  tabular-nums
-                "
+      grid
+      h-[22px]
+      min-w-[56px]
+      flex-none
+      grid-cols-[1fr_auto_1fr]
+      items-center
+      whitespace-nowrap
+      text-center
+      font-['Plus_Jakarta_Sans']
+      text-[16px]
+      font-normal
+      leading-[1.4]
+      tracking-[0]
+      text-[#D5CABF]
+      tabular-nums
+      lg:min-w-[68px]
+      lg:text-[20px]
+    "
                 aria-live="polite"
                 aria-atomic="true"
               >
                 <span data-speaker-counter class="text-right">
                   1
                 </span>
+
                 <span class="px-[2px]">de</span>
+
                 <span class="text-left">{speakers.length}</span>
               </div>
 
-              <Button
-                variant="secondary"
-                size="default"
-                type="button"
-                aria-label="Ponente anterior"
-                class="
-  speaker-prev
- h-[51.5px]
-min-h-[51.5px]
-max-h-[51.5px]
-w-[73.5px]
-min-w-[73.5px]
-max-w-[73.5px]
-rounded-[4px]
-  flex-none
-  border
-  border-[#272421]
-  bg-[#272421]
-  p-0
-  text-stone-400
-"
-                disabled
-              >
-                <span
+              <div class="flex items-center gap-[16px]">
+                <Button
+                  variant="secondary"
+                  size="default"
+                  type="button"
+                  aria-label="Ponente anterior"
                   class="
-      flex
-      h-[29.5px]
-      w-[73.5px]
-      items-center
-      justify-center
-      opacity-90
-    "
+        speaker-prev
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
+                  disabled
                 >
-                  <svg
-                    width="25.5"
-                    height="25.5"
-                    viewBox="0 0 256 256"
-                    fill="none"
-                    class="h-[25.5px] w-[25.5px] rotate-180"
-                    aria-hidden="true"
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
                   >
-                    <path
-                      d="M40 128H216M144 56L216 128L144 200"
-                      stroke="currentColor"
-                      stroke-width="8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-              </Button>
+                    <svg
+                      width="25.5"
+                      height="25.5"
+                      viewBox="0 0 256 256"
+                      fill="none"
+                      class="h-[25.5px] w-[25.5px] rotate-180"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M40 128H216M144 56L216 128L144 200"
+                        stroke="currentColor"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Button>
 
-              <Button
-                variant="secondary"
-                size="default"
-                type="button"
-                aria-label="Siguiente ponente"
-                class="
-    speaker-next
-    h-[51.5px]
-min-h-[51.5px]
-max-h-[51.5px]
-w-[73.5px]
-min-w-[73.5px]
-max-w-[73.5px]
-rounded-[4px]
-    flex-none
-    border
-    border-[#272421]
-    bg-[#272421]
-    p-0
-    text-stone-400
-  "
-              >
-                <span
+                <Button
+                  variant="secondary"
+                  size="default"
+                  type="button"
+                  aria-label="Siguiente ponente"
                   class="
-      flex
-      h-[29.5px]
-      w-[73.5px]
-      items-center
-      justify-center
-      opacity-90
-    "
+        speaker-next
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
                 >
-                  <svg
-                    width="25.5"
-                    height="25.5"
-                    viewBox="0 0 256 256"
-                    fill="none"
-                    class="h-[25.5px] w-[25.5px]"
-                    aria-hidden="true"
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
                   >
-                    <path
-                      d="M40 128H216M144 56L216 128L144 200"
-                      stroke="currentColor"
-                      stroke-width="8"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-              </Button>
+                    <svg
+                      width="25.5"
+                      height="25.5"
+                      viewBox="0 0 256 256"
+                      fill="none"
+                      class="h-[25.5px] w-[25.5px]"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M40 128H216M144 56L216 128L144 200"
+                        stroke="currentColor"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Button>
+              </div>
             </div>
-
             <div
               class="
                 speaker-carousel
