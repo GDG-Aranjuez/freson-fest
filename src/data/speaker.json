@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "name": "María",
+    "lastName": "González",
+    "role": "Directora de Innovación",
+    "Empresa": "Google Developer Groups",
+    "image": "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg"
+  },
+  {
+    "id": "2",
+    "name": "Carlos",
+    "lastName": "López",
+    "role": "CTO & Fundador",
+    "Empresa": "Google Developer Groups",
+    "image": "public/caaaa4328aa7381a1c2e8743fcd7e1ae3cfd2c51 (1).jpg"
+  }
+]

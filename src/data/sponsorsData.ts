@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 export interface Sponsor {
   image?: string;
   description: string;

@@ -13,6 +13,7 @@ interface Props {
   disabled?: boolean;
   class?: string;
   external?: boolean;
+  "aria-label"?: string;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   disabled = false,
   class: className = "",
   external = false,
+  "aria-label": ariaLabel,
 } = Astro.props;
 
 const isLink = typeof href === "string";
