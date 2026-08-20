@@ -2,9 +2,20 @@
 import GhostLink from "@/components/shared/GhostLink.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { homeSchedule as agenda } from "@/data/agenda";
+import { agenda } from "@/data/agenda";
 
-type Activity = (typeof agenda.activities)[number];
+type Activity = {
+  id: string | number;
+  time: string;
+  title: string;
+  speaker: string;
+  location: string;
+  type?: string;
+  expandable?: boolean;
+  description?: string;
+};
+
+const activities = (agenda as typeof agenda & { activities: Activity[] }).activities;
 ---
 
 <Section
@@ -43,13 +54,13 @@ type Activity = (typeof agenda.activities)[number];
     lg:text-[64px]
     lg:font-semibold"
         >
-          {agenda.heading}
+          {(agenda as typeof agenda & { heading: string }).heading}
         </h2>
       </header>
 
       <div class="flex flex-col">
         {
-          agenda.activities.map((activity: Activity) => {
+          activities.map((activity) => {
             const panelId = `agenda-panel-${activity.id}`;
             const triggerId = `agenda-trigger-${activity.id}`;
 

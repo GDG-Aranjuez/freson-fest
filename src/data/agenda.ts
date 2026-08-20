@@ -1,4 +1,5 @@
 import { eventDate } from "@/utils/event-date";
+
 import type { AgendaContent } from "@/types/agenda";
 
 export const agenda: AgendaContent = {
@@ -138,6 +139,7 @@ export const hero = {
     footnote: "Plazas disponibles · Aforo limitado",
   },
 } as const;
+
 export const faqs = {
   heading: "Preguntas frecuentes",
   subtitle:
