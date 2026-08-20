@@ -77,7 +77,7 @@ export const agenda: AgendaContent = {
   },
 };
 
-export const agenda = {
+export const homeSchedule = {
   eyebrow: "Agenda",
   heading: "Todo lo que vas a vivir en este DevFest",
   activities: [
