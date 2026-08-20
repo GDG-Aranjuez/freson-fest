@@ -2,20 +2,9 @@
 import GhostLink from "@/components/shared/GhostLink.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { agenda } from "@/data/agenda";
+import { homeSchedule } from "@/data/agenda";
 
-type Activity = {
-  id: string | number;
-  time: string;
-  title: string;
-  speaker: string;
-  location: string;
-  type?: string;
-  expandable?: boolean;
-  description?: string;
-};
-
-const activities = (agenda as typeof agenda & { activities: Activity[] }).activities;
+const { eyebrow, heading, activities, cta } = homeSchedule;
 ---
 
 <Section
@@ -39,7 +28,7 @@ const activities = (agenda as typeof agenda & { activities: Activity[] }).activi
     lg:text-[18px]
     lg:font-medium"
         >
-          {agenda.eyebrow}
+          {eyebrow}
         </p>
         <h2
           id="home-agenda-heading"
@@ -54,7 +43,7 @@ const activities = (agenda as typeof agenda & { activities: Activity[] }).activi
     lg:text-[64px]
     lg:font-semibold"
         >
-          {(agenda as typeof agenda & { heading: string }).heading}
+          {heading}
         </h2>
       </header>
 
@@ -248,8 +237,8 @@ const activities = (agenda as typeof agenda & { activities: Activity[] }).activi
 
       <div class="flex justify-end pt-size-9">
         <GhostLink
-          href={agenda.cta.href}
-          label={agenda.cta.label}
+          href={cta.href}
+          label={cta.label}
           class="font-['Plus_Jakarta_Sans']
     text-xs
     font-semibold
