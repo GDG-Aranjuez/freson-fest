@@ -1,60 +1,455 @@
 ---
-import Icon from "@/components/ui/Icon.astro";
+import GhostLink from "@/components/shared/GhostLink.astro";
+import Button from "@/components/ui/Button.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { speakersSection } from "@/data/speakers";
+import { speakers as defaultSpeakers } from "@/data/speakers";
+import type { Speaker } from "@/types/speakers";
 import { withBase } from "@/utils/path";
+
+interface Props {
+  speakers?: Speaker[];
+  eyebrow?: string;
+  heading?: string;
+  viewAllHref?: string;
+  viewAllLabel?: string;
+}
+
+const {
+  speakers = defaultSpeakers,
+  eyebrow = "Ponentes",
+  heading = "Los referentes detrás del tech que usas",
+  viewAllHref = "#speakers-heading",
+  viewAllLabel = "Ver todos los ponentes",
+} = Astro.props;
+
+const hasSpeakers = speakers.length > 0;
 ---
 
-<Section class="bg-page" ariaLabelledby="speakers-heading">
+<Section
+  class="bg-page !pt-size-13 !pb-size-9 lg:!pb-size-15"
+  ariaLabelledby="speakers-heading"
+>
   <Container>
-    <div class="mx-auto w-full max-w-[1200px]">
-      <p class="type-eyebrow-medium pb-size-4 text-muted"
-        >{speakersSection.label}</p
-      >
+    <div data-speakers-section>
+      <header class="py-size-8 lg:pb-size-8 lg:pt-0">
+        <p
+          class="type-eyebrow-medium
+            pb-size-6
+            font-['Plus_Jakarta_Sans']
+            uppercase
+            text-highlighted"
+        >
+          {eyebrow}
+        </p>
 
-      <h2 id="speakers-heading" class="type-h2 pb-size-9 lg:pb-size-10">
-        {speakersSection.heading}
-      </h2>
+        <h2
+          id="speakers-heading"
+          class="type-h2
+            max-w-[700px]
+            font-['Bricolage_Grotesque']"
+        >
+          {heading}
+        </h2>
+      </header>
 
-      <div
-        class="grid grid-cols-1 gap-size-7 lg:grid-cols-4 lg:auto-rows-fr lg:gap-size-8"
-      >
-        {
-          speakersSection.speakers.map((speaker, index) => (
-            <article class="flex h-full flex-col overflow-hidden rounded-sm border border-stroke bg-surface focus-within:ring-1 focus-within:ring-stroke-brand lg:min-h-[calc(var(--spacing-size-16)*3)]">
-              <img
-                src={withBase(speaker.image.src)}
-                alt={speaker.image.alt}
-                width="420"
-                height="315"
-                loading={index < 4 ? "eager" : "lazy"}
-                class="aspect-[4/3] w-full object-cover"
-              />
+      {
+        hasSpeakers ? (
+          <>
+            <div
+              class="
+    flex
+    items-center
+    justify-between
+    pb-size-6
+    pt-size-4
+    lg:justify-end
+    lg:gap-[20px]
+    lg:pb-size-8
+  "
+            >
+              <div
+                class="
+      grid
+      h-[22px]
+      min-w-[56px]
+      flex-none
+      grid-cols-[1fr_auto_1fr]
+      items-center
+      whitespace-nowrap
+      text-center
+      font-['Plus_Jakarta_Sans']
+      text-[16px]
+      font-normal
+      leading-[1.4]
+      tracking-[0]
+      text-[#D5CABF]
+      tabular-nums
+      lg:min-w-[68px]
+      lg:text-[20px]
+    "
+                aria-live="polite"
+                aria-atomic="true"
+              >
+                <span data-speaker-counter class="text-right">
+                  1
+                </span>
 
-              <div class="flex flex-1 flex-col gap-size-4 p-size-6">
-                <h3 class="type-h5 text-heading">{speaker.name}</h3>
-                <p class="type-paragraph-s text-subtitle">{speaker.role}</p>
-                <p class="type-paragraph-s text-body">{speaker.description}</p>
+                <span class="px-[2px]">de</span>
 
-                <div class="mt-auto flex items-center gap-size-4 pt-size-2">
-                  {speaker.socialLinks.map((socialLink) => (
-                    <a
-                      href={socialLink.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={socialLink.label}
-                      class="inline-flex size-9 items-center justify-center rounded-sm bg-surface-raised text-subtitle transition-colors hover:bg-surface-raised/80 hover:text-heading"
-                    >
-                      <Icon name={socialLink.icon} size={16} />
-                    </a>
-                  ))}
-                </div>
+                <span class="text-left">{speakers.length}</span>
               </div>
-            </article>
-          ))
-        }
-      </div>
+
+              <div class="flex items-center gap-[16px]">
+                <Button
+                  variant="secondary"
+                  size="default"
+                  type="button"
+                  aria-label="Ponente anterior"
+                  class="
+        speaker-prev
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
+                  disabled
+                >
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
+                  >
+                    <svg
+                      width="25.5"
+                      height="25.5"
+                      viewBox="0 0 256 256"
+                      fill="none"
+                      class="h-[25.5px] w-[25.5px] rotate-180"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M40 128H216M144 56L216 128L144 200"
+                        stroke="currentColor"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Button>
+
+                <Button
+                  variant="secondary"
+                  size="default"
+                  type="button"
+                  aria-label="Siguiente ponente"
+                  class="
+        speaker-next
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
+                >
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
+                  >
+                    <svg
+                      width="25.5"
+                      height="25.5"
+                      viewBox="0 0 256 256"
+                      fill="none"
+                      class="h-[25.5px] w-[25.5px]"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M40 128H216M144 56L216 128L144 200"
+                        stroke="currentColor"
+                        stroke-width="8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </Button>
+              </div>
+            </div>
+            <div
+              class="
+                speaker-carousel
+                flex
+                w-full
+                gap-size-4
+                overflow-x-hidden
+                scroll-smooth
+                pb-size-9
+                pt-size-4
+                sm:gap-size-5
+                lg:gap-size-8
+                lg:pb-size-10
+              "
+              role="region"
+              aria-label="Carrusel de ponentes"
+            >
+              {speakers.map((speaker) => (
+                <article
+                  id={`speaker-${speaker.id}`}
+                  class="
+                    flex
+                    min-h-[396px]
+                    w-[280px]
+                    flex-none
+                    flex-col
+                    overflow-hidden
+                    rounded-sm
+                    border
+                    border-[#272421]
+                    bg-[#1A1814]
+                    sm:w-[300px]
+                    lg:h-[396px]
+                    lg:w-[300px]
+                  "
+                  data-speaker-card
+                >
+                  <img
+                    src={withBase(speaker.image)}
+                    alt={`Retrato de ${speaker.name} ${speaker.lastName}`}
+                    width="300"
+                    height="300"
+                    class="aspect-square w-full flex-none object-cover"
+                    loading="lazy"
+                  />
+                  <div
+                    class="
+    flex
+    min-h-[96px]
+    flex-1
+    flex-col
+    gap-[4px]
+    p-size-4
+  "
+                  >
+                    <h3
+                      class="
+      w-full
+      max-w-[208px]
+      max-h-[52px]
+      overflow-hidden
+      font-['Bricolage_Grotesque']
+      text-[24px]
+      font-medium
+      leading-[1.1]
+      tracking-[0]
+      text-heading
+    "
+                    >
+                      {speaker.name} {speaker.lastName}
+                    </h3>
+
+                    <div
+                      class="
+      flex
+      min-h-[24px]
+      w-full
+      max-w-[208px]
+      items-center
+      gap-[4px]
+      font-['Plus_Jakarta_Sans']
+      text-muted
+    "
+                    >
+                      <span>{speaker.role}</span>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div
+              class="
+                flex
+                justify-end
+                pb-size-7
+                pt-size-10
+                lg:pb-size-8
+                lg:pt-size-11
+              "
+            >
+              <GhostLink
+                href={viewAllHref}
+                label={viewAllLabel}
+                class="
+                  font-['Plus_Jakarta_Sans']
+                  text-[14px]
+                  font-semibold
+                  uppercase
+                  leading-none
+                  tracking-[0.05em]
+                  text-[#F49E52]
+                "
+              />
+            </div>
+          </>
+        ) : (
+          <p class="py-size-8 type-paragraph-l text-muted">
+            No hay ponentes disponibles.
+          </p>
+        )
+      }
     </div>
   </Container>
 </Section>
+
+<script>
+  function initializeSpeakersCarousels() {
+    const sections = document.querySelectorAll<HTMLElement>(
+      "[data-speakers-section]"
+    );
+
+    sections.forEach((section) => {
+      if (section.dataset.initialized === "true") {
+        return;
+      }
+
+      const carousel = section.querySelector<HTMLElement>(".speaker-carousel");
+
+      const previousButton =
+        section.querySelector<HTMLButtonElement>(".speaker-prev");
+
+      const nextButton =
+        section.querySelector<HTMLButtonElement>(".speaker-next");
+
+      const counter = section.querySelector<HTMLElement>(
+        "[data-speaker-counter]"
+      );
+
+      const cards = Array.from(
+        section.querySelectorAll<HTMLElement>("[data-speaker-card]")
+      );
+
+      if (
+        !carousel ||
+        !previousButton ||
+        !nextButton ||
+        !counter ||
+        cards.length === 0
+      ) {
+        return;
+      }
+
+      section.dataset.initialized = "true";
+
+      let currentIndex = 0;
+      let scrollFrame: number | undefined;
+
+      const updateControls = () => {
+        counter.textContent = String(currentIndex + 1);
+        previousButton.disabled = currentIndex === 0;
+        nextButton.disabled = currentIndex === cards.length - 1;
+      };
+
+      const scrollToCard = (index: number) => {
+        currentIndex = Math.max(0, Math.min(index, cards.length - 1));
+
+        carousel.scrollTo({
+          left: cards[currentIndex].offsetLeft - carousel.offsetLeft,
+          behavior: "smooth",
+        });
+
+        updateControls();
+      };
+
+      const updateCurrentCard = () => {
+        const carouselLeft = carousel.getBoundingClientRect().left;
+
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        cards.forEach((card, index) => {
+          const distance = Math.abs(
+            card.getBoundingClientRect().left - carouselLeft
+          );
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        if (closestIndex !== currentIndex) {
+          currentIndex = closestIndex;
+          updateControls();
+        }
+      };
+
+      previousButton.addEventListener("click", () => {
+        scrollToCard(currentIndex - 1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        scrollToCard(currentIndex + 1);
+      });
+
+      carousel.addEventListener(
+        "scroll",
+        () => {
+          if (scrollFrame !== undefined) {
+            cancelAnimationFrame(scrollFrame);
+          }
+
+          scrollFrame = requestAnimationFrame(updateCurrentCard);
+        },
+        { passive: true }
+      );
+
+      updateControls();
+    });
+  }
+
+  initializeSpeakersCarousels();
+
+  document.addEventListener("astro:page-load", initializeSpeakersCarousels);
+</script>

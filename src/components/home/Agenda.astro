@@ -1,0 +1,157 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { agenda } from "@/data/agenda";
+import type { AgendaSession } from "@/types/agenda";
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+// Session type color mapping
+const typeColors: Record<string, { bg: string; text: string }> = {
+  Charla: { bg: "bg-orange-300/20", text: "text-orange-200" },
+  Taller: { bg: "bg-orange-300/30", text: "text-orange-100" },
+  Networking: { bg: "bg-stone-400/20", text: "text-stone-200" },
+  Keynote: { bg: "bg-orange-300/40", text: "text-orange-100" },
+  Panel: { bg: "bg-stone-300/20", text: "text-stone-200" },
+};
+
+const getTypeStyles = (type: string) => {
+  return typeColors[type] || typeColors.Charla;
+};
+
+const formatTime = (time: string) => {
+  return time;
+};
+---
+
+<Section class={`bg-page ${className || ""}`} ariaLabelledby="agenda-heading">
+  <Container>
+    <div class="flex flex-col gap-size-8 lg:gap-size-10">
+      {/* Header */}
+      <div class="flex flex-col gap-size-3">
+        <p class="type-eyebrow text-body font-medium tracking-widest">
+          {agenda.eyebrow}
+        </p>
+        <h2
+          id="agenda-heading"
+          class="type-h2 max-w-prose text-heading lg:type-h2-lg"
+        >
+          {agenda.headline}
+        </h2>
+        {
+          agenda.description && (
+            <p class="type-paragraph-m max-w-prose text-body text-muted">
+              {agenda.description}
+            </p>
+          )
+        }
+      </div>
+
+      {/* Timeline */}
+      <div class="flex flex-col gap-size-6">
+        {
+          agenda.days.map((day) => (
+            <div class="flex flex-col gap-size-4">
+              {/* Day label */}
+              <p class="type-label text-muted font-medium uppercase tracking-wide">
+                {day.date}
+              </p>
+
+              {/* Sessions */}
+              <div class="flex flex-col gap-size-3">
+                {day.sessions.map((session: AgendaSession) => {
+                  const typeStyle = getTypeStyles(session.type);
+                  const isActive = session.isActive;
+
+                  return (
+                    <div
+                      class={`group flex gap-size-4 rounded-lg p-size-4 transition-colors ${
+                        isActive
+                          ? "bg-surface-raised"
+                          : "hover:bg-surface-raised/50"
+                      }`}
+                    >
+                      {/* Time column */}
+                      <div class="flex flex-col items-start gap-size-2 min-w-fit">
+                        <span class="type-label font-bold text-brand">
+                          {formatTime(session.startTime)}
+                        </span>
+                      </div>
+
+                      {/* Content column */}
+                      <div class="flex flex-1 flex-col gap-size-2 min-w-0">
+                        {/* Title and type */}
+                        <div class="flex flex-col gap-size-2 sm:flex-row sm:items-start sm:justify-between sm:gap-size-3">
+                          <h3 class="type-subtitle font-bold text-heading flex-1 min-w-0">
+                            {session.title}
+                          </h3>
+                          <span
+                            class={`type-label px-size-2 py-size-1 rounded-full whitespace-nowrap font-medium ${typeStyle.bg} ${typeStyle.text}`}
+                          >
+                            {session.type}
+                          </span>
+                        </div>
+
+                        {/* Metadata */}
+                        {(session.speaker || session.location) && (
+                          <div class="flex flex-col gap-size-1 sm:flex-row sm:gap-size-3 sm:items-center">
+                            {session.speaker && (
+                              <p class="type-caption text-muted">
+                                {session.speaker}
+                              </p>
+                            )}
+                            {session.location && (
+                              <p class="type-caption text-muted">
+                                📍 {session.location}
+                              </p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Image placeholder */}
+                      {session.image && (
+                        <div class="hidden sm:flex flex-shrink-0 w-20 h-20 rounded-lg bg-stone-400 overflow-hidden">
+                          <img
+                            src={session.image}
+                            alt={session.speaker || session.title}
+                            class="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+
+      {/* CTA and secondary link */}
+      <div
+        class="flex flex-col gap-size-4 sm:gap-size-3 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <a href={agenda.cta.href} class="btn-primary btn-primary--block">
+          {agenda.cta.label}
+        </a>
+
+        <a
+          href={agenda.secondaryLink.href}
+          class="link text-link hover:text-link-hover transition-colors inline-flex items-center gap-size-2 group"
+        >
+          {agenda.secondaryLink.label}
+          <span
+            class="inline-block transition-transform group-hover:translate-x-1"
+          >
+            ↗
+          </span>
+        </a>
+      </div>
+    </div>
+  </Container>
+</Section>
