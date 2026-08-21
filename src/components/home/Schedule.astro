@@ -1,0 +1,304 @@
+---
+import GhostLink from "@/components/shared/GhostLink.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { homeSchedule } from "@/data/agenda";
+
+const { eyebrow, heading, activities, cta } = homeSchedule;
+---
+
+<Section
+  class="bg-page !py-size-13 lg:!py-size-15"
+  ariaLabelledby="home-agenda-heading"
+>
+  <Container>
+    <div class="mx-auto w-full max-w-[1200px]">
+      <header class="pb-size-10 lg:max-w-[700px] lg:pb-size-13">
+        <p
+          class="inline-flex
+    items-center
+    pb-size-4
+    font-['Plus_Jakarta_Sans']
+    text-[15px]
+    font-light
+    uppercase
+    leading-none
+    tracking-normal
+    text-[#F37D16]
+    lg:text-[18px]
+    lg:font-medium"
+        >
+          {eyebrow}
+        </p>
+        <h2
+          id="home-agenda-heading"
+          class="flex
+    items-center
+    font-['Bricolage_Grotesque']
+    text-[40px]
+    font-bold
+    leading-[1.1]
+    tracking-normal
+    text-[#FEFAF5]
+    lg:text-[64px]
+    lg:font-semibold"
+        >
+          {heading}
+        </h2>
+      </header>
+
+      <div class="flex flex-col">
+        {
+          activities.map((activity) => {
+            const panelId = `agenda-panel-${activity.id}`;
+            const triggerId = `agenda-trigger-${activity.id}`;
+
+            return (
+              <article
+                class="
+    flex
+    w-full
+    flex-col
+    gap-0
+    border-b
+    border-stroke-strong
+  "
+              >
+                <div
+                  class="
+    flex
+    w-full
+    flex-row
+    items-start
+    gap-size-4
+    px-size-6
+    py-size-7
+    lg:gap-size-5
+    lg:pb-size-6
+    lg:pt-size-7
+  "
+                >
+                  <time
+                    class="
+    inline-flex
+    h-[21px]
+    w-[50px]
+    shrink-0
+    items-center
+    p-0
+    font-['Plus_Jakarta_Sans']
+    text-[14px]
+    font-normal
+    leading-[1.4]
+    tracking-normal
+    text-[#F37D16]
+  "
+                  >
+                    {activity.time}
+                  </time>
+                  <div class="min-w-0 flex-1">
+                    <h3
+                      class="
+    flex
+    w-full
+    items-center
+    gap-0
+    p-0
+    font-['Bricolage_Grotesque']
+    text-[24px]
+    font-medium
+    leading-[1.1]
+    tracking-normal
+    text-[#FEFAF5]
+  "
+                    >
+                      {activity.title}
+                    </h3>
+
+                    <p
+                      class="
+    w-full
+    pt-size-1
+    font-['Plus_Jakarta_Sans']
+    text-[16px]
+    font-normal
+    leading-[1.4]
+    tracking-normal
+    text-[#D5CABF]
+    lg:text-[20px]
+    lg:leading-[1.2]
+  "
+                    >
+                      {activity.speaker}
+                    </p>
+                    <p
+                      class="
+    w-full
+    pt-size-1
+    font-['Plus_Jakarta_Sans']
+    text-[14px]
+    font-normal
+    leading-[1.4]
+    tracking-normal
+    text-[#D5CABF]
+    lg:text-[16px]
+  "
+                    >
+                      {activity.location}
+                    </p>
+
+                    {activity.type === "workshop" && (
+                      <span
+                        class="
+                          mt-size-4
+                          inline-flex
+                          bg-highlighted
+                          px-size-2
+                          py-[2px]
+                          text-[10px]
+                          font-medium
+                          text-page
+                        "
+                      >
+                        Taller
+                      </span>
+                    )}
+
+                    {activity.expandable && (
+                      <div
+                        id={panelId}
+                        class="
+                          grid
+                          grid-rows-[0fr]
+                          transition-[grid-template-rows]
+                          duration-300
+                          ease-out
+                        "
+                        role="region"
+                        aria-labelledby={triggerId}
+                        data-agenda-panel
+                        inert
+                      >
+                        <div class="min-h-0 overflow-hidden">
+                          <p
+                            class="
+                              pt-size-4
+                              text-[13px]
+                              leading-[1.5]
+                              text-body
+                            "
+                          >
+                            {activity.description}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {activity.expandable && (
+                    <button
+                      id={triggerId}
+                      type="button"
+                      class="
+                        agenda-toggle
+                        flex
+                        size-8
+                        cursor-pointer
+                        items-center
+                        justify-center
+                        text-highlighted
+                      "
+                      aria-label={`Mostrar detalles de ${activity.title}`}
+                      aria-expanded="false"
+                      aria-controls={panelId}
+                      data-agenda-toggle
+                    >
+                      <span
+                        class="
+                          text-[24px]
+                          font-light
+                          leading-none
+                          transition-transform
+                          duration-300
+                        "
+                        aria-hidden="true"
+                        data-agenda-icon
+                      >
+                        +
+                      </span>
+                    </button>
+                  )}
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      <div class="flex justify-end pt-size-9">
+        <GhostLink
+          href={cta.href}
+          label={cta.label}
+          class="font-['Plus_Jakarta_Sans']
+    text-xs
+    font-semibold
+    uppercase
+    tracking-wide
+    text-highlighted"
+        />
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<script>
+  function initializeHomeAgenda() {
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-agenda-toggle]")
+      .forEach((button) => {
+        if (button.dataset.initialized === "true") {
+          return;
+        }
+
+        button.dataset.initialized = "true";
+
+        button.addEventListener("click", () => {
+          const expanded = button.getAttribute("aria-expanded") === "true";
+          const panelId = button.getAttribute("aria-controls");
+          const panel = panelId ? document.getElementById(panelId) : null;
+
+          if (!(panel instanceof HTMLElement)) {
+            return;
+          }
+
+          const nextExpanded = !expanded;
+
+          button.setAttribute("aria-expanded", String(nextExpanded));
+
+          const icon = button.querySelector<HTMLElement>("[data-agenda-icon]");
+
+          if (nextExpanded) {
+            panel.classList.remove("grid-rows-[0fr]");
+            panel.classList.add("grid-rows-[1fr]");
+            panel.removeAttribute("inert");
+
+            if (icon) {
+              icon.textContent = "−";
+            }
+          } else {
+            panel.classList.remove("grid-rows-[1fr]");
+            panel.classList.add("grid-rows-[0fr]");
+            panel.setAttribute("inert", "");
+
+            if (icon) {
+              icon.textContent = "+";
+            }
+          }
+        });
+      });
+  }
+
+  initializeHomeAgenda();
+
+  document.addEventListener("astro:page-load", initializeHomeAgenda);
+</script>
