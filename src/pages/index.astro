@@ -9,15 +9,15 @@ import Speakers from "@/components/home/Speakers.astro";
 import Sponsors from "@/components/home/Sponsors.astro";
 import TechTicker from "@/components/home/TechTicker.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { speakers } from "@/data/speakers";
+import Schedule from "@/components/home/Schedule.astro";
 ---
 
 <BaseLayout>
   <Hero />
   <TechTicker />
   <Highlights />
-  <Speakers speakers={speakers} />
-  <Agenda />
+  <Speakers />
+  <Schedule />
   <Quote />
   <PreviousEditions />
   <Sponsors />
