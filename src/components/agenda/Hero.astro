@@ -2,7 +2,7 @@
 import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { hero } from "@/data/agenda";
+import { agenda, hero } from "@/data/agenda";
 ---
 
 <Section
@@ -10,33 +10,50 @@ import { hero } from "@/data/agenda";
   ariaLabelledby="agenda-hero-heading"
 >
   <Container>
-    <div
-      class="flex flex-col lg:flex-row lg:items-end lg:justify-between lg:gap-size-9"
-    >
-      <div class="flex min-w-0 flex-1 flex-col lg:max-w-[700px]">
-        <p class="type-eyebrow pb-size-6 text-subtitle">
-          <span class="font-light">{hero.dateLead}</span>
-          {" "}
-          <span class="font-medium">{hero.dateYear}</span>
-        </p>
+    <div class="flex w-full flex-col lg:max-w-[700px]">
+      <!-- Visible only on mobile -->
+      <p
+        class="pb-size-6 font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden"
+      >
+        {agenda.eyebrow}
+      </p>
 
-        <h1 id="agenda-hero-heading" class="type-h1 pb-size-7">
-          {hero.title}
-        </h1>
-      </div>
+      <h1
+        id="agenda-hero-heading"
+        aria-label={hero.title}
+        class="w-full max-w-[343px] pb-size-7 font-['Bricolage_Grotesque'] text-[56px] font-extrabold leading-[100%] tracking-normal text-heading lg:max-w-[700px] lg:pb-size-9 lg:type-h1"
+      >
+        <span aria-hidden="true">
+          <span class="block">
+            <span class="block lg:inline">Una</span>
+            {" "}
+            <span class="block lg:inline">experiencia</span>
+          </span>
 
-      <div class="flex w-full flex-col lg:w-[280px] lg:shrink-0 lg:gap-size-9">
-        <p class="type-subtitle pb-size-12 font-normal text-subtitle lg:pb-0">
-          {hero.subtitle}
-        </p>
+          <span class="block">que no te</span>
 
-        <CtaNote
-          href={hero.cta.href}
-          label={hero.cta.label}
-          footnote={hero.cta.footnote}
-          noteAlign="start"
-        />
-      </div>
+          <span class="block">
+            <span class="block lg:inline">puedes</span>
+            {" "}
+            <span class="block lg:inline">perder</span>
+          </span>
+        </span>
+      </h1>
+
+      <!-- Visible only on mobile -->
+      <p
+        class="type-subtitle max-w-[343px] pb-size-9 font-normal text-subtitle lg:hidden"
+      >
+        {hero.subtitle}
+      </p>
+
+      <CtaNote
+        href={hero.cta.href}
+        label={hero.cta.label}
+        footnote={hero.cta.footnote}
+        noteAlign="center"
+        variant="agenda"
+      />
     </div>
   </Container>
 </Section>

@@ -10,6 +10,8 @@ export interface AgendaSession {
   location?: string;
   isActive?: boolean;
   image?: string;
+  expandable?: boolean;
+  description?: string;
 }
 
 export interface AgendaDay {

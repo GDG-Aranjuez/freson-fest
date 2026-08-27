@@ -8,6 +8,7 @@ interface Props {
   class?: string;
   block?: boolean;
   noteAlign?: "center" | "start";
+  variant?: "default" | "agenda";
 }
 
 const {
@@ -17,16 +18,23 @@ const {
   class: className = "",
   block = true,
   noteAlign = "center",
+  variant = "default",
 } = Astro.props;
+
+const isAgenda = variant === "agenda";
 ---
 
 <div class:list={["font-body flex w-full flex-col items-stretch", className]}>
   <Button href={href} block={block}>
     {label}
   </Button>
+
   <p
     class:list={[
-      "type-caption py-size-6 font-medium text-body",
+      "py-size-6 font-medium",
+      isAgenda
+        ? "font-['Plus_Jakarta_Sans'] text-[14px] leading-[120%] tracking-normal text-[#D5CABF] lg:text-[16px]"
+        : "type-caption text-body",
       noteAlign === "start" ? "text-center lg:text-left" : "text-center",
     ]}
   >
