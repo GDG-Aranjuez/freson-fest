@@ -18,6 +18,7 @@ const {
   underline = true,
   iconPosition = "right",
 } = Astro.props;
+
 const resolvedHref =
   external || href.startsWith("http") ? href : withBase(href);
 const isExternal = external || href.startsWith("http");
@@ -26,8 +27,8 @@ const isExternal = external || href.startsWith("http");
 <a
   href={resolvedHref}
   class:list={[
-    "btn-ghost gap-size-3",
-    underline && "btn-ghost--underline",
+    "inline-flex items-center gap-2 w-fit uppercase font-body text-[var(--color-action-ghost-text)] text-[14px] font-body font-medium leading-none tracking-[0.05em] no-underline pb-[4px]",
+    underline && "border-b border-[var(--color-action-ghost-text)]",
     iconPosition === "left" && "flex-row-reverse",
     className,
   ]}
@@ -36,8 +37,8 @@ const isExternal = external || href.startsWith("http");
 >
   <span>{label}</span>
   <svg
-    width="24"
-    height="24"
+    width="14"
+    height="14"
     viewBox="0 0 24 24"
     fill="none"
     aria-hidden="true"
@@ -46,7 +47,7 @@ const isExternal = external || href.startsWith("http");
     <path
       d="M7 17L17 7M17 7H9M17 7V15"
       stroke="currentColor"
-      stroke-width="1.5"
+      stroke-width="1.8"
       stroke-linecap="round"
       stroke-linejoin="round"></path>
   </svg>
