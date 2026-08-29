@@ -1,4 +1,5 @@
 ---
+import { BackgroundRippleEffect } from "@/components/ui/BackgroundRippleEffect.tsx";
 import Countdown from "@/components/home/Countdown.astro";
 import BenefitLink from "@/components/shared/BenefitLink.astro";
 import CtaNote from "@/components/shared/CtaNote.astro";
@@ -8,10 +9,23 @@ import { hero } from "@/data/hero";
 ---
 
 <Section
-  class="bg-page !py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  class="relative bg-page overflow-hidden !py-size-13 lg:!pt-size-13 lg:!pb-size-15"
   ariaLabelledby="hero-heading"
 >
-  <Container class="w-full max-w-[1200px] mx-auto">
+  <div
+    class="absolute inset-0 z-0 pointer-events-auto flex items-center justify-center"
+  >
+    <div class="relative w-full max-w-[1200px] h-full mx-auto px-0 sm:px-4">
+      <BackgroundRippleEffect client:idle />
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-page pointer-events-none"
+      ></div>
+    </div>
+  </div>
+
+  <Container
+    class="relative z-10 w-full max-w-[1200px] mx-auto pointer-events-none"
+  >
     <div class="flex flex-col items-center text-center lg:gap-size-7">
       <div class="flex w-full max-w-[700px] flex-col items-center">
         <p
@@ -38,11 +52,15 @@ import { hero } from "@/data/hero";
         </p>
 
         <div class="flex w-full max-w-[422px] flex-col items-center">
-          <Countdown
-            class="w-full justify-center pb-size-10 pt-size-6 lg:pb-size-11"
-          />
+          <div class="w-full pointer-events-auto">
+            <Countdown
+              class="w-full justify-center pb-size-10 pt-size-6 lg:pb-size-11"
+            />
+          </div>
 
-          <div class="flex w-full max-w-[380px] flex-col items-center">
+          <div
+            class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto"
+          >
             <CtaNote
               href={hero.cta.href}
               label={hero.cta.label}
@@ -51,7 +69,7 @@ import { hero } from "@/data/hero";
             />
           </div>
 
-          <div class="flex w-full justify-center pt-size-6">
+          <div class="flex w-full justify-center pt-size-6 pointer-events-auto">
             <BenefitLink href={hero.benefit.href} label={hero.benefit.label} />
           </div>
         </div>
