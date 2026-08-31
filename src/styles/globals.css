@@ -54,3 +54,23 @@ body {
     }
   }
 }
+
+@theme {
+  --animate-cell-ripple: cell-ripple 500ms ease-out forwards;
+
+  @keyframes cell-ripple {
+    0% {
+      background-color: transparent;
+    }
+    50% {
+      background-color: rgba(249, 115, 22, 0.45);
+    }
+    100% {
+      background-color: transparent;
+    }
+  }
+}
+
+.animate-ripple {
+  animation: var(--animate-cell-ripple);
+}

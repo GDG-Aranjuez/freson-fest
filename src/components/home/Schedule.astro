@@ -15,33 +15,13 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
     <div class="mx-auto w-full max-w-[1200px]">
       <header class="pb-size-10 lg:max-w-[700px] lg:pb-size-13">
         <p
-          class="inline-flex
-    items-center
-    pb-size-4
-    font-['Plus_Jakarta_Sans']
-    text-[15px]
-    font-light
-    uppercase
-    leading-none
-    tracking-normal
-    text-[#F37D16]
-    lg:text-[18px]
-    lg:font-medium"
+          class="inline-flex items-center pb-size-4 font-body text-[15px] font-light uppercase leading-none tracking-normal text-[#F37D16] md:text-[18px] md:font-medium"
         >
           {eyebrow}
         </p>
         <h2
           id="home-agenda-heading"
-          class="flex
-    items-center
-    font-['Bricolage_Grotesque']
-    text-[40px]
-    font-bold
-    leading-[1.1]
-    tracking-normal
-    text-[#FEFAF5]
-    lg:text-[64px]
-    lg:font-semibold"
+          class="flex items-center font-display text-[40px] font-bold leading-[1.1] tracking-normal text-[#FEFAF5] md:text-[64px] md:font-semibold"
         >
           {heading}
         </h2>
@@ -86,7 +66,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
     shrink-0
     items-center
     p-0
-    font-['Plus_Jakarta_Sans']
+    font-body
     text-[14px]
     font-normal
     leading-[1.4]
@@ -104,7 +84,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
     items-center
     gap-0
     p-0
-    font-['Bricolage_Grotesque']
+    font-display
     text-[24px]
     font-medium
     leading-[1.1]
@@ -119,7 +99,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
                       class="
     w-full
     pt-size-1
-    font-['Plus_Jakarta_Sans']
+    font-body
     text-[16px]
     font-normal
     leading-[1.4]
@@ -135,7 +115,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
                       class="
     w-full
     pt-size-1
-    font-['Plus_Jakarta_Sans']
+    font-body
     text-[14px]
     font-normal
     leading-[1.4]
@@ -155,7 +135,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
                           bg-highlighted
                           px-size-2
                           py-[2px]
-                          text-[10px]
+                          text-[14px]
                           font-medium
                           text-page
                         "
@@ -236,16 +216,7 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
       </div>
 
       <div class="flex justify-end pt-size-9">
-        <GhostLink
-          href={cta.href}
-          label={cta.label}
-          class="font-['Plus_Jakarta_Sans']
-    text-xs
-    font-semibold
-    uppercase
-    tracking-wide
-    text-highlighted"
-        />
+        <GhostLink href={cta.href} label={cta.label} />
       </div>
     </div>
   </Container>

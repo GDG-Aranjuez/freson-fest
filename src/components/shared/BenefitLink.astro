@@ -14,9 +14,14 @@ const { href, label, class: className = "" } = Astro.props;
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  class:list={["btn-destination", className]}
+  class:list={[
+    "btn-destination",
+    "flex w-full max-w-[528px] min-h-[50px] sm:min-h-[60px] items-center justify-center gap-1.5 sm:gap-3 rounded-full border border-white/40 px-3 sm:px-6",
+    "transition-colors duration-200",
+    className,
+  ]}
 >
-  <span class="btn-destination__icon" aria-hidden="true">
+  <span class="btn-destination__icon shrink-0" aria-hidden="true">
     <img
       src={withBase("/brand/paw-icon-light.svg")}
       alt=""
@@ -32,7 +37,9 @@ const { href, label, class: className = "" } = Astro.props;
       class="btn-destination__paw btn-destination__paw--hover"
     />
   </span>
-  <span class="type-caption px-size-5 py-size-1 font-medium whitespace-nowrap">
+  <span
+    class="font-body font-medium whitespace-nowrap text-[14px] sm:text-base"
+  >
     {label}
   </span>
 </a>
