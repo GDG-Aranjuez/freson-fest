@@ -5,14 +5,14 @@ import { agenda } from "@/data/agenda";
 ---
 
 <Section
-  class="!pt-size-9 !pb-0 lg:!pt-size-13"
+  class="!pt-size-9 !pb-0 lg:!pt-size-10"
   ariaLabelledby="agenda-schedule-heading"
 >
   <Container>
-    <div class="mx-auto w-full lg:max-w-[1200px]">
+    <div class="mx-auto w-full lg:max-w-[1040px]">
       <h2
         id="agenda-schedule-heading"
-        class="max-w-[319px] pb-size-7 font-['Bricolage_Grotesque'] text-[24px] font-bold leading-[1.1] tracking-normal text-heading lg:max-w-none lg:text-[40px]"
+        class="max-w-[319px] pb-size-7 font-['Bricolage_Grotesque'] text-[24px] font-bold leading-[1.1] tracking-normal text-heading lg:max-w-none lg:pb-size-6 lg:text-[40px]"
       >
         {agenda.headline}
       </h2>
@@ -23,7 +23,7 @@ import { agenda } from "@/data/agenda";
             day.sessions.map((session) =>
               session.expandable ? (
                 <details class="group/session border-b border-stroke-strong">
-                  <summary class="grid cursor-pointer list-none grid-cols-[48px_minmax(0,1fr)_24px] gap-size-3 py-size-6 [&::-webkit-details-marker]:hidden">
+                  <summary class="grid cursor-pointer list-none grid-cols-[48px_minmax(0,1fr)_24px] gap-size-3 py-size-6 lg:py-size-11 [&::-webkit-details-marker]:hidden">
                     <time
                       datetime={session.startTime}
                       class="pt-[2px] font-['Plus_Jakarta_Sans'] text-[12px] font-medium leading-none text-[#F37D16]"
@@ -96,7 +96,7 @@ import { agenda } from "@/data/agenda";
                   )}
                 </details>
               ) : (
-                <div class="grid grid-cols-[48px_minmax(0,1fr)] gap-size-3 border-b border-stroke-strong py-size-6">
+                <div class="grid grid-cols-[48px_minmax(0,1fr)] gap-size-3 border-b border-stroke-strong py-size-6 lg:py-size-11">
                   <time
                     datetime={session.startTime}
                     class="pt-[2px] font-['Plus_Jakarta_Sans'] text-[12px] font-medium leading-none text-[#F37D16]"
