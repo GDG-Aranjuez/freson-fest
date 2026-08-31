@@ -160,7 +160,7 @@
   --spacing-section-py-desktop: var(--spacing-size-13);
   --spacing-hero-py-desktop: var(--spacing-size-13);
 
-  --animate-ticker: ticker-scroll 65s linear infinite;
+  --animate-ticker: ticker-scroll 55s linear infinite;
 }
 
 @keyframes ticker-scroll {

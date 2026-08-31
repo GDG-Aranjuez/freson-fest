@@ -3,7 +3,6 @@ import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { agenda } from "@/data/agenda";
 import type { AgendaSession } from "@/types/agenda";
-import GhostLink from "@/components/shared/GhostLink.astro";
 
 interface Props {
   class?: string;
@@ -141,11 +140,17 @@ const formatTime = (time: string) => {
           {agenda.cta.label}
         </a>
 
-        <GhostLink
+        <a
           href={agenda.secondaryLink.href}
-          label={agenda.secondaryLink.label}
-          class="text-[var(--color-action-ghost-text)] gap-2"
-        />
+          class="link text-link hover:text-link-hover transition-colors inline-flex items-center gap-size-2 group"
+        >
+          {agenda.secondaryLink.label}
+          <span
+            class="inline-block transition-transform group-hover:translate-x-1"
+          >
+            ↗
+          </span>
+        </a>
       </div>
     </div>
   </Container>

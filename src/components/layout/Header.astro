@@ -9,7 +9,7 @@ import { withBase } from "@/utils/path";
 const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 w-full bg-page font-body">
+<header class="sticky top-0 z-50 w-full bg-page">
   <Container
     class="flex items-center justify-between pt-size-7 pb-size-2 lg:py-size-6"
   >
@@ -29,11 +29,10 @@ const pathname = Astro.url.pathname;
       </Button>
     </DesktopNav>
 
-    <!-- Botón alineado exactamente a la derecha -->
     <button
       id="nav-toggle"
       type="button"
-      class="lg:hidden flex items-center justify-end p-0 size-size-11 text-heading hover:text-link transition-colors"
+      class="lg:hidden flex items-center justify-center size-size-11 text-heading hover:text-link transition-colors"
       aria-label="Abrir menú"
       aria-expanded="false"
       aria-controls="nav-mobile"

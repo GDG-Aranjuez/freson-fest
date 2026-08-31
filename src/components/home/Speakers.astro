@@ -27,19 +27,28 @@ const hasSpeakers = speakers.length > 0;
 ---
 
 <Section
-  class="bg-page !pt-size-8 !pb-size-6 lg:!pt-size-10 lg:!pb-size-8"
+  class="bg-page !pt-size-13 !pb-size-9 lg:!pb-size-15"
   ariaLabelledby="speakers-heading"
 >
   <Container>
     <div data-speakers-section>
       <header class="py-size-8 lg:pb-size-8 lg:pt-0">
         <p
-          class="type-eyebrow-medium pb-size-6 font-body uppercase text-highlighted"
+          class="type-eyebrow-medium
+            pb-size-6
+            font-['Plus_Jakarta_Sans']
+            uppercase
+            text-highlighted"
         >
           {eyebrow}
         </p>
 
-        <h2 id="speakers-heading" class="type-h2 max-w-[700px] font-display">
+        <h2
+          id="speakers-heading"
+          class="type-h2
+            max-w-[700px]
+            font-['Bricolage_Grotesque']"
+        >
           {heading}
         </h2>
       </header>
@@ -47,32 +56,96 @@ const hasSpeakers = speakers.length > 0;
       {
         hasSpeakers ? (
           <>
-            <div class="flex items-center justify-between pb-size-6 pt-size-4 lg:justify-end lg:gap-[20px] lg:pb-size-8">
+            <div
+              class="
+    flex
+    items-center
+    justify-between
+    pb-size-6
+    pt-size-4
+    lg:justify-end
+    lg:gap-[20px]
+    lg:pb-size-8
+  "
+            >
               <div
-                class="flex items-center gap-[4px] font-body text-[14px] font-medium leading-[1.2] tracking-[0] text-[#D5CABF] tabular-nums lg:text-[20px]"
+                class="
+      grid
+      h-[22px]
+      min-w-[56px]
+      flex-none
+      grid-cols-[1fr_auto_1fr]
+      items-center
+      whitespace-nowrap
+      text-center
+      font-['Plus_Jakarta_Sans']
+      text-[16px]
+      font-normal
+      leading-[1.4]
+      tracking-[0]
+      text-[#D5CABF]
+      tabular-nums
+      lg:min-w-[68px]
+      lg:text-[20px]
+    "
                 aria-live="polite"
                 aria-atomic="true"
               >
-                <span data-speaker-counter>1</span>
-                <span>de</span>
-                <span>{speakers.length}</span>
+                <span data-speaker-counter class="text-right">
+                  1
+                </span>
+
+                <span class="px-[2px]">de</span>
+
+                <span class="text-left">{speakers.length}</span>
               </div>
 
-              <div class="flex items-center gap-[12px] lg:gap-[16px]">
+              <div class="flex items-center gap-[16px]">
                 <Button
                   variant="secondary"
                   size="default"
                   type="button"
                   aria-label="Ponente anterior"
-                  class="speaker-prev h-[30px] min-h-[30px] max-h-[30px] w-[74px] min-w-[74px] max-w-[74px] flex-none rounded-none border border-[#272421] bg-[#272421] p-0 text-stone-400 transition-colors cursor-pointer hover:bg-[var(--palette-amber-100)] hover:border-[var(--palette-amber-100)] hover:text-[#1A1814] active:bg-[var(--palette-amber-100)] active:border-[var(--palette-amber-100)] active:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#272421] disabled:hover:border-[#272421] disabled:hover:text-stone-400 lg:h-[43px] lg:min-h-[43px] lg:max-h-[43px] lg:w-[107px] lg:min-w-[107px] lg:max-w-[107px]"
+                  class="
+        speaker-prev
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
+                  disabled
                 >
-                  <span class="flex h-full w-full items-center justify-center opacity-90">
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
+                  >
                     <svg
                       width="25.5"
                       height="25.5"
                       viewBox="0 0 256 256"
                       fill="none"
-                      class="h-[18px] w-[18px] rotate-180 lg:h-[25.5px] lg:w-[25.5px]"
+                      class="h-[25.5px] w-[25.5px] rotate-180"
                       aria-hidden="true"
                     >
                       <path
@@ -91,15 +164,45 @@ const hasSpeakers = speakers.length > 0;
                   size="default"
                   type="button"
                   aria-label="Siguiente ponente"
-                  class="speaker-next h-[30px] min-h-[30px] max-h-[30px] w-[74px] min-w-[74px] max-w-[74px] flex-none rounded-none border border-[#272421] bg-[#272421] p-0 text-stone-400 transition-colors cursor-pointer hover:bg-[var(--palette-amber-100)] hover:border-[var(--palette-amber-100)] hover:text-[#1A1814] active:bg-[var(--palette-amber-100)] active:border-[var(--palette-amber-100)] active:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#272421] disabled:hover:border-[#272421] disabled:hover:text-stone-400 lg:h-[43px] lg:min-h-[43px] lg:max-h-[43px] lg:w-[107px] lg:min-w-[107px] lg:max-w-[107px]"
+                  class="
+        speaker-next
+        h-[41px]
+        min-h-[41px]
+        max-h-[41px]
+        w-[99px]
+        min-w-[99px]
+        max-w-[99px]
+        flex-none
+        rounded-[4px]
+        border
+        border-[#272421]
+        bg-[#272421]
+        p-0
+        text-stone-400
+        lg:h-[43px]
+        lg:min-h-[43px]
+        lg:max-h-[43px]
+        lg:w-[107px]
+        lg:min-w-[107px]
+        lg:max-w-[107px]
+      "
                 >
-                  <span class="flex h-full w-full items-center justify-center opacity-90">
+                  <span
+                    class="
+          flex
+          h-full
+          w-full
+          items-center
+          justify-center
+          opacity-90
+        "
+                  >
                     <svg
                       width="25.5"
                       height="25.5"
                       viewBox="0 0 256 256"
                       fill="none"
-                      class="h-[18px] w-[18px] lg:h-[25.5px] lg:w-[25.5px]"
+                      class="h-[25.5px] w-[25.5px]"
                       aria-hidden="true"
                     >
                       <path
@@ -114,32 +217,90 @@ const hasSpeakers = speakers.length > 0;
                 </Button>
               </div>
             </div>
-
             <div
-              class="speaker-carousel flex gap-[16px] lg:gap-[24px] h-[388px] w-full cursor-grab select-none overflow-x-auto snap-x snap-mandatory scroll-smooth py-size-2 [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing lg:h-[424px] lg:pb-size-4 lg:pt-size-2 [&::-webkit-scrollbar]:hidden"
+              class="
+                speaker-carousel
+                flex
+                w-full
+                gap-size-4
+                overflow-x-hidden
+                scroll-smooth
+                pb-size-9
+                pt-size-4
+                sm:gap-size-5
+                lg:gap-size-8
+                lg:pb-size-10
+              "
               role="region"
               aria-label="Carrusel de ponentes"
             >
               {speakers.map((speaker) => (
                 <article
                   id={`speaker-${speaker.id}`}
-                  class="flex h-[388px] min-h-[388px] w-[274px] flex-none snap-start flex-col overflow-hidden rounded-none border border-[#272421] bg-[#1A1814] lg:h-[424px] lg:min-h-[424px] lg:w-[300px]"
+                  class="
+                    flex
+                    min-h-[396px]
+                    w-[280px]
+                    flex-none
+                    flex-col
+                    overflow-hidden
+                    rounded-sm
+                    border
+                    border-[#272421]
+                    bg-[#1A1814]
+                    sm:w-[300px]
+                    lg:h-[396px]
+                    lg:w-[300px]
+                  "
                   data-speaker-card
                 >
                   <img
                     src={withBase(speaker.image)}
                     alt={`Retrato de ${speaker.name} ${speaker.lastName}`}
-                    width="274"
-                    height="274"
-                    class="pointer-events-none h-[274px] w-[274px] flex-none object-cover rounded-none lg:h-[300px] lg:w-[300px]"
+                    width="300"
+                    height="300"
+                    class="aspect-square w-full flex-none object-cover"
                     loading="lazy"
                   />
-                  <div class="flex flex-1 flex-col justify-center gap-[4px] p-size-4">
-                    <h3 class="w-full font-display text-[20px] font-medium leading-[1.1] tracking-[0] text-heading lg:text-[24px]">
+                  <div
+                    class="
+    flex
+    min-h-[96px]
+    flex-1
+    flex-col
+    gap-[4px]
+    p-size-4
+  "
+                  >
+                    <h3
+                      class="
+      w-full
+      max-w-[208px]
+      max-h-[52px]
+      overflow-hidden
+      font-['Bricolage_Grotesque']
+      text-[24px]
+      font-medium
+      leading-[1.1]
+      tracking-[0]
+      text-heading
+    "
+                    >
                       {speaker.name} {speaker.lastName}
                     </h3>
 
-                    <div class="flex w-full items-center gap-[4px] font-body text-[14px] text-muted lg:text-[16px]">
+                    <div
+                      class="
+      flex
+      min-h-[24px]
+      w-full
+      max-w-[208px]
+      items-center
+      gap-[4px]
+      font-['Plus_Jakarta_Sans']
+      text-muted
+    "
+                    >
                       <span>{speaker.role}</span>
                     </div>
                   </div>
@@ -147,8 +308,29 @@ const hasSpeakers = speakers.length > 0;
               ))}
             </div>
 
-            <div class="flex justify-end pt-size-5 lg:pt-size-8">
-              <GhostLink href={viewAllHref} label={viewAllLabel} />
+            <div
+              class="
+                flex
+                justify-end
+                pb-size-7
+                pt-size-10
+                lg:pb-size-8
+                lg:pt-size-11
+              "
+            >
+              <GhostLink
+                href={viewAllHref}
+                label={viewAllLabel}
+                class="
+                  font-['Plus_Jakarta_Sans']
+                  text-[14px]
+                  font-semibold
+                  uppercase
+                  leading-none
+                  tracking-[0.05em]
+                  text-[#F49E52]
+                "
+              />
             </div>
           </>
         ) : (
@@ -173,13 +355,17 @@ const hasSpeakers = speakers.length > 0;
       }
 
       const carousel = section.querySelector<HTMLElement>(".speaker-carousel");
+
       const previousButton =
         section.querySelector<HTMLButtonElement>(".speaker-prev");
+
       const nextButton =
         section.querySelector<HTMLButtonElement>(".speaker-next");
+
       const counter = section.querySelector<HTMLElement>(
         "[data-speaker-counter]"
       );
+
       const cards = Array.from(
         section.querySelectorAll<HTMLElement>("[data-speaker-card]")
       );
@@ -198,10 +384,6 @@ const hasSpeakers = speakers.length > 0;
 
       let currentIndex = 0;
       let scrollFrame: number | undefined;
-
-      let isMouseDown = false;
-      let startX = 0;
-      let scrollLeft = 0;
 
       const updateControls = () => {
         counter.textContent = String(currentIndex + 1);
@@ -242,33 +424,6 @@ const hasSpeakers = speakers.length > 0;
           updateControls();
         }
       };
-
-      carousel.addEventListener("mousedown", (e) => {
-        isMouseDown = true;
-        carousel.classList.remove("scroll-smooth", "snap-x");
-        startX = e.pageX - carousel.offsetLeft;
-        scrollLeft = carousel.scrollLeft;
-      });
-
-      carousel.addEventListener("mouseleave", () => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        carousel.classList.add("scroll-smooth", "snap-x");
-      });
-
-      carousel.addEventListener("mouseup", () => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        carousel.classList.add("scroll-smooth", "snap-x");
-      });
-
-      carousel.addEventListener("mousemove", (e) => {
-        if (!isMouseDown) return;
-        e.preventDefault();
-        const x = e.pageX - carousel.offsetLeft;
-        const walk = (x - startX) * 1.5;
-        carousel.scrollLeft = scrollLeft - walk;
-      });
 
       previousButton.addEventListener("click", () => {
         scrollToCard(currentIndex - 1);
