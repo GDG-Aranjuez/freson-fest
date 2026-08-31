@@ -22,34 +22,32 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
   aria-modal="true"
   aria-label="Menú de navegación"
 >
-  <div class="flex flex-col w-full h-full px-size-7 pt-size-7 pb-size-12">
-    <div class="flex justify-end w-full">
-      <button
-        id="nav-close"
-        type="button"
-        class="flex items-center justify-center size-size-11 text-heading hover:text-link transition-colors translate-x-3"
-        aria-label="Cerrar menú"
+  <div class="flex flex-col items-end px-size-7 pt-size-7 pb-size-12 h-full">
+    <button
+      id="nav-close"
+      type="button"
+      class="flex items-center justify-center size-size-11 text-heading hover:text-link transition-colors"
+      aria-label="Cerrar menú"
+    >
+      <svg
+        width="36"
+        height="36"
+        viewBox="0 0 36 36"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        aria-hidden="true"
       >
-        <svg
-          width="36"
-          height="36"
-          viewBox="0 0 36 36"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          aria-hidden="true"
-        >
-          <path d="M9 9l18 18M27 9L9 27"></path>
-        </svg>
-      </button>
-    </div>
+        <path d="M9 9l18 18M27 9L9 27"></path>
+      </svg>
+    </button>
 
     <nav
-      class="flex flex-col items-center justify-center flex-1 gap-size-8 w-full"
+      class="flex flex-col items-center gap-size-9 w-full mt-size-6 flex-1"
       aria-label="Navegación móvil"
     >
-      <div class="flex flex-col items-center gap-size-6 w-full max-w-[280px]">
+      <div class="flex flex-col items-center gap-size-6 w-full max-w-[200px]">
         {
           links.map(({ href, label }) => {
             const active = isActive(pathname, href);
@@ -65,7 +63,7 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
           })
         }
       </div>
-      <Button href={ticketsHref} size="small" block class="max-w-[280px]">
+      <Button href={ticketsHref} size="small" block class="max-w-[200px]">
         {ticketsLabel}
       </Button>
     </nav>
@@ -111,5 +109,5 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
     };
   }
 
-  initMobileNav();
+  document.addEventListener("astro:page-load", initMobileNav);
 </script>

@@ -1,5 +1,4 @@
 ---
-import { BackgroundRippleEffect } from "@/components/ui/BackgroundRippleEffect.tsx";
 import Countdown from "@/components/home/Countdown.astro";
 import BenefitLink from "@/components/shared/BenefitLink.astro";
 import CtaNote from "@/components/shared/CtaNote.astro";
@@ -9,28 +8,13 @@ import { hero } from "@/data/hero";
 ---
 
 <Section
-  class="relative bg-page overflow-hidden !py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  class="bg-page !py-size-13 lg:!pt-size-13 lg:!pb-size-15"
   ariaLabelledby="hero-heading"
 >
-  <div
-    class="absolute inset-0 z-0 pointer-events-auto flex items-center justify-center"
-  >
-    <div class="relative w-full max-w-[1200px] h-full mx-auto px-0 sm:px-4">
-      <BackgroundRippleEffect client:idle />
-      <div
-        class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-page pointer-events-none"
-      ></div>
-    </div>
-  </div>
-
-  <Container
-    class="relative z-10 w-full max-w-[1200px] mx-auto pointer-events-none"
-  >
-    <div class="flex flex-col items-center text-center lg:gap-size-7">
-      <div class="flex w-full max-w-[700px] flex-col items-center">
-        <p
-          class="type-eyebrow pb-size-6 text-subtitle w-full text-left lg:text-center"
-        >
+  <Container>
+    <div class="flex flex-col lg:flex-row lg:items-center lg:gap-size-7">
+      <div class="flex flex-1 min-w-0 flex-col items-stretch">
+        <p class="type-eyebrow pb-size-6 text-subtitle">
           <span class="font-light">{hero.dateLead}</span>
           {" "}
           <span class="font-medium">{hero.dateYear}</span>
@@ -38,7 +22,7 @@ import { hero } from "@/data/hero";
 
         <h1
           id="hero-heading"
-          class="type-h1 max-w-[700px] pb-size-7 text-left lg:text-center"
+          class="type-h1 max-w-[500px] pb-size-7 lg:max-w-[700px]"
         >
           <span class="text-heading">{hero.titleLead}{" "}</span>
           <span class="text-heading lg:text-highlighted">al{" "}</span>
@@ -46,34 +30,50 @@ import { hero } from "@/data/hero";
         </h1>
 
         <p
-          class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-left lg:text-center"
+          class="type-subtitle max-w-prose pb-size-9 font-normal text-subtitle lg:max-w-[480px]"
         >
           {hero.subtitle}
         </p>
 
-        <div class="flex w-full max-w-[422px] flex-col items-center">
-          <div class="w-full pointer-events-auto">
-            <Countdown
-              class="w-full justify-center pb-size-10 pt-size-6 lg:pb-size-11"
-            />
-          </div>
+        <div class="flex w-full flex-col items-stretch lg:max-w-[422px]">
+          <Countdown
+            class="w-full justify-center pb-size-10 pt-size-6 lg:justify-start lg:pb-size-11"
+          />
 
           <div
-            class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto"
+            class="flex w-full max-w-[380px] flex-col items-stretch self-center lg:max-w-none lg:self-stretch"
           >
             <CtaNote
               href={hero.cta.href}
               label={hero.cta.label}
               footnote={hero.footnote}
-              noteAlign="center"
+              noteAlign="start"
             />
           </div>
 
-          <div class="flex w-full justify-center pt-size-6 pointer-events-auto">
+          <div class="flex w-full justify-center pt-size-6 lg:justify-start">
             <BenefitLink href={hero.benefit.href} label={hero.benefit.label} />
           </div>
         </div>
       </div>
+
+      <div
+        class="hero-visual mt-size-10 hidden min-h-[400px] w-[311px] shrink-0 self-stretch lg:mt-0 lg:block lg:min-h-[520px]"
+        role="img"
+        aria-label={hero.visual.ariaLabel}
+      >
+      </div>
     </div>
   </Container>
 </Section>
+
+<style>
+  .hero-visual {
+    background-image: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--color-heading) 40%, transparent) 1.5px,
+      transparent 1.5px
+    );
+    background-size: var(--spacing-size-6) var(--spacing-size-6);
+  }
+</style>

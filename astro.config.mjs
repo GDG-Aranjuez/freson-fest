@@ -3,15 +3,13 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 
-import react from "@astrojs/react";
-
 const site = "https://gdg-aranjuez.github.io";
 const base = "/freson-fest/";
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [...tailwindcss()],
+    plugins: [tailwindcss()],
   },
   site,
   base,
@@ -20,6 +18,5 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.endsWith("/404/") && !page.endsWith("/404"),
     }),
-    react(),
   ],
 });

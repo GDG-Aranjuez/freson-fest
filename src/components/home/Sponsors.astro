@@ -5,7 +5,7 @@ import GhostLink from "@/components/shared/GhostLink.astro";
 ---
 
 <Section
-  class="bg-page text-white px-4 md:px-16 lg:px-24 font-sans min-h-screen flex flex-col justify-between"
+  class="bg-black text-white px-4 md:px-16 lg:px-24 font-sans min-h-screen flex flex-col justify-between"
 >
   <div>
     <header
@@ -45,7 +45,7 @@ import GhostLink from "@/components/shared/GhostLink.astro";
                       <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
                     )}
                   </div>
-                  <p class="font-body text-xs text-[16px] font-regular paragraph-m text-[var(--palette-orange-50)] max-w-xs">
+                  <p class="font-body text-xs paragraph-m text-[var(--palette-orange-50)] max-w-xs">
                     {sponsor.description}
                   </p>
                 </div>
@@ -55,7 +55,11 @@ import GhostLink from "@/components/shared/GhostLink.astro";
         ))
       }
       <div class="mt-20 max-w-4xl mx-auto flex justify-end">
-        <GhostLink href="#" label="¿QUIERES SER PATROCINADOR?" />
+        <GhostLink
+          href="#"
+          label="¿QUIERES SER PATROCINADOR?"
+          class="text-amber-600 hover:text-amber-500"
+        />
       </div>
     </div>
   </div>
