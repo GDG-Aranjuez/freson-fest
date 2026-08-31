@@ -16,7 +16,10 @@ export default defineConfig({
   site,
   base,
   output: "static",
-  integrations: [sitemap({
-    filter: (page) => !page.endsWith("/404/") && !page.endsWith("/404"),
-  }), react()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.endsWith("/404/") && !page.endsWith("/404"),
+    }),
+    react(),
+  ],
 });
