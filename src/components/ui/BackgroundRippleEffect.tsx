@@ -17,8 +17,9 @@ export const BackgroundRippleEffect = () => {
       const height = containerRef.current.clientHeight;
 
       let cols = 20;
-      if (width < 640) cols = 8;        // Móvil: 8 celdas de ancho
-      else if (width < 1024) cols = 14;  // Tablet: 14 celdas
+      if (width < 640)
+        cols = 8; // Móvil: 8 celdas de ancho
+      else if (width < 1024) cols = 14; // Tablet: 14 celdas
 
       const cellWidth = width / cols;
       const rows = Math.ceil(height / cellWidth);
