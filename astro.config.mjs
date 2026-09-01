@@ -11,12 +11,15 @@ const base = "/freson-fest/";
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [...tailwindcss()],
   },
   site,
   base,
   output: "static",
-  integrations: [sitemap({
-    filter: (page) => !page.endsWith("/404/") && !page.endsWith("/404"),
-  }), react()],
+  integrations: [
+    sitemap({
+      filter: (page) => !page.endsWith("/404/") && !page.endsWith("/404"),
+    }),
+    react(),
+  ],
 });
