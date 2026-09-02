@@ -4,74 +4,59 @@ import type { AgendaContent } from "@/types/agenda";
 
 export const agenda: AgendaContent = {
   eyebrow: "AGENDA",
-  headline: "Esto es lo que hemos preparado para ti",
-  description:
-    "Un día lleno de charlas, talleres y networking con los mejores profesionales tech de España.",
+
+  headline: "El 26 de octubre en FresON Fest",
+
   days: [
     {
-      date: "24 de Octubre, 2026",
+      date: "26 de octubre, 2026",
+
       sessions: [
         {
           id: "session-1",
           startTime: "09:00",
-          title: "Registro e Inauguración",
-          type: "Networking",
-          location: "Hall Principal",
+          title: "Apertura y registro",
+          type: "Charla",
+          speaker: "Nombre del ponente",
+          location: "Hall Central",
         },
         {
           id: "session-2",
-          startTime: "09:30",
-          title: "Keynote: El futuro de la IA en desarrollo",
-          type: "Keynote",
-          speaker: "María García López",
-          location: "Auditorio Principal",
+          startTime: "10:00",
+          title: "Presentación",
+          type: "Charla",
+          speaker: "Nombre del ponente",
+          location: "Lugar a desarrollar",
         },
         {
           id: "session-3",
           startTime: "10:30",
-          title: "Workshop de Seguridad en Cloud",
-          type: "Taller",
-          speaker: "Carlos Mendez",
-          location: "Sala A",
-          isActive: true,
+          title: "Conceptualización del sonido para narrar historias",
+          type: "Charla",
+          speaker: "Nombre del ponente",
+          location: "Lugar a desarrollar",
+          expandable: true,
+          description: "Descripción pendiente.",
         },
         {
           id: "session-4",
-          startTime: "11:30",
-          title: "Flutter: más allá de mobile",
-          type: "Charla",
-          speaker: "Sofia Chen",
-          location: "Auditorio Principal",
-        },
-        {
-          id: "session-5",
-          startTime: "12:30",
-          title: "Pausa para café y networking",
-          type: "Networking",
-          location: "Áreas comunes",
-        },
-        {
-          id: "session-6",
-          startTime: "13:00",
-          title: "Panel: Open Source en la empresa",
-          type: "Panel",
-          speaker: "Moderador: Javier Ruiz",
-          location: "Auditorio Principal",
-        },
-        {
-          id: "session-7",
-          startTime: "14:00",
-          title: "Comida",
-          type: "Networking",
-          location: "Restaurante",
+          startTime: "11:00",
+          title: "Workshop de Seguridad: CTF DevFest Aranjuez",
+          type: "Taller",
+          speaker: "Nombre del ponente",
+          location: "Lugar a desarrollar",
+          expandable: true,
         },
       ],
     },
   ],
+
   cta: {
     href: "/entradas",
-    label: "Entradas",
+    label: "Reserva tu plaza",
   },
+
+  // Se eliminará cuando adaptemos el componente al diseño.
   secondaryLink: {
     href: "/agenda",
     label: "DESCUBRE LA AGENDA COMPLETA",
@@ -80,7 +65,9 @@ export const agenda: AgendaContent = {
 
 export const homeSchedule = {
   eyebrow: "Agenda",
+
   heading: "Todo lo que vas a vivir en este DevFest",
+
   activities: [
     {
       id: 1,
@@ -123,6 +110,7 @@ export const homeSchedule = {
       description: "Descripción del taller.",
     },
   ],
+
   cta: {
     href: "/agenda",
     label: "Descubre la agenda completa",
@@ -131,8 +119,11 @@ export const homeSchedule = {
 
 export const hero = {
   ...eventDate,
+
   title: "Una experiencia que no te puedes perder",
+
   subtitle: "Tech de calle en el corazón de Aranjuez.",
+
   cta: {
     href: "/entradas",
     label: "Reserva tu plaza",
@@ -142,8 +133,10 @@ export const hero = {
 
 export const faqs = {
   heading: "Preguntas frecuentes",
+
   subtitle:
     "Encuentra toda la información que necesitas en las siguientes categorías",
+
   items: [
     {
       question: "Pregunta 1",
@@ -161,6 +154,7 @@ export const faqs = {
         "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
     },
   ],
+
   more: {
     href: "/ayuda",
     label: "VER MÁS PREGUNTAS",
