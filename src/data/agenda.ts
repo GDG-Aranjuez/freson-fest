@@ -36,6 +36,7 @@ export const agenda: AgendaContent = {
           speaker: "Nombre del ponente",
           location: "Lugar a desarrollar",
           expandable: true,
+          description: "Descripción pendiente.",
         },
         {
           id: "session-4",
