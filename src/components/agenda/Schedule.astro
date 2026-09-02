@@ -21,7 +21,7 @@ import { agenda } from "@/data/agenda";
         {
           agenda.days.flatMap((day) =>
             day.sessions.map((session) =>
-              session.expandable ? (
+              session.expandable && session.description ? (
                 <details class="group/session border-b border-stroke-strong">
                   <summary class="grid cursor-pointer list-none grid-cols-[48px_minmax(0,1fr)_24px] gap-size-3 py-size-6 lg:py-size-11 [&::-webkit-details-marker]:hidden">
                     <time
