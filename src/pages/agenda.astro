@@ -1,7 +1,7 @@
 ---
-import Agenda from "@/components/home/Agenda.astro";
 import Faqs from "@/components/agenda/Faqs.astro";
 import Hero from "@/components/agenda/Hero.astro";
+import Schedule from "@/components/agenda/Schedule.astro";
 import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
@@ -11,19 +11,22 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 
 <BaseLayout
   title="Agenda"
-  description="Agenda de FresON Fest 2026 (GDG Aranjuez). Charlas, workshops y actividades el 24 de octubre en Aranjuez."
+  description="Agenda de FresON Fest 2026 (GDG Aranjuez). Charlas, workshops y actividades el 26 de octubre en Aranjuez."
 >
   <Hero />
-  <Agenda />
+  <Schedule />
 
-  <Section class="!pt-size-9 !pb-size-15">
+  <Section class="!pt-size-9 !pb-size-15 lg:!pt-size-11">
     <Container>
-      <div class="mx-auto flex w-full max-w-[400px] justify-center">
+      <div
+        class="mx-auto flex w-full max-w-[400px] justify-center lg:max-w-[347px]"
+      >
         <CtaNote
           href={hero.cta.href}
           label={hero.cta.label}
           footnote={hero.cta.footnote}
           noteAlign="center"
+          variant="agenda"
         />
       </div>
     </Container>

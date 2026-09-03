@@ -39,7 +39,7 @@ const formatTime = (time: string) => {
         </p>
         <h2
           id="agenda-heading"
-          class="type-h2 max-w-prose text-heading lg:type-h2-lg"
+          class="type-h2 max-w-prose text-heading lg:text-[40px]"
         >
           {agenda.headline}
         </h2>
@@ -87,11 +87,11 @@ const formatTime = (time: string) => {
                       <div class="flex flex-1 flex-col gap-size-2 min-w-0">
                         {/* Title and type */}
                         <div class="flex flex-col gap-size-2 sm:flex-row sm:items-start sm:justify-between sm:gap-size-3">
-                          <h3 class="type-subtitle font-bold text-heading flex-1 min-w-0">
+                          <h3 class="type-subtitle font-bold text-heading flex-1 min-w-0 text-[20px] lg:text-[20px]">
                             {session.title}
                           </h3>
                           <span
-                            class={`type-label px-size-2 py-size-1 rounded-full whitespace-nowrap font-medium ${typeStyle.bg} ${typeStyle.text}`}
+                            class={`type-label px-size-2 py-size-1 rounded-full whitespace-nowrap font-medium lg:text-[16px] ${typeStyle.bg} ${typeStyle.text}`}
                           >
                             {session.type}
                           </span>
@@ -101,12 +101,12 @@ const formatTime = (time: string) => {
                         {(session.speaker || session.location) && (
                           <div class="flex flex-col gap-size-1 sm:flex-row sm:gap-size-3 sm:items-center">
                             {session.speaker && (
-                              <p class="type-caption text-muted">
+                              <p class="type-caption text-muted lg:text-[20px]">
                                 {session.speaker}
                               </p>
                             )}
                             {session.location && (
-                              <p class="type-caption text-muted">
+                              <p class="type-caption text-muted lg:text-[16px]">
                                 📍 {session.location}
                               </p>
                             )}
