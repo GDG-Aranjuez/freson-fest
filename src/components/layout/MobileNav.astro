@@ -82,6 +82,9 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
 
     if (!toggle || !closeBtn || !menu || !iconOpen || !iconClose) return;
 
+    if (toggle.dataset.bound === "true") return;
+    toggle.dataset.bound = "true";
+
     function setOpen(open: boolean) {
       toggle?.setAttribute("aria-expanded", String(open));
       menu?.classList.toggle("hidden", !open);
@@ -90,17 +93,17 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
       document.body.classList.toggle("overflow-hidden", open);
     }
 
-    toggle.onclick = () => {
+    toggle.addEventListener("click", () => {
       setOpen(toggle.getAttribute("aria-expanded") !== "true");
-    };
-
-    closeBtn.onclick = () => setOpen(false);
-
-    menu.querySelectorAll("a").forEach((link) => {
-      link.onclick = () => setOpen(false);
     });
 
-    document.onkeydown = (e) => {
+    closeBtn.addEventListener("click", () => setOpen(false));
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setOpen(false));
+    });
+
+    document.addEventListener("keydown", (e) => {
       if (
         e.key === "Escape" &&
         toggle.getAttribute("aria-expanded") === "true"
@@ -108,8 +111,13 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
         setOpen(false);
         toggle.focus();
       }
-    };
+    });
   }
 
   initMobileNav();
+
+  document.addEventListener("astro:page-load", () => {
+    document.body.classList.remove("overflow-hidden");
+    initMobileNav();
+  });
 </script>
