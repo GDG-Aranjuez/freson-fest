@@ -1,5 +1,17 @@
 import type { Speaker } from "../types/speakers";
 
+export const speakersHero = {
+  eyebrow: "PONENTES",
+  title: "Voces que",
+  highlightedTitle: "inspiran",
+  subtitle:
+    "Conoce a quienes están transformando el sector, en directo y sin filtros.",
+  listEyebrow: "NUESTROS PONENTES",
+  listCta: {
+    label: "Consigue tu entrada",
+    footnote: "Plazas disponibles · Aforo limitado",
+  },
+};
 export const speakers: Speaker[] = [
   {
     id: 1,
