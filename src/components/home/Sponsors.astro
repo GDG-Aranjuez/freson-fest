@@ -2,6 +2,11 @@
 import Section from "@/components/ui/Section.astro";
 import { sponsorCategories } from "@/data/sponsorsData";
 import GhostLink from "@/components/shared/GhostLink.astro";
+
+const {
+  viewAllHref = "/patrocinadores",
+  viewAllLabel = "¿Quieres ser patrocinador?",
+} = Astro.props;
 ---
 
 <Section
@@ -55,7 +60,7 @@ import GhostLink from "@/components/shared/GhostLink.astro";
         ))
       }
       <div class="mt-20 max-w-4xl mx-auto flex justify-end">
-        <GhostLink href="#" label="¿QUIERES SER PATROCINADOR?" />
+        <GhostLink href={viewAllHref} label={viewAllLabel} />
       </div>
     </div>
   </div>

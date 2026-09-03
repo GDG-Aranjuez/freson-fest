@@ -1,0 +1,55 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { trustedByData } from "@/data/sponsorsData";
+---
+
+<Section class="bg-page !pt-size-9 !pb-size-13 lg:!pt-size-13 lg:!pb-size-16">
+  <Container class="max-w-[1200px] mx-auto overflow-hidden">
+    <h2
+      class="type-h3 text-heading font-display font-semibold mb-size-7 lg:mb-size-8 text-[18px] lg:text-[32px] leading-[1.2]"
+    >
+      {trustedByData.title}
+    </h2>
+
+    <div
+      class="relative w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
+    >
+      <div
+        class="flex gap-size-4 lg:gap-size-6 animate-marquee whitespace-nowrap shrink-0"
+      >
+        {
+          [...trustedByData.images, ...trustedByData.images].map((img) => (
+            <div class="w-[120px] h-[80px] lg:w-[200px] lg:h-[133px] bg-white/5 flex items-center justify-center shrink-0 border border-white/10 overflow-hidden">
+              <img
+                src={img.src}
+                alt={img.alt}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Container>
+</Section>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 25s linear infinite;
+  }
+
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+</style>
