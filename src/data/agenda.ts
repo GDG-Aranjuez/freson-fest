@@ -142,8 +142,7 @@ export const hero = {
 
 export const faqs = {
   heading: "Preguntas frecuentes",
-  subtitle:
-    "Encuentra toda la información que necesitas en las siguientes categorías",
+  subtitle: "Encuentra toda la información que necesitas",
   items: [
     {
       question: "Pregunta 1",
