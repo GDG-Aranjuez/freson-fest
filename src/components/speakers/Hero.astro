@@ -1,0 +1,48 @@
+---
+import CtaNote from "@/components/shared/CtaNote.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { hero as agendaHero } from "@/data/agenda";
+import { speakersHero } from "@/data/speakers";
+---
+
+<Section class="!py-size-13" ariaLabelledby="speakers-hero-heading">
+  <Container>
+    <div class="mx-auto flex w-full max-w-[480px] flex-col">
+      <p
+        class="w-full pb-size-6 font-['Plus_Jakarta_Sans']
+          text-[15px] font-medium uppercase leading-none
+          tracking-normal text-[#F37D16]"
+      >
+        {speakersHero.eyebrow}
+      </p>
+
+      <h1
+        id="speakers-hero-heading"
+        class="w-full max-w-[541px] pb-size-7
+          font-['Bricolage_Grotesque'] text-[56px]
+          font-extrabold leading-none tracking-normal text-heading"
+      >
+        <span class="block">{speakersHero.title}</span>
+        <span class="block text-[#F37D16]">
+          {speakersHero.highlightedTitle}
+        </span>
+      </h1>
+
+      <p
+        class="w-full pb-size-9 font-['Plus_Jakarta_Sans']
+          text-[16px] font-normal leading-[140%]
+          tracking-normal text-[#A09A90]"
+      >
+        {speakersHero.subtitle}
+      </p>
+
+      <CtaNote
+        href={agendaHero.cta.href}
+        label={agendaHero.cta.label}
+        footnote={agendaHero.cta.footnote}
+        variant="agenda"
+      />
+    </div>
+  </Container>
+</Section>
