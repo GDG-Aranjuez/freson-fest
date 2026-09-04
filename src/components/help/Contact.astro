@@ -1,0 +1,106 @@
+---
+import CtaNote from "@/components/shared/CtaNote.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { helpContact } from "@/data/help";
+---
+
+<Section
+  class="!pt-size-0 !pb-size-13 lg:!py-size-15"
+  ariaLabelledby="help-contact-heading"
+>
+  <div id="contacto">
+    <Container class="max-w-[480px] lg:max-w-(--content-max)">
+      <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-size-8 items-start">
+        <div>
+          <header class="flex flex-col items-start gap-size-0 py-size-8">
+            <h2 id="help-contact-heading" class="type-h3 w-full">
+              {helpContact.title}
+            </h2>
+            <p class="type-subtitle w-full pt-size-6 text-subtitle">
+              {helpContact.subtitle}
+            </p>
+          </header>
+
+          <p
+            class="type-caption flex w-full items-center gap-size-2 pb-size-10 font-medium text-subtitle"
+          >
+            <span>{helpContact.emailLabel}</span>
+            <a
+              href={`mailto:${helpContact.email}`}
+              class="type-caption font-medium text-link hover:text-link-hover transition-colors"
+            >
+              {helpContact.email}
+            </a>
+          </p>
+        </div>
+
+        <form class="flex w-full flex-col items-start gap-size-0 py-size-6">
+          <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
+            <label for="help-name" class="type-label w-full text-subtitle">
+              {helpContact.form.nameLabel}
+            </label>
+            <input
+              type="text"
+              id="help-name"
+              name="name"
+              required
+              class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
+            <label for="help-company" class="type-label w-full text-subtitle">
+              {helpContact.form.companyLabel}
+            </label>
+            <input
+              type="text"
+              id="help-company"
+              name="company"
+              class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
+            <label for="help-email" class="type-label w-full text-subtitle">
+              {helpContact.form.emailLabel}
+            </label>
+            <input
+              type="email"
+              id="help-email"
+              name="email"
+              required
+              class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div
+            class="flex w-full flex-col items-start gap-size-3 py-size-4 lg:gap-size-5 lg:py-size-6"
+          >
+            <label for="help-message" class="type-label w-full text-subtitle">
+              {helpContact.form.messageLabel}
+            </label>
+            <textarea
+              id="help-message"
+              name="message"
+              rows="4"
+              class="w-full resize-y border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
+            ></textarea>
+          </div>
+
+          <p class="type-label w-full py-size-6 text-subtitle">
+            {helpContact.form.requiredFootnote}
+          </p>
+
+          <CtaNote
+            href="/ayuda#contacto"
+            label={helpContact.form.submitButton}
+            footnote=""
+            block={true}
+            class="pt-size-6 lg:items-center"
+          />
+        </form>
+      </div>
+    </Container>
+  </div>
+</Section>
