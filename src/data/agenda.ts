@@ -5,11 +5,11 @@ import type { AgendaContent } from "@/types/agenda";
 export const agenda: AgendaContent = {
   eyebrow: "AGENDA",
 
-  headline: "El 26 de octubre en FresON Fest",
+  headline: "El 26 de Octubre en FresON Fest",
 
   days: [
     {
-      date: "26 de octubre, 2026",
+      date: "26 de Octubre, 2026",
 
       sessions: [
         {
@@ -120,14 +120,12 @@ export const homeSchedule = {
 export const hero = {
   ...eventDate,
 
-  title: "Una experiencia que no te puedes perder",
-
-  subtitle: "Tech de calle en el corazón de Aranjuez.",
+  title: "No te puedes perder esta experiencia.",
 
   cta: {
     href: "/entradas",
     label: "Reserva tu plaza",
-    footnote: "Plazas disponibles · Aforo limitado",
+    footnote: "Plazas disponibles · Aforo limitado.",
   },
 } as const;
 
