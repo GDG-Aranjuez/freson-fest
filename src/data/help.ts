@@ -40,7 +40,7 @@ export const helpFaqs = {
         "Rellena el formulario de contacto de esta página y nuestro equipo te responderá lo antes posible.",
     },
   ] satisfies HelpFaqItem[],
-  more: { href: "/ayuda#contacto", label: "Ir al formulario de contacto" },
+  more: { href: "#contacto", label: "Ir al formulario de contacto" },
 } as const;
 
 export const helpContact = {

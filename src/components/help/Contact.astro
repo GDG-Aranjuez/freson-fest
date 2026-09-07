@@ -1,6 +1,6 @@
 ---
-import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
+import Button from "@/components/ui/Button.astro";
 import Section from "@/components/ui/Section.astro";
 import { helpContact } from "@/data/help";
 ---
@@ -38,7 +38,7 @@ import { helpContact } from "@/data/help";
         <form class="flex w-full flex-col items-start gap-size-0 py-size-6">
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
             <label for="help-name" class="type-label w-full text-subtitle">
-              {helpContact.form.nameLabel}
+              {helpContact.form.nameLabel} *
             </label>
             <input
               type="text"
@@ -63,7 +63,7 @@ import { helpContact } from "@/data/help";
 
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
             <label for="help-email" class="type-label w-full text-subtitle">
-              {helpContact.form.emailLabel}
+              {helpContact.form.emailLabel} *
             </label>
             <input
               type="email"
@@ -78,12 +78,13 @@ import { helpContact } from "@/data/help";
             class="flex w-full flex-col items-start gap-size-3 py-size-4 lg:gap-size-5 lg:py-size-6"
           >
             <label for="help-message" class="type-label w-full text-subtitle">
-              {helpContact.form.messageLabel}
+              {helpContact.form.messageLabel} *
             </label>
             <textarea
               id="help-message"
               name="message"
               rows="4"
+              required
               class="w-full resize-y border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
             ></textarea>
           </div>
@@ -92,13 +93,9 @@ import { helpContact } from "@/data/help";
             {helpContact.form.requiredFootnote}
           </p>
 
-          <CtaNote
-            href="/ayuda#contacto"
-            label={helpContact.form.submitButton}
-            footnote=""
-            block={true}
-            class="pt-size-6 lg:items-center"
-          />
+          <Button type="submit" block={true} class="mt-size-6 lg:w-[320px]">
+            {helpContact.form.submitButton}
+          </Button>
         </form>
       </div>
     </Container>

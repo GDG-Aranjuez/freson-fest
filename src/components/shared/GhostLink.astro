@@ -20,7 +20,9 @@ const {
 } = Astro.props;
 
 const resolvedHref =
-  external || href.startsWith("http") ? href : withBase(href);
+  href.startsWith("#") || external || href.startsWith("http")
+    ? href
+    : withBase(href);
 const isExternal = external || href.startsWith("http");
 ---
 
