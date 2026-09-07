@@ -11,10 +11,13 @@ import { faqs } from "@/data/agenda";
 >
   <Container>
     <header class="pb-size-7">
-      <h2 id="speakers-faqs-heading" class="type-h2 pb-size-7 lg:pb-0">
+      <h2
+        id="speakers-faqs-heading"
+        class="type-h2 pb-size-7 lg:!text-[40px] lg:pb-0"
+      >
         {faqs.heading}
       </h2>
-      <p class="type-subtitle pb-size-9 font-normal text-subtitle lg:hidden">
+      <p class="type-subtitle pb-size-9 font-normal text-subtitle">
         {faqs.subtitle}
       </p>
     </header>
@@ -41,7 +44,7 @@ import { faqs } from "@/data/agenda";
                   </span>
 
                   <span
-                    class="relative size-6 shrink-0 text-highlighted"
+                    class="relative size-6 shrink-0 text-link"
                     aria-hidden="true"
                   >
                     <svg
