@@ -6,6 +6,8 @@ interface Props {
   label: string;
   footnote: string;
   class?: string;
+  buttonClass?: string;
+  noteClass?: string;
   block?: boolean;
   noteAlign?: "center" | "start";
   variant?: "default" | "agenda";
@@ -16,6 +18,8 @@ const {
   label,
   footnote,
   class: className = "",
+  buttonClass = "",
+  noteClass = "",
   block = true,
   noteAlign = "center",
   variant = "default",
@@ -25,7 +29,7 @@ const isAgenda = variant === "agenda";
 ---
 
 <div class:list={["font-body flex w-full flex-col items-stretch", className]}>
-  <Button href={href} block={block}>
+  <Button href={href} block={block} class={buttonClass}>
     {label}
   </Button>
 
@@ -36,6 +40,7 @@ const isAgenda = variant === "agenda";
         ? "font-['Plus_Jakarta_Sans'] text-[14px] leading-[120%] tracking-normal text-[#D5CABF] lg:text-[16px]"
         : "type-caption text-body",
       noteAlign === "start" ? "text-center lg:text-left" : "text-center",
+      noteClass,
     ]}
   >
     {footnote}
