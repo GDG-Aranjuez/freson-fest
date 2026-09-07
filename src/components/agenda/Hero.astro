@@ -10,35 +10,35 @@ import { agenda, hero } from "@/data/agenda";
   ariaLabelledby="agenda-hero-heading"
 >
   <Container>
-    <div class="flex w-full flex-col lg:max-w-[700px]">
-      <!-- Visible only on mobile -->
+    <div class="flex w-full flex-col items-center text-center">
       <p
-        class="pb-size-6 font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16]"
+        class="w-full pb-size-6 font-['Plus_Jakarta_Sans'] text-[15px]
+          font-medium uppercase leading-none tracking-normal text-[#F37D16]
+          lg:hidden"
       >
         {agenda.eyebrow}
       </p>
 
       <h1
         id="agenda-hero-heading"
-        class="w-full max-w-[343px] pb-size-7 font-['Bricolage_Grotesque'] text-[56px] font-extrabold leading-[100%] tracking-normal text-heading lg:max-w-[700px] lg:pb-size-10 lg:type-h1"
+        class="w-full max-w-[700px] pb-size-6 font-['Bricolage_Grotesque']
+          text-[40px] font-extrabold leading-[100%] tracking-normal
+          text-heading lg:pb-size-10 lg:type-h1"
       >
-        {hero.title}
+        <span class="block lg:inline">No te puedes perder</span>
+        <span class="mt-size-2 block lg:ml-size-2 lg:mt-0 lg:inline"
+          >esta experiencia.</span
+        >
       </h1>
-
-      <!-- Visible only on mobile -->
-      <p
-        class="type-subtitle max-w-[343px] pb-size-9 font-normal text-subtitle"
-      >
-        {hero.subtitle}
-      </p>
 
       <CtaNote
         href={hero.cta.href}
         label={hero.cta.label}
         footnote={hero.cta.footnote}
-        noteAlign="start"
+        noteAlign="center"
         variant="agenda"
-        class="lg:w-[347px]"
+        class="w-full max-w-[343px] lg:max-w-[347px]"
+        noteClass="!font-body !text-[16px] !leading-[1.4] !text-body/80"
       />
     </div>
   </Container>
