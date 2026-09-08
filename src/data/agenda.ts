@@ -134,19 +134,19 @@ export const faqs = {
   subtitle: "Encuentra toda la información que necesitas",
   items: [
     {
-      question: "Pregunta 1",
+      question: "¿Qué es FresON Fest?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "FresON Fest es un DevFest organizado por GDG Aranjuez para aprender, compartir conocimiento y conectar con la comunidad. Durante el día podrás disfrutar de charlas y talleres sobre desarrollo de software, IA, cloud y otras tecnologías, de la mano de profesionales de la comunidad.",
     },
     {
-      question: "Pregunta 2",
+      question: "¿Necesito ser desarrollador/a para asistir?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "Para nada. FresON Fest está abierto a cualquier persona interesada en la tecnología, independientemente de su nivel de experiencia. Tanto si eres profesional, estudiante, estás empezando en el sector o simplemente tienes curiosidad por la tecnología, eres bienvenido/a.",
     },
     {
-      question: "Pregunta 3",
+      question: "¿En qué idioma serán las sesiones?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "La mayoría de las sesiones serán en español. En caso de que alguna charla o taller se imparta en inglés, estará indicado en la agenda.",
     },
   ],
 
