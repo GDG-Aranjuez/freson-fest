@@ -24,12 +24,18 @@ const getSpeakerSlug = (speaker: Speaker) =>
 >
   <Container class="mx-auto max-w-[1200px]">
     <div class="mx-auto w-full max-w-[480px] lg:max-w-none">
-      <header class="pb-size-7">
+      <header
+        class="flex flex-col items-start gap-size-3 pb-size-7 text-left lg:items-start lg:text-left"
+      >
+        <p
+          class="w-full font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden"
+        >
+          NUESTROS PONENTES
+        </p>
+
         <h2
           id="speaker-list-heading"
-          class="type-h2 text-heading max-w-[750px] mb-size-8
-            md:mb-size-10 font-display font-semibold text-[32px]
-            leading-[1.1] md:text-[64px]"
+          class="type-h2 text-heading max-w-[750px] mb-size-8 md:mb-size-10 font-display font-semibold text-[32px] leading-[1.1] md:text-[64px]"
         >
           Las personas que están transformando el sector:
         </h2>
