@@ -96,4 +96,12 @@ export const speakers: Speaker[] = [
     Empresa: "Service Club",
     image: "/speakers/mia-salazar.jpg",
   },
+  {
+    id: 12,
+    name: "Sofía",
+    lastName: "Lescano Carroll",
+    role: "Senior Software Engineer",
+    Empresa: "Alan",
+    image: "/speakers/sofia-lescano.jpg",
+  },
 ];
