@@ -1,0 +1,43 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { sponsorsHighlights } from "@/data/sponsorsData";
+---
+
+<Section class="bg-page !pt-size-9 !pb-size-13 lg:!pt-size-13 lg:!pb-size-16">
+  <Container class="max-w-[1200px] mx-auto">
+    <h2
+      class="type-h2 text-heading max-w-[750px] mb-size-8 md:mb-size-10 font-display font-semibold text-[32px] leading-[1.1] md:text-[64px]"
+    >
+      {sponsorsHighlights.title}
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 max-w-[1200px]">
+      {
+        sponsorsHighlights.items.map((item, index) => {
+          const totalItems = sponsorsHighlights.items.length;
+          // Quita el borde inferior en desktop para la última fila (los últimos 2 ítems)
+          const isLastRowDesktop = index >= totalItems - 2;
+
+          return (
+            <div
+              class={`py-size-6 md:p-size-8 border-b border-white/10 ${
+                isLastRowDesktop ? "md:border-b-0" : ""
+              } ${index % 2 === 0 ? "md:border-r border-white/10" : ""}`}
+            >
+              <span class="text-highlighted block mb-4 font-bold font-display text-[48px] leading-[1.0] md:text-[64px]">
+                {item.number}
+              </span>
+              <h3 class="text-heading font-semibold mb-3 md:mb-2 font-display text-[20px] leading-[1.1] md:text-[32px]">
+                {item.title}
+              </h3>
+              <p class="text-subtitle/70 font-normal font-body text-[14px] leading-[1.4] md:text-[20px]">
+                {item.description}
+              </p>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Container>
+</Section>

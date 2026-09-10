@@ -1,0 +1,40 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { speakersHero } from "@/data/speakers";
+---
+
+<Section
+  class="!py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  ariaLabelledby="speakers-hero-heading"
+>
+  <Container>
+    <div
+      class="mx-auto flex w-full max-w-[480px] flex-col
+        items-center lg:max-w-none"
+    >
+      <p
+        class="w-full pb-size-6 text-center font-['Plus_Jakarta_Sans']
+          text-[15px] font-medium uppercase leading-none
+          tracking-normal text-[#F37D16] lg:hidden"
+      >
+        {speakersHero.eyebrow}
+      </p>
+
+      <h1
+        id="speakers-hero-heading"
+        class="mx-auto w-full max-w-[541px] text-center
+          font-['Bricolage_Grotesque'] text-[56px]
+          font-extrabold leading-none tracking-normal
+          text-heading lg:w-full lg:max-w-[700px]
+          lg:text-center lg:type-h1"
+      >
+        <span class="block">{speakersHero.title}</span>
+
+        <span class="block text-[#F37D16]">
+          {speakersHero.highlightedTitle}
+        </span>
+      </h1>
+    </div>
+  </Container>
+</Section>

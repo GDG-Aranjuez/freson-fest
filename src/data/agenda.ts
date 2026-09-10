@@ -4,74 +4,159 @@ import type { AgendaContent } from "@/types/agenda";
 
 export const agenda: AgendaContent = {
   eyebrow: "AGENDA",
-  headline: "Esto es lo que hemos preparado para ti",
-  description:
-    "Un día lleno de charlas, talleres y networking con los mejores profesionales tech de España.",
+
+  headline: "El 24 de Octubre en FresON Fest",
+
   days: [
     {
       date: "24 de Octubre, 2026",
+
       sessions: [
         {
           id: "session-1",
-          startTime: "09:00",
-          title: "Registro e Inauguración",
+          startTime: "09:30",
+          title: "Intro",
           type: "Networking",
-          location: "Hall Principal",
+          speaker: "GDG Aranjuez",
+          location: "Auditorio",
         },
         {
           id: "session-2",
-          startTime: "09:30",
-          title: "Keynote: El futuro de la IA en desarrollo",
-          type: "Keynote",
-          speaker: "María García López",
-          location: "Auditorio Principal",
+          startTime: "10:00",
+          title: "La primera misión: conseguir tu trabajo en tecnología",
+          type: "Charla",
+          speaker: "Arantxa Delgado Ruiz",
+          location: "Auditorio",
         },
         {
           id: "session-3",
-          startTime: "10:30",
-          title: "Workshop de Seguridad en Cloud",
-          type: "Taller",
-          speaker: "Carlos Mendez",
-          location: "Sala A",
-          isActive: true,
+          startTime: "10:45",
+          title: "OpenClaw todo el mundo te enseña a usarlo, nadie a hacerlo",
+          type: "Charla",
+          speaker: "Máximo Fernández Núñez",
+          location: "Auditorio",
         },
         {
           id: "session-4",
-          startTime: "11:30",
-          title: "Flutter: más allá de mobile",
-          type: "Charla",
-          speaker: "Sofia Chen",
-          location: "Auditorio Principal",
+          startTime: "11:10",
+          title: "Desayuno",
+          type: "Networking",
+          location: "Por confirmar",
         },
         {
           id: "session-5",
-          startTime: "12:30",
-          title: "Pausa para café y networking",
-          type: "Networking",
-          location: "Áreas comunes",
+          startTime: "11:35",
+          title: "Los caminos del desarrollador son impredecibles",
+          type: "Charla",
+          speaker: "Oliver Ramírez Cáceres",
+          location: "Auditorio",
         },
         {
           id: "session-6",
-          startTime: "13:00",
-          title: "Panel: Open Source en la empresa",
-          type: "Panel",
-          speaker: "Moderador: Javier Ruiz",
-          location: "Auditorio Principal",
+          startTime: "11:35",
+          title: "Workshop CTF + CTF",
+          type: "Taller",
+          speaker: "Nacho Fernandez Diez y Carlos Bolaños",
+          location: "Sala 17",
         },
         {
           id: "session-7",
+          startTime: "12:25",
+          title:
+            "Breaking Facial Recognition Systems with Real-Time Deepfake Injection",
+          type: "Charla",
+          speaker: "Sergio Mahía",
+          location: "Auditorio",
+        },
+        {
+          id: "session-8",
+          startTime: "13:10",
+          title: "El mito de la productividad tóxica",
+          type: "Charla",
+          speaker: "Nicolás Patarino",
+          location: "Auditorio",
+        },
+        {
+          id: "session-9",
           startTime: "14:00",
           title: "Comida",
           type: "Networking",
-          location: "Restaurante",
+          location: "Por confirmar",
+        },
+        {
+          id: "session-10",
+          startTime: "15:15",
+          title: "Corriente Senior: El arte de volar sin caer",
+          type: "Charla",
+          speaker: "David Martinez",
+          location: "Auditorio",
+        },
+        {
+          id: "session-11",
+          startTime: "15:15",
+          title: "Coding Dojo: Rescatando webs inaccesibles paso a paso",
+          type: "Taller",
+          speaker: "Sergi Olives",
+          location: "Sala 17",
+        },
+        {
+          id: "session-12",
+          startTime: "16:00",
+          title: "Mesa redonda",
+          type: "Panel",
+          speaker: "Por confirmar",
+          location: "Auditorio",
+        },
+        {
+          id: "session-13",
+          startTime: "16:25",
+          title: "Espectáculo",
+          type: "Networking",
+          location: "Auditorio",
+        },
+        {
+          id: "session-14",
+          startTime: "16:50",
+          title:
+            "Accesibilidad y neurodivergencia: No todo el mundo navega igual",
+          type: "Charla",
+          speaker: "Mía Salazar",
+          location: "Auditorio",
+        },
+        {
+          id: "session-15",
+          startTime: "16:50",
+          title: "Escuela de HechicerIA",
+          type: "Taller",
+          speaker: "Laura Morillo-Velarde Rodríguez",
+          location: "Sala 17",
+        },
+        {
+          id: "session-16",
+          startTime: "17:35",
+          title: "Sin managers, sin reuniones, sin problemas",
+          type: "Charla",
+          speaker: "Sofía Lescano Carroll",
+          location: "Auditorio",
+        },
+        {
+          id: "session-17",
+          startTime: "18:20",
+          title: "Cierre y sorteos",
+          type: "Networking",
+          speaker: "GDG Aranjuez",
+          location: "Auditorio",
         },
       ],
     },
   ],
+
   cta: {
     href: "/entradas",
-    label: "Entradas",
+    label: "Reserva tu plaza",
   },
+
+  // Se eliminará cuando adaptemos el componente al diseño.
   secondaryLink: {
     href: "/agenda",
     label: "DESCUBRE LA AGENDA COMPLETA",
@@ -80,49 +165,52 @@ export const agenda: AgendaContent = {
 
 export const homeSchedule = {
   eyebrow: "Agenda",
-  heading: "Todo lo que vas a vivir en este DevFest",
+
+  heading: "Todo lo que vas a vivir en FresON Fest",
+
   activities: [
     {
       id: 1,
-      time: "09:00",
-      title: "Título",
-      speaker: "Nombre del ponente",
-      location: "Lugar a desarrollar",
+      time: "10:00",
+      title: "La primera misión: conseguir tu trabajo en tecnología",
+      speaker: "Arantxa Delgado Ruiz",
+      location: "Auditorio",
       type: "talk",
       expandable: false,
       description: "",
     },
     {
       id: 2,
-      time: "10:00",
-      title: "Título",
-      speaker: "Nombre del ponente",
-      location: "Lugar a desarrollar",
+      time: "11:35",
+      title: "Workshop CTF + CTF",
+      speaker: "Nacho Fernandez Diez y Carlos Bolaños",
+      location: "Sala 17",
+      type: "workshop",
+      expandable: true,
+      description: "",
+    },
+    {
+      id: 3,
+      time: "15:15",
+      title: "Corriente Senior: El arte de volar sin caer",
+      speaker: "David Martinez",
+      location: "Auditorio",
       type: "talk",
       expandable: false,
       description: "",
     },
     {
-      id: 3,
-      time: "10:30",
-      title: "Título",
-      speaker: "Nombre del ponente",
-      location: "Lugar a desarrollar",
-      type: "talk",
-      expandable: true,
-      description: "Descripción de la charla.",
-    },
-    {
       id: 4,
-      time: "10:30",
-      title: "Título",
-      speaker: "Nombre del ponente",
-      location: "Lugar a desarrollar",
+      time: "16:50",
+      title: "Escuela de HechicerIA",
+      speaker: "Laura Morillo-Velarde Rodríguez",
+      location: "Sala 17",
       type: "workshop",
       expandable: true,
-      description: "Descripción del taller.",
+      description: "",
     },
   ],
+
   cta: {
     href: "/agenda",
     label: "Descubre la agenda completa",
@@ -131,36 +219,37 @@ export const homeSchedule = {
 
 export const hero = {
   ...eventDate,
-  title: "Una experiencia que no te puedes perder",
-  subtitle: "Tech de calle en el corazón de Aranjuez.",
+
+  title: "No te puedes perder esta experiencia.",
+
   cta: {
     href: "/entradas",
     label: "Reserva tu plaza",
-    footnote: "Plazas disponibles · Aforo limitado",
+    footnote: "Plazas disponibles · Aforo limitado.",
   },
 } as const;
 
 export const faqs = {
   heading: "Preguntas frecuentes",
-  subtitle:
-    "Encuentra toda la información que necesitas en las siguientes categorías",
+  subtitle: "Encuentra toda la información que necesitas",
   items: [
     {
-      question: "Pregunta 1",
+      question: "¿Qué es FresON Fest?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "FresON Fest es un DevFest organizado por GDG Aranjuez para aprender, compartir conocimiento y conectar con la comunidad. Durante el día podrás disfrutar de charlas y talleres sobre desarrollo de software, IA, cloud y otras tecnologías, de la mano de profesionales de la comunidad.",
     },
     {
-      question: "Pregunta 2",
+      question: "¿Necesito ser desarrollador/a para asistir?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "Para nada. FresON Fest está abierto a cualquier persona interesada en la tecnología, independientemente de su nivel de experiencia. Tanto si eres profesional, estudiante, estás empezando en el sector o simplemente tienes curiosidad por la tecnología, eres bienvenido/a.",
     },
     {
-      question: "Pregunta 3",
+      question: "¿En qué idioma serán las sesiones?",
       answer:
-        "Respuesta provisional. Sustituye este texto por la información real de la FAQ.",
+        "La mayoría de las sesiones serán en español. En caso de que alguna charla o taller se imparta en inglés, estará indicado en la agenda.",
     },
   ],
+
   more: {
     href: "/ayuda",
     label: "VER MÁS PREGUNTAS",

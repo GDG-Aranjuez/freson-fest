@@ -1,0 +1,123 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import CtaNote from "@/components/shared/CtaNote.astro";
+import { sponsorContact } from "@/data/sponsorsData";
+---
+
+<Section class="bg-page !py-size-13 lg:py-size-12">
+  <div id="contacto">
+    <Container class="max-w-[1200px] mx-auto">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-size-10 lg:gap-size-16 items-start"
+      >
+        <div>
+          <span
+            class="type-eyebrow-medium pb-size-4 uppercase text-highlighted block font-body text-[14px] lg:text-[18px] leading-[1.0] mb-2"
+          >
+            {sponsorContact.eyebrow}
+          </span>
+          <h2
+            class="type-h2 text-heading font-display font-semibold text-[32px] lg:text-[40px] leading-[1.1] mb-4"
+          >
+            {sponsorContact.title}
+          </h2>
+          <p
+            class="type-body text-subtitle/70 font-body font-normal text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] mb-6"
+          >
+            {sponsorContact.subtitle}
+          </p>
+          <p
+            class="type-body font-body font-medium text-[14px] lg:text-[16px] text-body/80 leading-[1.2]"
+          >
+            {sponsorContact.emailLabel}{" "}
+            <a
+              href={`mailto:${sponsorContact.email}`}
+              class="text-link hover:underline font-body font-medium text-[14px] lg:text-[16px] leading-[1.2]"
+            >
+              {sponsorContact.email}
+            </a>
+          </p>
+        </div>
+
+        <form class="flex flex-col gap-y-6 w-full lg:max-w-[504px]">
+          <div>
+            <label
+              for="name"
+              class="block text-[14px] text-subtitle/70 font-body font-normal leading-[1.2] mb-2"
+            >
+              {sponsorContact.form.nameLabel}
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label
+              for="company"
+              class="block text-[14px] text-subtitle/70 font-body font-normal leading-[1.2] mb-2"
+            >
+              {sponsorContact.form.companyLabel}
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="block text-[14px] text-subtitle/70 font-body font-normal leading-[1.2] mb-2"
+            >
+              {sponsorContact.form.emailLabel}
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
+            />
+          </div>
+
+          <div>
+            <label
+              for="message"
+              class="block text-[14px] text-subtitle/70 font-body font-normal leading-[1.2] mb-2"
+            >
+              {sponsorContact.form.messageLabel}
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              rows="4"
+              class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors resize-y"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col gap-y-4">
+            <p
+              class="font-body text-[14px] leading-[1.4] text-subtitle/80 font-normal"
+            >
+              {sponsorContact.form.requiredFootnote}
+            </p>
+            <CtaNote
+              href="#contacto"
+              label={sponsorContact.form.submitButton}
+              footnote=""
+              block={true}
+            />
+          </div>
+        </form>
+      </div>
+    </Container>
+  </div>
+</Section>
