@@ -130,7 +130,7 @@ export const sponsorContact = {
 
 export const sponsorCategories: SponsorCategory[] = [
   {
-    categoryName: "Patrocinador Nombre",
+    categoryName: "Max",
     sponsors: [
       {
         image: "",
@@ -143,7 +143,7 @@ export const sponsorCategories: SponsorCategory[] = [
     ],
   },
   {
-    categoryName: "Patrocinador Nombre 2",
+    categoryName: "Plus",
     sponsors: [
       {
         image: "",
@@ -156,7 +156,7 @@ export const sponsorCategories: SponsorCategory[] = [
     ],
   },
   {
-    categoryName: "Patrocinador Nombre 3",
+    categoryName: "Core",
     sponsors: [
       {
         image: "",

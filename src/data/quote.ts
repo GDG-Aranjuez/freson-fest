@@ -1,5 +1,7 @@
 export const quote = {
-  text: "Frase emocional que resalte la propuesta de valor",
+  text: "Detrás de cada charla y cada conexión hay una comunidad que no deja de crecer.",
+  description:
+    "Patrocinar Fresón Fest es apostar por ese esfuerzo colectivo: por la gente que lo hace posible y por un compromiso que va más allá de un logo en una pantalla.",
   video: {
     poster: "/media/video/poster.webp",
     playIcon: "/media/video/play.svg",

@@ -37,8 +37,18 @@ const resolvedHref = isLink
 const isExternal =
   isLink && (external || Boolean(href && href.startsWith("http")));
 
+const baseStyles =
+  "inline-flex items-center justify-center font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+
+const variantStyles = {
+  primary: "btn-primary",
+  secondary:
+    "border border-[--text-highlighted] text-highlighted font-sans font-medium text-[20px] leading-none bg-transparent hover:bg-[#F37D16]/10 h-[56px] px-size-7 py-size-6 rounded-none w-full",
+};
+
 const classes = [
-  variant === "secondary" ? "btn-secondary" : "btn-primary",
+  baseStyles,
+  variantStyles[variant],
   variant === "primary" && size === "small" && "btn-primary--small",
   variant === "primary" && block && "btn-primary--block",
   className,
@@ -51,6 +61,7 @@ const classes = [
       href={resolvedHref}
       class:list={classes}
       aria-disabled={disabled ? "true" : undefined}
+      aria-label={ariaLabel}
       tabindex={disabled ? -1 : undefined}
       target={isExternal ? "_blank" : undefined}
       rel={isExternal ? "noopener noreferrer" : undefined}
@@ -58,7 +69,12 @@ const classes = [
       <slot />
     </a>
   ) : (
-    <button type={type} class:list={classes} disabled={disabled}>
+    <button
+      type={type}
+      class:list={classes}
+      disabled={disabled}
+      aria-label={ariaLabel}
+    >
       <slot />
     </button>
   )
