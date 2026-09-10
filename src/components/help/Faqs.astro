@@ -2,31 +2,47 @@
 import GhostLink from "@/components/shared/GhostLink.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { faqs } from "@/data/agenda";
+import { helpFaqs, helpHero } from "@/data/help";
 ---
 
 <Section
-  class="!pt-size-9 !pb-size-15 lg:!pt-size-13"
-  ariaLabelledby="speakers-faqs-heading"
+  class="!py-size-13 lg:!pt-size-13 lg:!pb-size-16"
+  ariaLabelledby="help-hero-heading"
 >
-  <Container>
-    <header class="pb-size-7">
-      <h2
-        id="speakers-faqs-heading"
-        class="type-h2 pb-size-7 lg:!text-[40px] lg:pb-0"
+  <Container class="max-w-[480px] lg:max-w-(--content-max)">
+    <div class="flex flex-col items-center gap-size-0 text-center lg:pb-size-9">
+      <p
+        class="type-eyebrow-medium w-full pb-size-6 text-center uppercase
+          text-highlighted lg:hidden"
       >
-        {faqs.heading}
-      </h2>
-      <p class="type-subtitle pb-size-9 font-normal text-subtitle">
-        {faqs.subtitle}
+        {helpHero.eyebrow}
       </p>
-    </header>
 
-    <div class="flex flex-col">
+      <h1
+        id="help-hero-heading"
+        class="type-h1 w-full max-w-[520px] pb-size-7 text-center
+          font-extrabold lg:max-w-none lg:whitespace-nowrap"
+      >
+        {helpHero.title}
+      </h1>
+
+      <p
+        class="type-subtitle w-full whitespace-nowrap pb-size-12 text-center
+          font-[400] text-subtitle lg:max-w-[480px]"
+      >
+        {helpHero.subtitle}
+      </p>
+    </div>
+
+    <h2 class="type-h4 max-w-[780px] pb-size-6 text-heading">
+      {helpFaqs.heading}
+    </h2>
+
+    <div class="flex flex-col text-left">
       {
-        faqs.items.map((item, index) => {
-          const panelId = `faq-panel-${index}`;
-          const triggerId = `faq-trigger-${index}`;
+        helpFaqs.items.map((item, index) => {
+          const panelId = `help-faq-panel-${index}`;
+          const triggerId = `help-faq-trigger-${index}`;
 
           return (
             <div class="border-b border-stroke-strong">
@@ -100,7 +116,7 @@ import { faqs } from "@/data/agenda";
     </div>
 
     <div class="flex justify-end pt-size-7">
-      <GhostLink href={faqs.more.href} label={faqs.more.label} />
+      <GhostLink href={helpFaqs.more.href} label={helpFaqs.more.label} />
     </div>
   </Container>
 </Section>
