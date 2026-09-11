@@ -8,6 +8,22 @@ const {
   viewAllHref = "/patrocinadores",
   viewAllLabel = "¿Quieres ser patrocinador?",
 } = Astro.props;
+
+// Los 3 SVGs para los patrocinadores.
+const categoryIcons: Record<string, string> = {
+  max: `<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M13 0L16.4277 4.72622L22.1867 3.81333L21.2738 9.57233L26 13L21.2738 16.4277L22.1867 22.1867L16.4277 21.2738L13 26L9.57233 21.2738L3.81333 22.1867L4.72622 16.4277L0 13L4.72622 9.57233L3.81333 3.81333L9.57233 4.72622L13 0ZM13 5.655L14.937 8.32578L18.1899 7.81011L17.6742 11.063L20.345 13L17.6742 14.937L18.1899 18.1899L14.937 17.6742L13 20.345L11.063 17.6742L7.81011 18.1899L8.32578 14.937L5.655 13L8.32578 11.063L7.81011 7.81011L11.063 8.32578L13 5.655ZM13 6.825L14.6279 9.06967L17.3637 8.63633L16.9303 11.3721L19.175 13L16.9303 14.6279L17.3637 17.3637L14.6279 16.9303L13 19.175L11.3721 16.9303L8.63633 17.3637L9.06967 14.6279L6.825 13L9.06967 11.3721L8.63633 8.63633L11.3721 9.06967L13 6.825Z" fill="#F37D16"/>
+  </svg>`,
+
+  plus: `<svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.5 0L21 6V18L10.5 24L0 18V6L10.5 0ZM10.5 5.28L16.3805 8.64V15.36L10.5 18.72L4.61951 15.36V8.64L10.5 5.28ZM10.5 6.24L15.5398 9.12V14.88L10.5 17.76L5.46016 14.88V9.12L10.5 6.24Z" fill="#F37D16"/>
+</svg>
+`,
+
+  core: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C8.8174 0 5.76515 1.26428 3.51472 3.51472C1.26428 5.76515 0 8.8174 0 12C0 15.1826 1.26428 18.2348 3.51472 20.4853C5.76515 22.7357 8.8174 24 12 24C15.1826 24 18.2348 22.7357 20.4853 20.4853C22.7357 18.2348 24 15.1826 24 12C24 8.8174 22.7357 5.76515 20.4853 3.51472C18.2348 1.26428 15.1826 0 12 0ZM12 5.2C10.1965 5.2 8.46692 5.91643 7.19167 7.19167C5.91643 8.46692 5.2 10.1965 5.2 12C5.2 13.8035 5.91643 15.5331 7.19167 16.8083C8.46692 18.0836 10.1965 18.8 12 18.8C13.8035 18.8 15.5331 18.0836 16.8083 16.8083C18.0836 15.5331 18.8 13.8035 18.8 12C18.8 10.1965 18.0836 8.46692 16.8083 7.19167C15.5331 5.91643 13.8035 5.2 12 5.2ZM12 6.26667C10.4794 6.26667 9.02113 6.87071 7.94592 7.94592C6.87071 9.02113 6.26667 10.4794 6.26667 12C6.26667 13.5206 6.87071 14.9789 7.94592 16.0541C9.02113 17.1293 10.4794 17.7333 12 17.7333C13.5206 17.7333 14.9789 17.1293 16.0541 16.0541C17.1293 14.9789 17.7333 13.5206 17.7333 12C17.7333 10.4794 17.1293 9.02113 16.0541 7.94592C14.9789 6.87071 13.5206 6.26667 12 6.26667Z" fill="#F37D16"/>
+</svg>`,
+};
 ---
 
 <Section
@@ -16,50 +32,64 @@ const {
   <Container class="max-w-[1200px] mx-auto w-full">
     <div>
       <header
-        class="py-size-8 lg:pb-size-8 lg:pt-13 justify-center text-start max-w-[1200px] mx-auto"
+        class="flex flex-col items-center text-center py-size-8 lg:pb-size-8 lg:pt-13 max-w-[1200px] mx-auto"
       >
         <span class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
           PATROCINADORES
         </span>
-        <h2 id="highlights-heading" class="type-h2 max-w-[700px]">
+        <h2
+          id="highlights-heading"
+          class="type-h2 text-center text-[40px] md:text-h2 font-semibold leading-[1.1] max-w-[358px] md:max-w-[800px] mx-auto"
+        >
           Quienes confían en nosotros y ayudan a que esto sea posible
         </h2>
       </header>
 
       <div class="space-y-16">
         {
-          sponsorCategories.map((group) => (
-            <div class="space-y-6">
-              <div class="flex items-center justify-center gap-4 max-w-[1200px] mx-auto">
-                <div class="flex-grow border-b border-neutral-800" />
-                <div class="font-display flex items-center gap-2 text-base md:text-xl font-medium text-neutral-300">
-                  <span class="leading-none">{group.categoryName}</span>
-                  <div class="w-3.5 h-3.5 bg-white rounded-sm inline-block shrink-0" />
+          sponsorCategories.map((group) => {
+            const key = group.categoryName.toLowerCase().trim();
+            const iconSvg = categoryIcons[key];
+
+            return (
+              <div class="space-y-6">
+                <div class="flex items-center gap-2 max-w-[1200px] mx-auto">
+                  <div class="flex-grow border-b border-neutral-800" />
+                  <div class="flex items-center gap-2 text-[var(--palette-orange-300,#F37D16)] font-display text-[24px] font-medium leading-[1.1]">
+                    <span>{group.categoryName}</span>
+
+                    {iconSvg ? (
+                      <Fragment set:html={iconSvg} />
+                    ) : (
+                      <div class="w-4 h-4 bg-[#F37D16] rounded-full inline-block shrink-0" />
+                    )}
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-[1200px] mx-auto">
+                  {group.sponsors.map((sponsor) => (
+                    <div class="flex flex-col items-center text-center space-y-3">
+                      <div class="w-full max-w-[200px] aspect-[4/3] bg-neutral-200 rounded-sm flex items-center justify-center overflow-hidden">
+                        {sponsor.image ? (
+                          <img
+                            src={sponsor.image}
+                            alt="Logo patrocinador"
+                            class="w-full h-full object-contain p-2"
+                          />
+                        ) : (
+                          <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
+                        )}
+                      </div>
+
+                      <p class="font-body text-[14px] md:text-[16px] font-normal leading-[1.4] text-[#D5CABF] max-w-[482px] mx-auto">
+                        {sponsor.description}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-[1200px] mx-auto">
-                {group.sponsors.map((sponsor) => (
-                  <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-full max-w-[200px] aspect-[4/3] bg-neutral-200 rounded-sm flex items-center justify-center overflow-hidden">
-                      {sponsor.image ? (
-                        <img
-                          src={sponsor.image}
-                          alt="Logo patrocinador"
-                          class="w-full h-full object-contain p-2"
-                        />
-                      ) : (
-                        <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
-                      )}
-                    </div>
-                    <p class="font-body text-[16px] font-normal paragraph-m text-[var(--palette-orange-50)] max-w-xs">
-                      {sponsor.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))
+            );
+          })
         }
         <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
           <GhostLink href={viewAllHref} label={viewAllLabel} />

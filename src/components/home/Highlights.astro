@@ -10,7 +10,9 @@ import { withBase } from "@/utils/path";
   ariaLabelledby="highlights-heading"
 >
   <Container>
-    <header class="py-size-8 lg:pb-size-8 lg:pt-0">
+    <header
+      class="flex flex-col items-center text-center py-size-8 lg:pb-size-8 lg:pt-0"
+    >
       <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
         {highlights.eyebrow}
       </p>
@@ -44,7 +46,7 @@ import { withBase } from "@/utils/path";
                     part.type === "link" ? (
                       <a
                         href={part.href}
-                        class="link"
+                        class="link text-[var(--color-action-ghost-pressed-text)]"
                         target="_blank"
                         rel="noopener noreferrer"
                       >

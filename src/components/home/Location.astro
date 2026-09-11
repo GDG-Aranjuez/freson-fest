@@ -6,35 +6,81 @@ import { locationSection } from "@/data/location";
 import { withBase } from "@/utils/path";
 ---
 
-<Section class="bg-page" ariaLabelledby="location-heading">
-  <Container>
+<Section class="bg-page font-body" ariaLabelledby="location-heading">
+  <Container class="max-w-[1200px] mx-auto px-size-6 lg:px-size-13 py-size-13">
     <div
-      class="mx-auto flex w-full max-w-[1040px] flex-col lg:grid lg:grid-cols-[1fr_auto] lg:items-start lg:justify-between lg:gap-x-size-13"
+      class="mx-auto flex w-full max-w-[1200px] flex-col lg:grid lg:grid-cols-2 lg:items-start lg:justify-between lg:gap-x-12"
     >
-      <div class="order-1 flex flex-col lg:order-none lg:col-start-1">
+      <!-- Columna Izquierda (Texto e Instrucciones) -->
+      <div class="flex flex-col">
         <header class="pb-size-6 lg:pb-size-8">
-          <p class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+          {/* Eyebrow: 15px en mobile, 18px en desktop */}
+          <p
+            class="type-eyebrow-medium pb-size-6 uppercase text-highlighted text-[15px] lg:text-[18px] leading-tight"
+          >
             {locationSection.eyebrow}
           </p>
-          <h2 id="location-heading" class="type-h4 pb-size-5 lg:pb-size-7">
+
+          {/* Título: 32px en mobile, 40px en desktop */}
+          <h2
+            id="location-heading"
+            class="type-h4 text-[32px] lg:text-[40px] pb-size-5 lg:pb-size-7 leading-tight"
+          >
             {locationSection.heading}
           </h2>
-          <address class="type-paragraph-m not-italic text-body">
-            <span class="block text-body">{locationSection.venue}</span>
+
+          {
+            /* Dirección y Venue: 14px en mobile, tamaño por defecto en desktop */
+          }
+          <address
+            class="type-paragraph-m not-italic text-body space-y-1 text-[14px] lg:text-base leading-normal"
+          >
+            <span class="block text-body font-medium text-[14px] lg:text-base"
+              >{locationSection.venue}</span
+            >
             {
               locationSection.addressLines.map((line) => (
-                <span class="block text-body">{line}</span>
+                <span class="block text-body text-[14px] lg:text-base">
+                  {line}
+                </span>
               ))
             }
           </address>
         </header>
 
+        <!-- Bloque Mapa + Botón (Mobile) -->
+        <div
+          class="flex flex-col items-center gap-4 my-size-6 lg:hidden w-full"
+        >
+          <div
+            class="relative h-[220px] w-full max-w-[358px] overflow-hidden rounded-sm"
+          >
+            <iframe
+              title={locationSection.map.title}
+              src={locationSection.map.embedSrc}
+              class="absolute inset-0 size-full border-0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen></iframe>
+          </div>
+
+          <Button
+            href={locationSection.cta.href}
+            variant="secondary"
+            external
+            class="font-body w-full max-w-[358px] h-[56px] flex items-center justify-center text-center text-[15px]"
+          >
+            {locationSection.cta.label}
+          </Button>
+        </div>
+
+        <!-- Instrucciones (Lista de transporte): 14px en mobile, tamaño por defecto en desktop -->
         <ul
-          class="flex list-none flex-col p-0 py-size-6 lg:pb-size-9 lg:pt-size-6"
+          class="flex list-none flex-col p-0 py-size-6 lg:pb-size-9 lg:pt-size-6 space-y-2"
         >
           {
             locationSection.instructions.map((item) => (
-              <li class="flex items-center gap-size-4 py-size-3">
+              <li class="flex items-center gap-size-4 py-size-2">
                 <span
                   class="inline-flex size-5 shrink-0 items-center justify-center overflow-clip"
                   aria-hidden="true"
@@ -48,24 +94,23 @@ import { withBase } from "@/utils/path";
                       class="size-full object-contain"
                     />
                   ) : (
-                    <span class="type-caption w-full text-center font-medium text-body">
+                    <span class="type-caption w-full text-center font-medium text-body text-[14px] lg:text-caption">
                       {item.letter}
                     </span>
                   )}
                 </span>
-                <span class="type-paragraph-s text-body">{item.label}</span>
+                <span class="type-paragraph-s text-body text-[14px] lg:text-paragraph-s leading-normal">
+                  {item.label}
+                </span>
               </li>
             ))
           }
         </ul>
       </div>
 
-      <div
-        class="order-2 flex flex-col gap-3 mb-size-9 mt-size-7 lg:order-none lg:col-start-2 lg:m-0 w-full lg:w-[380px] lg:max-w-[450px]"
-      >
-        <div
-          class="relative h-[200px] lg:h-[268px] w-full overflow-hidden rounded-sm"
-        >
+      <!-- Columna Derecha: Mapa + Botón (Desktop) -->
+      <div class="hidden lg:flex flex-col gap-4 w-full">
+        <div class="relative h-[300px] w-full overflow-hidden rounded-sm">
           <iframe
             title={locationSection.map.title}
             src={locationSection.map.embedSrc}
@@ -75,7 +120,12 @@ import { withBase } from "@/utils/path";
             allowfullscreen></iframe>
         </div>
 
-        <Button href={locationSection.cta.href} external class="w-full">
+        <Button
+          href={locationSection.cta.href}
+          variant="secondary"
+          external
+          class="font-body"
+        >
           {locationSection.cta.label}
         </Button>
       </div>

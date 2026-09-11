@@ -1,16 +1,9 @@
 ---
 import Icon from "@/components/ui/Icon.astro";
 import { socialLinks } from "@/data/footer";
-import type { IconName } from "@/types/icon";
-
-const iconSizes: Record<IconName, number> = {
-  linkedin: 36,
-  x: 36,
-  instagram: 32,
-};
 ---
 
-<div class="flex items-center gap-size-4">
+<div class="flex items-center justify-center gap-4">
   {
     socialLinks.map(({ href, label, icon }) => (
       <a
@@ -18,9 +11,14 @@ const iconSizes: Record<IconName, number> = {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        class="size-12 flex items-center text-heading hover:text-brand transition-colors"
+        class="size-[26px] md:size-[28px] flex items-center justify-center text-heading hover:text-brand transition-colors shrink-0"
       >
-        <Icon name={icon} size={iconSizes[icon]} />
+        <span class="block md:hidden">
+          <Icon name={icon} size={26} />
+        </span>
+        <span class="hidden md:block">
+          <Icon name={icon} size={28} />
+        </span>
       </a>
     ))
   }
