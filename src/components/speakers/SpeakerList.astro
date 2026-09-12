@@ -2,7 +2,7 @@
 import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { speakers as defaultSpeakers } from "@/data/speakers";
+import { speakers as defaultSpeakers, speakersHero } from "@/data/speakers";
 import type { Speaker } from "@/types/speakers";
 import { withBase } from "@/utils/path";
 
@@ -13,9 +13,6 @@ interface Props {
 const { speakers = defaultSpeakers } = Astro.props;
 
 const hasSpeakers = speakers.length > 0;
-
-const getSpeakerSlug = (speaker: Speaker) =>
-  speaker.name.toLowerCase().replace(/\s+/g, "-");
 ---
 
 <Section
@@ -24,21 +21,27 @@ const getSpeakerSlug = (speaker: Speaker) =>
 >
   <Container class="mx-auto max-w-[1200px]">
     <div class="mx-auto w-full max-w-[480px] lg:max-w-none">
-      <header
-        class="flex flex-col items-start gap-size-3 pb-size-7 text-left lg:items-start lg:text-left"
-      >
-        <p
-          class="w-full font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden"
-        >
-          NUESTROS PONENTES
-        </p>
-
+      <header class="pb-size-7 text-left">
         <h2
           id="speaker-list-heading"
-          class="type-h2 text-heading max-w-[750px] mb-size-8 md:mb-size-10 font-display font-semibold text-[32px] leading-[1.1] md:text-[64px]"
+          class="type-h2 text-heading max-w-[750px] font-display
+            font-semibold text-[32px] leading-[1.1]"
         >
-          Las personas que están transformando el sector:
+          <span aria-hidden="true" class="lg:hidden">
+            Están transformando el sector:
+          </span>
+          <span class="sr-only">
+            Las personas que están transformando el sector:
+          </span>
         </h2>
+
+        <p
+          class="hidden pt-size-8 font-['Plus_Jakarta_Sans'] text-[18px]
+            font-medium uppercase leading-none tracking-normal
+            text-[#F37D16] lg:block"
+        >
+          {speakersHero.nuestrosPonentes}
+        </p>
       </header>
 
       {
@@ -49,11 +52,9 @@ const getSpeakerSlug = (speaker: Speaker) =>
                 id={`speaker-${speaker.id}`}
                 class="w-full border-b border-stroke-strong"
               >
-                <a
-                  href={withBase(`/speakers/${getSpeakerSlug(speaker)}`)}
+                <div
                   class="flex w-full items-center gap-size-6 py-size-6
                     text-left lg:gap-size-7 lg:py-size-8"
-                  aria-label={`Ver perfil de ${speaker.name} ${speaker.lastName}`}
                 >
                   <div
                     class="flex h-[100px] w-[100px] flex-none lg:h-[144px]
@@ -108,7 +109,7 @@ const getSpeakerSlug = (speaker: Speaker) =>
                       </span>
                     </div>
                   </div>
-                </a>
+                </div>
               </li>
             ))}
           </ul>

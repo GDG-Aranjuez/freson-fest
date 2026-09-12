@@ -1,17 +1,31 @@
 ---
+import { BackgroundRippleEffect } from "@/components/ui/BackgroundRippleEffect";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { speakersHero } from "@/data/speakers";
 ---
 
 <Section
-  class="!py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  class="relative bg-page overflow-hidden !py-size-9 lg:!pt-size-13 lg:!pb-size-15"
   ariaLabelledby="speakers-hero-heading"
 >
-  <Container>
+  <div
+    class="absolute inset-0 z-0 pointer-events-auto flex items-center justify-center"
+  >
+    <div class="relative w-full max-w-[1200px] h-full mx-auto px-0 sm:px-4">
+      <BackgroundRippleEffect client:idle />
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-page pointer-events-none"
+      ></div>
+    </div>
+  </div>
+
+  <Container
+    class="relative z-10 w-full max-w-[1200px] mx-auto pointer-events-none"
+  >
     <div
       class="mx-auto flex w-full max-w-[480px] flex-col
-        items-center lg:max-w-none"
+        items-center text-center lg:max-w-none"
     >
       <p
         class="w-full pb-size-6 text-center font-['Plus_Jakarta_Sans']
@@ -23,18 +37,29 @@ import { speakersHero } from "@/data/speakers";
 
       <h1
         id="speakers-hero-heading"
-        class="mx-auto w-full max-w-[541px] text-center
-          font-['Bricolage_Grotesque'] text-[56px]
-          font-extrabold leading-none tracking-normal
-          text-heading lg:w-full lg:max-w-[700px]
-          lg:text-center lg:type-h1"
+        class="mx-auto w-full max-w-[541px] pb-size-6
+          font-display font-extrabold text-[48px] leading-[1.05]
+          text-center text-heading lg:max-w-none
+          lg:pb-size-9 lg:text-[96px]"
       >
-        <span class="block">{speakersHero.title}</span>
-
-        <span class="block text-[#F37D16]">
-          {speakersHero.highlightedTitle}
+        <span class="lg:hidden">
+          <span class="block">{speakersHero.title}</span>
+          <span class="block text-highlighted">
+            {speakersHero.highlightedTitle}
+          </span>
         </span>
+
+        <span class="hidden lg:block">{speakersHero.desktopTitle}</span>
       </h1>
+
+      <p
+        class="w-full pb-size-2 pt-size-11 text-center
+          font-['Plus_Jakarta_Sans'] text-[15px] font-medium
+          uppercase leading-none tracking-normal
+          text-[#F37D16] lg:hidden"
+      >
+        {speakersHero.nuestrosPonentes}
+      </p>
     </div>
   </Container>
 </Section>

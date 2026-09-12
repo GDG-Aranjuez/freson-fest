@@ -4,7 +4,8 @@ export const speakersHero = {
   eyebrow: "PONENTES",
   title: "Voces que",
   highlightedTitle: "inspiran",
-  subtitle: "Las personas que están transformando el sector:",
+  desktopTitle: "Las voces de quienes están transformando el sector",
+  nuestrosPonentes: "Nuestros ponentes",
 };
 export const speakers: Speaker[] = [
   {
