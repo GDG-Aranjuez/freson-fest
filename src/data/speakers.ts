@@ -47,15 +47,14 @@ export const speakers: Speaker[] = [
     Empresa: "ThePwnLab",
     image: "/speakers/nacho-fernandez-diez.webp",
   },
-  // TODO: Restore Carlos when his speaker photo is available.
-  // {
-  //   id: 6,
-  //   name: "Carlos",
-  //   lastName: "Bolaños",
-  //   role: "Pentester",
-  //   Empresa: "Telefónica Tech",
-  //   image: "/speakers/carlos-bolanos.jpg",
-  // },
+  {
+    id: 6,
+    name: "Carlos",
+    lastName: "Bolaños",
+    role: "Pentester",
+    Empresa: "Telefónica Tech",
+    image: "/speakers/carlos-bolanos.jpg",
+  },
   {
     id: 7,
     name: "Arantxa",
