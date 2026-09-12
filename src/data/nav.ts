@@ -5,7 +5,7 @@ export const mainNavLinks: NavLink[] = [
   { href: "/agenda", label: "Agenda" },
   { href: "/speakers", label: "Ponentes" },
   { href: "/cfp", label: "CFP" },
-  { href: "/patrocinadores", label: "Patrocinadores" },
+  // { href: "/patrocinadores", label: "Patrocinadores" },
   { href: "/nosotros", label: "Nosotros" },
 ];
 

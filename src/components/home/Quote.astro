@@ -10,18 +10,20 @@ const embedSrc = `${quote.video.embedSrc}?autoplay=1&rel=0`;
 <Section class="!pt-size-13 !pb-size-16" ariaLabelledby="quote-heading">
   <Container class="max-w-[1200px] mx-auto w-full">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-      <div class="flex flex-col justify-center text-left">
+      <div
+        class="flex flex-col justify-center items-center lg:items-start text-center lg:text-left"
+      >
         {/* Título: 32px en mobile / 40px en desktop */}
         <h2
           id="quote-heading"
-          class="font-display text-[32px] lg:text-[40px] font-semibold leading-[1.1] text-[#FEFAF5] text-left lg:max-w-[440px] pb-size-4 lg:pb-size-6"
+          class="font-display text-[32px] lg:text-[40px] font-semibold leading-[1.1] text-subtitle text-center lg:text-left lg:max-w-[750px] pb-size-4 lg:pb-size-6"
         >
           {quote.text}
         </h2>
 
         {
           quote.description && (
-            <p class="font-sans text-[16px] lg:text-[20px] font-normal leading-[1.4] text-[#D5CABF] lg:max-w-[440px]">
+            <p class="font-body text-[16px] lg:text-[20px] font-regular leading-[1.4] text-subtitle/80 lg:max-w-[440px]">
               {quote.description}
             </p>
           )
