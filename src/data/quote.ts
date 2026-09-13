@@ -1,7 +1,7 @@
 export const quote = {
-  text: "Detrás de cada charla y cada conexión hay una comunidad que no deja de crecer.",
+  text: "En el devfest de FresON",
   description:
-    "Patrocinar Fresón Fest es apostar por ese esfuerzo colectivo: por la gente que lo hace posible y por un compromiso que va más allá de un logo en una pantalla.",
+    "Cada edición es una nueva oportunidad para encontrarnos, compartir y seguir creciendo juntos como comunidad.",
   video: {
     poster: "/media/video/poster.webp",
     playIcon: "/media/video/play.svg",
