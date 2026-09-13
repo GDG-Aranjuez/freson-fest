@@ -37,8 +37,8 @@ export const footerSections: FooterSection[] = [
     title: "Evento",
     links: [
       { href: "/agenda", label: "Agenda" },
-      { href: "/ponentes", label: "Ponentes" },
-      { href: "/ubicacion", label: "Ubicación" },
+      { href: "/speakers", label: "Ponentes" },
+      { href: "/#ubicacion", label: "Ubicación" },
     ],
   },
   {
