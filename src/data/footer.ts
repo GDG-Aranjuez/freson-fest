@@ -45,7 +45,7 @@ export const footerSections: FooterSection[] = [
     title: "Comunidad",
     links: [
       { href: "/nosotros", label: "GDG Aranjuez" },
-      { href: "/patrocinadores", label: "Patrocinadores" },
+      // { href: "/patrocinadores", label: "Patrocinadores" },
       { href: "/ediciones-anteriores", label: "Ediciones anteriores" },
     ],
   },
@@ -53,8 +53,8 @@ export const footerSections: FooterSection[] = [
     title: "Contacto",
     links: [
       { href: "mailto:gdgaranjuez@gmail.com", label: "Correo electrónico" },
-      { href: "/patrocinadores", label: "Hazte patrocinador" },
-      { href: "/cfp", label: "Propón una charla" },
+      // { href: "/patrocinadores", label: "Hazte patrocinador" },
+      // { href: "/cfp", label: "Propón una charla" },
     ],
   },
 ];
