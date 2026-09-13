@@ -1,3 +1,4 @@
+import { tickets } from "@/data/tickets";
 import { eventDate } from "@/utils/event-date";
 
 import type { AgendaContent } from "@/types/agenda";
@@ -152,7 +153,7 @@ export const agenda: AgendaContent = {
   ],
 
   cta: {
-    href: "/entradas",
+    href: tickets.checkoutUrl,
     label: "Reserva tu plaza",
   },
 
@@ -223,7 +224,7 @@ export const hero = {
   title: "No te puedes perder esta experiencia.",
 
   cta: {
-    href: "/entradas",
+    href: tickets.checkoutUrl,
     label: "Reserva tu plaza",
     footnote: "Plazas disponibles · Aforo limitado.",
   },

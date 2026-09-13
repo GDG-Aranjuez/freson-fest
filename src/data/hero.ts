@@ -1,3 +1,4 @@
+import { ticketsCta } from "@/data/tickets";
 import { eventDate } from "@/utils/event-date";
 
 export const hero = {
@@ -6,10 +7,7 @@ export const hero = {
   titleHighlight: "mundo tech",
   subtitle:
     "Y tú estás invitado. Sin postureo, sin distancia, solo gente real haciendo cosas reales.",
-  cta: {
-    href: "/entradas",
-    label: "Consigue tu entrada",
-  },
+  cta: ticketsCta,
   footnote: "Plazas disponibles · Aforo limitado",
   benefit: {
     label: "Tu entrada ayuda a la Asociación Brego",

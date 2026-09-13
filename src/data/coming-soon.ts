@@ -2,9 +2,6 @@ import type { ComingSoonPage } from "@/types/coming-soon";
 
 /** Routes linked from nav/footer that are not built yet */
 export const comingSoonPages: ComingSoonPage[] = [
-  { slug: "cfp", title: "Call for Papers" },
-  { slug: "patrocinadores", title: "Patrocinadores" },
-  { slug: "entradas", title: "Entradas" },
   { slug: "codigo-conducta", title: "Código de conducta" },
   { slug: "ubicacion", title: "Ubicación" },
   { slug: "ediciones-anteriores", title: "Ediciones anteriores" },

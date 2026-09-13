@@ -3,6 +3,7 @@ import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { speakers as defaultSpeakers, speakersHero } from "@/data/speakers";
+import { ticketsCta } from "@/data/tickets";
 import type { Speaker } from "@/types/speakers";
 import { withBase } from "@/utils/path";
 
@@ -122,8 +123,8 @@ const hasSpeakers = speakers.length > 0;
           items-center pt-size-13 lg:max-w-[320px]"
       >
         <CtaNote
-          href={withBase("/entradas")}
-          label="Consigue tu entrada"
+          href={ticketsCta.href}
+          label={ticketsCta.label}
           footnote="Plazas disponibles · Aforo limitado"
           noteAlign="center"
           block={true}
