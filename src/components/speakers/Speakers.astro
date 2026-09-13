@@ -116,7 +116,7 @@ const hasSpeakers = speakers.length > 0;
             </div>
 
             <div
-              class="speaker-carousel flex gap-[16px] lg:gap-[24px] h-[388px] w-full cursor-grab select-none overflow-x-auto snap-x snap-mandatory scroll-smooth py-size-2 [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing lg:h-[424px] lg:pb-size-4 lg:pt-size-2 [&::-webkit-scrollbar]:hidden"
+              class="speaker-carousel relative flex gap-[16px] lg:gap-[24px] h-[388px] w-full cursor-grab select-none overflow-x-auto snap-x snap-mandatory scroll-smooth py-size-2 [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing lg:h-[424px] lg:pb-size-4 lg:pt-size-2 [&::-webkit-scrollbar]:hidden"
               role="region"
               aria-label="Carrusel de ponentes"
             >
@@ -196,34 +196,65 @@ const hasSpeakers = speakers.length > 0;
 
       section.dataset.initialized = "true";
 
-      let currentIndex = 0;
+      const realCount = cards.length;
+      const looping = realCount > 1;
+
+      if (looping) {
+        const startClones = document.createDocumentFragment();
+        const endClones = document.createDocumentFragment();
+
+        cards.forEach((card) => {
+          const startClone = card.cloneNode(true) as HTMLElement;
+          const endClone = card.cloneNode(true) as HTMLElement;
+
+          [startClone, endClone].forEach((clone) => {
+            clone.removeAttribute("id");
+            clone.setAttribute("aria-hidden", "true");
+            clone.dataset.speakerClone = "true";
+          });
+
+          startClones.appendChild(startClone);
+          endClones.appendChild(endClone);
+        });
+
+        carousel.insertBefore(startClones, carousel.firstChild);
+        carousel.appendChild(endClones);
+        cards.splice(
+          0,
+          cards.length,
+          ...section.querySelectorAll<HTMLElement>("[data-speaker-card]")
+        );
+      }
+
+      let currentIndex = looping ? realCount : 0;
+      let targetIndex = currentIndex;
       let scrollFrame: number | undefined;
+      let settleTimer: number | undefined;
+      let isJumping = false;
+      let isProgrammaticScroll = false;
 
       let isMouseDown = false;
       let startX = 0;
       let scrollLeft = 0;
 
+      const realIndex = (index: number) =>
+        ((index % realCount) + realCount) % realCount;
+
+      const scrollLeftFor = (index: number) => {
+        const carouselRect = carousel.getBoundingClientRect();
+        const cardRect = cards[index].getBoundingClientRect();
+        return carousel.scrollLeft + (cardRect.left - carouselRect.left);
+      };
+
       const updateControls = () => {
-        counter.textContent = String(currentIndex + 1);
-        previousButton.disabled = currentIndex === 0;
-        nextButton.disabled = currentIndex === cards.length - 1;
+        counter.textContent = String(realIndex(currentIndex) + 1);
+        previousButton.disabled = !looping && currentIndex === 0;
+        nextButton.disabled = !looping && currentIndex === realCount - 1;
       };
 
-      const scrollToCard = (index: number) => {
-        currentIndex = Math.max(0, Math.min(index, cards.length - 1));
-
-        carousel.scrollTo({
-          left: cards[currentIndex].offsetLeft - carousel.offsetLeft,
-          behavior: "smooth",
-        });
-
-        updateControls();
-      };
-
-      const updateCurrentCard = () => {
+      const closestCardIndex = () => {
         const carouselLeft = carousel.getBoundingClientRect().left;
-
-        let closestIndex = 0;
+        let closestIndex = currentIndex;
         let closestDistance = Number.POSITIVE_INFINITY;
 
         cards.forEach((card, index) => {
@@ -237,32 +268,78 @@ const hasSpeakers = speakers.length > 0;
           }
         });
 
+        return closestIndex;
+      };
+
+      const jumpToIndex = (index: number) => {
+        isJumping = true;
+        currentIndex = index;
+        targetIndex = index;
+        carousel.classList.remove("scroll-smooth", "snap-x");
+        carousel.scrollLeft = scrollLeftFor(index);
+        carousel.classList.add("scroll-smooth", "snap-x");
+        updateControls();
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            isJumping = false;
+          });
+        });
+      };
+
+      const normalizeLoop = () => {
+        if (!looping || isJumping) return;
+
+        if (currentIndex >= realCount * 2) {
+          jumpToIndex(currentIndex - realCount);
+        } else if (currentIndex < realCount) {
+          jumpToIndex(currentIndex + realCount);
+        }
+      };
+
+      const scrollToCard = (index: number) => {
+        isProgrammaticScroll = true;
+        targetIndex = Math.max(0, Math.min(index, cards.length - 1));
+        currentIndex = targetIndex;
+        updateControls();
+        carousel.classList.remove("snap-x");
+        carousel.scrollTo({
+          left: scrollLeftFor(targetIndex),
+          behavior: "smooth",
+        });
+      };
+
+      const updateCurrentCard = () => {
+        if (isJumping || isProgrammaticScroll) return;
+
+        const closestIndex = closestCardIndex();
+
         if (closestIndex !== currentIndex) {
           currentIndex = closestIndex;
+          targetIndex = closestIndex;
           updateControls();
         }
       };
 
+      const stopDragging = () => {
+        if (!isMouseDown) return;
+        isMouseDown = false;
+        carousel.classList.add("scroll-smooth", "snap-x");
+        finishScroll();
+      };
+
       carousel.addEventListener("mousedown", (e) => {
+        if (e.button !== 0) return;
+        e.preventDefault();
         isMouseDown = true;
+        window.clearTimeout(settleTimer);
         carousel.classList.remove("scroll-smooth", "snap-x");
         startX = e.pageX - carousel.offsetLeft;
         scrollLeft = carousel.scrollLeft;
       });
 
-      carousel.addEventListener("mouseleave", () => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        carousel.classList.add("scroll-smooth", "snap-x");
-      });
+      window.addEventListener("mouseup", stopDragging);
 
-      carousel.addEventListener("mouseup", () => {
-        if (!isMouseDown) return;
-        isMouseDown = false;
-        carousel.classList.add("scroll-smooth", "snap-x");
-      });
-
-      carousel.addEventListener("mousemove", (e) => {
+      window.addEventListener("mousemove", (e) => {
         if (!isMouseDown) return;
         e.preventDefault();
         const x = e.pageX - carousel.offsetLeft;
@@ -271,12 +348,22 @@ const hasSpeakers = speakers.length > 0;
       });
 
       previousButton.addEventListener("click", () => {
-        scrollToCard(currentIndex - 1);
+        scrollToCard(targetIndex - 1);
       });
 
       nextButton.addEventListener("click", () => {
-        scrollToCard(currentIndex + 1);
+        scrollToCard(targetIndex + 1);
       });
+
+      const finishScroll = () => {
+        if (isMouseDown || isJumping) return;
+        isProgrammaticScroll = false;
+        carousel.classList.add("snap-x");
+        currentIndex = closestCardIndex();
+        targetIndex = currentIndex;
+        updateControls();
+        normalizeLoop();
+      };
 
       carousel.addEventListener(
         "scroll",
@@ -286,11 +373,19 @@ const hasSpeakers = speakers.length > 0;
           }
 
           scrollFrame = requestAnimationFrame(updateCurrentCard);
+          window.clearTimeout(settleTimer);
+          settleTimer = window.setTimeout(finishScroll, 140);
         },
         { passive: true }
       );
 
-      updateControls();
+      carousel.addEventListener("scrollend", finishScroll);
+
+      if (looping) {
+        jumpToIndex(realCount);
+      } else {
+        updateControls();
+      }
     });
   }
 
