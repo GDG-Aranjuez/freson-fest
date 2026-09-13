@@ -1,0 +1,56 @@
+---
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { aboutHero } from "@/data/about";
+import { withBase } from "@/utils/path";
+---
+
+<Section
+  class="!py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  ariaLabelledby="about-hero-heading"
+>
+  <Container>
+    <div
+      class="flex flex-col items-center text-center lg:flex-row lg:items-center lg:justify-between lg:gap-size-7 lg:text-left"
+    >
+      <div
+        class="flex w-full flex-col items-center lg:max-w-[550px] lg:items-start lg:pb-size-7"
+      >
+        <p
+          class="pb-size-6 text-center font-body text-[15px] font-medium uppercase leading-none text-highlighted lg:hidden"
+        >
+          {aboutHero.eyebrow}
+        </p>
+
+        <h1
+          id="about-hero-heading"
+          class="type-h1 w-full pb-size-9 text-heading lg:max-w-[700px]"
+        >
+          {aboutHero.title}
+        </h1>
+
+        <p
+          class="w-full pb-size-11 font-body text-[16px] leading-[1.4] text-subtitle lg:max-w-[480px] lg:pb-size-3 lg:text-[20px] lg:leading-[1.2]"
+        >
+          {aboutHero.subtitle}
+        </p>
+      </div>
+
+      <div
+        class="w-full drop-shadow-[12px_12px_0px_rgba(124,106,90,0.13)] lg:w-auto lg:shrink-0 lg:pl-size-9"
+      >
+        <div
+          class="relative h-[290px] w-full overflow-hidden lg:h-[350px] lg:w-[450px]"
+        >
+          <img
+            src={withBase(aboutHero.image.src)}
+            alt={aboutHero.image.alt}
+            width="450"
+            height="350"
+            class="absolute inset-0 size-full object-cover"
+          />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>
