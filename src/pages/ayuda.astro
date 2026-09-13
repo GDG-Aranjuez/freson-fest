@@ -1,6 +1,9 @@
 ---
-import Contact from "@/components/help/Contact.astro";
-import Faqs from "@/components/help/Faqs.astro";
+import FaqList from "@/components/blocks/FaqList.astro";
+import HelpContact from "@/components/blocks/HelpContact.astro";
+import HeroPlain from "@/components/blocks/HeroPlain.astro";
+import { helpFaqs } from "@/data/faqs";
+import { contact, hero } from "@/data/help";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
@@ -8,6 +11,20 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   title="Ayuda"
   description="Preguntas frecuentes y formulario de contacto de FresON Fest 2026 (GDG Aranjuez)."
 >
-  <Faqs />
-  <Contact />
+  <HeroPlain
+    headingId="help-hero-heading"
+    eyebrow={hero.eyebrow}
+    title={hero.title}
+    subtitle={hero.subtitle}
+    class="!py-size-13 lg:!pt-size-13 lg:!pb-size-9"
+    containerClass="max-w-[480px] lg:max-w-(--content-max)"
+  />
+  <FaqList
+    headingId="help-faqs-heading"
+    heading={helpFaqs.heading}
+    items={helpFaqs.items}
+    more={helpFaqs.more}
+    class="!pt-size-0 !pb-size-15 lg:!pb-size-16"
+  />
+  <HelpContact contact={contact} />
 </BaseLayout>

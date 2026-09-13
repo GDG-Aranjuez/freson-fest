@@ -2,25 +2,31 @@
 
 ```
 src/
+├── pages/            # Routes (filename is the URL). Orchestrate data + blocks.
 ├── components/
-│   ├── ui/           # Reusable primitives (Container, Section)
+│   ├── ui/           # Primitives (Container, Section, Button, Icon)
 │   ├── layout/       # Site chrome (Header, Footer, nav)
-│   ├── home/         # Home page blocks
-│   └── shared/       # Cross-page blocks (ComingSoon only — no junk drawer)
-├── data/             # Static site configuration
+│   └── blocks/       # Presentational sections with props (no page folders)
+├── data/             # Domain content; types live next to the data
 ├── layouts/          # BaseLayout.astro
-├── pages/
+├── lib/              # SEO helpers
+├── types/            # Infra only (icon, seo, nav, footer)
 ├── styles/           # globals.css, variables.css, typography.css
-├── types/
-└── utils/            # Pure functions (nav, path)
+└── utils/            # Pure functions (nav, path, event-date)
 ```
+
+## Layers
+
+- **`pages/`** import data and pass it into blocks. Spanish filenames (`nosotros.astro`, `ayuda.astro`, …) exist only because they _are_ the public URL.
+- **`components/blocks/`** receive props. They must not import values from `@/data/*` (type-only imports are fine). Header/Footer may import nav/footer data.
+- **`data/`** is organized by domain (`agenda`, `speakers`, `faqs`, `home`, …), not by page folder. Public hrefs are the Spanish URL (`/ponentes`, `/nosotros`, …).
+- User-facing copy stays in Spanish. File names, exports, and keys are English.
 
 ## Responsive layout
 
 - **Layout breakpoint:** `lg` (1024px) for nav and hero. Footer uses `md` (768px).
 - **Prefer** a single markup with responsive utilities (`flex-col lg:flex-row`, semantic classes in `styles/`).
 - **Dual layout** (two DOM trees) only when structure differs radically — use Tailwind visibility classes directly (`md:hidden`, `hidden md:flex`).
-- **Content** lives in `src/data/`; pure helpers in `src/utils/`.
 
 ## Development
 

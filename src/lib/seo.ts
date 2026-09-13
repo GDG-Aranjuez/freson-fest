@@ -1,4 +1,6 @@
+import { venue } from "@/data/location";
 import { site } from "@/data/site";
+import { socialLinks } from "@/data/social";
 import type { StructuredData } from "@/types/seo";
 import { withBase } from "@/utils/path";
 
@@ -20,7 +22,7 @@ export function sectionDescription(
 ): string {
   return (
     description ??
-    `${title} de FresON Fest 2026 (GDG Aranjuez). Información disponible próximamente.`
+    `${title} de ${site.title} (${site.name}). Información disponible próximamente.`
   );
 }
 
@@ -37,10 +39,7 @@ export function organizationSchema(siteUrl: string | URL): StructuredData {
     name: site.name,
     url,
     description: site.description,
-    sameAs: [
-      "https://www.linkedin.com/company/gdg-aranjuez",
-      "https://twitter.com/gdgaranjuez",
-    ],
+    sameAs: socialLinks.map(({ href }) => href),
   };
 }
 
@@ -69,17 +68,20 @@ export function eventSchema(siteUrl: string | URL): StructuredData {
     "@type": "Event",
     name: site.event.name,
     description: site.description,
-    startDate: site.event.startDate,
-    endDate: site.event.endDate,
+    startDate: site.event.startDateTime,
+    endDate: site.event.endDateTime,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     eventStatus: "https://schema.org/EventScheduled",
     location: {
       "@type": "Place",
-      name: site.event.location,
+      name: venue.name,
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Aranjuez",
-        addressCountry: "ES",
+        streetAddress: venue.streetAddress,
+        postalCode: venue.postalCode,
+        addressLocality: venue.addressLocality,
+        addressRegion: venue.addressRegion,
+        addressCountry: venue.addressCountry,
       },
     },
     organizer: {

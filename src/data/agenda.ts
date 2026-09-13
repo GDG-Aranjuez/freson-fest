@@ -1,16 +1,56 @@
-import { tickets } from "@/data/tickets";
+import { locationSection, venueAddress } from "@/data/location";
+import { site } from "@/data/site";
+import { ticketCtas } from "@/data/tickets";
 import { eventDate } from "@/utils/event-date";
+import {
+  googleCalendarTemplateUrl,
+  toGoogleCalendarStamp,
+} from "@/utils/google-calendar";
 
-import type { AgendaContent } from "@/types/agenda";
+export type SessionType =
+  "Charla" | "Taller" | "Networking" | "Keynote" | "Panel";
+
+export interface AgendaSession {
+  id: string;
+  startTime: string;
+  title: string;
+  type: SessionType;
+  speaker?: string;
+  location?: string;
+  isActive?: boolean;
+  image?: string;
+  expandable?: boolean;
+  description?: string;
+}
+
+export interface AgendaDay {
+  date: string;
+  sessions: AgendaSession[];
+}
+
+export interface AgendaContent {
+  eyebrow: string;
+  headline: string;
+  description?: string;
+  days: AgendaDay[];
+  cta: {
+    href: string;
+    label: string;
+  };
+  secondaryLink: {
+    href: string;
+    label: string;
+  };
+}
 
 export const agenda: AgendaContent = {
   eyebrow: "AGENDA",
 
-  headline: "El 24 de Octubre en FresON Fest",
+  headline: `El ${eventDate.dateLead} en FresON Fest`,
 
   days: [
     {
-      date: "24 de Octubre, 2026",
+      date: `${eventDate.dateLead}, ${eventDate.dateYear}`,
 
       sessions: [
         {
@@ -153,8 +193,8 @@ export const agenda: AgendaContent = {
   ],
 
   cta: {
-    href: tickets.checkoutUrl,
-    label: "Reserva tu plaza",
+    href: ticketCtas.reserve.href,
+    label: ticketCtas.reserve.label,
   },
 
   // Se eliminará cuando adaptemos el componente al diseño.
@@ -164,95 +204,53 @@ export const agenda: AgendaContent = {
   },
 };
 
-export const homeSchedule = {
+function calendarEventDetails(): string {
+  const siteUrl = String(import.meta.env.SITE ?? "").replace(/\/$/, "");
+
+  const howTo = locationSection.instructions
+    .map((item) => `· ${item.label}`)
+    .join("\n");
+
+  return [
+    site.description,
+    "",
+    `Organiza: ${site.name}`,
+    `Sede: ${venueAddress}`,
+    "",
+    siteUrl ? `Web: ${siteUrl}` : null,
+    siteUrl ? `Agenda: ${siteUrl}/agenda` : null,
+    `Entradas: ${ticketCtas.primary.href}`,
+    "",
+    "Cómo llegar:",
+    howTo,
+  ]
+    .filter((line): line is string => line !== null)
+    .join("\n");
+}
+
+export const schedule = {
   eyebrow: "Agenda",
-
   heading: "Lo que vas a vivir",
-
-  activities: [
-    {
-      id: 1,
-      time: "10:00",
-      title: "La primera misión: conseguir tu trabajo en tecnología",
-      speaker: "Arantxa Delgado Ruiz",
-      location: "Auditorio",
-      type: "talk",
-      expandable: false,
-      description: "",
-    },
-    {
-      id: 2,
-      time: "11:35",
-      title: "Workshop CTF + CTF",
-      speaker: "Nacho Fernandez Diez y Carlos Bolaños",
-      location: "Sala 17",
-      type: "workshop",
-      expandable: true,
-      description: "",
-    },
-    {
-      id: 3,
-      time: "15:15",
-      title: "Corriente Senior: El arte de volar sin caer",
-      speaker: "David Martinez",
-      location: "Auditorio",
-      type: "talk",
-      expandable: false,
-      description: "",
-    },
-    {
-      id: 4,
-      time: "16:50",
-      title: "Escuela de HechicerIA",
-      speaker: "Laura Morillo-Velarde Rodríguez",
-      location: "Sala 17",
-      type: "workshop",
-      expandable: true,
-      description: "",
-    },
-  ],
-
   cta: {
     href: "/agenda",
     label: "Descubre la agenda completa",
+  },
+  calendarCta: {
+    href: googleCalendarTemplateUrl({
+      title: site.event.name,
+      start: toGoogleCalendarStamp(site.event.startDateTime),
+      end: toGoogleCalendarStamp(site.event.endDateTime),
+      timeZone: site.event.timeZone,
+      details: calendarEventDetails(),
+      location: venueAddress,
+    }),
+    label: "AÑADIR A MI CALENDARIO",
   },
 } as const;
 
 export const hero = {
   ...eventDate,
-
-  title: "No te puedes perder esta experiencia.",
-
-  cta: {
-    href: tickets.checkoutUrl,
-    label: "Reserva tu plaza",
-    footnote: "Plazas disponibles · Aforo limitado.",
-  },
-} as const;
-
-export const faqs = {
-  heading: "Preguntas frecuentes",
-  subtitle: "Encuentra toda la información que necesitas",
-  items: [
-    {
-      question: "¿Qué es FresON Fest?",
-      answer:
-        "FresON Fest es un DevFest organizado por GDG Aranjuez para aprender, compartir conocimiento y conectar con la comunidad. Durante el día podrás disfrutar de charlas y talleres sobre desarrollo de software, IA, cloud y otras tecnologías, de la mano de profesionales de la comunidad.",
-    },
-    {
-      question: "¿Necesito ser desarrollador/a para asistir?",
-      answer:
-        "Para nada. FresON Fest está abierto a cualquier persona interesada en la tecnología, independientemente de su nivel de experiencia. Tanto si eres profesional, estudiante, estás empezando en el sector o simplemente tienes curiosidad por la tecnología, eres bienvenido/a.",
-    },
-    {
-      question: "¿En qué idioma serán las sesiones?",
-      answer:
-        "La mayoría de las sesiones serán en español. En caso de que alguna charla o taller se imparta en inglés, estará indicado en la agenda.",
-    },
-  ],
-
-  more: {
-    href: "/ayuda",
-    label: "VER MÁS PREGUNTAS",
-  },
+  titleLead: "El próximo",
+  titleHighlight: eventDate.dateLeadLower,
+  cta: ticketCtas.reserve,
 } as const;

@@ -1,0 +1,123 @@
+---
+import LocationMap from "@/components/blocks/LocationMap.astro";
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { withBase } from "@/utils/path";
+
+type LocationInstruction =
+  | { label: string; icon: { src: string; alt: string } }
+  | { label: string; letter: string };
+
+export interface LocationSection {
+  eyebrow: string;
+  heading: string;
+  venue: string;
+  addressLines: readonly string[];
+  map: { embedSrc: string; title: string };
+  cta: { label: string; href: string };
+  instructions: readonly LocationInstruction[];
+}
+
+interface Props {
+  location: LocationSection;
+  headingId?: string;
+}
+
+const { location, headingId = "location-heading" } = Astro.props;
+---
+
+<Section
+  id="ubicacion"
+  class="font-body !py-size-13 lg:!pt-size-12 lg:!pb-size-13"
+  ariaLabelledby={headingId}
+>
+  <Container>
+    <div class="flex w-full flex-col lg:grid lg:grid-cols-2 lg:items-start">
+      <div class="flex flex-col lg:pr-size-10">
+        <header class="pb-size-8">
+          <p
+            class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
+          >
+            {location.eyebrow}
+          </p>
+
+          <h2 id={headingId} class="type-h3 pb-size-5 lg:pb-size-7">
+            {location.heading}
+          </h2>
+
+          <address
+            class="not-italic font-body text-[14px] font-normal leading-[1.4] text-body lg:text-[16px]"
+          >
+            <span class="mb-1 block">{location.venue}</span>
+            {
+              location.addressLines.map((line) => (
+                <span class="mb-1 block last:mb-0">{line}</span>
+              ))
+            }
+          </address>
+        </header>
+
+        <div class="flex flex-col lg:hidden">
+          <div class="pb-size-4 pt-size-7">
+            <LocationMap
+              title={location.map.title}
+              src={location.map.embedSrc}
+              class="h-[200px] w-full"
+            />
+          </div>
+
+          <div class="pb-size-8 pt-size-6">
+            <Button href={location.cta.href} variant="secondary" external>
+              {location.cta.label}
+            </Button>
+          </div>
+        </div>
+
+        <ul class="flex list-none flex-col p-0 py-size-6 lg:py-size-7">
+          {
+            location.instructions.map((item) => (
+              <li class="flex items-center gap-size-4 py-size-3">
+                <span
+                  class="inline-flex size-5 shrink-0 items-center justify-center overflow-clip"
+                  aria-hidden="true"
+                >
+                  {"icon" in item ? (
+                    <img
+                      src={withBase(item.icon.src)}
+                      alt={item.icon.alt}
+                      width="20"
+                      height="20"
+                      class="size-full object-contain"
+                    />
+                  ) : (
+                    <span class="w-full text-center font-body text-[14px] font-medium leading-[1.4] text-body">
+                      {item.letter}
+                    </span>
+                  )}
+                </span>
+                <span class="font-body text-[14px] leading-[1.4] text-body">
+                  {item.label}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hidden w-full lg:flex lg:flex-col lg:items-end lg:pl-size-7">
+        <LocationMap
+          title={location.map.title}
+          src={location.map.embedSrc}
+          class="h-[268px] w-full max-w-[450px]"
+        />
+
+        <div class="w-full max-w-[450px] pb-size-5 pt-size-7">
+          <Button href={location.cta.href} variant="secondary" external>
+            {location.cta.label}
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

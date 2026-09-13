@@ -2,7 +2,7 @@ const ABSOLUTE_URL_PATTERN = /^[a-z][a-z0-9+.-]*:/i;
 
 /** Resolve an app path for links and public assets when deployed with a base URL. */
 export function withBase(path: string): string {
-  if (ABSOLUTE_URL_PATTERN.test(path)) {
+  if (path.startsWith("#") || ABSOLUTE_URL_PATTERN.test(path)) {
     return path;
   }
 
@@ -17,6 +17,16 @@ export function withBase(path: string): string {
   }
 
   return `${base}${path.slice(1)}`;
+}
+
+/** App path, hash, or absolute URL — same rules as `withBase`. */
+export function resolveHref(href: string): string {
+  return withBase(href);
+}
+
+/** Whether a href should open in a new tab (http(s) or explicitly external). */
+export function isExternalHref(href: string, external = false): boolean {
+  return external || /^https?:/i.test(href);
 }
 
 /** Whether the current pathname is the site home (respects Astro base). */

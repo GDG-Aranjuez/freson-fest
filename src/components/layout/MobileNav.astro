@@ -1,5 +1,6 @@
 ---
 import Button from "@/components/ui/Button.astro";
+import CloseIcon from "@/components/ui/CloseIcon.astro";
 import { isActive, navLinkClass } from "@/utils/nav";
 import { withBase } from "@/utils/path";
 import type { NavLink } from "@/types/nav";
@@ -30,18 +31,7 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
         class="flex items-center justify-center size-size-11 text-heading hover:text-link transition-colors translate-x-3"
         aria-label="Cerrar menú"
       >
-        <svg
-          width="36"
-          height="36"
-          viewBox="0 0 36 36"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="1.5"
-          stroke-linecap="round"
-          aria-hidden="true"
-        >
-          <path d="M9 9l18 18M27 9L9 27"></path>
-        </svg>
+        <CloseIcon />
       </button>
     </div>
 
@@ -87,6 +77,7 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
 
     function setOpen(open: boolean) {
       toggle?.setAttribute("aria-expanded", String(open));
+      toggle?.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
       menu?.classList.toggle("hidden", !open);
       iconOpen?.classList.toggle("hidden", open);
       iconClose?.classList.toggle("hidden", !open);

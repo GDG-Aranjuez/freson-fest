@@ -1,0 +1,58 @@
+---
+import FaqList from "@/components/blocks/FaqList.astro";
+import HeroRipple from "@/components/blocks/HeroRipple.astro";
+import SpeakerList from "@/components/blocks/SpeakerList.astro";
+import { previewFaqs } from "@/data/faqs";
+import { hero, speakers } from "@/data/speakers";
+import { ticketCtas } from "@/data/tickets";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Ponentes">
+  <HeroRipple
+    headingId="speakers-hero-heading"
+    class="relative bg-page overflow-hidden !py-size-9 lg:!pt-size-13 lg:!pb-size-15"
+  >
+    <div
+      class="mx-auto flex w-full max-w-[480px] flex-col items-center text-center lg:max-w-none"
+    >
+      <p
+        class="w-full pb-size-6 text-center font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden"
+      >
+        {hero.eyebrow}
+      </p>
+
+      <h1
+        id="speakers-hero-heading"
+        class="mx-auto w-full max-w-[541px] pb-size-6 font-display font-extrabold text-[48px] leading-[1.05] text-center text-heading lg:max-w-none lg:pb-size-9 lg:text-[96px]"
+      >
+        <span class="lg:hidden">
+          <span class="block">{hero.title}</span>
+          <span class="block text-highlighted">{hero.highlightedTitle}</span>
+        </span>
+        <span class="hidden lg:block">{hero.desktopTitle}</span>
+      </h1>
+
+      <p
+        class="w-full pb-size-2 pt-size-11 text-center font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden"
+      >
+        {hero.ourSpeakersLabel}
+      </p>
+    </div>
+  </HeroRipple>
+
+  <SpeakerList
+    speakers={speakers}
+    heading={hero.desktopTitle}
+    ticketsCta={ticketCtas.primary}
+    ticketsFootnote={ticketCtas.primary.footnote}
+  />
+
+  <FaqList
+    headingId="speakers-faqs-heading"
+    heading={previewFaqs.heading}
+    subtitle={previewFaqs.subtitle}
+    items={previewFaqs.items}
+    more={previewFaqs.more}
+  />
+</BaseLayout>

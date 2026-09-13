@@ -1,6 +1,9 @@
-import type { ComingSoonPage } from "@/types/coming-soon";
+export interface ComingSoonPage {
+  slug: string;
+  title: string;
+  description?: string;
+}
 
-/** Routes linked from nav/footer that are not built yet */
 export const comingSoonPages: ComingSoonPage[] = [
   { slug: "codigo-conducta", title: "Código de conducta" },
   { slug: "ubicacion", title: "Ubicación" },

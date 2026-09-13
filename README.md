@@ -49,20 +49,52 @@ Open [http://localhost:4321](http://localhost:4321) in your browser.
 
 ```
 src/
+├── pages/                         # Filename is the URL; pages orchestrate data + blocks
+│   ├── index.astro                # /
+│   ├── agenda.astro               # /agenda
+│   ├── ponentes.astro             # /ponentes
+│   ├── nosotros.astro             # /nosotros
+│   ├── patrocinadores.astro       # /patrocinadores
+│   ├── ayuda.astro                # /ayuda
+│   ├── entradas.astro             # /entradas → Eventbrite (302)
+│   ├── [section].astro            # coming-soon slugs
+│   └── 404.astro
 ├── components/
-│   ├── ui/           # Reusable primitives (Container, Section)
-│   ├── layout/       # Header, Footer, navigation
-│   ├── home/         # Home page blocks
-│   └── shared/       # Cross-page blocks
-├── data/             # Site content and configuration
-├── layouts/          # BaseLayout.astro
-├── pages/            # Routes
-├── styles/           # globals.css, variables.css, typography.css
-├── types/
-└── utils/            # Pure functions (nav, path)
+│   ├── ui/                        # Primitives (Button, Container, Section, Icon, ripple)
+│   ├── layout/                    # Header, Footer, DesktopNav, MobileNav, LinkList, SocialLinks
+│   └── blocks/                    # Presentational sections (props only; no page folders)
+├── data/                          # Domain content; types live next to the data
+│   ├── site.ts
+│   ├── nav.ts
+│   ├── footer.ts
+│   ├── tickets.ts
+│   ├── location.ts
+│   ├── agenda.ts
+│   ├── speakers.ts
+│   ├── team.ts
+│   ├── sponsors.ts
+│   ├── faqs.ts
+│   ├── coming-soon.ts
+│   ├── home.ts
+│   ├── about.ts
+│   ├── help.ts
+│   └── media.ts
+├── layouts/
+│   └── BaseLayout.astro
+├── lib/                           # SEO helpers
+├── types/                         # Infra (icon, seo, nav, footer)
+├── styles/                        # globals.css, variables.css, typography.css
+└── utils/                         # path, nav, event-date
 ```
 
-Content lives in `src/data/`. See [AGENTS.md](./AGENTS.md) for layout and responsive conventions.
+**Layers**
+
+- **`pages/`** import `src/data/` and pass props into blocks. Spanish filenames (`nosotros.astro`, `ayuda.astro`, …) exist only because they _are_ the public URL.
+- **`components/blocks/`** are presentational. They must not import values from `@/data/*` (type-only imports are fine). Header/Footer may import nav/footer data.
+- **`data/`** is organized by domain, not by page. Public hrefs are the Spanish URL (`/ponentes`, `/nosotros`, …).
+- User-facing copy stays in Spanish. File names, exports, and keys are English.
+
+See [AGENTS.md](./AGENTS.md) for layout and responsive conventions.
 
 ## Design system
 

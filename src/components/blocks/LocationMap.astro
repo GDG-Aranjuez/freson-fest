@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  src: string;
+  class?: string;
+}
+
+const { title, src, class: className = "" } = Astro.props;
+---
+
+<div class:list={["relative overflow-hidden", className]}>
+  <iframe
+    title={title}
+    src={src}
+    class="absolute inset-0 size-full border-0"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowfullscreen></iframe>
+</div>

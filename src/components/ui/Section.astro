@@ -5,7 +5,7 @@ interface Props {
   ariaLabelledby?: string;
 }
 
-const { id, class: className = "", ariaLabelledby } = Astro.props;
+const { id, class: className = "", ariaLabelledby, ...rest } = Astro.props;
 ---
 
 <section
@@ -15,6 +15,7 @@ const { id, class: className = "", ariaLabelledby } = Astro.props;
     "py-(--section-py-mobile) lg:py-(--section-py-desktop)",
     className,
   ]}
+  {...rest}
 >
   <slot />
 </section>

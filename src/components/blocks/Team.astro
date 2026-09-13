@@ -1,0 +1,51 @@
+---
+import CollaboratorCard from "@/components/blocks/CollaboratorCard.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import type { TeamGroup } from "@/data/team";
+
+interface Props {
+  title: string;
+  groups: TeamGroup[];
+}
+
+const { title, groups } = Astro.props;
+---
+
+<Section class="!py-0 lg:!py-size-13" ariaLabelledby="about-team-heading">
+  <Container>
+    <header class="max-w-[700px] pb-size-12 pt-size-8 lg:pb-size-14">
+      <h2
+        id="about-team-heading"
+        class="type-h2 text-center text-heading lg:text-left lg:leading-[0.9]"
+      >
+        {title}
+      </h2>
+    </header>
+
+    <div class="flex flex-col pb-size-13 lg:pb-0">
+      {
+        groups.map((group) => (
+          <section
+            class="pb-size-12 last:pb-0 lg:pb-size-14 lg:last:pb-0"
+            aria-labelledby={`about-team-${group.id}`}
+          >
+            <p
+              id={`about-team-${group.id}`}
+              class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
+            >
+              {group.eyebrow}
+            </p>
+            <ul class="flex list-none flex-col overflow-visible p-0">
+              {group.members.map((member) => (
+                <li class="relative">
+                  <CollaboratorCard member={member} />
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))
+      }
+    </div>
+  </Container>
+</Section>
