@@ -166,7 +166,7 @@ export const agenda: AgendaContent = {
 export const homeSchedule = {
   eyebrow: "Agenda",
 
-  heading: "Todo lo que vas a vivir en FresON Fest",
+  heading: "Lo que vas a vivir",
 
   activities: [
     {

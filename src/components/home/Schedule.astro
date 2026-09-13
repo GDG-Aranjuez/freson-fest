@@ -2,9 +2,17 @@
 import GhostLink from "@/components/shared/GhostLink.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { homeSchedule } from "@/data/agenda";
+import { agenda, homeSchedule } from "@/data/agenda";
 
-const { eyebrow, heading, activities, cta } = homeSchedule;
+const eyebrow = homeSchedule.eyebrow;
+const heading = homeSchedule.heading;
+const cta = homeSchedule.cta;
+const allSessions = agenda.days[0]?.sessions ?? [];
+const talks = allSessions.filter(
+  (session) => session.type === "Charla" || session.type === "Panel"
+);
+
+const workshops = allSessions.filter((session) => session.type === "Taller");
 ---
 
 <Section
@@ -12,264 +20,189 @@ const { eyebrow, heading, activities, cta } = homeSchedule;
   ariaLabelledby="home-agenda-heading"
 >
   <Container>
-    <div class="mx-auto w-full max-w-[1200px]">
-      <header class="pb-size-10 lg:max-w-[700px] lg:pb-size-13">
+    <div class="mx-auto w-full max-w-[1040px]">
+      <header class="pb-size-8 lg:pb-size-10">
         <p
-          class="inline-flex items-center pb-size-4 font-body text-[15px] font-light uppercase leading-none tracking-normal text-[#F37D16] md:text-[18px] md:font-medium"
+          class="inline-flex items-center pb-size-3 font-body text-[15px] font-light uppercase tracking-normal text-brand md:text-[18px] md:font-medium"
         >
           {eyebrow}
         </p>
         <h2
           id="home-agenda-heading"
-          class="flex items-center font-display text-[40px] font-bold leading-[1.1] tracking-normal text-[#FEFAF5] md:text-[64px] md:font-semibold"
+          class="font-display text-[40px] font-semibold leading-[1.1] text-heading md:text-[64px]"
         >
           {heading}
         </h2>
       </header>
 
-      <div class="flex flex-col">
-        {
-          activities.map((activity) => {
-            const panelId = `agenda-panel-${activity.id}`;
-            const triggerId = `agenda-trigger-${activity.id}`;
-
-            return (
-              <article
-                class="
-    flex
-    w-full
-    flex-col
-    gap-0
-    border-b
-    border-stroke-strong
-  "
-              >
-                <div
-                  class="
-    flex
-    w-full
-    flex-row
-    items-start
-    gap-size-4
-    px-size-6
-    py-size-7
-    lg:gap-size-5
-    lg:pb-size-6
-    lg:pt-size-7
-  "
-                >
-                  <time
-                    class="
-    inline-flex
-    h-[21px]
-    w-[50px]
-    shrink-0
-    items-center
-    p-0
-    font-body
-    text-[14px]
-    font-normal
-    leading-[1.4]
-    tracking-normal
-    text-[#F37D16]
-  "
-                  >
-                    {activity.time}
-                  </time>
-                  <div class="min-w-0 flex-1">
-                    <h3
-                      class="
-    flex
-    w-full
-    items-center
-    gap-0
-    p-0
-    font-display
-    text-[24px]
-    font-medium
-    leading-[1.1]
-    tracking-normal
-    text-[#FEFAF5]
-  "
-                    >
-                      {activity.title}
-                    </h3>
-
-                    <p
-                      class="
-    w-full
-    pt-size-1
-    font-body
-    text-[16px]
-    font-normal
-    leading-[1.4]
-    tracking-normal
-    text-[#D5CABF]
-    lg:text-[20px]
-    lg:leading-[1.2]
-  "
-                    >
-                      {activity.speaker}
-                    </p>
-                    <p
-                      class="
-    w-full
-    pt-size-1
-    font-body
-    text-[14px]
-    font-normal
-    leading-[1.4]
-    tracking-normal
-    text-[#D5CABF]
-    lg:text-[16px]
-  "
-                    >
-                      {activity.location}
-                    </p>
-
-                    {activity.type === "workshop" && (
-                      <span
-                        class="
-                          mt-size-4
-                          inline-flex
-                          bg-highlighted
-                          px-size-2
-                          py-[2px]
-                          text-[14px]
-                          font-medium
-                          text-page
-                        "
-                      >
-                        Taller
-                      </span>
-                    )}
-
-                    {activity.expandable && (
-                      <div
-                        id={panelId}
-                        class="
-                          grid
-                          grid-rows-[0fr]
-                          transition-[grid-template-rows]
-                          duration-300
-                          ease-out
-                        "
-                        role="region"
-                        aria-labelledby={triggerId}
-                        data-agenda-panel
-                        inert
-                      >
-                        <div class="min-h-0 overflow-hidden">
-                          <p
-                            class="
-                              pt-size-4
-                              text-[13px]
-                              leading-[1.5]
-                              text-body
-                            "
-                          >
-                            {activity.description}
-                          </p>
+      <div class="relative w-full">
+        {/* Pestañas (Tabs) */}
+        <div class="flex gap-1 md:gap-1" role="tablist">
+          <button
+            id="tab-charlas"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-charlas"
+            data-tab-btn="charlas"
+            class="tab-trapezoid relative z-10 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-surface font-display text-[18px] font-medium leading-[1.1] text-heading transition-colors lg:text-[20px]"
+          >
+            Charlas
+          </button>
+          <button
+            id="tab-workshops"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-workshops"
+            data-tab-btn="workshops"
+            class="tab-trapezoid relative z-0 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-[#171512] font-display text-[18px] font-medium leading-[1.1] text-subtitle transition-colors hover:text-heading lg:text-[20px]"
+          >
+            Workshops
+          </button>
+        </div>
+        <div class="relative z-10 border border-stroke-strong/30 bg-surface">
+          {/* Panel Charlas */}
+          <div
+            id="panel-charlas"
+            role="tabpanel"
+            aria-labelledby="tab-charlas"
+            data-tab-panel="charlas"
+            class="p-6 md:p-8"
+          >
+            <div class="flex flex-col space-y-4">
+              {
+                talks.map((session) => (
+                  <details class="group relative cursor-pointer border border-transparent p-5 transition-all duration-300 ease-out hover:z-30 hover:scale-[1.035] hover:border-brand hover:bg-white/[0.02] hover:shadow-[0_8px_30px_rgba(255,158,102,0.18)] open:z-20 open:border-brand open:bg-white/[0.01]">
+                    <summary class="flex w-full list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                      <div class="flex items-start gap-4 md:gap-8">
+                        <time class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]">
+                          {session.startTime}
+                        </time>
+                        <div>
+                          <h3 class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]">
+                            {session.title}
+                          </h3>
+                          {session.speaker && (
+                            <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
+                              {session.speaker}
+                            </p>
+                          )}
                         </div>
                       </div>
-                    )}
-                  </div>
-
-                  {activity.expandable && (
-                    <button
-                      id={triggerId}
-                      type="button"
-                      class="
-                        agenda-toggle
-                        flex
-                        size-8
-                        cursor-pointer
-                        items-center
-                        justify-center
-                        text-highlighted
-                      "
-                      aria-label={`Mostrar detalles de ${activity.title}`}
-                      aria-expanded="false"
-                      aria-controls={panelId}
-                      data-agenda-toggle
-                    >
-                      <span
-                        class="
-                          text-[24px]
-                          font-light
-                          leading-none
-                          transition-transform
-                          duration-300
-                        "
-                        aria-hidden="true"
-                        data-agenda-icon
-                      >
+                      <span class="text-[18px] font-light text-[#FF9E66] transition-transform duration-300 group-open:rotate-45">
                         +
                       </span>
-                    </button>
-                  )}
-                </div>
-              </article>
-            );
-          })
-        }
-      </div>
+                    </summary>
+                    {session.description && (
+                      <div class="pt-4 pl-[106px] md:pl-[142px] font-body text-[14px] leading-relaxed text-subtitle md:text-[16px]">
+                        <p>{session.description}</p>
+                      </div>
+                    )}
+                  </details>
+                ))
+              }
+            </div>
+          </div>
 
-      <div class="flex justify-end pt-size-9">
-        <GhostLink href={cta.href} label={cta.label} />
+          {/* Panel Workshops */}
+          <div
+            id="panel-workshops"
+            role="tabpanel"
+            aria-labelledby="tab-workshops"
+            data-tab-panel="workshops"
+            class="hidden p-6 md:p-8"
+          >
+            <div class="flex flex-col space-y-4">
+              {
+                workshops.map((session) => (
+                  <details class="group relative cursor-pointer border border-transparent p-5 transition-all duration-300 ease-out hover:z-30 hover:scale-[1.035] hover:border-brand hover:bg-white/[0.02] hover:shadow-[0_8px_30px_rgba(255,158,102,0.18)] open:z-20 open:border-brand open:bg-white/[0.01]">
+                    <summary class="flex w-full list-none items-start justify-between gap-4 [&::-webkit-details-marker]:hidden">
+                      <div class="flex items-start gap-4 md:gap-8">
+                        <time class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]">
+                          {session.startTime}
+                        </time>
+                        <div>
+                          <h3 class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]">
+                            {session.title}
+                          </h3>
+                          {session.speaker && (
+                            <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
+                              {session.speaker}
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                      <span class="text-[18px] font-light text-[#FF9E66] transition-transform duration-300 group-open:rotate-45">
+                        +
+                      </span>
+                    </summary>
+                    {session.description && (
+                      <div class="pt-4 pl-[106px] md:pl-[142px] font-body text-[14px] leading-relaxed text-subtitle md:text-[16px]">
+                        <p>{session.description}</p>
+                      </div>
+                    )}
+                  </details>
+                ))
+              }
+            </div>
+          </div>
+
+          <div
+            class="flex justify-end border-t border-stroke-strong/20 bg-surface px-6 py-4"
+          >
+            <GhostLink href={cta.href} label={cta.label} />
+          </div>
+        </div>
       </div>
     </div>
   </Container>
 </Section>
 
+<style>
+  .tab-trapezoid {
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  }
+</style>
+
 <script>
-  function initializeHomeAgenda() {
-    document
-      .querySelectorAll<HTMLButtonElement>("[data-agenda-toggle]")
-      .forEach((button) => {
-        if (button.dataset.initialized === "true") {
-          return;
-        }
+  function initializeAgendaTabs() {
+    const tabBtns =
+      document.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+    const tabPanels =
+      document.querySelectorAll<HTMLElement>("[data-tab-panel]");
 
-        button.dataset.initialized = "true";
+    tabBtns.forEach((btn) => {
+      if (btn.dataset.initialized === "true") return;
+      btn.dataset.initialized = "true";
 
-        button.addEventListener("click", () => {
-          const expanded = button.getAttribute("aria-expanded") === "true";
-          const panelId = button.getAttribute("aria-controls");
-          const panel = panelId ? document.getElementById(panelId) : null;
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tabBtn;
 
-          if (!(panel instanceof HTMLElement)) {
-            return;
-          }
+        tabBtns.forEach((b) => {
+          const isSelected = b === btn;
+          b.setAttribute("aria-selected", String(isSelected));
 
-          const nextExpanded = !expanded;
-
-          button.setAttribute("aria-expanded", String(nextExpanded));
-
-          const icon = button.querySelector<HTMLElement>("[data-agenda-icon]");
-
-          if (nextExpanded) {
-            panel.classList.remove("grid-rows-[0fr]");
-            panel.classList.add("grid-rows-[1fr]");
-            panel.removeAttribute("inert");
-
-            if (icon) {
-              icon.textContent = "−";
-            }
+          if (isSelected) {
+            b.classList.remove("bg-[#171512]", "text-subtitle", "z-0");
+            b.classList.add("bg-surface", "text-heading", "z-10");
           } else {
-            panel.classList.remove("grid-rows-[1fr]");
-            panel.classList.add("grid-rows-[0fr]");
-            panel.setAttribute("inert", "");
+            b.classList.remove("bg-surface", "text-heading", "z-10");
+            b.classList.add("bg-[#171512]", "text-subtitle", "z-0");
+          }
+        });
 
-            if (icon) {
-              icon.textContent = "+";
-            }
+        tabPanels.forEach((panel) => {
+          if (panel.dataset.tabPanel === target) {
+            panel.classList.remove("hidden");
+          } else {
+            panel.classList.add("hidden");
           }
         });
       });
+    });
   }
 
-  initializeHomeAgenda();
-
-  document.addEventListener("astro:page-load", initializeHomeAgenda);
+  initializeAgendaTabs();
+  document.addEventListener("astro:page-load", initializeAgendaTabs);
 </script>
