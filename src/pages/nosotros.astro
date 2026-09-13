@@ -1,0 +1,23 @@
+---
+import HeroAbout from "@/components/about/HeroAbout.astro";
+import HistoryAbout from "@/components/about/HistoryAbout.astro";
+import JoinTeam from "@/components/about/JoinTeam.astro";
+import StatsAbout from "@/components/about/StatsAbout.astro";
+import TeamAbout from "@/components/about/TeamAbout.astro";
+import Location from "@/components/home/Location.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Nosotros"
+  description="Conoce al equipo de GDG Aranjuez detrás de Fresón Fest 2026: una comunidad que acerca la tecnología a Aranjuez y a Madrid Sur."
+>
+  <HeroAbout />
+  <div class="flex flex-col">
+    <HistoryAbout class="order-2 lg:order-3" />
+    <StatsAbout class="order-3 lg:order-2" />
+  </div>
+  <TeamAbout />
+  <Location />
+  <JoinTeam />
+</BaseLayout>

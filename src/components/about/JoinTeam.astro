@@ -1,0 +1,42 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import { aboutJoin } from "@/data/about";
+---
+
+<Section
+  class="!pt-size-13 !pb-size-15 lg:!pt-size-15 lg:!pb-size-16"
+  ariaLabelledby="about-join-heading"
+>
+  <Container>
+    <div
+      class="mx-auto flex w-full max-w-[600px] flex-col items-center text-center"
+    >
+      <div class="flex w-full flex-col items-center pb-size-9">
+        <p
+          class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
+        >
+          {aboutJoin.eyebrow}
+        </p>
+        <h2
+          id="about-join-heading"
+          class="w-full px-size-7 pb-size-8 pt-size-5 font-display text-[32px] font-semibold leading-[1.1] text-heading lg:px-0 lg:text-[40px]"
+        >
+          {aboutJoin.title}
+        </h2>
+        <p class="w-full font-body text-[20px] leading-[1.2] text-subtitle">
+          {aboutJoin.subtitle}
+        </p>
+      </div>
+
+      <div class="w-full max-w-[380px] pb-size-11">
+        <Button href={aboutJoin.cta.href} block>
+          {aboutJoin.cta.label}
+        </Button>
+      </div>
+
+      <div class="h-px w-full max-w-[600px] bg-stroke"></div>
+    </div>
+  </Container>
+</Section>
