@@ -1,0 +1,106 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import type { AboutCollaborator } from "@/types/about";
+import type { IconName } from "@/types/icon";
+import { withBase } from "@/utils/path";
+
+interface Props {
+  member: AboutCollaborator;
+}
+
+const { member } = Astro.props;
+
+const socialItems = (
+  [
+    { key: "linkedin", label: "LinkedIn" },
+    { key: "x", label: "X" },
+    { key: "instagram", label: "Instagram" },
+  ] as const
+).map(({ key, label }) => ({
+  href: member.socials[key],
+  label,
+  icon: key satisfies IconName,
+}));
+---
+
+<article
+  class="group relative z-0 w-full border-b border-stroke-strong py-size-5 pr-size-2 hover:z-10 hover:border-transparent lg:py-size-4"
+>
+  <div
+    class="flex items-center border border-transparent bg-transparent transition-[margin,padding,border-color,box-shadow,background-color] duration-200 group-hover:-m-size-4 group-hover:border-[var(--palette-orange-500)] group-hover:bg-page group-hover:p-size-4 group-hover:shadow-card-hover"
+  >
+    <div class="shrink-0 py-size-3 lg:py-size-4 lg:pl-size-6 lg:pr-0">
+      <div class="relative size-[110px] overflow-hidden lg:size-[140px]">
+        <img
+          src={withBase(member.image)}
+          alt={member.name}
+          width="140"
+          height="140"
+          class="size-full object-cover"
+          loading="lazy"
+        />
+        <div
+          class="absolute inset-0 bg-[rgba(197,70,0,0.05)]"
+          aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <div
+      class="flex min-w-0 flex-1 flex-col justify-center py-size-2 lg:py-size-4"
+    >
+      <div
+        class="flex flex-col gap-size-4 pb-size-5 pl-size-6 pr-size-7 pt-size-1 lg:gap-size-5"
+      >
+        <h3
+          class="font-display text-[20px] font-medium leading-[1.1] text-heading lg:text-[24px]"
+        >
+          {member.name}
+        </h3>
+        <p
+          class="font-body text-[14px] font-medium leading-[1.2] text-subtitle lg:text-[16px]"
+        >
+          {member.role}
+        </p>
+      </div>
+
+      <ul
+        class="flex list-none items-center gap-size-5 p-0 px-size-5 lg:gap-size-7 lg:px-size-6"
+      >
+        {
+          socialItems.map(({ href, label, icon }) => (
+            <li>
+              {href ? (
+                <a
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${label} de ${member.name}`}
+                  class="inline-flex size-8 items-center justify-center text-heading transition-colors hover:text-brand"
+                >
+                  <span class="block lg:hidden">
+                    <Icon name={icon} size={24} />
+                  </span>
+                  <span class="hidden lg:block">
+                    <Icon name={icon} size={36} />
+                  </span>
+                </a>
+              ) : (
+                <span
+                  class="inline-flex size-8 items-center justify-center text-heading"
+                  aria-hidden="true"
+                >
+                  <span class="block lg:hidden">
+                    <Icon name={icon} size={24} />
+                  </span>
+                  <span class="hidden lg:block">
+                    <Icon name={icon} size={36} />
+                  </span>
+                </span>
+              )}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</article>
