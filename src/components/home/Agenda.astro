@@ -1,152 +1,265 @@
 ---
+import GhostLink from "@/components/shared/GhostLink.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { agenda } from "@/data/agenda";
+import { agenda as defaultAgenda } from "@/data/agenda";
 import type { AgendaSession } from "@/types/agenda";
-import GhostLink from "@/components/shared/GhostLink.astro";
 
 interface Props {
   class?: string;
+  eyebrow?: string;
+  heading?: string;
+  description?: string;
+  cta?: {
+    href: string;
+    label: string;
+  };
+  secondaryLink?: {
+    href: string;
+    label: string;
+  };
 }
 
-const { class: className } = Astro.props;
+const {
+  class: className = "",
+  eyebrow = defaultAgenda.eyebrow,
+  heading = defaultAgenda.headline,
+  description = defaultAgenda.description,
+  cta = defaultAgenda.cta,
+  secondaryLink = defaultAgenda.secondaryLink,
+} = Astro.props;
 
-// Session type color mapping
-const typeColors: Record<string, { bg: string; text: string }> = {
-  Charla: { bg: "bg-orange-300/20", text: "text-orange-200" },
-  Taller: { bg: "bg-orange-300/30", text: "text-orange-100" },
-  Networking: { bg: "bg-stone-400/20", text: "text-stone-200" },
-  Keynote: { bg: "bg-orange-300/40", text: "text-orange-100" },
-  Panel: { bg: "bg-stone-300/20", text: "text-stone-200" },
-};
-
-const getTypeStyles = (type: string) => {
-  return typeColors[type] || typeColors.Charla;
-};
-
-const formatTime = (time: string) => {
-  return time;
-};
+const allSessions = defaultAgenda.days[0]?.sessions ?? [];
+const talks = allSessions.filter(
+  (session: AgendaSession) =>
+    session.type === "Charla" || session.type === "Panel"
+);
+const workshops = allSessions.filter(
+  (session: AgendaSession) => session.type === "Taller"
+);
 ---
 
-<Section class={`${className || ""}`} ariaLabelledby="agenda-heading">
+<Section
+  class={`!py-size-13 lg:!py-size-15 ${className}`}
+  ariaLabelledby="home-agenda-heading"
+>
   <Container>
-    <div class="flex flex-col gap-size-8 lg:gap-size-10">
-      {/* Header */}
-      <div class="flex flex-col gap-size-3">
-        <p class="type-eyebrow text-body font-medium tracking-widest">
-          {agenda.eyebrow}
-        </p>
-        <h2
-          id="agenda-heading"
-          class="type-h2 max-w-prose text-heading lg:text-[40px]"
-        >
-          {agenda.headline}
-        </h2>
+    <div class="mx-auto w-full max-w-[1040px]">
+      <header class="pb-size-8 lg:pb-size-10">
         {
-          agenda.description && (
-            <p class="type-paragraph-m max-w-prose text-body text-muted">
-              {agenda.description}
+          eyebrow && (
+            <p class="inline-flex items-center pb-size-3 font-body text-[15px] font-light uppercase tracking-normal text-brand md:text-[18px] md:font-medium">
+              {eyebrow}
             </p>
           )
         }
-      </div>
-
-      {/* Timeline */}
-      <div class="flex flex-col gap-size-6">
+        <h2
+          id="home-agenda-heading"
+          class="font-display text-[40px] font-semibold leading-[1.1] text-heading md:text-[64px]"
+        >
+          {heading}
+        </h2>
         {
-          agenda.days.map((day) => (
-            <div class="flex flex-col gap-size-4">
-              {/* Day label */}
-              <p class="type-label text-muted font-medium uppercase tracking-wide">
-                {day.date}
-              </p>
+          description && (
+            <p class="pt-3 font-body text-[16px] text-subtitle md:text-[18px]">
+              {description}
+            </p>
+          )
+        }
+      </header>
 
-              {/* Sessions */}
-              <div class="flex flex-col gap-size-3">
-                {day.sessions.map((session: AgendaSession) => {
-                  const typeStyle = getTypeStyles(session.type);
-                  const isActive = session.isActive;
+      <div class="relative w-full">
+        {/* Pestañas (Tabs) */}
+        <div class="flex gap-1 md:gap-1" role="tablist">
+          <button
+            id="tab-charlas"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-charlas"
+            data-tab-btn="charlas"
+            class="tab-trapezoid relative z-10 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-surface font-display text-[18px] font-medium leading-[1.1] text-heading transition-colors lg:text-[20px]"
+          >
+            Charlas
+          </button>
+          <button
+            id="tab-workshops"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-workshops"
+            data-tab-btn="workshops"
+            class="tab-trapezoid relative z-0 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-[#171512] font-display text-[18px] font-medium leading-[1.1] text-subtitle transition-colors hover:text-heading lg:text-[20px]"
+          >
+            Workshops
+          </button>
+        </div>
 
-                  return (
-                    <div
-                      class={`group flex gap-size-4 rounded-lg p-size-4 transition-colors ${
-                        isActive
-                          ? "bg-surface-raised"
-                          : "hover:bg-surface-raised/50"
-                      }`}
-                    >
-                      {/* Time column */}
-                      <div class="flex flex-col items-start gap-size-2 min-w-fit">
-                        <span class="type-label font-bold text-brand">
-                          {formatTime(session.startTime)}
-                        </span>
-                      </div>
-
-                      {/* Content column */}
-                      <div class="flex flex-1 flex-col gap-size-2 min-w-0">
-                        {/* Title and type */}
-                        <div class="flex flex-col gap-size-2 sm:flex-row sm:items-start sm:justify-between sm:gap-size-3">
-                          <h3 class="type-subtitle font-bold text-heading flex-1 min-w-0 text-[20px] lg:text-[20px]">
+        {/* Contenedor principal de 1040px */}
+        <div class="relative z-10 border border-stroke-strong/30 bg-surface">
+          {/* Panel Charlas */}
+          <div
+            id="panel-charlas"
+            role="tabpanel"
+            aria-labelledby="tab-charlas"
+            data-tab-panel="charlas"
+            class="p-0"
+          >
+            <div class="flex flex-col">
+              {
+                talks.map((session: AgendaSession) => (
+                  <div class="group relative min-h-[126px] w-full cursor-pointer border border-transparent border-b-stroke-strong/20 px-8 py-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-30 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-brand hover:bg-[#1a1714] hover:shadow-[0_10px_30px_rgba(255,158,102,0.22)]">
+                    <div class="flex min-h-[78px] w-full items-center justify-between gap-4">
+                      <div class="flex items-center gap-6 md:gap-10">
+                        <time class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]">
+                          {session.startTime}
+                        </time>
+                        <div>
+                          <h3 class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]">
                             {session.title}
                           </h3>
-                          <span
-                            class={`type-label px-size-2 py-size-1 rounded-full whitespace-nowrap font-medium lg:text-[16px] ${typeStyle.bg} ${typeStyle.text}`}
-                          >
-                            {session.type}
-                          </span>
+                          {session.speaker && (
+                            <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
+                              {session.speaker}
+                            </p>
+                          )}
                         </div>
-
-                        {/* Metadata */}
-                        {(session.speaker || session.location) && (
-                          <div class="flex flex-col gap-size-1 sm:flex-row sm:gap-size-3 sm:items-center">
-                            {session.speaker && (
-                              <p class="type-caption text-muted lg:text-[20px]">
-                                {session.speaker}
-                              </p>
-                            )}
-                            {session.location && (
-                              <p class="type-caption text-muted lg:text-[16px]">
-                                📍 {session.location}
-                              </p>
-                            )}
-                          </div>
-                        )}
                       </div>
 
-                      {/* Image placeholder */}
-                      {session.image && (
-                        <div class="hidden sm:flex flex-shrink-0 w-20 h-20 rounded-lg bg-stone-400 overflow-hidden">
-                          <img
-                            src={session.image}
-                            alt={session.speaker || session.title}
-                            class="w-full h-full object-cover"
-                          />
-                        </div>
-                      )}
+                      {/* Signo + (Deshabilitado temporalmente)
+                      <span class="text-[18px] font-light text-[#FF9E66] transition-transform duration-200 group-open:rotate-45">
+                        +
+                      </span>
+                      */}
                     </div>
-                  );
-                })}
-              </div>
+
+                    {/* Información desplegable (Deshabilitado temporalmente)
+                    {session.description && (
+                      <div class="pt-4 pl-[114px] md:pl-[150px] font-body text-[14px] leading-relaxed text-subtitle md:text-[16px]">
+                        <p>{session.description}</p>
+                      </div>
+                    )}
+                    */}
+                  </div>
+                ))
+              }
             </div>
-          ))
-        }
-      </div>
+          </div>
 
-      {/* CTA and secondary link */}
-      <div
-        class="flex flex-col gap-size-4 sm:gap-size-3 sm:flex-row sm:items-center sm:justify-between"
-      >
-        <a href={agenda.cta.href} class="btn-primary btn-primary--block">
-          {agenda.cta.label}
-        </a>
+          {/* Panel Workshops */}
+          <div
+            id="panel-workshops"
+            role="tabpanel"
+            aria-labelledby="tab-workshops"
+            data-tab-panel="workshops"
+            class="hidden p-0"
+          >
+            <div class="flex flex-col">
+              {
+                workshops.map((session: AgendaSession) => (
+                  <div class="group relative min-h-[126px] w-full cursor-pointer border border-transparent border-b-stroke-strong/20 px-8 py-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-30 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-brand hover:bg-[#1a1714] hover:shadow-[0_10px_30px_rgba(255,158,102,0.22)]">
+                    <div class="flex min-h-[78px] w-full items-center justify-between gap-4">
+                      <div class="flex items-center gap-6 md:gap-10">
+                        <time class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]">
+                          {session.startTime}
+                        </time>
+                        <div>
+                          <h3 class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]">
+                            {session.title}
+                          </h3>
+                          {session.speaker && (
+                            <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
+                              {session.speaker}
+                            </p>
+                          )}
+                        </div>
+                      </div>
 
-        <GhostLink
-          href={agenda.secondaryLink.href}
-          label={agenda.secondaryLink.label}
-          class="text-[var(--color-action-ghost-text)] gap-2"
-        />
+                      {/* Signo + (Deshabilitado temporalmente)
+                      <span class="text-[18px] font-light text-[#FF9E66] transition-transform duration-200 group-open:rotate-45">
+                        +
+                      </span>
+                      */}
+                    </div>
+
+                    {/* Información desplegable (Deshabilitado temporalmente)
+                    {session.description && (
+                      <div class="pt-4 pl-[114px] md:pl-[150px] font-body text-[14px] leading-relaxed text-subtitle md:text-[16px]">
+                        <p>{session.description}</p>
+                      </div>
+                    )}
+                    */}
+                  </div>
+                ))
+              }
+            </div>
+          </div>
+
+          {/* Footer / Enlaces CTA */}
+          {
+            (cta || secondaryLink) && (
+              <div class="flex flex-col gap-4 border-t border-stroke-strong/20 bg-surface px-6 py-4 sm:flex-row sm:items-center sm:justify-between">
+                {cta && <GhostLink href={cta.href} label={cta.label} />}
+                {secondaryLink && (
+                  <GhostLink
+                    href={secondaryLink.href}
+                    label={secondaryLink.label}
+                    class="text-[var(--color-action-ghost-text)] gap-2"
+                  />
+                )}
+              </div>
+            )
+          }
+        </div>
       </div>
     </div>
   </Container>
 </Section>
+
+<style>
+  .tab-trapezoid {
+    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  }
+</style>
+
+<script>
+  function initializeAgendaTabs() {
+    const tabBtns =
+      document.querySelectorAll<HTMLButtonElement>("[data-tab-btn]");
+    const tabPanels =
+      document.querySelectorAll<HTMLElement>("[data-tab-panel]");
+
+    tabBtns.forEach((btn) => {
+      if (btn.dataset.initialized === "true") return;
+      btn.dataset.initialized = "true";
+
+      btn.addEventListener("click", () => {
+        const target = btn.dataset.tabBtn;
+
+        tabBtns.forEach((b) => {
+          const isSelected = b === btn;
+          b.setAttribute("aria-selected", String(isSelected));
+
+          if (isSelected) {
+            b.classList.remove("bg-[#171512]", "text-subtitle", "z-0");
+            b.classList.add("bg-surface", "text-heading", "z-10");
+          } else {
+            b.classList.remove("bg-surface", "text-heading", "z-10");
+            b.classList.add("bg-[#171512]", "text-subtitle", "z-0");
+          }
+        });
+
+        tabPanels.forEach((panel) => {
+          if (panel.dataset.tabPanel === target) {
+            panel.classList.remove("hidden");
+          } else {
+            panel.classList.add("hidden");
+          }
+        });
+      });
+    });
+  }
+
+  initializeAgendaTabs();
+  document.addEventListener("astro:page-load", initializeAgendaTabs);
+</script>
