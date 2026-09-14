@@ -100,14 +100,14 @@ Capa de componentes + clases CSS. Prefiere el componente; las clases son la impl
 | Componente           | Figma                         | Uso                               |
 | -------------------- | ----------------------------- | --------------------------------- |
 | `ui/Button`          | Buttons (primary / secondary) | CTA genérico (`<a>` o `<button>`) |
-| `shared/CtaNote`     | Button CTA + Note             | Primary + footnote debajo         |
-| `shared/GhostLink`   | Ghost button                  | Texto + flecha (+ underline)      |
-| `shared/BenefitLink` | Button destination            | Pill Brego                        |
+| `blocks/CtaNote`     | Button CTA + Note             | Primary + footnote debajo         |
+| `blocks/GhostLink`   | Ghost button                  | Texto + flecha (+ underline)      |
+| `blocks/BenefitLink` | Button destination            | Pill Brego                        |
 
 ```astro
 import Button from "@/components/ui/Button.astro"; import CtaNote from
-"@/components/shared/CtaNote.astro"; import GhostLink from
-"@/components/shared/GhostLink.astro";
+"@/components/blocks/CtaNote.astro"; import GhostLink from
+"@/components/blocks/GhostLink.astro";
 
 <Button href="/entradas">Consigue tu entrada</Button>
 <Button href="/entradas" size="small">Entradas</Button>

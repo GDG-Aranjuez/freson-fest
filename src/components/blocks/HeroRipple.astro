@@ -1,0 +1,36 @@
+---
+import { BackgroundRippleEffect } from "@/components/ui/BackgroundRippleEffect.tsx";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+
+interface Props {
+  headingId: string;
+  class?: string;
+}
+
+const {
+  headingId,
+  class:
+    className = "relative overflow-hidden !py-size-9 lg:!pt-size-13 lg:!pb-size-15",
+} = Astro.props;
+---
+
+<Section class={className} ariaLabelledby={headingId}>
+  <div
+    class="absolute inset-0 z-0 pointer-events-auto flex items-center justify-center"
+  >
+    <div class="relative w-full max-w-[1200px] h-full mx-auto px-0 sm:px-4">
+      <BackgroundRippleEffect client:idle />
+      <div
+        class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-page pointer-events-none"
+      >
+      </div>
+    </div>
+  </div>
+
+  <Container
+    class="relative z-10 w-full max-w-[1200px] mx-auto pointer-events-none"
+  >
+    <slot />
+  </Container>
+</Section>

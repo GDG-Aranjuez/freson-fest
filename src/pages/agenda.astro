@@ -1,28 +1,56 @@
 ---
-import Faqs from "@/components/agenda/Faqs.astro";
-import Hero from "@/components/agenda/Hero.astro";
-import Schedule from "@/components/home/Schedule.astro";
-import CtaNote from "@/components/shared/CtaNote.astro";
+import CtaNote from "@/components/blocks/CtaNote.astro";
+import FaqList from "@/components/blocks/FaqList.astro";
+import HeroRipple from "@/components/blocks/HeroRipple.astro";
+import SchedulePreview from "@/components/blocks/SchedulePreview.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { hero } from "@/data/agenda";
+import { agenda, hero, schedule } from "@/data/agenda";
+import { previewFaqs } from "@/data/faqs";
+import { site } from "@/data/site";
+import { venue } from "@/data/location";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import { eventDate } from "@/utils/event-date";
 
-const googleCalendarUrl =
-  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=FresON+Fest+2026&dates=20261024T090000Z/20261024T180000Z&details=Evento+FresON+Fest+2026+en+Aranjuez&location=Aranjuez";
+const sessions = agenda.days[0]?.sessions ?? [];
 ---
 
 <BaseLayout
   title="Agenda"
-  description="Agenda de FresON Fest 2026 (GDG Aranjuez). Charlas, workshops y actividades el 24 de octubre en Aranjuez."
+  description={`Agenda de ${site.title} (${site.name}). Charlas, workshops y actividades el ${eventDate.dateLeadLower} en ${venue.addressLocality}.`}
 >
-  <Hero />
+  <HeroRipple
+    headingId="agenda-hero-heading"
+    class="relative overflow-hidden !py-size-13 lg:!pt-size-13 lg:!pb-size-13"
+  >
+    <div class="flex w-full flex-col items-center text-center">
+      <h1
+        id="agenda-hero-heading"
+        class="w-full max-w-[700px] pb-size-6 font-display text-[48px] sm:text-[64px] lg:text-[96px] font-extrabold leading-[0.9] text-center text-heading lg:pb-size-10 pointer-events-auto"
+      >
+        <span class="block">{hero.titleLead}</span>
+        <span class="block text-brand">{hero.titleHighlight}</span>
+      </h1>
 
-  <Schedule
-    cta={{
-      label: "AÑADIR A MI CALENDARIO",
-      href: googleCalendarUrl,
-    }}
+      <div
+        class="flex w-full sm:max-w-[320px] flex-col items-start pointer-events-auto"
+      >
+        <CtaNote
+          href={hero.cta.href}
+          label={hero.cta.label}
+          footnote={hero.cta.footnote}
+          noteAlign="center"
+          block={true}
+        />
+      </div>
+    </div>
+  </HeroRipple>
+
+  <SchedulePreview
+    sessions={sessions}
+    eyebrow={schedule.eyebrow}
+    heading={schedule.heading}
+    cta={schedule.calendarCta}
   />
 
   <Section class="!pt-size-9 !pb-size-15 lg:!pt-size-11">
@@ -41,5 +69,12 @@ const googleCalendarUrl =
     </Container>
   </Section>
 
-  <Faqs />
+  <FaqList
+    headingId="agenda-faqs-heading"
+    heading={previewFaqs.heading}
+    subtitle={previewFaqs.subtitle}
+    items={previewFaqs.items}
+    more={previewFaqs.more}
+    hideSubtitleOnDesktop
+  />
 </BaseLayout>

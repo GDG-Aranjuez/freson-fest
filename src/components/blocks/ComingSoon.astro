@@ -1,0 +1,35 @@
+---
+import Button from "@/components/ui/Button.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+
+interface Props {
+  title?: string;
+  heading: string;
+  description: string;
+  backHref: string;
+  backLabel: string;
+}
+
+const { title, heading, description, backHref, backLabel } = Astro.props;
+
+const headingId = "coming-soon-heading";
+---
+
+<Section ariaLabelledby={headingId}>
+  <Container>
+    <div class="mx-auto max-w-xl text-center lg:text-left">
+      {title && <p class="type-eyebrow-medium pb-size-4 text-muted">{title}</p>}
+
+      <h1 id={headingId} class="type-h1 pb-size-6">
+        {heading}
+      </h1>
+
+      <p class="type-subtitle mx-auto pb-size-9 lg:mx-0">{description}</p>
+
+      <Button href={backHref} block>
+        {backLabel}
+      </Button>
+    </div>
+  </Container>
+</Section>

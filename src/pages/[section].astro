@@ -1,6 +1,6 @@
 ---
-import ComingSoon from "@/components/shared/ComingSoon.astro";
-import { comingSoonPages } from "@/data/coming-soon";
+import ComingSoon from "@/components/blocks/ComingSoon.astro";
+import { comingSoonContent, comingSoonPages } from "@/data/coming-soon";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { sectionDescription } from "@/lib/seo";
 
@@ -16,5 +16,11 @@ const metaDescription = sectionDescription(title, description);
 ---
 
 <BaseLayout title={title} description={metaDescription}>
-  <ComingSoon title={title} description={description} />
+  <ComingSoon
+    title={title}
+    heading={comingSoonContent.heading}
+    description={description ?? comingSoonContent.defaultDescription}
+    backHref={comingSoonContent.backHref}
+    backLabel={comingSoonContent.backLabel}
+  />
 </BaseLayout>

@@ -1,0 +1,89 @@
+---
+import GhostLink from "@/components/blocks/GhostLink.astro";
+import Container from "@/components/ui/Container.astro";
+import Section from "@/components/ui/Section.astro";
+import TierIcon from "@/components/ui/TierIcon.astro";
+
+export interface SponsorLogo {
+  image?: string;
+  description: string;
+}
+
+export interface SponsorLogoCategory {
+  categoryName: string;
+  sponsors: SponsorLogo[];
+}
+
+interface Props {
+  categories: SponsorLogoCategory[];
+  viewAllHref: string;
+  viewAllLabel: string;
+}
+
+const { categories, viewAllHref, viewAllLabel } = Astro.props;
+---
+
+<Section
+  class="text-white font-sans min-h-screen flex flex-col justify-between !pt-size-9 !pb-size-13 lg:!pt-size-13 lg:!pb-size-16"
+>
+  <Container class="max-w-[1200px] mx-auto w-full">
+    <div>
+      <header
+        class="flex flex-col items-center text-center py-size-8 lg:pb-size-8 lg:pt-13 max-w-[1200px] mx-auto"
+      >
+        <span class="type-eyebrow-medium pb-size-6 uppercase text-highlighted">
+          PATROCINADORES
+        </span>
+        <h2
+          id="highlights-heading"
+          class="type-h2 text-center text-[40px] md:text-h2 font-semibold leading-[1.1] max-w-[358px] md:max-w-[800px] mx-auto"
+        >
+          Quienes confían en nosotros y ayudan a que esto sea posible
+        </h2>
+      </header>
+
+      <div class="space-y-16">
+        {
+          categories.map((group) => {
+            return (
+              <div class="space-y-6">
+                <div class="flex items-center gap-2 max-w-[1200px] mx-auto">
+                  <div class="flex-grow border-b border-neutral-800" />
+                  <div class="flex items-center gap-2 text-[var(--palette-orange-300,#F37D16)] font-display text-[24px] font-medium leading-[1.1]">
+                    <span>{group.categoryName}</span>
+                    <TierIcon name={group.categoryName} />
+                  </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-8 md:gap-12 max-w-[1200px] mx-auto">
+                  {group.sponsors.map((sponsor) => (
+                    <div class="flex w-full max-w-[482px] flex-col items-center text-center space-y-3">
+                      <div class="mx-auto w-full max-w-[200px] aspect-[4/3] bg-neutral-200 rounded-sm flex items-center justify-center overflow-hidden">
+                        {sponsor.image ? (
+                          <img
+                            src={sponsor.image}
+                            alt="Logo patrocinador"
+                            class="w-full h-full object-contain p-2"
+                          />
+                        ) : (
+                          <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
+                        )}
+                      </div>
+
+                      <p class="font-body text-[14px] md:text-[16px] font-normal leading-[1.4] text-[#D5CABF] max-w-[482px] mx-auto">
+                        {sponsor.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            );
+          })
+        }
+        <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
+          <GhostLink href={viewAllHref} label={viewAllLabel} />
+        </div>
+      </div>
+    </div>
+  </Container>
+</Section>

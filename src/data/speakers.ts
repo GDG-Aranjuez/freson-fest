@@ -1,12 +1,28 @@
-import type { Speaker } from "../types/speakers";
+import type { SocialHrefs } from "@/types/social";
 
-export const speakersHero = {
+export type SpeakerSocials = SocialHrefs;
+
+export interface Speaker {
+  id: number;
+  name: string;
+  lastName: string;
+  role: string;
+  Empresa: string;
+  image: string;
+  talkTitle?: string;
+  talkDescription?: string;
+  description?: string;
+  socials?: SpeakerSocials;
+}
+
+export const hero = {
   eyebrow: "PONENTES",
   title: "Voces que",
   highlightedTitle: "inspiran",
   desktopTitle: "Las voces de quienes están transformando el sector",
-  nuestrosPonentes: "Nuestros ponentes",
-};
+  ourSpeakersLabel: "Nuestros ponentes",
+} as const;
+
 export const speakers: Speaker[] = [
   {
     id: 1,

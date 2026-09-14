@@ -2,6 +2,7 @@
 import SocialLinks from "@/components/layout/SocialLinks.astro";
 import Container from "@/components/ui/Container.astro";
 import { footerMeta, footerSections } from "@/data/footer";
+import { site } from "@/data/site";
 import { withBase } from "@/utils/path";
 ---
 
@@ -20,8 +21,8 @@ import { withBase } from "@/utils/path";
 
           <a href={withBase("/")} class="inline-flex pb-size-7">
             <img
-              src={withBase("/brand/imagotipo-navbar.svg")}
-              alt="FresON fest"
+              src={withBase(site.brand.imagotipo)}
+              alt={site.brand.alt}
               width="110"
               height="43"
               class="h-[43px] w-[110px]"
@@ -92,7 +93,7 @@ import { withBase } from "@/utils/path";
           class="flex items-center justify-center py-size-4 type-caption font-medium text-subtitle hover:text-heading transition-colors"
         >
           <img
-            src={withBase("/icons/lifebuoy.svg")}
+            src={withBase(footerMeta.helpIcon)}
             alt=""
             width="24"
             height="24"
@@ -131,8 +132,8 @@ import { withBase } from "@/utils/path";
           </p>
           <a href={withBase("/")} class="inline-flex pb-size-7">
             <img
-              src={withBase("/brand/imagotipo-navbar.svg")}
-              alt="FresON fest"
+              src={withBase(site.brand.imagotipo)}
+              alt={site.brand.alt}
               width="110"
               height="43"
               class="h-[43px] w-[110px]"
@@ -212,7 +213,7 @@ import { withBase } from "@/utils/path";
             class="flex items-center type-caption font-medium text-subtitle hover:text-heading transition-colors"
           >
             <img
-              src={withBase("/icons/lifebuoy.svg")}
+              src={withBase(footerMeta.helpIcon)}
               alt=""
               width="24"
               height="24"

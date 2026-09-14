@@ -1,0 +1,29 @@
+<script>
+  import { buildContactMailto } from "@/utils/contact-mailto";
+
+  function initContactForms() {
+    document.querySelectorAll("[data-contact-form]").forEach((node) => {
+      if (!(node instanceof HTMLFormElement)) return;
+      if (node.dataset.bound === "true") return;
+      node.dataset.bound = "true";
+
+      node.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const to = node.dataset.mailto;
+        if (!to) return;
+
+        const data = new FormData(node);
+        window.location.href = buildContactMailto({
+          to,
+          name: String(data.get("name") ?? ""),
+          company: String(data.get("company") ?? ""),
+          email: String(data.get("email") ?? ""),
+          message: String(data.get("message") ?? ""),
+        });
+      });
+    });
+  }
+
+  initContactForms();
+  document.addEventListener("astro:page-load", initContactForms);
+</script>

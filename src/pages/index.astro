@@ -1,25 +1,113 @@
 ---
-import Hero from "@/components/home/Hero.astro";
-import Highlights from "@/components/home/Highlights.astro";
-import Location from "@/components/home/Location.astro";
-// import PreviousEditions from "@/components/home/PreviousEditions.astro";
-import Quote from "@/components/home/Quote.astro";
-import Speakers from "@/components/home/Speakers.astro";
-import Sponsors from "@/components/home/Sponsors.astro";
-import TechTicker from "@/components/home/TechTicker.astro";
+import BenefitLink from "@/components/blocks/BenefitLink.astro";
+import Countdown from "@/components/blocks/Countdown.astro";
+import CtaNote from "@/components/blocks/CtaNote.astro";
+import HeroRipple from "@/components/blocks/HeroRipple.astro";
+import Highlights from "@/components/blocks/Highlights.astro";
+import Location from "@/components/blocks/Location.astro";
+import QuoteVideo from "@/components/blocks/QuoteVideo.astro";
+import SchedulePreview from "@/components/blocks/SchedulePreview.astro";
+import SpeakerCarousel from "@/components/blocks/SpeakerCarousel.astro";
+import SponsorLogos from "@/components/blocks/SponsorLogos.astro";
+import Ticker from "@/components/blocks/Ticker.astro";
+import { agenda } from "@/data/agenda";
+import {
+  hero,
+  highlights,
+  quote,
+  schedulePreview,
+  tickerItems,
+} from "@/data/home";
+import { locationSection } from "@/data/location";
+import { speakers } from "@/data/speakers";
+import { categories as sponsorCategories } from "@/data/sponsors";
+import { site } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Schedule from "@/components/home/Schedule.astro";
-import { homeSchedule } from "@/data/agenda";
+
+const homeSessions = agenda.days[0]?.sessions ?? [];
 ---
 
 <BaseLayout>
-  <Hero />
-  <TechTicker />
-  <Highlights />
-  <Speakers />
-  <Schedule />
-  <Quote />
-  <!-- <PreviousEditions /> -->
-  <Sponsors />
-  <Location />
+  <HeroRipple
+    headingId="hero-heading"
+    class="relative overflow-hidden !py-size-13 lg:!pt-size-13 lg:!pb-size-15"
+  >
+    <div class="flex flex-col items-center text-center lg:gap-size-7">
+      <div class="flex w-full max-w-[700px] flex-col items-center">
+        <p
+          class="type-eyebrow pb-size-6 text-subtitle w-full text-left lg:text-center"
+        >
+          <span class="font-light">{hero.dateLead}</span>
+          {" "}
+          <span class="font-medium">{hero.dateYear}</span>
+        </p>
+
+        <h1
+          id="hero-heading"
+          class="type-h1 max-w-[700px] pb-size-7 text-center"
+        >
+          <span class="text-heading">{`${hero.titleLead} `}</span><span
+            class="text-highlighted">{hero.titleHighlight}</span
+          >
+        </h1>
+
+        <p
+          class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-left lg:text-center"
+        >
+          {hero.subtitle}
+        </p>
+
+        <div class="flex w-full max-w-[422px] flex-col items-center">
+          <div class="w-full pointer-events-auto">
+            <Countdown
+              targetDate={site.event.startDateTime}
+              class="w-full justify-center pb-size-10 pt-size-6 lg:pb-size-11"
+            />
+          </div>
+
+          <div
+            class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto"
+          >
+            <CtaNote
+              href={hero.cta.href}
+              label={hero.cta.label}
+              footnote={hero.footnote}
+              noteAlign="center"
+            />
+          </div>
+
+          <div class="flex w-full justify-center pt-size-6 pointer-events-auto">
+            <BenefitLink href={hero.benefit.href} label={hero.benefit.label} />
+          </div>
+        </div>
+      </div>
+    </div>
+  </HeroRipple>
+
+  <Ticker items={tickerItems} />
+  <Highlights highlights={highlights} />
+  <SpeakerCarousel
+    speakers={speakers}
+    heading="Conoce a los referentes del tech que usas"
+    viewAllHref="/ponentes"
+    viewAllLabel="Ver todos los ponentes"
+  />
+  <SchedulePreview
+    sessions={homeSessions}
+    eyebrow={schedulePreview.eyebrow}
+    heading={schedulePreview.heading}
+    cta={schedulePreview.cta}
+  />
+  <QuoteVideo
+    headingId="home-quote-heading"
+    text={quote.text}
+    description={quote.description}
+    video={quote.video}
+  />
+  <SponsorLogos
+    categories={sponsorCategories}
+    viewAllHref="/patrocinadores"
+    viewAllLabel="Ver todos"
+  />
+  <Location location={locationSection} />
 </BaseLayout>

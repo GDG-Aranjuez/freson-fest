@@ -1,5 +1,6 @@
 ---
 import Footer from "@/components/layout/Footer.astro";
+import GoogleTag from "@/components/layout/GoogleTag.astro";
 import Header from "@/components/layout/Header.astro";
 import { site } from "@/data/site";
 import { eventSchema, formatPageTitle, mergeStructuredData } from "@/lib/seo";
@@ -101,6 +102,8 @@ const jsonLd = mergeStructuredData(siteUrl, pageStructuredData);
         <script type="application/ld+json" set:html={JSON.stringify(schema)} />
       ))
     }
+
+    {site.gtagId && <GoogleTag id={site.gtagId} />}
 
     <ClientRouter />
   </head>

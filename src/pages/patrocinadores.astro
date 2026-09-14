@@ -1,20 +1,73 @@
 ---
-import Faqs from "../components/sponsors/Faqs.astro";
-import HeroSponsors from "../components/sponsors/HeroSponsors.astro";
-import HighlightsSponsors from "../components/sponsors/HighlightsSponsors.astro";
-import QuoteSponsors from "../components/sponsors/QuoteSponsors.astro";
-import SponsorsContact from "../components/sponsors/SponsorsContact.astro";
-import SponsorsTiers from "../components/sponsors/SponsorsTiers.astro";
-import TrustedBy from "../components/sponsors/TrustedBy.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import CtaNote from "@/components/blocks/CtaNote.astro";
+import FaqList from "@/components/blocks/FaqList.astro";
+import HeroRipple from "@/components/blocks/HeroRipple.astro";
+import QuoteVideo from "@/components/blocks/QuoteVideo.astro";
+import SponsorContact from "@/components/blocks/SponsorContact.astro";
+import SponsorHighlights from "@/components/blocks/SponsorHighlights.astro";
+import SponsorTiers from "@/components/blocks/SponsorTiers.astro";
+import TrustedBy from "@/components/blocks/TrustedBy.astro";
+import { previewFaqs } from "@/data/faqs";
+import {
+  contact,
+  hero,
+  highlights,
+  quote,
+  tiers,
+  trustedBy,
+} from "@/data/sponsors";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Patrocinadores - FresON Fest">
-  <HeroSponsors />
-  <HighlightsSponsors />
-  <TrustedBy />
-  <QuoteSponsors />
-  <SponsorsTiers />
-  <SponsorsContact />
-  <Faqs />
+<BaseLayout title="Patrocinadores">
+  <HeroRipple headingId="sponsors-hero-heading">
+    <div class="flex flex-col items-start text-left lg:text-start">
+      <div class="flex w-full max-w-[750px] flex-col items-start">
+        <h1
+          id="sponsors-hero-heading"
+          class="pb-size-6 lg:pb-size-9 font-display font-extrabold text-[48px] lg:text-[96px] leading-[1.05] text-start"
+        >
+          <span class="text-heading">{`${hero.titleLead} `}</span><span
+            class="text-highlighted">{hero.titleHighlight}</span
+          >
+        </h1>
+
+        <p
+          class="font-body text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] font-normal max-w-[343px] lg:max-w-[480px] pb-size-8 lg:pb-size-12 text-left text-body/80"
+        >
+          {hero.subtitle}
+        </p>
+
+        <div
+          class="flex w-full sm:max-w-[320px] flex-col items-start pointer-events-auto"
+        >
+          <CtaNote
+            href={hero.cta.href}
+            label={hero.cta.label}
+            footnote=""
+            noteAlign="start"
+            block
+          />
+        </div>
+      </div>
+    </div>
+  </HeroRipple>
+
+  <SponsorHighlights title={highlights.title} items={highlights.items} />
+  <TrustedBy title={trustedBy.title} images={trustedBy.images} />
+  <QuoteVideo
+    headingId="sponsors-quote-heading"
+    text={quote.text}
+    description={quote.description}
+    video={quote.video}
+  />
+  <SponsorTiers tiers={tiers} />
+  <SponsorContact contact={contact} />
+  <FaqList
+    headingId="sponsors-faqs-heading"
+    heading={previewFaqs.heading}
+    subtitle={previewFaqs.subtitle}
+    items={previewFaqs.items}
+    more={previewFaqs.more}
+  />
 </BaseLayout>

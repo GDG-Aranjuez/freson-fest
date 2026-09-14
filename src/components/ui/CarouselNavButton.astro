@@ -1,0 +1,43 @@
+---
+interface Props {
+  direction: "prev" | "next";
+  class?: string;
+  "aria-label": string;
+}
+
+const {
+  direction,
+  class: className = "",
+  "aria-label": ariaLabel,
+} = Astro.props;
+---
+
+<button
+  type="button"
+  aria-label={ariaLabel}
+  class:list={[
+    "h-[30px] min-h-[30px] max-h-[30px] w-[74px] min-w-[74px] max-w-[74px] flex-none rounded-none border border-[#272421] bg-[#272421] p-0 text-stone-400 transition-colors cursor-pointer hover:bg-[var(--palette-amber-100)] hover:border-[var(--palette-amber-100)] hover:text-[#1A1814] active:bg-[var(--palette-amber-100)] active:border-[var(--palette-amber-100)] active:text-white disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:bg-[#272421] disabled:hover:border-[#272421] disabled:hover:text-stone-400 lg:h-[43px] lg:min-h-[43px] lg:max-h-[43px] lg:w-[107px] lg:min-w-[107px] lg:max-w-[107px]",
+    className,
+  ]}
+>
+  <span class="flex h-full w-full items-center justify-center opacity-90">
+    <svg
+      width="25.5"
+      height="25.5"
+      viewBox="0 0 256 256"
+      fill="none"
+      class:list={[
+        "h-[18px] w-[18px] lg:h-[25.5px] lg:w-[25.5px]",
+        direction === "prev" && "rotate-180",
+      ]}
+      aria-hidden="true"
+    >
+      <path
+        d="M40 128H216M144 56L216 128L144 200"
+        stroke="currentColor"
+        stroke-width="8"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </span>
+</button>
