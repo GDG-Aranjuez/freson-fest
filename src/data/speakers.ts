@@ -15,6 +15,13 @@ export const speakers: Speaker[] = [
     role: "Developer Lead",
     Empresa: "Merkle",
     image: "/speakers/sergi-olives.jpg",
+    talkDescription:
+      "Coding Dojo: Rescatando webs inaccesibles paso a paso. Taller práctico para identificar y solucionar barreras de accesibilidad.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 2,
@@ -23,6 +30,13 @@ export const speakers: Speaker[] = [
     role: "Tech Lead",
     Empresa: "seedtag",
     image: "/speakers/laura-morillo.jpg",
+    talkDescription:
+      "Escuela de HechicerIA. Taller práctico sobre cómo integrar herramientas de inteligencia artificial en flujos reales de desarrollo.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 3,
@@ -31,6 +45,13 @@ export const speakers: Speaker[] = [
     role: "Software Engineer",
     Empresa: "KPMG",
     image: "/speakers/sergio-mahia.png",
+    talkDescription:
+      "Breaking Facial Recognition Systems with Real-Time Deepfake Injection. Análisis de vulnerabilidades y contramedidas en biometría.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 4,
@@ -39,6 +60,13 @@ export const speakers: Speaker[] = [
     role: "CTO",
     Empresa: "Inforrada",
     image: "/speakers/david-martinez.jpg",
+    talkDescription:
+      "Corriente Senior: El arte de volar sin caer. Claves para evolucionar profesionalmente en tecnología manteniendo el foco y la motivación.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 5,
@@ -47,6 +75,13 @@ export const speakers: Speaker[] = [
     role: "ThePwnLab",
     Empresa: "ThePwnLab",
     image: "/speakers/nacho-fernandez-diez.webp",
+    talkDescription:
+      "Workshop CTF + CTF. Taller práctico de ciberseguridad, resolución de retos y hacking ético en tiempo real.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 6,
@@ -55,6 +90,13 @@ export const speakers: Speaker[] = [
     role: "Pentester",
     Empresa: "Telefónica Tech",
     image: "/speakers/carlos-bolanos.jpg",
+    talkDescription:
+      "Workshop CTF + CTF. Técnicas ofensivas y defensivas aplicadas al análisis de seguridad en entornos modernos.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 7,
@@ -63,6 +105,13 @@ export const speakers: Speaker[] = [
     role: "Frontend Developer",
     Empresa: "KnitsDigital",
     image: "/speakers/arantxa-delgado.jpg",
+    talkDescription:
+      "La primera misión: conseguir tu trabajo en tecnología. Consejos prácticos para preparar tu perfil, superar entrevistas y arrancar tu carrera.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 8,
@@ -71,6 +120,13 @@ export const speakers: Speaker[] = [
     role: "Mobile Developer",
     Empresa: "Versia",
     image: "/speakers/oliver-ramirez.jpg",
+    talkDescription:
+      "Los caminos del desarrollador son impredecibles. Lecciones y giros profesionales construyendo aplicaciones móviles a escala.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 9,
@@ -79,6 +135,13 @@ export const speakers: Speaker[] = [
     role: "Staff Software Engineer",
     Empresa: "Eventbrite",
     image: "/speakers/nicolas-patarino.jpg",
+    talkDescription:
+      "El mito de la productividad tóxica. Cómo construir valor técnico y personal con hábitos de trabajo sostenibles.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 10,
@@ -87,6 +150,13 @@ export const speakers: Speaker[] = [
     role: "Machine Learning Engineer",
     Empresa: "unusuals",
     image: "/speakers/maximo-fernandez.jpg",
+    talkDescription:
+      "OpenClaw todo el mundo te enseña a usarlo, nadie a hacerlo. Construyendo herramientas de IA desde los cimientos.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 11,
@@ -95,6 +165,13 @@ export const speakers: Speaker[] = [
     role: "Frontend Developer",
     Empresa: "Service Club",
     image: "/speakers/mia-salazar.jpg",
+    talkDescription:
+      "Accesibilidad y neurodivergencia: No todo el mundo navega igual. Pautas de diseño y desarrollo inclusivo para todas las personas.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
   {
     id: 12,
@@ -103,5 +180,12 @@ export const speakers: Speaker[] = [
     role: "Senior Software Engineer",
     Empresa: "Alan",
     image: "/speakers/sofia-lescano.jpg",
+    talkDescription:
+      "Sin managers, sin reuniones, sin problemas. Metodologías ágiles de alta autonomía y entrega continua.",
+    socials: {
+      linkedin: "https://www.linkedin.com/",
+      x: "https://x.com/",
+      instagram: "https://www.instagram.com/",
+    },
   },
 ];

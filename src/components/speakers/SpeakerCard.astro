@@ -1,0 +1,204 @@
+---
+import Icon from "@/components/ui/Icon.astro";
+import type { IconName } from "@/types/icon";
+import type { Speaker } from "@/types/speakers";
+import { withBase } from "@/utils/path";
+
+interface Props {
+  speaker: Speaker;
+}
+
+const { speaker } = Astro.props;
+
+const description = speaker.talkDescription || speaker.description;
+const fullName = `${speaker.name} ${speaker.lastName}`.trim();
+
+const socialItems = (
+  [
+    { key: "linkedin", label: "LinkedIn" },
+    { key: "x", label: "X" },
+    { key: "instagram", label: "Instagram" },
+  ] as const
+).map(({ key, label }) => ({
+  href: speaker.socials?.[key],
+  label,
+  icon: key satisfies IconName,
+}));
+
+const hasSocials = Boolean(
+  speaker.socials?.linkedin || speaker.socials?.x || speaker.socials?.instagram
+);
+const hasExtraContent = Boolean(description || hasSocials);
+const panelId = `speaker-panel-${speaker.id}`;
+const triggerId = `speaker-trigger-${speaker.id}`;
+const headingId = `speaker-name-${speaker.id}`;
+---
+
+<li
+  id={`speaker-${speaker.id}`}
+  class="relative z-0 w-full border-b border-stroke-strong"
+  data-speaker-card
+  data-expanded="false"
+>
+  <article
+    class="speaker-article group/speaker relative w-full border border-transparent p-size-4 transition-all duration-300 ease-out hover:z-30 hover:scale-[1.02] hover:border-brand hover:bg-white/[0.02] hover:shadow-[0_8px_30px_rgba(255,158,102,0.18)] active:z-30 active:scale-[1.02] active:border-brand active:bg-white/[0.02] active:shadow-[0_8px_30px_rgba(255,158,102,0.18)] lg:p-size-6"
+  >
+    <div
+      class="grid grid-cols-[100px_1fr_auto] items-start gap-x-size-6 lg:grid-cols-[144px_1fr_auto] lg:gap-x-size-7"
+    >
+      <!-- Speaker image -->
+      <div
+        class="col-start-1 row-start-1 size-[100px] shrink-0 overflow-hidden lg:size-[144px]"
+      >
+        <img
+          src={withBase(speaker.image)}
+          alt={`Retrato de ${fullName}`}
+          width="144"
+          height="144"
+          class="size-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Main speaker info (Name & Role/Company) -->
+      <div
+        class="col-start-2 row-start-1 flex min-w-0 flex-col justify-center gap-size-2 self-center lg:self-start"
+      >
+        <h3
+          id={headingId}
+          class="min-w-0 truncate font-display font-medium text-[18px] leading-[1.2] text-heading lg:text-[24px]"
+        >
+          {fullName}
+        </h3>
+
+        <p
+          class="min-w-0 truncate font-body text-[14px] leading-[1.4] text-body lg:text-[16px]"
+          title={`${speaker.role} · ${speaker.Empresa}`}
+        >
+          {speaker.role} · {speaker.Empresa}
+        </p>
+      </div>
+
+      <!-- Arrow toggle button (only rendered if extra content exists) -->
+      {
+        hasExtraContent && (
+          <div class="col-start-3 row-start-1 flex items-end justify-end self-end lg:row-span-2 lg:self-center">
+            <button
+              type="button"
+              id={triggerId}
+              class="speaker-toggle inline-flex size-10 items-center justify-center text-highlighted transition-colors hover:text-brand focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand cursor-pointer"
+              aria-expanded="false"
+              aria-controls={panelId}
+              aria-label={`Mostrar información de ${fullName}`}
+              data-speaker-toggle
+              data-speaker-name={fullName}
+            >
+              <span class="relative size-6 shrink-0" aria-hidden="true">
+                <svg
+                  width="15"
+                  height="18"
+                  viewBox="0 0 15 18"
+                  fill="none"
+                  class="size-6 transition-transform duration-300 ease-out motion-reduce:transition-none"
+                  data-speaker-arrow
+                >
+                  <path
+                    d="M7.5 1V16.5M1.5 10.5L7.5 16.5L13.5 10.5"
+                    stroke="currentColor"
+                    stroke-width="1.2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+            </button>
+          </div>
+        )
+      }
+
+      <!-- Expandable details panel -->
+      {
+        hasExtraContent && (
+          <div
+            id={panelId}
+            class="col-span-3 grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out motion-reduce:transition-none lg:col-start-2 lg:col-span-1"
+            role="region"
+            aria-labelledby={headingId}
+            data-speaker-panel
+            inert
+          >
+            <div class="min-h-0 overflow-hidden">
+              <div
+                class="pt-size-4 lg:pt-size-5 opacity-0 transition-opacity duration-300 ease-out motion-reduce:transition-none"
+                data-speaker-panel-content
+              >
+                {description && (
+                  <p class="font-body text-[14px] leading-[1.5] text-[#D5CABF] lg:text-[16px]">
+                    {description}
+                  </p>
+                )}
+
+                {hasSocials && (
+                  <ul class="flex list-none items-center gap-size-5 p-0 pt-size-4 lg:gap-size-6 lg:pt-size-5">
+                    {socialItems.map(({ href, label, icon }) => (
+                      <li>
+                        {href ? (
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`${label} de ${fullName}`}
+                            class="inline-flex size-7 items-center justify-center text-heading transition-colors hover:text-brand"
+                          >
+                            <span class="block lg:hidden">
+                              <Icon name={icon} size={20} />
+                            </span>
+                            <span class="hidden lg:block">
+                              <Icon name={icon} size={24} />
+                            </span>
+                          </a>
+                        ) : (
+                          <span
+                            class="inline-flex size-7 items-center justify-center text-heading opacity-40"
+                            aria-hidden="true"
+                          >
+                            <span class="block lg:hidden">
+                              <Icon name={icon} size={20} />
+                            </span>
+                            <span class="hidden lg:block">
+                              <Icon name={icon} size={24} />
+                            </span>
+                          </span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </article>
+</li>
+
+<style>
+  [data-speaker-card][data-expanded="true"] {
+    z-index: 20;
+  }
+  [data-speaker-card][data-expanded="true"] .speaker-article {
+    border-color: var(--color-brand);
+    background-color: rgba(255, 255, 255, 0.01);
+    box-shadow: 0 8px 30px rgba(255, 158, 102, 0.18);
+  }
+  [data-speaker-card][data-expanded="true"] [data-speaker-panel] {
+    grid-template-rows: 1fr;
+  }
+  [data-speaker-card][data-expanded="true"] [data-speaker-panel-content] {
+    opacity: 1;
+  }
+  [data-speaker-card][data-expanded="true"] [data-speaker-arrow] {
+    transform: rotate(180deg);
+  }
+</style>
