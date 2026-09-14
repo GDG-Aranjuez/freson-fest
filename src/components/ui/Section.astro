@@ -1,13 +1,15 @@
 ---
 interface Props {
+  id?: string;
   class?: string;
   ariaLabelledby?: string;
 }
 
-const { class: className = "", ariaLabelledby } = Astro.props;
+const { id, class: className = "", ariaLabelledby } = Astro.props;
 ---
 
 <section
+  id={id}
   aria-labelledby={ariaLabelledby}
   class:list={[
     "py-(--section-py-mobile) lg:py-(--section-py-desktop)",

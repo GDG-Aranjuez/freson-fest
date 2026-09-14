@@ -1,12 +1,15 @@
 ---
 import Faqs from "@/components/agenda/Faqs.astro";
 import Hero from "@/components/agenda/Hero.astro";
-import Schedule from "@/components/agenda/Schedule.astro";
+import Schedule from "@/components/home/Schedule.astro";
 import CtaNote from "@/components/shared/CtaNote.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 import { hero } from "@/data/agenda";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const googleCalendarUrl =
+  "https://calendar.google.com/calendar/render?action=TEMPLATE&text=FresON+Fest+2026&dates=20261024T090000Z/20261024T180000Z&details=Evento+FresON+Fest+2026+en+Aranjuez&location=Aranjuez";
 ---
 
 <BaseLayout
@@ -14,7 +17,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   description="Agenda de FresON Fest 2026 (GDG Aranjuez). Charlas, workshops y actividades el 24 de octubre en Aranjuez."
 >
   <Hero />
-  <Schedule />
+
+  <Schedule
+    cta={{
+      label: "AÑADIR A MI CALENDARIO",
+      href: googleCalendarUrl,
+    }}
+  />
 
   <Section class="!pt-size-9 !pb-size-15 lg:!pt-size-11">
     <Container>
