@@ -88,7 +88,7 @@ export const speakers: Speaker[] = [
     id: 5,
     name: "Nacho",
     lastName: "Fernandez Diez",
-    role: "ThePwnLab",
+    role: "Founder & CEO",
     Empresa: "ThePwnLab",
     image: "/speakers/nacho-fernandez-diez.webp",
     talkDescription:
