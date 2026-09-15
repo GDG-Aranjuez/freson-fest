@@ -14,9 +14,9 @@ export const SOCIAL_NETWORKS = [
 ] as const satisfies readonly { key: SocialNetworkKey; label: string }[];
 
 export function mapSocialItems(socials?: SocialHrefs) {
-  return SOCIAL_NETWORKS.map(({ key, label }) => ({
-    href: socials?.[key],
-    label,
-    icon: key,
-  }));
+  return SOCIAL_NETWORKS.flatMap(({ key, label }) => {
+    const href = socials?.[key];
+
+    return href ? [{ href, label, icon: key }] : [];
+  });
 }
