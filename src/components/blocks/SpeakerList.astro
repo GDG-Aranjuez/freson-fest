@@ -109,6 +109,16 @@ const hasSpeakers = speakers.length > 0;
     }
   }
 
+  function collapseOtherSpeakerCards(currentTrigger: HTMLButtonElement) {
+    document
+      .querySelectorAll<HTMLButtonElement>("[data-speaker-toggle]")
+      .forEach((trigger) => {
+        if (trigger !== currentTrigger) {
+          setSpeakerExpanded(trigger, false);
+        }
+      });
+  }
+
   function initSpeakerCards() {
     document.querySelectorAll("[data-speaker-card]").forEach((card) => {
       if (!(card instanceof HTMLElement)) return;
@@ -123,6 +133,10 @@ const hasSpeakers = speakers.length > 0;
         if (!(trigger instanceof HTMLButtonElement)) return;
 
         const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+        if (!isExpanded) {
+          collapseOtherSpeakerCards(trigger);
+        }
         setSpeakerExpanded(trigger, !isExpanded);
       });
     });
