@@ -7,7 +7,7 @@ export interface AboutStat {
 
 export const hero = {
   eyebrow: "NOSOTROS",
-  title: "Detrás del Fresón Fest",
+  title: "Detrás del FresON Fest",
   subtitle:
     "Un grupo que empezó con una idea y ha ido creciendo con quien decidió quedarse.",
   image: {
@@ -25,7 +25,7 @@ export const stats: AboutStat[] = [
 export const history = {
   eyebrow: "QUIÉNES SOMOS",
   title: "Una comunidad, no solo un evento",
-  body: `Fresón Fest nace de GDG Aranjuez, que empezó siendo un grupo de gente sin experiencia organizando nada, dispuesta a intentarlo aunque al principio fueran "cuatro gatos". Desde entonces no hemos dejado de sumar: gente que llegó como público y se quedó al otro lado o gente que entró a echar una mano con algo puntual y acabó formando parte del equipo. Así hemos ido creciendo, persona a persona y evento a evento, seguimos acercando la tecnología a Aranjuez y a todo Madrid Sur sin tener que mirar siempre hacia el centro.`,
+  body: `Todo comenzó con una idea y muchas ganas de hacerla realidad: acercar la comunidad tecnológica a Aranjuez y a todo Madrid Sur. Lo que empezó entre “cuatro gatos” ha ido creciendo persona a persona, evento a evento, hasta convertirse en un punto de encuentro donde compartir, aprender y conectar. Una comunidad que construimos entre todos y que sigue creciendo con cada encuentro. Y esto no ha hecho más que empezar.`,
 } as const;
 
 export const join = {
