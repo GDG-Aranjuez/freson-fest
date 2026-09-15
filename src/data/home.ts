@@ -118,7 +118,7 @@ export const highlights = {
 } as const;
 
 export const quote = {
-  text: "En el devfest de FresON",
+  text: "En el FresON Fest",
   description:
     "Cada edición es una nueva oportunidad para encontrarnos, compartir y seguir creciendo juntos como comunidad.",
   video: previousEditionVideo,
