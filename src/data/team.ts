@@ -35,10 +35,51 @@ export const team = {
       id: "organization",
       eyebrow: "ORGANIZACIÓN",
       members: [
-        placeholderMember("org-1"),
-        placeholderMember("org-2"),
-        placeholderMember("org-3"),
-        placeholderMember("org-4"),
+        {
+          id: "org-saul-diaz",
+          name: "Saúl Díaz González",
+          role: "Senior Android Engineer · Veriff",
+          image: "/organizers/saul-diaz.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/sefrord/",
+          },
+        },
+        {
+          id: "org-patricia-tarazaga",
+          name: "Patricia Tarazaga",
+          role: "Machine Learning Engineer · Veriff",
+          image: "/organizers/patricia-tarazaga.jpg",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/patricia-tarazaga/",
+          },
+        },
+        {
+          id: "org-juanje-cilla",
+          name: "Juanje Cilla Ugarte",
+          role: "Senior Software Engineer · Revolut",
+          image: "/organizers/juanje-cilla.jpg",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/juanje-cilla/",
+          },
+        },
+        {
+          id: "org-daniel-brenzei",
+          name: "Daniel Brenzei",
+          role: "Senior QA Engineer · Zartis",
+          image: "/organizers/daniel-brinzei.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/daniel-brinzei/",
+          },
+        },
+        {
+          id: "org-nicolas-moreno",
+          name: "Nicolás Moreno",
+          role: "Junior Software Developer",
+          image: "/organizers/nicolas-moreno.jpg",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/nicolasmorenog/",
+          },
+        },
       ],
     },
     {
