@@ -34,9 +34,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Coding Dojo: Rescatando webs inaccesibles paso a paso. Taller práctico para identificar y solucionar barreras de accesibilidad.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/sergiolives",
     },
   },
   {
@@ -49,9 +47,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Escuela de HechicerIA. Taller práctico sobre cómo integrar herramientas de inteligencia artificial en flujos reales de desarrollo.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/lauramorillovelarderodriguez",
     },
   },
   {
@@ -64,9 +60,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Breaking Facial Recognition Systems with Real-Time Deepfake Injection. Análisis de vulnerabilidades y contramedidas en biometría.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/sergio-mahia",
     },
   },
   {
@@ -79,24 +73,20 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Corriente Senior: El arte de volar sin caer. Claves para evolucionar profesionalmente en tecnología manteniendo el foco y la motivación.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/dmartinezmartinez/es",
     },
   },
   {
     id: 5,
     name: "Nacho",
     lastName: "Fernandez Diez",
-    role: "ThePwnLab",
+    role: "Founder & CEO",
     Empresa: "ThePwnLab",
     image: "/speakers/nacho-fernandez-diez.webp",
     talkDescription:
       "Workshop CTF + CTF. Taller práctico de ciberseguridad, resolución de retos y hacking ético en tiempo real.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/nacho-fernandez-diez-94763974",
     },
   },
   {
@@ -109,9 +99,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Workshop CTF + CTF. Técnicas ofensivas y defensivas aplicadas al análisis de seguridad en entornos modernos.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/charliedbadger",
     },
   },
   {
@@ -124,9 +112,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "La primera misión: conseguir tu trabajo en tecnología. Consejos prácticos para preparar tu perfil, superar entrevistas y arrancar tu carrera.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://www.linkedin.com/in/arantxadelgadoruiz/",
     },
   },
   {
@@ -139,9 +125,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Los caminos del desarrollador son impredecibles. Lecciones y giros profesionales construyendo aplicaciones móviles a escala.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/oliver-ramirez-caceres",
     },
   },
   {
@@ -154,9 +138,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "El mito de la productividad tóxica. Cómo construir valor técnico y personal con hábitos de trabajo sostenibles.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/npatarino/es",
     },
   },
   {
@@ -169,9 +151,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "OpenClaw todo el mundo te enseña a usarlo, nadie a hacerlo. Construyendo herramientas de IA desde los cimientos.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/maximofn",
     },
   },
   {
@@ -184,9 +164,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Accesibilidad y neurodivergencia: No todo el mundo navega igual. Pautas de diseño y desarrollo inclusivo para todas las personas.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://es.linkedin.com/in/miasalazar",
     },
   },
   {
@@ -199,9 +177,7 @@ export const speakers: Speaker[] = [
     talkDescription:
       "Sin managers, sin reuniones, sin problemas. Metodologías ágiles de alta autonomía y entrega continua.",
     socials: {
-      linkedin: "https://www.linkedin.com/",
-      x: "https://x.com/",
-      instagram: "https://www.instagram.com/",
+      linkedin: "https://www.linkedin.com/in/sofialescanocarroll/",
     },
   },
 ];
