@@ -16,18 +16,6 @@ export interface TeamGroup {
   members: TeamMember[];
 }
 
-const placeholderImage = "/media/about/collaborator-placeholder.jpg";
-
-function placeholderMember(id: string): TeamMember {
-  return {
-    id,
-    name: "Nombre y apellido",
-    role: "Rol & Empresa",
-    image: placeholderImage,
-    socials: {},
-  };
-}
-
 export const team = {
   title: "Las personas que lo hacen posible",
   groups: [
@@ -145,7 +133,8 @@ export const team = {
           role: "FullStack Developer",
           image: "/devs/luana-lencina.png",
           socials: {
-            linkedin: "https://www.linkedin.com/in/luana-lencina-fullstack-developer-%F0%9F%92%BB-qa-engineer-%F0%9F%92%BB-880120216/",
+            linkedin:
+              "https://www.linkedin.com/in/luana-lencina-fullstack-developer-%F0%9F%92%BB-qa-engineer-%F0%9F%92%BB-880120216/",
             github: "https://github.com/lulencina",
           },
         },
