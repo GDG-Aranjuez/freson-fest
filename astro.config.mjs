@@ -5,7 +5,7 @@ import { defineConfig } from "astro/config";
 
 import react from "@astrojs/react";
 
-const site = "https://devfest2026.gdg-aranjuez.com";
+const site = "https://fresonfest.gdg-aranjuez.com";
 const base = "/";
 
 // https://astro.build/config
