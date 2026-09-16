@@ -16,18 +16,6 @@ export interface TeamGroup {
   members: TeamMember[];
 }
 
-const placeholderImage = "/media/about/collaborator-placeholder.jpg";
-
-function placeholderMember(id: string): TeamMember {
-  return {
-    id,
-    name: "Nombre y apellido",
-    role: "Rol & Empresa",
-    image: placeholderImage,
-    socials: {},
-  };
-}
-
 export const team = {
   title: "Las personas que lo hacen posible",
   groups: [
@@ -78,6 +66,7 @@ export const team = {
           image: "/organizers/nicolas-moreno.jpg",
           socials: {
             linkedin: "https://www.linkedin.com/in/nicolasmorenog/",
+            github: "https://github.com/nicolasmorenog",
           },
         },
       ],
@@ -85,19 +74,80 @@ export const team = {
     {
       id: "design",
       eyebrow: "DISEÑO",
-      members: [placeholderMember("design-1"), placeholderMember("design-2")],
+      members: [
+        {
+          id: "design-xiada-venn",
+          name: "Xiada Venn",
+          role: "Product & UX/UI designer",
+          image: "/design/xiada-venn.png",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/xiadavenn/",
+            behance: "https://www.behance.net/xiadavenn",
+          },
+        },
+        {
+          id: "design-josefina-nieto",
+          name: "Josefina Nieto",
+          role: "Industrial designer & UX/UI",
+          image: "/design/josefina-nieto.png",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/josefina-nieto/",
+            behance: "https://www.behance.net/josefinanieto1",
+          },
+        },
+      ],
+    },
+    {
+      id: "pm",
+      eyebrow: "PROJECT MANAGEMENT",
+      members: [
+        {
+          id: "pm-raul",
+          name: "Raúl Gambalonga",
+          role: "Scrum Master & PO",
+          image: "/pm/raul-gambalonga.png",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/raul-gambalonga",
+            github: "https://github.com/raulgambalonga",
+          },
+        },
+      ],
     },
     {
       id: "development",
       eyebrow: "DESARROLLO",
       members: [
-        placeholderMember("dev-1"),
-        placeholderMember("dev-2"),
-        placeholderMember("dev-3"),
-        placeholderMember("dev-4"),
-        placeholderMember("dev-5"),
-        placeholderMember("dev-6"),
-        placeholderMember("dev-7"),
+        {
+          id: "dev-luis-octavio-mota",
+          name: "Luis Octavio Mota Verdasco",
+          role: "Site Reliability Engineering",
+          image: "/devs/Lucho.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/luisoctaviomotaverdasco",
+            github: "https://github.com/lucho00cuba",
+          },
+        },
+        {
+          id: "dev-lulen",
+          name: "Luana Lencina",
+          role: "FullStack Developer",
+          image: "/devs/luana-lencina.png",
+          socials: {
+            linkedin:
+              "https://www.linkedin.com/in/luana-lencina-fullstack-developer-%F0%9F%92%BB-qa-engineer-%F0%9F%92%BB-880120216/",
+            github: "https://github.com/lulencina",
+          },
+        },
+        {
+          id: "dev-belen",
+          name: "Belén Suarez",
+          role: "QA Tester",
+          image: "/devs/belen.jpeg",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/belen-suarez-42a4331b5/",
+            github: "https://github.com/belensuarez477",
+          },
+        },
       ],
     },
   ] satisfies TeamGroup[],
