@@ -16,11 +16,12 @@ export interface SponsorLogoCategory {
 
 interface Props {
   categories: SponsorLogoCategory[];
-  viewAllHref: string;
-  viewAllLabel: string;
+  viewAllHref?: string;
+  viewAllLabel?: string;
 }
 
 const { categories, viewAllHref, viewAllLabel } = Astro.props;
+const hasViewAllLink = Boolean(viewAllHref && viewAllLabel);
 ---
 
 <Section
@@ -80,9 +81,13 @@ const { categories, viewAllHref, viewAllLabel } = Astro.props;
             );
           })
         }
-        <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
-          <GhostLink href={viewAllHref} label={viewAllLabel} />
-        </div>
+        {
+          hasViewAllLink && (
+            <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
+              <GhostLink href={viewAllHref} label={viewAllLabel} />
+            </div>
+          )
+        }
       </div>
     </div>
   </Container>

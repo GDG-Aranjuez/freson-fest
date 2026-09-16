@@ -141,12 +141,6 @@ export const categories: SponsorCategory[] = [
     ],
   },
   {
-    categoryName: "Plus",
-    sponsors: [
-      { image: "", description: "Breve descripción del patrocinador" },
-    ],
-  },
-  {
     categoryName: "Core",
     sponsors: [
       {
