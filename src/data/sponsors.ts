@@ -130,19 +130,23 @@ export const categories: SponsorCategory[] = [
   {
     categoryName: "Max",
     sponsors: [
-      { image: "", description: "Breve descripción del patrocinador" },
-    ],
-  },
-  {
-    categoryName: "Plus",
-    sponsors: [
-      { image: "", description: "Breve descripción del patrocinador" },
+      {
+        image: "/sponsors/logo-ayuntamiento-aranjuez.png",
+        description: "Ayuntamiento de Aranjuez",
+      },
+      {
+        image: "/sponsors/logo-google-developers-groups.png",
+        description: "Google Developer Groups",
+      },
     ],
   },
   {
     categoryName: "Core",
     sponsors: [
-      { image: "", description: "Breve descripción del patrocinador" },
+      {
+        image: "/sponsors/logo-adopta-un-junior.png",
+        description: "Adopta un Junior",
+      },
     ],
   },
 ];

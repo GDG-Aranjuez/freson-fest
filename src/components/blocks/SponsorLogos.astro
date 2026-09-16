@@ -16,11 +16,12 @@ export interface SponsorLogoCategory {
 
 interface Props {
   categories: SponsorLogoCategory[];
-  viewAllHref: string;
-  viewAllLabel: string;
+  viewAllHref?: string;
+  viewAllLabel?: string;
 }
 
 const { categories, viewAllHref, viewAllLabel } = Astro.props;
+const hasViewAllLink = Boolean(viewAllHref && viewAllLabel);
 ---
 
 <Section
@@ -36,7 +37,7 @@ const { categories, viewAllHref, viewAllLabel } = Astro.props;
         </span>
         <h2
           id="highlights-heading"
-          class="type-h2 text-center text-[40px] md:text-h2 font-semibold leading-[1.1] max-w-[358px] md:max-w-[800px] mx-auto"
+          class="type-h2 mx-auto max-w-[358px] text-center md:max-w-[800px]"
         >
           Quienes confían en nosotros y ayudan a que esto sea posible
         </h2>
@@ -55,22 +56,22 @@ const { categories, viewAllHref, viewAllLabel } = Astro.props;
                   </div>
                 </div>
 
-                <div class="flex flex-wrap justify-center gap-8 md:gap-12 max-w-[1200px] mx-auto">
+                <div class="mx-auto flex max-w-[1200px] flex-wrap items-start justify-center gap-size-4 px-size-1 py-size-8">
                   {group.sponsors.map((sponsor) => (
-                    <div class="flex w-full max-w-[482px] flex-col items-center text-center space-y-3">
-                      <div class="mx-auto w-full max-w-[200px] aspect-[4/3] bg-neutral-200 rounded-sm flex items-center justify-center overflow-hidden">
+                    <div class="flex flex-1 basis-full flex-col items-center gap-size-7 px-size-6 pb-size-7 pt-size-6 text-center md:basis-0">
+                      <div class="flex h-[120px] w-full max-w-[348px] items-center justify-center overflow-hidden">
                         {sponsor.image ? (
                           <img
                             src={sponsor.image}
                             alt="Logo patrocinador"
-                            class="w-full h-full object-contain p-2"
+                            class="h-full w-full object-contain"
                           />
                         ) : (
                           <div class="w-full h-full bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px] bg-neutral-100" />
                         )}
                       </div>
 
-                      <p class="font-body text-[14px] md:text-[16px] font-normal leading-[1.4] text-[#D5CABF] max-w-[482px] mx-auto">
+                      <p class="line-clamp-2 self-stretch overflow-hidden text-ellipsis text-center font-body text-[14px] font-normal leading-[1.4] text-body md:text-[16px]">
                         {sponsor.description}
                       </p>
                     </div>
@@ -80,9 +81,13 @@ const { categories, viewAllHref, viewAllLabel } = Astro.props;
             );
           })
         }
-        <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
-          <GhostLink href={viewAllHref} label={viewAllLabel} />
-        </div>
+        {
+          hasViewAllLink && (
+            <div class="mt-20 max-w-[1200px] mx-auto flex justify-end">
+              <GhostLink href={viewAllHref} label={viewAllLabel} />
+            </div>
+          )
+        }
       </div>
     </div>
   </Container>
