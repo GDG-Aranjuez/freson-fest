@@ -105,7 +105,7 @@ Most pages are driven by data files and shared layouts. Before editing markup, c
 
 ## Deployment
 
-Merging to `main` triggers the GitHub Pages deployment workflow at [gdg-aranjuez.github.io/freson-fest](https://gdg-aranjuez.github.io/freson-fest/). Pull requests run CI only and do not deploy.
+Merging to `main` triggers the GitHub Pages deployment workflow at [fresonfest.gdg-aranjuez.com](https://fresonfest.gdg-aranjuez.com/). Pull requests run CI only and do not deploy.
 
 ## Questions
 

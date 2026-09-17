@@ -7,7 +7,7 @@
 
 Official website for **FresON Fest 2026**, organized by **GDG Aranjuez** — October 24, 2026 in Aranjuez, Spain.
 
-**Live site:** [gdg-aranjuez.github.io/freson-fest](https://gdg-aranjuez.github.io/freson-fest/)
+**Live site:** [fresonfest.gdg-aranjuez.com](https://fresonfest.gdg-aranjuez.com/)
 
 **Repository:** [github.com/GDG-Aranjuez/freson-fest](https://github.com/GDG-Aranjuez/freson-fest)
 
