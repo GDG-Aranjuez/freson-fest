@@ -6,6 +6,8 @@ export interface TeamMember {
   id: string;
   name: string;
   role: string;
+  company?: string;
+  projectRole?: string;
   image: string;
   socials: TeamSocials;
 }
@@ -26,7 +28,8 @@ export const team = {
         {
           id: "org-saul-diaz",
           name: "Saúl Díaz González",
-          role: "Senior Android Engineer · Veriff",
+          role: "Senior Android Engineer",
+          company: "Veriff",
           image: "/organizers/saul-diaz.webp",
           socials: {
             linkedin: "https://www.linkedin.com/in/sefrord/",
@@ -35,7 +38,8 @@ export const team = {
         {
           id: "org-patricia-tarazaga",
           name: "Patricia Tarazaga",
-          role: "Machine Learning Engineer · Veriff",
+          role: "Machine Learning Engineer",
+          company: "Veriff",
           image: "/organizers/patricia-tarazaga.jpg",
           socials: {
             linkedin: "https://www.linkedin.com/in/patricia-tarazaga/",
@@ -44,7 +48,8 @@ export const team = {
         {
           id: "org-juanje-cilla",
           name: "Juanje Cilla Ugarte",
-          role: "Senior Software Engineer · Revolut",
+          role: "Senior Software Engineer",
+          company: "Revolut",
           image: "/organizers/juanje-cilla.jpg",
           socials: {
             linkedin: "https://www.linkedin.com/in/juanje-cilla/",
@@ -53,7 +58,8 @@ export const team = {
         {
           id: "org-daniel-brenzei",
           name: "Daniel Brenzei",
-          role: "Senior QA Engineer · Zartis",
+          role: "Senior QA Engineer",
+          company: "Zartis",
           image: "/organizers/daniel-brinzei.webp",
           socials: {
             linkedin: "https://www.linkedin.com/in/daniel-brinzei/",
@@ -121,6 +127,7 @@ export const team = {
           id: "dev-luis-octavio-mota",
           name: "Luis Octavio Mota Verdasco",
           role: "Site Reliability Engineering",
+          projectRole: "CTO",
           image: "/devs/lucho.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/luisoctaviomotaverdasco",
