@@ -121,7 +121,7 @@ export const team = {
           id: "dev-luis-octavio-mota",
           name: "Luis Octavio Mota Verdasco",
           role: "Site Reliability Engineering",
-          image: "/devs/Lucho.webp",
+          image: "/devs/lucho.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/luisoctaviomotaverdasco",
             github: "https://github.com/lucho00cuba",
@@ -131,7 +131,7 @@ export const team = {
           id: "dev-lulen",
           name: "Luana Lencina",
           role: "FullStack Developer",
-          image: "/devs/luana-lencina.png",
+          image: "/devs/lulen.png",
           socials: {
             linkedin:
               "https://www.linkedin.com/in/luana-lencina-fullstack-developer-%F0%9F%92%BB-qa-engineer-%F0%9F%92%BB-880120216/",
@@ -142,7 +142,7 @@ export const team = {
           id: "dev-belen",
           name: "Belén Suarez",
           role: "QA Tester",
-          image: "/devs/belen.jpeg",
+          image: "/devs/belen.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/belen-suarez-42a4331b5/",
             github: "https://github.com/belensuarez477",
