@@ -29,7 +29,7 @@ export const team = {
           role: "Senior Android Engineer · Veriff",
           image: "/organizers/saul-diaz.webp",
           socials: {
-            linkedin: "https://www.linkedin.com/in/sefrord/",
+            linkedin: "https://www.linkedin.com/in/sefford/",
           },
         },
         {
