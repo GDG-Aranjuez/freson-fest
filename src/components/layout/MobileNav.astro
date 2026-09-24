@@ -1,6 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
 import CloseIcon from "@/components/ui/CloseIcon.astro";
+import { site } from "@/data/site";
 import { isActive, navLinkClass } from "@/utils/nav";
 import { withBase } from "@/utils/path";
 import type { NavLink } from "@/types/nav";
@@ -24,7 +25,16 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
   aria-label="Menú de navegación"
 >
   <div class="flex flex-col w-full h-full px-size-7 pt-size-7 pb-size-12">
-    <div class="flex justify-end w-full">
+    <div class="flex items-center justify-between w-full">
+      <a href={withBase("/")} class="shrink-0 flex items-center">
+        <img
+          src={withBase(site.brand.imagotipo)}
+          alt={site.brand.alt}
+          width="110"
+          height="43"
+          class="h-10 w-auto"
+        />
+      </a>
       <button
         id="nav-close"
         type="button"

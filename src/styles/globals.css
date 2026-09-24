@@ -13,7 +13,8 @@ html {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   scrollbar-gutter: stable;
-  overflow-x: hidden;
+  /* clip (not hidden) avoids turning html/body into scroll containers, which breaks position: sticky */
+  overflow-x: clip;
   background-color: var(--color-page, #0d0c0a);
 }
 
@@ -27,7 +28,7 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
   color: var(--color-body);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 .sr-only {
