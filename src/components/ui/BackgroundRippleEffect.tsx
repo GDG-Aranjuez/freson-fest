@@ -18,8 +18,8 @@ export const BackgroundRippleEffect = () => {
 
       let cols = 20;
       if (width < 640)
-        cols = 8; // Móvil: 8 celdas de ancho
-      else if (width < 1024) cols = 14; // Tablet: 14 celdas
+        cols = 8; // Móvil
+      else if (width < 1024) cols = 14; // Tablet
 
       const cellWidth = width / cols;
       const rows = Math.ceil(height / cellWidth);
@@ -44,6 +44,10 @@ export const BackgroundRippleEffect = () => {
       className="relative z-0 h-full w-full opacity-35 select-none overflow-hidden grid"
       style={{
         gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+        WebkitMaskImage:
+          "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+        maskImage:
+          "radial-gradient(ellipse at center, black 40%, transparent 80%)",
       }}
     >
       {cellWidth > 0 &&
@@ -68,7 +72,7 @@ export const BackgroundRippleEffect = () => {
                   height: `${cellWidth}px`,
                   animationDelay: isRippling ? `${delay}ms` : "0ms",
                 }}
-                className={`border-r border-b border-[#272421] w-full cursor-pointer transition-colors duration-200 hover:bg-orange-500/20 ${
+                className={`border-r border-b border-[#272421] w-full cursor-pointer transition-colors duration-200 hover:bg-white/10 ${
                   isRippling ? "animate-ripple" : ""
                 }`}
                 onAnimationEnd={() => {
