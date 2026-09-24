@@ -141,11 +141,20 @@ export const team = {
         {
           id: "dev-belen",
           name: "Belén Suarez",
-          role: "QA Tester",
+          role: "QA Tester & Desarrolladora Web",
           image: "/devs/belen.jpeg",
           socials: {
             linkedin: "https://www.linkedin.com/in/belen-suarez-42a4331b5/",
             github: "https://github.com/belensuarez477",
+          },
+        },
+        {
+          id: "dev-carmen-tajuela",
+          name: "Carmen Tajuela",
+          role: "Desarrolladora web",
+          image: "/devs/Foto_Linkedin_maricarmen.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/carmentajuelo/",
           },
         },
       ],
