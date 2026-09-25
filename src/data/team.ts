@@ -149,8 +149,8 @@ export const team = {
           },
         },
         {
-          id: "dev-carmen-tajuela",
-          name: "Carmen Tajuela",
+          id: "dev-carmen-tajuelo",
+          name: "Carmen Tajuelo",
           role: "Desarrolladora web",
           image: "/devs/Foto_Linkedin_maricarmen.webp",
           socials: {
