@@ -32,7 +32,7 @@ export const team = {
           company: "Veriff",
           image: "/organizers/saul-diaz.webp",
           socials: {
-            linkedin: "https://www.linkedin.com/in/sefrord/",
+            linkedin: "https://www.linkedin.com/in/sefford/",
           },
         },
         {
