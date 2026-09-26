@@ -32,9 +32,7 @@ const hasSpeakers = speakers.length > 0;
   <Container>
     <div data-speakers-section>
       <header class="py-size-8 lg:pb-size-8 lg:pt-0">
-        <p
-          class="type-eyebrow-medium pb-size-6 font-body uppercase text-highlighted"
-        >
+        <p class="type-eyebrow-medium pb-size-6 font-body uppercase text-highlighted">
           {eyebrow}
         </p>
 
@@ -43,76 +41,74 @@ const hasSpeakers = speakers.length > 0;
         </h2>
       </header>
 
-      {
-        hasSpeakers ? (
-          <>
-            <div class="flex items-center justify-between pb-size-6 pt-size-4 lg:justify-end lg:gap-[20px] lg:pb-size-8">
-              <div
-                class="flex items-center gap-[4px] font-body text-[14px] font-medium leading-[1.2] tracking-[0] text-[#D5CABF] tabular-nums lg:text-[20px]"
-                aria-live="polite"
-                aria-atomic="true"
-              >
-                <span data-speaker-counter>1</span>
-                <span>de</span>
-                <span>{speakers.length}</span>
-              </div>
-
-              <div class="flex items-center gap-[12px] lg:gap-[16px]">
-                <CarouselNavButton
-                  direction="prev"
-                  class="speaker-prev"
-                  aria-label="Ponente anterior"
-                />
-                <CarouselNavButton
-                  direction="next"
-                  class="speaker-next"
-                  aria-label="Siguiente ponente"
-                />
-              </div>
-            </div>
-
+      {hasSpeakers ? (
+        <>
+          <div class="flex items-center justify-between pb-size-6 pt-size-4 lg:justify-end lg:gap-[20px] lg:pb-size-8">
             <div
-              class="speaker-carousel relative flex h-[388px] w-full cursor-grab select-none snap-x snap-mandatory gap-[16px] overflow-x-auto overflow-y-hidden scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing lg:h-[424px] lg:gap-[24px] [&::-webkit-scrollbar]:hidden"
-              role="region"
-              aria-label="Carrusel de ponentes"
+              class="flex items-center gap-[4px] font-body text-[14px] font-medium leading-[1.2] tracking-[0] text-[#D5CABF] tabular-nums lg:text-[20px]"
+              aria-live="polite"
+              aria-atomic="true"
             >
-              {speakers.map((speaker) => (
-                <article
-                  id={`speaker-${speaker.id}`}
-                  class="flex h-[388px] min-h-[388px] w-[274px] flex-none snap-start flex-col overflow-hidden rounded-none border border-[#272421] bg-[#1A1814] lg:h-[424px] lg:min-h-[424px] lg:w-[300px]"
-                  data-speaker-card
-                >
-                  <img
-                    src={withBase(speaker.image)}
-                    alt={`Retrato de ${speaker.name} ${speaker.lastName}`}
-                    width="274"
-                    height="274"
-                    class="pointer-events-none h-[274px] w-[274px] flex-none object-cover rounded-none lg:h-[300px] lg:w-[300px]"
-                    loading="lazy"
-                  />
-                  <div class="flex flex-1 flex-col justify-center gap-[4px] p-size-4">
-                    <h3 class="w-full font-display text-[20px] font-medium leading-[1.1] tracking-[0] text-heading lg:text-[24px]">
-                      {speaker.name} {speaker.lastName}
-                    </h3>
+              <span data-speaker-counter>1</span>
+              <span>de</span>
+              <span>{speakers.length}</span>
+            </div>
 
-                    <div class="flex w-full items-center gap-[4px] font-body text-[14px] text-muted lg:text-[16px]">
-                      <span>{speaker.role}</span>
-                    </div>
+            <div class="flex items-center gap-[12px] lg:gap-[16px]">
+              <CarouselNavButton
+                direction="prev"
+                class="speaker-prev"
+                aria-label="Ponente anterior"
+              />
+              <CarouselNavButton
+                direction="next"
+                class="speaker-next"
+                aria-label="Siguiente ponente"
+              />
+            </div>
+          </div>
+
+          <div
+            class="speaker-carousel relative flex h-[388px] w-full cursor-grab select-none snap-x snap-mandatory gap-[16px] overflow-x-auto overflow-y-hidden scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] active:cursor-grabbing lg:h-[424px] lg:gap-[24px] [&::-webkit-scrollbar]:hidden"
+            role="region"
+            aria-label="Carrusel de ponentes"
+          >
+            {speakers.map((speaker) => (
+              <article
+                id={`speaker-${speaker.id}`}
+                class="flex h-[388px] min-h-[388px] w-[274px] flex-none snap-start flex-col overflow-hidden rounded-none border border-[#272421] bg-[#1A1814] lg:h-[424px] lg:min-h-[424px] lg:w-[300px]"
+                data-speaker-card
+              >
+                <img
+                  src={withBase(speaker.image)}
+                  alt={`Retrato de ${speaker.name} ${speaker.lastName}`}
+                  width="274"
+                  height="274"
+                  class="pointer-events-none h-[274px] w-[274px] flex-none object-cover rounded-none lg:h-[300px] lg:w-[300px]"
+                  loading="lazy"
+                />
+                <div class="flex flex-1 flex-col justify-center gap-[4px] p-size-4">
+                  <h3 class="w-full font-display text-[20px] font-medium leading-[1.1] tracking-[0] text-heading lg:text-[24px]">
+                    {speaker.name} {speaker.lastName}
+                  </h3>
+
+                  <div class="flex w-full items-center gap-[4px] font-body text-[14px] text-muted lg:text-[16px]">
+                    <span>{speaker.role}</span>
                   </div>
-                </article>
-              ))}
-            </div>
+                </div>
+              </article>
+            ))}
+          </div>
 
-            <div class="flex justify-end pt-size-5 lg:pt-size-8">
-              <GhostLink href={viewAllHref} label={viewAllLabel} />
-            </div>
-          </>
-        ) : (
-          <p class="py-size-8 type-paragraph-l text-muted">
-            No hay ponentes disponibles.
-          </p>
-        )
-      }
+          <div class="flex justify-end pt-size-5 lg:pt-size-8">
+            <GhostLink href={viewAllHref} label={viewAllLabel} />
+          </div>
+        </>
+      ) : (
+        <p class="py-size-8 type-paragraph-l text-muted">
+          No hay ponentes disponibles.
+        </p>
+      )}
     </div>
   </Container>
 </Section>

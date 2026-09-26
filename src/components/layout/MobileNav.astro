@@ -40,20 +40,18 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
       aria-label="Navegación móvil"
     >
       <div class="flex flex-col items-center gap-size-6 w-full max-w-[280px]">
-        {
-          links.map(({ href, label }) => {
-            const active = isActive(pathname, href);
-            return (
-              <a
-                href={withBase(href)}
-                class={navLinkClass(active, linkBase)}
-                aria-current={active ? "page" : undefined}
-              >
-                {label}
-              </a>
-            );
-          })
-        }
+        {links.map(({ href, label }) => {
+          const active = isActive(pathname, href);
+          return (
+            <a
+              href={withBase(href)}
+              class={navLinkClass(active, linkBase)}
+              aria-current={active ? "page" : undefined}
+            >
+              {label}
+            </a>
+          );
+        })}
       </div>
       <Button href={ticketsHref} size="small" block class="max-w-[280px]">
         {ticketsLabel}

@@ -16,19 +16,17 @@ const linkBase = "btn-menu";
   class="hidden lg:flex items-center gap-size-8"
   aria-label="Navegación principal"
 >
-  {
-    links.map(({ href, label }) => {
-      const active = isActive(pathname, href);
-      return (
-        <a
-          href={withBase(href)}
-          class={navLinkClass(active, linkBase)}
-          aria-current={active ? "page" : undefined}
-        >
-          {label}
-        </a>
-      );
-    })
-  }
+  {links.map(({ href, label }) => {
+    const active = isActive(pathname, href);
+    return (
+      <a
+        href={withBase(href)}
+        class={navLinkClass(active, linkBase)}
+        aria-current={active ? "page" : undefined}
+      >
+        {label}
+      </a>
+    );
+  })}
   <slot />
 </nav>

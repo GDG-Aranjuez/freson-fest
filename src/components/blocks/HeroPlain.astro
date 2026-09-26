@@ -33,50 +33,42 @@ const isCenter = align === "center";
         isCenter ? "items-center text-center" : "items-start text-left",
       ]}
     >
-      {
-        eyebrow && (
-          <p
-            class:list={[
-              "w-full pb-size-6 font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16]",
-              isCenter && "lg:hidden",
-            ]}
-          >
-            {eyebrow}
-          </p>
-        )
-      }
+      {eyebrow && (
+        <p
+          class:list={[
+            "w-full pb-size-6 font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16]",
+            isCenter && "lg:hidden",
+          ]}
+        >
+          {eyebrow}
+        </p>
+      )}
 
-      {
-        title ? (
-          <h1
-            id={headingId}
-            class:list={[
-              "w-full pb-size-6 font-['Bricolage_Grotesque'] text-[40px] font-extrabold leading-[100%] tracking-normal text-heading lg:pb-size-10 lg:type-h1",
-              isCenter && "max-w-[700px]",
-            ]}
-          >
-            {title}
-          </h1>
-        ) : (
-          <h1
-            id={headingId}
-            class:list={[
-              "w-full pb-size-6 font-['Bricolage_Grotesque'] text-[40px] font-extrabold leading-[100%] tracking-normal text-heading lg:pb-size-10 lg:type-h1",
-              isCenter && "max-w-[700px]",
-            ]}
-          >
-            <slot name="title" />
-          </h1>
-        )
-      }
+      {title ? (
+        <h1
+          id={headingId}
+          class:list={[
+            "w-full pb-size-6 font-['Bricolage_Grotesque'] text-[40px] font-extrabold leading-[100%] tracking-normal text-heading lg:pb-size-10 lg:type-h1",
+            isCenter && "max-w-[700px]",
+          ]}
+        >
+          {title}
+        </h1>
+      ) : (
+        <h1
+          id={headingId}
+          class:list={[
+            "w-full pb-size-6 font-['Bricolage_Grotesque'] text-[40px] font-extrabold leading-[100%] tracking-normal text-heading lg:pb-size-10 lg:type-h1",
+            isCenter && "max-w-[700px]",
+          ]}
+        >
+          <slot name="title" />
+        </h1>
+      )}
 
-      {
-        subtitle && (
-          <p class="type-subtitle w-full pb-size-12 text-subtitle">
-            {subtitle}
-          </p>
-        )
-      }
+      {subtitle && (
+        <p class="type-subtitle w-full pb-size-12 text-subtitle">{subtitle}</p>
+      )}
 
       <slot />
     </div>

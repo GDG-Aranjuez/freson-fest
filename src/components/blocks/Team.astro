@@ -24,28 +24,26 @@ const { title, groups } = Astro.props;
     </header>
 
     <div class="flex flex-col pb-size-13 lg:pb-0">
-      {
-        groups.map((group) => (
-          <section
-            class="pb-size-12 last:pb-0 lg:pb-size-14 lg:last:pb-0"
-            aria-labelledby={`about-team-${group.id}`}
+      {groups.map((group) => (
+        <section
+          class="pb-size-12 last:pb-0 lg:pb-size-14 lg:last:pb-0"
+          aria-labelledby={`about-team-${group.id}`}
+        >
+          <p
+            id={`about-team-${group.id}`}
+            class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
           >
-            <p
-              id={`about-team-${group.id}`}
-              class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
-            >
-              {group.eyebrow}
-            </p>
-            <ul class="flex list-none flex-col overflow-visible p-0">
-              {group.members.map((member) => (
-                <li class="relative">
-                  <CollaboratorCard member={member} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
+            {group.eyebrow}
+          </p>
+          <ul class="flex list-none flex-col overflow-visible p-0">
+            {group.members.map((member) => (
+              <li class="relative">
+                <CollaboratorCard member={member} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   </Container>
 </Section>

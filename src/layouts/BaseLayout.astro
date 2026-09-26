@@ -47,9 +47,9 @@ const jsonLd = mergeStructuredData(siteUrl, pageStructuredData);
     <meta name="description" content={resolvedDescription} />
     <meta
       name="robots"
-      content={noindex
-        ? "noindex, nofollow"
-        : "index, follow, max-image-preview:large"}
+      content={
+        noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large"
+      }
     />
     <link rel="canonical" href={canonical} />
 
@@ -97,11 +97,9 @@ const jsonLd = mergeStructuredData(siteUrl, pageStructuredData);
       rel="stylesheet"
     />
 
-    {
-      jsonLd.map((schema) => (
-        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-      ))
-    }
+    {jsonLd.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     {site.gtagId && <GoogleTag id={site.gtagId} />}
 
@@ -119,5 +117,5 @@ const jsonLd = mergeStructuredData(siteUrl, pageStructuredData);
       <slot />
     </main>
     <Footer />
-  </body></html
->
+  </body>
+</html>

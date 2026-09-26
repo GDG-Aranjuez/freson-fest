@@ -10,39 +10,31 @@ const slides = [
 ];
 ---
 
-<Section
-  class="carousel-section py-16 text-white overflow-hidden w-full max-w-[1200px] mx-auto text-center font-display [perspective:1000px]"
->
+<Section class="carousel-section py-16 text-white overflow-hidden w-full max-w-[1200px] mx-auto text-center font-display [perspective:1000px]">
   <carousel-edition>
-    <div
-      class="carousel-container relative w-full max-w-[1040px] h-[465px] max-md:h-[350px] mx-auto flex justify-center items-center [transform-style:preserve-3d] touch-pan-y cursor-grab active:cursor-grabbing select-none"
-    >
-      {
-        slides.map((slide, index) => (
-          <div
-            class="carousel-slide absolute w-[504px] h-[465px] max-md:w-[80%] max-md:h-auto max-md:aspect-[504/465] flex cursor-pointer blur-[0.8px] brightness-100 opacity-0 invisible z-1 transition-[transform,opacity] duration-600 ease-[cubic-bezier(0.25,1,0.5,1)]"
-            data-index={index}
-          >
-            <div class="image-box bg-white w-full h-full flex items-center justify-center rounded-none text-sm shadow-[0_10px_30px_rgba(0,0,0,0.7)] transition-shadow duration-300 overflow-hidden">
-              {slide.image ? (
-                <img
-                  src={slide.image}
-                  alt="Edición anterior"
-                  class="slide-img w-full h-full object-cover rounded-none"
-                />
-              ) : (
-                <div class="placeholder-img w-full h-full bg-stone-300" />
-              )}
-            </div>
+    <div class="carousel-container relative w-full max-w-[1040px] h-[465px] max-md:h-[350px] mx-auto flex justify-center items-center [transform-style:preserve-3d] touch-pan-y cursor-grab active:cursor-grabbing select-none">
+      {slides.map((slide, index) => (
+        <div
+          class="carousel-slide absolute w-[504px] h-[465px] max-md:w-[80%] max-md:h-auto max-md:aspect-[504/465] flex cursor-pointer blur-[0.8px] brightness-100 opacity-0 invisible z-1 transition-[transform,opacity] duration-600 ease-[cubic-bezier(0.25,1,0.5,1)]"
+          data-index={index}
+        >
+          <div class="image-box bg-white w-full h-full flex items-center justify-center rounded-none text-sm shadow-[0_10px_30px_rgba(0,0,0,0.7)] transition-shadow duration-300 overflow-hidden">
+            {slide.image ? (
+              <img
+                src={slide.image}
+                alt="Edición anterior"
+                class="slide-img w-full h-full object-cover rounded-none"
+              />
+            ) : (
+              <div class="placeholder-img w-full h-full bg-stone-300" />
+            )}
           </div>
-        ))
-      }
+        </div>
+      ))}
     </div>
 
     <!-- BOTONES  -->
-    <div
-      class="carousel-controls flex items-center justify-center gap-[12px] lg:gap-[16px] mt-8"
-    >
+    <div class="carousel-controls flex items-center justify-center gap-[12px] lg:gap-[16px] mt-8">
       <CarouselNavButton
         direction="prev"
         class="carousel-prev"

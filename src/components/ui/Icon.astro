@@ -19,5 +19,7 @@ const icon = icons[name];
   class={className}
   aria-hidden="true"
 >
-  {icon.paths.map(({ d, opacity }) => <path d={d} opacity={opacity} />)}
+  {icon.paths.map(({ d, opacity }) => (
+    <path d={d} opacity={opacity} />
+  ))}
 </svg>

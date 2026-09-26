@@ -36,9 +36,7 @@ const { location, headingId = "location-heading" } = Astro.props;
     <div class="flex w-full flex-col lg:grid lg:grid-cols-2 lg:items-start">
       <div class="flex flex-col lg:pr-size-10">
         <header class="pb-size-8">
-          <p
-            class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
-          >
+          <p class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium">
             {location.eyebrow}
           </p>
 
@@ -46,15 +44,11 @@ const { location, headingId = "location-heading" } = Astro.props;
             {location.heading}
           </h2>
 
-          <address
-            class="not-italic font-body text-[14px] font-normal leading-[1.4] text-body lg:text-[16px]"
-          >
+          <address class="not-italic font-body text-[14px] font-normal leading-[1.4] text-body lg:text-[16px]">
             <span class="mb-1 block">{location.venue}</span>
-            {
-              location.addressLines.map((line) => (
-                <span class="mb-1 block last:mb-0">{line}</span>
-              ))
-            }
+            {location.addressLines.map((line) => (
+              <span class="mb-1 block last:mb-0">{line}</span>
+            ))}
           </address>
         </header>
 
@@ -75,33 +69,31 @@ const { location, headingId = "location-heading" } = Astro.props;
         </div>
 
         <ul class="flex list-none flex-col p-0 py-size-6 lg:py-size-7">
-          {
-            location.instructions.map((item) => (
-              <li class="flex items-center gap-size-4 py-size-3">
-                <span
-                  class="inline-flex size-5 shrink-0 items-center justify-center overflow-clip"
-                  aria-hidden="true"
-                >
-                  {"icon" in item ? (
-                    <img
-                      src={withBase(item.icon.src)}
-                      alt={item.icon.alt}
-                      width="20"
-                      height="20"
-                      class="size-full object-contain"
-                    />
-                  ) : (
-                    <span class="w-full text-center font-body text-[14px] font-medium leading-[1.4] text-body">
-                      {item.letter}
-                    </span>
-                  )}
-                </span>
-                <span class="font-body text-[14px] leading-[1.4] text-body">
-                  {item.label}
-                </span>
-              </li>
-            ))
-          }
+          {location.instructions.map((item) => (
+            <li class="flex items-center gap-size-4 py-size-3">
+              <span
+                class="inline-flex size-5 shrink-0 items-center justify-center overflow-clip"
+                aria-hidden="true"
+              >
+                {"icon" in item ? (
+                  <img
+                    src={withBase(item.icon.src)}
+                    alt={item.icon.alt}
+                    width="20"
+                    height="20"
+                    class="size-full object-contain"
+                  />
+                ) : (
+                  <span class="w-full text-center font-body text-[14px] font-medium leading-[1.4] text-body">
+                    {item.letter}
+                  </span>
+                )}
+              </span>
+              <span class="font-body text-[14px] leading-[1.4] text-body">
+                {item.label}
+              </span>
+            </li>
+          ))}
         </ul>
       </div>
 

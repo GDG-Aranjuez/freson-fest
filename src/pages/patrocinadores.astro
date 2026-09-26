@@ -27,20 +27,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           id="sponsors-hero-heading"
           class="pb-size-6 lg:pb-size-9 font-display font-extrabold text-[48px] lg:text-[96px] leading-[1.05] text-start"
         >
-          <span class="text-heading">{`${hero.titleLead} `}</span><span
-            class="text-highlighted">{hero.titleHighlight}</span
-          >
+          <span class="text-heading">{`${hero.titleLead} `}</span>
+          <span class="text-highlighted">{hero.titleHighlight}</span>
         </h1>
 
-        <p
-          class="font-body text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] font-normal max-w-[343px] lg:max-w-[480px] pb-size-8 lg:pb-size-12 text-left text-body/80"
-        >
+        <p class="font-body text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] font-normal max-w-[343px] lg:max-w-[480px] pb-size-8 lg:pb-size-12 text-left text-body/80">
           {hero.subtitle}
         </p>
 
-        <div
-          class="flex w-full sm:max-w-[320px] flex-col items-start pointer-events-auto"
-        >
+        <div class="flex w-full sm:max-w-[320px] flex-col items-start pointer-events-auto">
           <CtaNote
             href={hero.cta.href}
             label={hero.cta.label}
