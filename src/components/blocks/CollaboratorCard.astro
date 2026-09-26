@@ -10,6 +10,9 @@ interface Props {
 
 const { member } = Astro.props;
 const socialItems = mapSocialItems(member.socials);
+const memberDetails = [member.role, member.company, member.projectRole]
+  .filter(Boolean)
+  .join(" · ");
 ---
 
 <article
@@ -50,7 +53,7 @@ const socialItems = mapSocialItems(member.socials);
         <p
           class="font-body text-[14px] font-medium leading-[1.2] text-subtitle lg:text-[16px]"
         >
-          {member.role}
+          {memberDetails}
         </p>
       </div>
 
