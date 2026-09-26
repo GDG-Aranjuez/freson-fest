@@ -14,15 +14,16 @@ html {
   -webkit-font-smoothing: antialiased;
   scrollbar-gutter: stable;
   overflow-x: hidden;
-  background-color: var(--color-page, #0d0c0a);
+  background-color: var(--color-page, #0c0c0b);
 }
 
 body {
-  background-color: var(--color-page, #0d0c0a);
+  background-color: var(--color-page, #0c0c0b);
   background-image: radial-gradient(
     ellipse 100% 55% at 50% 85%,
-    rgba(42, 11, 0, 0.6) 0%,
-    rgba(42, 11, 0, 0) 50%
+    rgba(42, 11, 0, 0.5) 0%,
+    rgba(42, 11, 0, 0.5) 50%,
+    transparent 100%
   );
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -64,14 +65,14 @@ body {
 }
 
 @theme {
-  --animate-cell-ripple: cell-ripple 500ms ease-out forwards;
+  --animate-cell-ripple: cell-ripple 600ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
 
   @keyframes cell-ripple {
     0% {
       background-color: transparent;
     }
     50% {
-      background-color: rgba(249, 115, 22, 0.45);
+      background-color: rgba(255, 255, 255, 0.18);
     }
     100% {
       background-color: transparent;
