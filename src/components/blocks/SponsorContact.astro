@@ -30,28 +30,18 @@ const { contact } = Astro.props;
 <Section class="!py-size-13 lg:py-size-12">
   <div id="contacto" class="scroll-mt-24 lg:scroll-mt-28">
     <Container class="max-w-[1200px] mx-auto">
-      <div
-        class="grid grid-cols-1 lg:grid-cols-2 gap-size-10 lg:gap-size-16 items-start"
-      >
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-size-10 lg:gap-size-16 items-start">
         <div>
-          <span
-            class="type-eyebrow-medium pb-size-4 uppercase text-highlighted block font-body text-[14px] lg:text-[18px] leading-[1.0] mb-2"
-          >
+          <span class="type-eyebrow-medium pb-size-4 uppercase text-highlighted block font-body text-[14px] lg:text-[18px] leading-[1.0] mb-2">
             {contact.eyebrow}
           </span>
-          <h2
-            class="type-h2 text-heading font-display font-semibold text-[32px] lg:text-[40px] leading-[1.1] mb-4"
-          >
+          <h2 class="type-h2 text-heading font-display font-semibold text-[32px] lg:text-[40px] leading-[1.1] mb-4">
             {contact.title}
           </h2>
-          <p
-            class="type-body text-subtitle/70 font-body font-normal text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] mb-6"
-          >
+          <p class="type-body text-subtitle/70 font-body font-normal text-[16px] lg:text-[20px] leading-[1.4] lg:leading-[1.2] mb-6">
             {contact.subtitle}
           </p>
-          <p
-            class="type-body font-body font-medium text-[14px] lg:text-[16px] text-body/80 leading-[1.2]"
-          >
+          <p class="type-body font-body font-medium text-[14px] lg:text-[16px] text-body/80 leading-[1.2]">
             {contact.emailLabel}{" "}
             <a
               href={`mailto:${contact.email}`}
@@ -133,9 +123,7 @@ const { contact } = Astro.props;
           </div>
 
           <div class="flex flex-col gap-y-4">
-            <p
-              class="font-body text-[14px] leading-[1.4] text-subtitle/80 font-normal"
-            >
+            <p class="font-body text-[14px] leading-[1.4] text-subtitle/80 font-normal">
               {contact.form.requiredFootnote}
             </p>
             <Button type="submit" block={true}>

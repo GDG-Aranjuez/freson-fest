@@ -43,9 +43,7 @@ const { contact } = Astro.props;
             </p>
           </header>
 
-          <p
-            class="type-caption flex w-full items-center gap-size-2 pb-size-10 font-medium text-subtitle"
-          >
+          <p class="type-caption flex w-full items-center gap-size-2 pb-size-10 font-medium text-subtitle">
             <span>{contact.emailLabel}</span>
             <a
               href={`mailto:${contact.email}`}
@@ -102,9 +100,7 @@ const { contact } = Astro.props;
             />
           </div>
 
-          <div
-            class="flex w-full flex-col items-start gap-size-3 py-size-4 lg:gap-size-5 lg:py-size-6"
-          >
+          <div class="flex w-full flex-col items-start gap-size-3 py-size-4 lg:gap-size-5 lg:py-size-6">
             <label for="help-message" class="type-label w-full text-subtitle">
               {contact.form.messageLabel} *
             </label>

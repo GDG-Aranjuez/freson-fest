@@ -8,29 +8,21 @@ interface Props {
 const { session } = Astro.props;
 ---
 
-<div
-  class="group relative min-h-[126px] w-full cursor-pointer border border-transparent border-b-stroke-strong/20 px-8 py-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-30 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-brand hover:bg-[#1a1714] hover:shadow-[0_10px_30px_rgba(255,158,102,0.22)]"
->
+<div class="group relative min-h-[126px] w-full cursor-pointer border border-transparent border-b-stroke-strong/20 px-8 py-6 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-30 hover:-translate-y-1.5 hover:scale-[1.015] hover:border-brand hover:bg-[#1a1714] hover:shadow-[0_10px_30px_rgba(255,158,102,0.22)]">
   <div class="flex min-h-[78px] w-full items-center justify-between gap-4">
     <div class="flex items-center gap-6 md:gap-10">
-      <time
-        class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]"
-      >
+      <time class="w-[90px] shrink-0 font-body text-[16px] font-medium text-brand md:w-[110px] md:text-[18px]">
         {session.startTime}
       </time>
       <div>
-        <h3
-          class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]"
-        >
+        <h3 class="font-display text-[18px] font-medium leading-[1.1] text-heading md:text-[22px]">
           {session.title}
         </h3>
-        {
-          session.speaker && (
-            <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
-              {session.speaker}
-            </p>
-          )
-        }
+        {session.speaker && (
+          <p class="pt-1 font-body text-[14px] font-normal leading-[1.2] text-subtitle md:text-[18px]">
+            {session.speaker}
+          </p>
+        )}
       </div>
     </div>
   </div>

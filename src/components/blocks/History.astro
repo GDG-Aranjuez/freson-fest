@@ -17,12 +17,8 @@ const { eyebrow, title, body, class: className = "" } = Astro.props;
   ariaLabelledby="about-history-heading"
 >
   <Container>
-    <header
-      class="flex max-w-[700px] flex-col items-start py-size-8 lg:mx-auto lg:max-w-[750px] lg:items-center lg:text-center"
-    >
-      <p
-        class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
-      >
+    <header class="flex max-w-[700px] flex-col items-start py-size-8 lg:mx-auto lg:max-w-[750px] lg:items-center lg:text-center">
+      <p class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium">
         {eyebrow}
       </p>
       <h2
@@ -31,9 +27,7 @@ const { eyebrow, title, body, class: className = "" } = Astro.props;
       >
         {title}
       </h2>
-      <p
-        class="w-full font-body text-[16px] leading-[1.4] text-subtitle lg:text-[20px] lg:leading-[1.2]"
-      >
+      <p class="w-full font-body text-[16px] leading-[1.4] text-subtitle lg:text-[20px] lg:leading-[1.2]">
         {body}
       </p>
     </header>
