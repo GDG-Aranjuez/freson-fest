@@ -12,7 +12,9 @@ import { withBase } from "@/utils/path";
 const pathname = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-50 w-full font-body">
+<header
+  class="fixed top-0 left-0 z-50 w-full font-body backdrop-blur-md border-b border-stroke-strong/50 transition-all"
+>
   <Container
     class="flex items-center justify-between pt-size-7 pb-size-2 lg:py-size-6"
   >
