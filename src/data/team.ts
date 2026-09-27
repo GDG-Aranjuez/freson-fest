@@ -142,7 +142,7 @@ export const team = {
           id: "dev-belen",
           name: "Belén Suarez",
           role: "QA Tester & Desarrolladora Web",
-          image: "/devs/belen.jpeg",
+          image: "/devs/belen.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/belen-suarez-42a4331b5/",
             github: "https://github.com/belensuarez477",
