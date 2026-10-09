@@ -56,8 +56,8 @@ export const team = {
           },
         },
         {
-          id: "org-daniel-brenzei",
-          name: "Daniel Brenzei",
+          id: "org-dani-brinzei",
+          name: "Dani Brinzei",
           role: "Senior QA Engineer",
           company: "Zartis",
           image: "/organizers/daniel-brinzei.webp",
