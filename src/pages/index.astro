@@ -47,14 +47,12 @@ const homeSessions = agenda.days[0]?.sessions ?? [];
             <span class="text-highlighted">{hero.titleHighlight}</span>{" "}
             <span class="text-heading">{hero.titleAfterPart1}</span>
           </span>{" "}
-          <span class="block lg:inline text-heading"
-            >{hero.titleAfterPart2}</span
-          >
+          <span class="block lg:inline text-heading">
+            {hero.titleAfterPart2}
+          </span>
         </h1>
 
-        <p
-          class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-center"
-        >
+        <p class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-center">
           {hero.subtitle}
         </p>
 
@@ -66,9 +64,7 @@ const homeSessions = agenda.days[0]?.sessions ?? [];
             />
           </div>
 
-          <div
-            class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto"
-          >
+          <div class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto">
             <CtaNote
               href={hero.cta.href}
               label={hero.cta.label}

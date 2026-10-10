@@ -14,16 +14,14 @@ const { links } = Astro.props;
   class="hidden lg:flex items-center gap-size-8"
   aria-label="Navegación principal"
 >
-  {
-    links.map(({ href, label }) => {
-      const cleanHref = withBase(href);
-      return (
-        <a href={cleanHref} class="btn-menu" data-href={cleanHref}>
-          {label}
-        </a>
-      );
-    })
-  }
+  {links.map(({ href, label }) => {
+    const cleanHref = withBase(href);
+    return (
+      <a href={cleanHref} class="btn-menu" data-href={cleanHref}>
+        {label}
+      </a>
+    );
+  })}
   <slot />
 </nav>
 
