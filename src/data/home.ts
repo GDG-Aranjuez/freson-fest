@@ -31,8 +31,10 @@ export interface HighlightImage {
 
 export const hero = {
   ...eventDate,
-  titleLead: "Aranjuez tiene algo que decir al",
-  titleHighlight: "mundo tech",
+  titleLead: "Vuelve el ",
+  titleHighlight: "devfest",
+  titleAfterPart1: " a la",
+  titleAfterPart2: "ciudad de Aranjuez",
   subtitle:
     "Y tú estás invitado. Sin postureo, sin distancia, solo gente real haciendo cosas reales.",
   cta: ticketCtas.primary,
