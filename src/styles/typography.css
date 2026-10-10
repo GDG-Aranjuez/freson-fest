@@ -377,7 +377,7 @@
     }
   }
 
-.btn-menu {
+  .btn-menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -389,7 +389,9 @@
     padding: 0.75rem 1rem;
     min-width: 100px;
     border: 1px solid transparent;
-    transition: color 0.15s, border-color 0.15s;
+    transition:
+      color 0.15s,
+      border-color 0.15s;
   }
 
   .btn-menu:hover {
