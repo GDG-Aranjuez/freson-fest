@@ -34,20 +34,27 @@ const homeSessions = agenda.days[0]?.sessions ?? [];
   >
     <div class="flex flex-col items-center text-center lg:gap-size-7">
       <div class="flex w-full max-w-[700px] flex-col items-center">
-        <p class="type-eyebrow pb-size-6 text-subtitle w-full text-left lg:text-center">
+        <p class="type-eyebrow pb-size-6 text-subtitle w-full text-center">
           <span class="font-light">{hero.dateLead}</span>{" "}
           <span class="font-medium">{hero.dateYear}</span>
         </p>
-
         <h1
           id="hero-heading"
-          class="type-h1 max-w-[700px] pb-size-7 text-center"
+          class="type-h1 max-w-[1040px] pb-size-7 text-center font-display font-extrabold tracking-[-0.02em] text-[56px] leading-[90%] lg:text-[96px] lg:leading-[80%]"
         >
-          <span class="text-heading">{`${hero.titleLead} `}</span>
-          <span class="text-highlighted">{hero.titleHighlight}</span>
+          <span class="lg:whitespace-nowrap">
+            <span class="text-heading">{hero.titleLead}</span>{" "}
+            <span class="text-highlighted">{hero.titleHighlight}</span>{" "}
+            <span class="text-heading">{hero.titleAfterPart1}</span>
+          </span>{" "}
+          <span class="block lg:inline text-heading"
+            >{hero.titleAfterPart2}</span
+          >
         </h1>
 
-        <p class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-left lg:text-center">
+        <p
+          class="font-body type-subtitle max-w-[700px] pb-size-0 font-normal text-center"
+        >
           {hero.subtitle}
         </p>
 
@@ -59,7 +66,9 @@ const homeSessions = agenda.days[0]?.sessions ?? [];
             />
           </div>
 
-          <div class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto">
+          <div
+            class="flex w-full max-w-[380px] flex-col items-center pointer-events-auto"
+          >
             <CtaNote
               href={hero.cta.href}
               label={hero.cta.label}

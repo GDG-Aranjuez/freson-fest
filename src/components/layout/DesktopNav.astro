@@ -1,6 +1,5 @@
 ---
 import type { NavLink } from "@/types/nav";
-import { isActive, navLinkClass } from "@/utils/nav";
 import { withBase } from "@/utils/path";
 
 interface Props {
@@ -8,25 +7,55 @@ interface Props {
   pathname: string;
 }
 
-const { links, pathname } = Astro.props;
-const linkBase = "btn-menu";
+const { links } = Astro.props;
 ---
 
 <nav
   class="hidden lg:flex items-center gap-size-8"
   aria-label="Navegación principal"
 >
-  {links.map(({ href, label }) => {
-    const active = isActive(pathname, href);
-    return (
-      <a
-        href={withBase(href)}
-        class={navLinkClass(active, linkBase)}
-        aria-current={active ? "page" : undefined}
-      >
-        {label}
-      </a>
-    );
-  })}
+  {
+    links.map(({ href, label }) => {
+      const cleanHref = withBase(href);
+      return (
+        <a href={cleanHref} class="btn-menu" data-href={cleanHref}>
+          {label}
+        </a>
+      );
+    })
+  }
   <slot />
 </nav>
+
+<script>
+  function updateActiveNav() {
+    const currentPath = window.location.pathname.replace(/\/\$/, "") || "/";
+    const links =
+      document.querySelectorAll<HTMLAnchorElement>("nav a.btn-menu");
+
+    links.forEach((link) => {
+      const linkPath =
+        new URL(link.href, window.location.origin).pathname.replace(
+          /\/\$/,
+          ""
+        ) || "/";
+
+      let isActive = false;
+      if (linkPath === "/") {
+        isActive = currentPath === "/";
+      } else {
+        isActive =
+          currentPath === linkPath || currentPath.startsWith(`${linkPath}/`);
+      }
+
+      if (isActive) {
+        link.setAttribute("aria-current", "page");
+      } else {
+        link.removeAttribute("aria-current");
+      }
+    });
+  }
+  updateActiveNav();
+
+  document.addEventListener("astro:page-load", updateActiveNav);
+</script>

@@ -8,6 +8,7 @@ export const BackgroundRippleEffect = () => {
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [grid, setGrid] = useState({ rows: 12, cols: 20, cellWidth: 0 });
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
     const updateGrid = () => {
@@ -15,6 +16,8 @@ export const BackgroundRippleEffect = () => {
 
       const width = containerRef.current.clientWidth;
       const height = containerRef.current.clientHeight;
+
+      setIsDesktop(window.innerWidth >= 1024);
 
       let cols = 20;
       if (width < 640)
@@ -38,16 +41,18 @@ export const BackgroundRippleEffect = () => {
     setClickedCell({ row, col });
   };
 
+  const maskValue = isDesktop
+    ? "radial-gradient(ellipse at center, black 40%, transparent 80%)"
+    : "none";
+
   return (
     <div
       ref={containerRef}
       className="relative z-0 h-full w-full opacity-35 select-none overflow-hidden grid"
       style={{
         gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
-        WebkitMaskImage:
-          "radial-gradient(ellipse at center, black 40%, transparent 80%)",
-        maskImage:
-          "radial-gradient(ellipse at center, black 40%, transparent 80%)",
+        WebkitMaskImage: maskValue,
+        maskImage: maskValue,
       }}
     >
       {cellWidth > 0 &&

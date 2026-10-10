@@ -377,7 +377,7 @@
     }
   }
 
-  .btn-menu {
+.btn-menu {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -386,12 +386,19 @@
     font-weight: 500;
     line-height: 1;
     color: var(--color-heading);
-    transition: color 0.15s;
+    padding: 0.75rem 1rem;
+    min-width: 100px;
+    border: 1px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
   }
 
-  .btn-menu:hover,
+  .btn-menu:hover {
+    color: var(--color-link);
+  }
+
   .btn-menu[aria-current="page"] {
     color: var(--color-link);
+    border-color: var(--color-link);
   }
 
   .countdown-num {
