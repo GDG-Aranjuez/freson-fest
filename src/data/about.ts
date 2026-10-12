@@ -23,9 +23,11 @@ export const stats: AboutStat[] = [
 ];
 
 export const history = {
-  eyebrow: "QUIÉNES SOMOS",
-  title: "Una comunidad, no solo un evento",
-  body: `Todo comenzó con una idea y muchas ganas de hacerla realidad: acercar la comunidad tecnológica a Aranjuez y a todo Madrid Sur. Lo que empezó entre “cuatro gatos” ha ido creciendo persona a persona, evento a evento, hasta convertirse en un punto de encuentro donde compartir, aprender y conectar. Una comunidad que construimos entre todos y que sigue creciendo con cada encuentro. Y esto no ha hecho más que empezar.`,
+  title: "No somos un evento, somos una comunidad",
+  body: [
+    "Todo comenzó con una idea y muchas ganas de hacerla realidad: acercar la comunidad tecnológica a Aranjuez y a todo Madrid Sur.",
+    "Así nació GDG Aranjuez, un proyecto que fue creciendo, evento a evento, hasta convertirse en un punto de encuentro donde compartir, aprender y conectar con el sector. Una comunidad que se construye entre todos y que sigue creciendo con cada nueva persona que se suma. Y esto no ha hecho más que empezar.",
+  ],
 } as const;
 
 export const join = {
