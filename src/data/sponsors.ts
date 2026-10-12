@@ -160,6 +160,6 @@ export const trustedBy = {
     sponsors.map(({ image, description }) => ({
       src: image ?? "",
       alt: description,
-    })),
+    }))
   ),
 };
