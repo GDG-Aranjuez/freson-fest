@@ -11,10 +11,10 @@ import { team } from "@/data/team";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 const organizationGroups = team.groups.filter(
-  ({ id }) => id === "organization",
+  ({ id }) => id === "organization"
 );
 const collaboratorGroups = team.groups.filter(
-  ({ id }) => id !== "organization",
+  ({ id }) => id !== "organization"
 );
 ---
 
