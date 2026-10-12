@@ -5,7 +5,7 @@ export type TeamSocials = SocialHrefs;
 export interface TeamMember {
   id: string;
   name: string;
-  role: string;
+  role?: string;
   company?: string;
   projectRole?: string;
   image: string;
@@ -167,6 +167,14 @@ export const team = {
             linkedin: "https://www.linkedin.com/in/josefina-nieto/",
             behance: "https://www.behance.net/josefinanieto1",
           },
+        },
+        {
+          id: "design-cristina-lizaur",
+          name: "Cristina Lizaur",
+          role: "Ilustradora",
+          image: "/design/image.webp",
+          imageAlt: "Fotografía de Cristina Lizaur",
+          socials: {},
         },
       ],
     },
