@@ -45,7 +45,9 @@ const {
       {groups.map((group) => (
         <section
           class="pb-size-13 last:pb-0 lg:pb-size-14 lg:last:pb-0"
-          aria-labelledby={showGroupHeadings ? `about-team-${group.id}` : headingId}
+          aria-labelledby={
+            showGroupHeadings ? `about-team-${group.id}` : headingId
+          }
         >
           {showGroupHeadings && (
             <h3

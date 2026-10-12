@@ -120,7 +120,8 @@ export const team = {
           id: "live-raul-fernandez",
           name: "Raúl Fernández",
           role: "Magia y Mentalismo",
-          image: "/Production and Live Experience/photo_2026-10-02_12-38-37.jpg",
+          image:
+            "/Production and Live Experience/photo_2026-10-02_12-38-37.jpg",
           imageAlt: "Fotografía de Raúl Fernández haciendo magia",
           socials: {
             instagram: "https://www.instagram.com/magicraulin",
