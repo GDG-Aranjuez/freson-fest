@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 export interface Sponsor {
   image?: string;
   description: string;
+  href?: string;
 }
 
 export interface SponsorCategory {
@@ -133,10 +134,22 @@ export const categories: SponsorCategory[] = [
       {
         image: "/sponsors/logo-ayuntamiento-aranjuez.png",
         description: "Ayuntamiento de Aranjuez",
+        href: "https://www.aranjuez.es/",
       },
       {
         image: "/sponsors/logo-google-developers-groups.png",
         description: "Google Developer Groups",
+        href: "https://gdg.community.dev/",
+      },
+    ],
+  },
+  {
+    categoryName: "Plus",
+    sponsors: [
+      {
+        image: "/sponsors/logo_TB_positivo-01_Mesa_de_trabajo_1_copia.png",
+        description: "The Bridge Tech",
+        href: "https://thebridge.tech/",
       },
     ],
   },
@@ -146,6 +159,7 @@ export const categories: SponsorCategory[] = [
       {
         image: "/sponsors/logo-adopta-un-junior.png",
         description: "Adopta un Junior",
+        href: "https://adoptaunjunior.es/",
       },
     ],
   },
