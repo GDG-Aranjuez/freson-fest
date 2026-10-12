@@ -11,9 +11,7 @@ interface Props {
 const { speaker, fullName, headingId } = Astro.props;
 ---
 
-<div
-  class="col-start-1 row-start-1 size-[100px] shrink-0 overflow-hidden lg:size-[144px]"
->
+<div class="col-start-1 row-start-1 size-[100px] shrink-0 overflow-hidden lg:size-[144px]">
   <img
     src={withBase(speaker.image)}
     alt={`Retrato de ${fullName}`}
@@ -24,9 +22,7 @@ const { speaker, fullName, headingId } = Astro.props;
   />
 </div>
 
-<div
-  class="col-start-2 row-start-1 flex min-w-0 flex-col justify-center gap-size-2 self-center lg:self-start"
->
+<div class="col-start-2 row-start-1 flex min-w-0 flex-col justify-center gap-size-2 self-center lg:self-start">
   <h3
     id={headingId}
     class="min-w-0 truncate font-display font-medium text-[18px] leading-[1.2] text-heading lg:text-[24px]"

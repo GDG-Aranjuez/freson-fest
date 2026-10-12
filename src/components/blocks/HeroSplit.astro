@@ -24,19 +24,13 @@ const {
 
 <Section class={className} ariaLabelledby={headingId}>
   <Container>
-    <div
-      class="flex flex-col items-center text-center lg:flex-row lg:items-center lg:justify-between lg:gap-size-7 lg:text-left"
-    >
-      <div
-        class="flex w-full flex-col items-center lg:max-w-[550px] lg:items-start lg:pb-size-7"
-      >
-        {
-          eyebrow && (
-            <p class="pb-size-6 text-center font-body text-[15px] font-medium uppercase leading-none text-highlighted lg:hidden">
-              {eyebrow}
-            </p>
-          )
-        }
+    <div class="flex flex-col items-center text-center lg:flex-row lg:items-center lg:justify-between lg:gap-size-7 lg:text-left">
+      <div class="flex w-full flex-col items-center lg:max-w-[550px] lg:items-start lg:pb-size-7">
+        {eyebrow && (
+          <p class="pb-size-6 text-center font-body text-[15px] font-medium uppercase leading-none text-highlighted lg:hidden">
+            {eyebrow}
+          </p>
+        )}
 
         <h1
           id={headingId}
@@ -45,19 +39,13 @@ const {
           {title}
         </h1>
 
-        <p
-          class="w-full pb-size-11 font-body text-[16px] leading-[1.4] text-subtitle lg:max-w-[480px] lg:pb-size-3 lg:text-[20px] lg:leading-[1.2]"
-        >
+        <p class="w-full pb-size-11 font-body text-[16px] leading-[1.4] text-subtitle lg:max-w-[480px] lg:pb-size-3 lg:text-[20px] lg:leading-[1.2]">
           {subtitle}
         </p>
       </div>
 
-      <div
-        class="w-full drop-shadow-[12px_12px_0px_rgba(124,106,90,0.13)] lg:w-auto lg:shrink-0 lg:pl-size-9"
-      >
-        <div
-          class="relative h-[290px] w-full overflow-hidden lg:h-[350px] lg:w-[450px]"
-        >
+      <div class="w-full drop-shadow-[12px_12px_0px_rgba(124,106,90,0.13)] lg:w-auto lg:shrink-0 lg:pl-size-9">
+        <div class="relative h-[290px] w-full overflow-hidden lg:h-[350px] lg:w-[450px]">
           <img
             src={withBase(image.src)}
             alt={image.alt}

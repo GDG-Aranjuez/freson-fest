@@ -14,14 +14,12 @@ const { links, class: className = "" } = Astro.props;
   class:list={["link-columns link-columns--adaptive", className]}
   aria-label="Enlaces del pie de página"
 >
-  {
-    links.map((link) => (
-      <a
-        href={withBase(link.href)}
-        class="py-size-5 type-paragraph-m text-subtitle hover:text-heading transition-colors"
-      >
-        {link.label}
-      </a>
-    ))
-  }
+  {links.map((link) => (
+    <a
+      href={withBase(link.href)}
+      class="py-size-5 type-paragraph-m text-subtitle hover:text-heading transition-colors"
+    >
+      {link.label}
+    </a>
+  ))}
 </nav>

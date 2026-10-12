@@ -50,27 +50,25 @@ const classes = [
 ];
 ---
 
-{
-  isLink ? (
-    <a
-      href={resolvedHref}
-      class:list={classes}
-      aria-disabled={disabled ? "true" : undefined}
-      aria-label={ariaLabel}
-      tabindex={disabled ? -1 : undefined}
-      target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
-    >
-      <slot />
-    </a>
-  ) : (
-    <button
-      type={type}
-      class:list={classes}
-      disabled={disabled}
-      aria-label={ariaLabel}
-    >
-      <slot />
-    </button>
-  )
-}
+{isLink ? (
+  <a
+    href={resolvedHref}
+    class:list={classes}
+    aria-disabled={disabled ? "true" : undefined}
+    aria-label={ariaLabel}
+    tabindex={disabled ? -1 : undefined}
+    target={isExternal ? "_blank" : undefined}
+    rel={isExternal ? "noopener noreferrer" : undefined}
+  >
+    <slot />
+  </a>
+) : (
+  <button
+    type={type}
+    class:list={classes}
+    disabled={disabled}
+    aria-label={ariaLabel}
+  >
+    <slot />
+  </button>
+)}

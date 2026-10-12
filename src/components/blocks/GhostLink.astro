@@ -38,24 +38,22 @@ const isExternal = isExternalHref(href, external);
   rel={isExternal ? "noopener noreferrer" : undefined}
 >
   <span>{label}</span>
-  {
-    showIcon && (
-      <svg
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill="none"
-        aria-hidden="true"
-        class="size-6 shrink-0"
-      >
-        <path
-          d="M7 17L17 7M17 7H9M17 7V15"
-          stroke="currentColor"
-          stroke-width="1.8"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-      </svg>
-    )
-  }
+  {showIcon && (
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      class="size-6 shrink-0"
+    >
+      <path
+        d="M7 17L17 7M17 7H9M17 7V15"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  )}
 </a>

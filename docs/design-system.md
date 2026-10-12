@@ -108,12 +108,16 @@ Capa de componentes + clases CSS. Prefiere el componente; las clases son la impl
 import Button from "@/components/ui/Button.astro"; import CtaNote from
 "@/components/blocks/CtaNote.astro"; import GhostLink from
 "@/components/blocks/GhostLink.astro";
-
 <Button href="/entradas">Consigue tu entrada</Button>
-<Button href="/entradas" size="small">Entradas</Button>
-<Button href="/entradas" block>Consigue tu entrada</Button>
-<Button variant="secondary" type="button">Ver más</Button>
-
+<Button href="/entradas" size="small">
+  Entradas
+</Button>
+<Button href="/entradas" block>
+  Consigue tu entrada
+</Button>
+<Button variant="secondary" type="button">
+  Ver más
+</Button>
 <CtaNote
   href="/entradas"
   label="Consigue tu entrada"

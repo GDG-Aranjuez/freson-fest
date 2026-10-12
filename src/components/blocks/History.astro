@@ -3,13 +3,12 @@ import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
 
 interface Props {
-  eyebrow: string;
   title: string;
-  body: string;
+  body: readonly string[];
   class?: string;
 }
 
-const { eyebrow, title, body, class: className = "" } = Astro.props;
+const { title, body, class: className = "" } = Astro.props;
 ---
 
 <Section
@@ -17,25 +16,18 @@ const { eyebrow, title, body, class: className = "" } = Astro.props;
   ariaLabelledby="about-history-heading"
 >
   <Container>
-    <header
-      class="flex max-w-[700px] flex-col items-start py-size-8 lg:mx-auto lg:max-w-[750px] lg:items-center lg:text-center"
-    >
-      <p
-        class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
-      >
-        {eyebrow}
-      </p>
+    <header class="flex max-w-[700px] flex-col items-start py-size-8 lg:mx-auto lg:max-w-[750px] lg:items-center lg:text-center">
       <h2
         id="about-history-heading"
         class="type-h2 pb-size-7 text-heading lg:leading-[0.9]"
       >
         {title}
       </h2>
-      <p
-        class="w-full font-body text-[16px] leading-[1.4] text-subtitle lg:text-[20px] lg:leading-[1.2]"
-      >
-        {body}
-      </p>
+      {body.map((paragraph) => (
+        <p class="w-full pb-size-5 font-body text-[16px] leading-[1.4] text-subtitle last:pb-0 lg:text-[20px] lg:leading-[1.2]">
+          {paragraph}
+        </p>
+      ))}
     </header>
   </Container>
 </Section>

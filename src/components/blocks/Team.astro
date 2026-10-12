@@ -5,47 +5,67 @@ import Section from "@/components/ui/Section.astro";
 import type { TeamGroup } from "@/data/team";
 
 interface Props {
+  headingId: string;
   title: string;
+  label: string;
   groups: TeamGroup[];
+  showGroupHeadings?: boolean;
 }
 
-const { title, groups } = Astro.props;
+const {
+  headingId,
+  title,
+  label,
+  groups,
+  showGroupHeadings = false,
+} = Astro.props;
 ---
 
-<Section class="!py-0 lg:!py-size-13" ariaLabelledby="about-team-heading">
+<Section class="!py-0 lg:!py-size-13" ariaLabelledby={headingId}>
   <Container>
-    <header class="max-w-[700px] pb-size-12 pt-size-8 lg:pb-size-14">
-      <h2
-        id="about-team-heading"
-        class="type-h2 text-center text-heading lg:text-left lg:leading-[0.9]"
-      >
-        {title}
-      </h2>
+    <header class="pb-size-12 pt-size-8 lg:pb-size-14">
+      <div class="flex items-center gap-size-5">
+        <span class="h-px flex-1 bg-stroke-strong" aria-hidden="true"></span>
+        <div class="relative shrink-0">
+          <h2
+            id={headingId}
+            class="whitespace-nowrap font-display text-[20px] font-semibold leading-tight text-highlighted sm:text-[28px] lg:text-[40px]"
+          >
+            {title}
+          </h2>
+          <span class="absolute right-0 top-0 inline-flex -translate-y-full items-center justify-center whitespace-nowrap rounded-sm bg-brand px-size-6 py-size-2 font-body text-[12px] font-semibold leading-none text-on-brand sm:left-[calc(100%_+_var(--spacing-size-5))] sm:right-auto sm:translate-x-0 sm:text-[14px]">
+            {label}
+          </span>
+        </div>
+        <span class="h-px flex-1 bg-stroke-strong" aria-hidden="true"></span>
+      </div>
     </header>
 
-    <div class="flex flex-col pb-size-13 lg:pb-0">
-      {
-        groups.map((group) => (
-          <section
-            class="pb-size-12 last:pb-0 lg:pb-size-14 lg:last:pb-0"
-            aria-labelledby={`about-team-${group.id}`}
-          >
-            <p
+    <div class="flex w-full flex-col pb-size-13 lg:pb-0">
+      {groups.map((group) => (
+        <section
+          class="pb-size-13 last:pb-0 lg:pb-size-14 lg:last:pb-0"
+          aria-labelledby={
+            showGroupHeadings ? `about-team-${group.id}` : headingId
+          }
+        >
+          {showGroupHeadings && (
+            <h3
               id={`about-team-${group.id}`}
-              class="pb-size-6 font-body text-[15px] font-light uppercase leading-none text-highlighted lg:text-[18px] lg:font-medium"
+              class="pb-size-6 text-center font-display text-[18px] font-semibold leading-tight text-heading sm:text-[20px]"
             >
               {group.eyebrow}
-            </p>
-            <ul class="flex list-none flex-col overflow-visible p-0">
-              {group.members.map((member) => (
-                <li class="relative">
-                  <CollaboratorCard member={member} />
-                </li>
-              ))}
-            </ul>
-          </section>
-        ))
-      }
+            </h3>
+          )}
+          <ul class="flex list-none flex-wrap justify-center gap-size-7 p-0">
+            {group.members.map((member) => (
+              <li class="w-full sm:w-[calc(50%_-_12px)] lg:w-[calc(25%_-_18px)]">
+                <CollaboratorCard member={member} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
   </Container>
 </Section>
