@@ -5,10 +5,11 @@ export type TeamSocials = SocialHrefs;
 export interface TeamMember {
   id: string;
   name: string;
-  role: string;
+  role?: string;
   company?: string;
   projectRole?: string;
   image: string;
+  imageAlt?: string;
   socials: TeamSocials;
 }
 
@@ -19,7 +20,7 @@ export interface TeamGroup {
 }
 
 export const team = {
-  title: "Las personas que lo hacen posible",
+  title: "Líderes y Organización",
   groups: [
     {
       id: "organization",
@@ -46,6 +47,16 @@ export const team = {
           },
         },
         {
+          id: "org-dani-brinzei",
+          name: "Daniel Brinzei",
+          role: "Senior QA Engineer",
+          company: "Zartis",
+          image: "/organizers/daniel-brinzei.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/daniel-brinzei/",
+          },
+        },
+        {
           id: "org-juanje-cilla",
           name: "Juanje Cilla Ugarte",
           role: "Senior Software Engineer",
@@ -53,16 +64,6 @@ export const team = {
           image: "/organizers/juanje-cilla.jpg",
           socials: {
             linkedin: "https://www.linkedin.com/in/juanje-cilla/",
-          },
-        },
-        {
-          id: "org-dani-brinzei",
-          name: "Dani Brinzei",
-          role: "Senior QA Engineer",
-          company: "Zartis",
-          image: "/organizers/daniel-brinzei.webp",
-          socials: {
-            linkedin: "https://www.linkedin.com/in/daniel-brinzei/",
           },
         },
         {
@@ -75,11 +76,78 @@ export const team = {
             github: "https://github.com/nicolasmorenog",
           },
         },
+        {
+          id: "org-javier-munoz",
+          name: "Javier Muñoz Muñoz",
+          role: "iOS Engineer",
+          company: "NTT Data",
+          image: "/organizers/javier.jpg",
+          imageAlt: "Fotografía de Javier Muñoz Muñoz",
+          socials: {
+            linkedin:
+              "https://www.linkedin.com/in/javier-mu%C3%B1oz-mu%C3%B1oz-1ab43b383/",
+          },
+        },
+      ],
+    },
+    {
+      id: "live-production",
+      eyebrow: "Producción y Experiencia en Vivo",
+      members: [
+        {
+          id: "live-sahily-garcia-sosa",
+          name: "Sahily García Sosa",
+          role: "Producción Audiovisual",
+          image: "/Production and Live Experience/sahily.jpg",
+          imageAlt: "Fotografía de Sahily García Sosa",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/sahilygarciasosa/",
+            behance:
+              "https://www.behance.net/gallery/254558789/PORTAFOLIO_SAHILY-GARCIA_EDITORA-DE-VIDEO",
+          },
+        },
+        {
+          id: "live-irene-ruiz-pozo",
+          name: "Irene Ruiz Pozo",
+          role: "Presentadora",
+          image: "/Production and Live Experience/1576055966928.jpeg",
+          imageAlt: "Fotografía de Irene Ruiz Pozo",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/ireneruizpozo/",
+          },
+        },
+        {
+          id: "live-raul-fernandez",
+          name: "Raúl Fernández",
+          role: "Magia y Mentalismo",
+          image:
+            "/Production and Live Experience/photo_2026-10-02_12-38-37.jpg",
+          imageAlt: "Fotografía de Raúl Fernández haciendo magia",
+          socials: {
+            instagram: "https://www.instagram.com/magicraulin",
+          },
+        },
+      ],
+    },
+    {
+      id: "pm",
+      eyebrow: "Project Management",
+      members: [
+        {
+          id: "pm-raul",
+          name: "Raúl Gambalonga",
+          role: "Scrum Master & PO",
+          image: "/pm/raul-gambalonga.png",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/raul-gambalonga",
+            github: "https://github.com/raulgambalonga",
+          },
+        },
       ],
     },
     {
       id: "design",
-      eyebrow: "DISEÑO",
+      eyebrow: "Diseño y Experiencia Digital",
       members: [
         {
           id: "design-xiada-venn",
@@ -101,27 +169,22 @@ export const team = {
             behance: "https://www.behance.net/josefinanieto1",
           },
         },
-      ],
-    },
-    {
-      id: "pm",
-      eyebrow: "PROJECT MANAGEMENT",
-      members: [
         {
-          id: "pm-raul",
-          name: "Raúl Gambalonga",
-          role: "Scrum Master & PO",
-          image: "/pm/raul-gambalonga.png",
+          id: "design-cristina-lizaur",
+          name: "Cristina Lizaur",
+          role: "Ilustradora",
+          image: "/design/image.webp",
+          imageAlt: "Fotografía de Cristina Lizaur",
           socials: {
-            linkedin: "https://www.linkedin.com/in/raul-gambalonga",
-            github: "https://github.com/raulgambalonga",
+            linkedin:
+              "https://www.linkedin.com/in/cristina-plizaur-design-ux-ui/?isSelfProfile=false",
           },
         },
       ],
     },
     {
       id: "development",
-      eyebrow: "DESARROLLO",
+      eyebrow: "Desarrollo y soporte web",
       members: [
         {
           id: "dev-luis-octavio-mota",
@@ -148,7 +211,7 @@ export const team = {
         {
           id: "dev-belen",
           name: "Belén Suarez",
-          role: "QA Tester",
+          role: "FullStack Developer",
           image: "/devs/belen.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/belen-suarez-42a4331b5/",
