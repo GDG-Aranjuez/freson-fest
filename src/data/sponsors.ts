@@ -49,17 +49,6 @@ export const highlights = {
   ],
 };
 
-export const trustedBy = {
-  title: "Ya confían en nosotros",
-  images: [
-    { src: "", alt: "Sponsor 1" },
-    { src: "", alt: "Sponsor 2" },
-    { src: "", alt: "Sponsor 3" },
-    { src: "", alt: "Sponsor 4" },
-    { src: "", alt: "Sponsor 5" },
-  ],
-};
-
 export const quote = {
   text: "Detrás de cada charla y cada conexión hay una comunidad que no deja de crecer. ",
   description:
@@ -164,3 +153,13 @@ export const categories: SponsorCategory[] = [
     ],
   },
 ];
+
+export const trustedBy = {
+  title: "Ya confían en nosotros",
+  images: categories.flatMap(({ sponsors }) =>
+    sponsors.map(({ image, description }) => ({
+      src: image ?? "",
+      alt: description,
+    })),
+  ),
+};
