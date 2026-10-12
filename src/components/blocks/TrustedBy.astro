@@ -17,22 +17,26 @@ const { title, images } = Astro.props;
     </h2>
 
     <div class="relative w-full overflow-hidden flex [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
-      <div class="flex gap-size-4 lg:gap-size-6 animate-marquee whitespace-nowrap shrink-0">
-        {[...images, ...images].map((img) => (
-          <div class="w-[120px] h-[80px] lg:w-[200px] lg:h-[133px] bg-white/5 flex items-center justify-center shrink-0 border border-white/10 overflow-hidden">
-            {img.src ? (
-              <img
-                src={img.src}
-                alt={img.alt}
-                class="w-full h-full object-cover"
-                loading="lazy"
-              />
-            ) : (
-              <div
-                class="h-full w-full bg-neutral-100 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px]"
-                aria-hidden="true"
-              />
-            )}
+      <div class="flex animate-marquee shrink-0">
+        {Array.from({ length: 4 }, () => (
+          <div class="flex shrink-0 gap-size-4 pr-size-4 whitespace-nowrap lg:gap-size-6 lg:pr-size-6">
+            {images.map((img) => (
+              <div class="w-[120px] h-[80px] lg:w-[200px] lg:h-[133px] bg-white/5 flex items-center justify-center shrink-0 border border-white/10 overflow-hidden">
+                {img.src ? (
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    class="max-h-[85%] max-w-[85%] object-contain"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div
+                    class="h-full w-full bg-neutral-100 bg-[radial-gradient(#D1D5DB_1px,transparent_1px)] [background-size:12px_12px]"
+                    aria-hidden="true"
+                  />
+                )}
+              </div>
+            ))}
           </div>
         ))}
       </div>
