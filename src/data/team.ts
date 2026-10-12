@@ -175,7 +175,10 @@ export const team = {
           role: "Ilustradora",
           image: "/design/image.webp",
           imageAlt: "Fotografía de Cristina Lizaur",
-          socials: {},
+          socials: {
+            linkedin:
+              "https://www.linkedin.com/in/cristina-plizaur-design-ux-ui/?isSelfProfile=false",
+          },
         },
       ],
     },
