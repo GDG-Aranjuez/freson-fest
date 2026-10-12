@@ -56,8 +56,8 @@ export const team = {
           },
         },
         {
-          id: "org-daniel-brenzei",
-          name: "Daniel Brenzei",
+          id: "org-dani-brinzei",
+          name: "Dani Brinzei",
           role: "Senior QA Engineer",
           company: "Zartis",
           image: "/organizers/daniel-brinzei.webp",
@@ -127,7 +127,7 @@ export const team = {
           id: "dev-luis-octavio-mota",
           name: "Luis Octavio Mota Verdasco",
           role: "Site Reliability Engineering",
-          projectRole: "CTO",
+          projectRole: "Tech Lead",
           image: "/devs/lucho.png",
           socials: {
             linkedin: "https://www.linkedin.com/in/luisoctaviomotaverdasco",
