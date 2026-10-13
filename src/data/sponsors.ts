@@ -4,6 +4,7 @@ import { site } from "@/data/site";
 export interface Sponsor {
   image?: string;
   description: string;
+  href?: string;
 }
 
 export interface SponsorCategory {
@@ -45,17 +46,6 @@ export const highlights = {
       title: "Comunidad",
       description: "Organizado por y para quienes hacen posible este evento.",
     },
-  ],
-};
-
-export const trustedBy = {
-  title: "Ya confían en nosotros",
-  images: [
-    { src: "", alt: "Sponsor 1" },
-    { src: "", alt: "Sponsor 2" },
-    { src: "", alt: "Sponsor 3" },
-    { src: "", alt: "Sponsor 4" },
-    { src: "", alt: "Sponsor 5" },
   ],
 };
 
@@ -133,10 +123,22 @@ export const categories: SponsorCategory[] = [
       {
         image: "/sponsors/logo-ayuntamiento-aranjuez.png",
         description: "Ayuntamiento de Aranjuez",
+        href: "https://www.aranjuez.es/",
       },
       {
         image: "/sponsors/logo-google-developers-groups.png",
         description: "Google Developer Groups",
+        href: "https://gdg.community.dev/",
+      },
+    ],
+  },
+  {
+    categoryName: "Plus",
+    sponsors: [
+      {
+        image: "/sponsors/logo_TB_positivo-01_Mesa_de_trabajo_1_copia.png",
+        description: "The Bridge Tech",
+        href: "https://thebridge.tech/",
       },
     ],
   },
@@ -146,7 +148,18 @@ export const categories: SponsorCategory[] = [
       {
         image: "/sponsors/logo-adopta-un-junior.png",
         description: "Adopta un Junior",
+        href: "https://adoptaunjunior.es/",
       },
     ],
   },
 ];
+
+export const trustedBy = {
+  title: "Ya confían en nosotros",
+  images: categories.flatMap(({ sponsors }) =>
+    sponsors.map(({ image, description }) => ({
+      src: image ?? "",
+      alt: description,
+    }))
+  ),
+};
