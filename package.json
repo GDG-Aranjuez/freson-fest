@@ -28,14 +28,19 @@
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/eslint-plugin": "^8.71.1",
     "@typescript-eslint/parser": "^8.71.1",
     "eslint": "^10.12.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-prettier": "^5.5.6",
+<<<<<<< HEAD
     "globals": "^17.12.0",
     "prettier": "^3.9.9",
+=======
+    "globals": "^17.13.0",
+    "prettier": "^3.9.8",
+>>>>>>> origin/main
     "prettier-plugin-astro": "^1.1.1",
     "typescript": "^6.0.3"
   }
