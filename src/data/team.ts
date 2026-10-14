@@ -218,6 +218,14 @@ export const team = {
             github: "https://github.com/belensuarez477",
           },
         },
+        {
+          id: "dev-carmen",
+          name: "Carmen",
+          image: "/devs/Foto_Linkedin_maricarmen.webp",
+          socials: {
+            linkedin: "https://www.linkedin.com/in/carmentajuelo/",
+          },
+        },
       ],
     },
   ] satisfies TeamGroup[],
