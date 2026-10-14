@@ -29,11 +29,16 @@ export const footerSections: FooterSection[] = [
     title: "Comunidad",
     links: [
       { href: "/nosotros", label: "GDG Aranjuez" },
-      { href: "/ediciones-anteriores", label: "Ediciones anteriores" },
+      { href: "/patrocinadores", label: "Patrocinadores" },
+      { href: "/nosotros", label: "Nosotros" },
     ],
   },
   {
     title: "Contacto",
-    links: [{ href: contactMailto, label: "Correo electrónico" }],
+    links: [
+      { href: contactMailto, label: "Correo electrónico" },
+      { href: "/patrocinadores#contacto", label: "Hazte patrocinador" },
+      { href: "/cfp", label: "Propón una charla" },
+    ],
   },
 ];
