@@ -18,13 +18,13 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
 
 <div
   id="nav-mobile"
-  class="hidden lg:hidden fixed inset-0 z-50 bg-page"
+  class="hidden lg:hidden fixed inset-0 z-50 bg-page overflow-hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Menú de navegación"
 >
-  <div class="flex flex-col w-full h-full px-size-7 pt-size-7 pb-size-12">
-    <div class="flex justify-end w-full">
+  <div class="flex flex-col w-full h-dvh px-size-7 pt-size-7 pb-size-12">
+    <div class="flex justify-end w-full shrink-0">
       <button
         id="nav-close"
         type="button"
@@ -36,10 +36,10 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
     </div>
 
     <nav
-      class="flex flex-col items-center justify-center flex-1 gap-size-8 w-full"
+      class="flex flex-col items-center flex-1 min-h-0 w-full"
       aria-label="Navegación móvil"
     >
-      <div class="flex flex-col items-center gap-size-6 w-full max-w-[280px]">
+      <div class="flex flex-col items-center justify-center flex-1 min-h-0 overflow-y-auto gap-size-4 w-full max-w-[280px]">
         {links.map(({ href, label }) => {
           const active = isActive(pathname, href);
           return (
@@ -53,7 +53,12 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
           );
         })}
       </div>
-      <Button href={ticketsHref} size="small" block class="max-w-[280px]">
+      <Button
+        href={ticketsHref}
+        size="small"
+        block
+        class="max-w-[280px] shrink-0 mt-size-6"
+      >
         {ticketsLabel}
       </Button>
     </nav>
