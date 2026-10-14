@@ -34,13 +34,8 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.2.1",
     "eslint-plugin-prettier": "^5.5.6",
-<<<<<<< HEAD
-    "globals": "^17.12.0",
-    "prettier": "^3.9.9",
-=======
     "globals": "^17.13.0",
-    "prettier": "^3.9.8",
->>>>>>> origin/main
+    "prettier": "^3.9.9",
     "prettier-plugin-astro": "^1.1.1",
     "typescript": "^6.0.3"
   }
