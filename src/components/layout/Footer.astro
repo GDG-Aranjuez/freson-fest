@@ -113,10 +113,10 @@ import { withBase } from "@/utils/path";
 
   <!-- Desktop View -->
   <div class="hidden md:block">
-    <Container class="flex flex-col items-center pb-size-13 px-size-6 lg:px-size-13">
-      <div class="flex w-full max-w-[1200px] justify-between items-start border-t border-stroke-strong pt-size-13 pb-size-10 gap-8">
-        <!-- Branding y Colaborador (Izquierda) -->
-        <div class="flex min-w-[280px] max-w-[320px] flex-col items-start">
+    <Container class="flex flex-col items-center pb-size-13 px-size-8 lg:pl-size-14 lg:pr-size-8">
+      <div class="grid w-full max-w-[1400px] grid-cols-[1fr_auto_auto_auto] gap-x-size-8 items-start pt-size-13 pb-size-10">
+        <!-- Identidad del evento -->
+        <div class="flex flex-col items-start">
           <p class="type-paragraph-m pb-size-6 text-body">
             {footerMeta.tagline}
           </p>
@@ -143,48 +143,43 @@ import { withBase } from "@/utils/path";
               alt={footerMeta.gdg.alt}
               width="282"
               height="24"
-              class="h-6 w-auto"
+              class="h-6 w-auto max-w-full"
             />
           </a>
         </div>
 
-        <!-- Contenedor derecho: Navegación + Redes debajo -->
-        <div class="flex flex-col items-end w-[465px]">
-          <!-- Grilla de Navegación de 3 columnas -->
+        <!-- Navegación: Evento, Comunidad y Contacto (con redes bajo Contacto) -->
+        {footerSections.map(({ title, links }, index) => (
           <nav
-            class="grid grid-cols-3 w-full gap-4"
-            aria-label="Enlaces del pie de página"
+            class="flex flex-col items-start"
+            aria-label={`Enlaces del pie de página: ${title}`}
           >
-            {footerSections.map(({ title, links }) => (
-              <div class="flex flex-col items-start">
-                <h3 class="pb-size-5 font-body text-base leading-[1.4] font-normal text-heading">
-                  {title}
-                </h3>
-                <ul class="flex flex-col items-start gap-y-2">
-                  {links.map(({ href, label }) => (
-                    <li>
-                      <a
-                        href={withBase(href)}
-                        class="type-paragraph-m text-highlighted hover:text-brand-hover transition-colors"
-                      >
-                        {label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+            <h3 class="pb-size-5 font-body text-base leading-[1.4] font-normal text-heading">
+              {title}
+            </h3>
+            <ul class="flex flex-col items-start gap-y-2">
+              {links.map(({ href, label }) => (
+                <li>
+                  <a
+                    href={withBase(href)}
+                    class="type-paragraph-m text-highlighted hover:text-brand-hover transition-colors"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+            {index === footerSections.length - 1 && (
+              <div class="pt-size-6">
+                <SocialLinks />
               </div>
-            ))}
+            )}
           </nav>
-
-          <!-- Redes Sociales en la esquina inferior derecha del bloque -->
-          <div class="flex justify-end pt-6 w-full">
-            <SocialLinks />
-          </div>
-        </div>
+        ))}
       </div>
 
       <!-- Barra Inferior (Legal y Ayuda) -->
-      <div class="flex w-full max-w-[1200px] items-center border-t border-stroke-strong pt-size-8">
+      <div class="flex w-full max-w-[1400px] items-center pt-size-8">
         <div class="flex min-w-0 flex-1 items-start py-size-5">
           <a
             href={withBase(footerMeta.conduct.href)}
