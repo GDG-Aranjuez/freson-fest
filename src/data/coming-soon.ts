@@ -5,6 +5,7 @@ export interface ComingSoonPage {
 }
 
 export const comingSoonPages: ComingSoonPage[] = [
+  { slug: "cfp", title: "CFP" },
   { slug: "codigo-conducta", title: "Código de conducta" },
   { slug: "ubicacion", title: "Ubicación" },
   { slug: "ediciones-anteriores", title: "Ediciones anteriores" },
