@@ -11,8 +11,7 @@ export interface HelpContactForm {
 
 export const hero = {
   eyebrow: "Ayuda",
-  title: "¿Necesitas ayuda?",
-  subtitle: "Encuentra toda la información que necesitas.",
+  title: "Encuentra la información que necesitas",
 } as const;
 
 export const contact = {
