@@ -4,7 +4,7 @@ import MobileNav from "@/components/layout/MobileNav.astro";
 import Button from "@/components/ui/Button.astro";
 import CloseIcon from "@/components/ui/CloseIcon.astro";
 import Container from "@/components/ui/Container.astro";
-import { mainNavLinks } from "@/data/nav";
+import { mainNavLinks, mobileNavLinks } from "@/data/nav";
 import { site } from "@/data/site";
 import { ticketCtas } from "@/data/tickets";
 import { withBase } from "@/utils/path";
@@ -57,7 +57,7 @@ const pathname = Astro.url.pathname;
 </header>
 
 <MobileNav
-  links={mainNavLinks}
+  links={mobileNavLinks}
   pathname={pathname}
   ticketsHref={ticketCtas.nav.href}
   ticketsLabel={ticketCtas.nav.label}
