@@ -12,6 +12,7 @@ interface Props {
   more?: { href: string; label: string };
   class?: string;
   hideSubtitleOnDesktop?: boolean;
+  headingAsEyebrow?: boolean;
 }
 
 const {
@@ -22,6 +23,7 @@ const {
   more,
   class: className = "!pt-size-9 !pb-size-15 lg:!pt-size-13",
   hideSubtitleOnDesktop = false,
+  headingAsEyebrow = false,
 } = Astro.props;
 ---
 
@@ -29,7 +31,14 @@ const {
   <Container>
     <div data-faq-root>
       <header class="pb-size-7">
-        <h2 id={headingId} class="type-h2 pb-size-7 lg:pb-0">
+        <h2
+          id={headingId}
+          class:list={[
+            headingAsEyebrow
+              ? "type-eyebrow-medium pb-size-6 font-body uppercase text-highlighted"
+              : "type-h2 pb-size-7 lg:pb-0",
+          ]}
+        >
           {heading}
         </h2>
         {subtitle && (

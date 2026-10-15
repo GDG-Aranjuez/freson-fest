@@ -13,7 +13,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 >
   <HeroPlain
     headingId="help-hero-heading"
-    eyebrow={hero.eyebrow}
     title={hero.title}
     subtitle={hero.subtitle}
     class="!py-size-13 lg:!pt-size-13 lg:!pb-size-9"
@@ -22,6 +21,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   <FaqList
     headingId="help-faqs-heading"
     heading={helpFaqs.heading}
+    headingAsEyebrow
     items={helpFaqs.items}
     more={helpFaqs.more}
     class="!pt-size-0 !pb-size-15 lg:!pb-size-16"
