@@ -2,6 +2,7 @@
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
+import { fileURLToPath } from "node:url";
 
 import react from "@astrojs/react";
 
@@ -12,6 +13,20 @@ const base = "/";
 export default defineConfig({
   vite: {
     plugins: [...tailwindcss()],
+    resolve: {
+      alias: [
+        {
+          // The package browser field points at the CDN stub, which does not export initForm.
+          find: /^@formspree\/ajax$/,
+          replacement: fileURLToPath(
+            new URL(
+              "./node_modules/@formspree/ajax/dist/index.mjs",
+              import.meta.url
+            )
+          ),
+        },
+      ],
+    },
   },
   site,
   base,
