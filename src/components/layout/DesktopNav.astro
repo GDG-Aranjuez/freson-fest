@@ -11,7 +11,7 @@ const { links } = Astro.props;
 ---
 
 <nav
-  class="hidden lg:flex items-center gap-size-8"
+  class="hidden lg:flex items-center gap-2"
   aria-label="Navegación principal"
 >
   {links.map(({ href, label }) => {
@@ -22,7 +22,9 @@ const { links } = Astro.props;
       </a>
     );
   })}
-  <slot />
+  <div class="ml-4 flex items-center">
+    <slot />
+  </div>
 </nav>
 
 <script>
