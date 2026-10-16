@@ -14,6 +14,7 @@ interface Props {
   class?: string;
   external?: boolean;
   "aria-label"?: string;
+  "data-fs-submit-btn"?: boolean;
 }
 
 const {
@@ -26,6 +27,7 @@ const {
   class: className = "",
   external = false,
   "aria-label": ariaLabel,
+  "data-fs-submit-btn": formspreeSubmit = false,
 } = Astro.props;
 
 const isLink = typeof href === "string";
@@ -68,6 +70,7 @@ const classes = [
     class:list={classes}
     disabled={disabled}
     aria-label={ariaLabel}
+    data-fs-submit-btn={formspreeSubmit ? true : undefined}
   >
     <slot />
   </button>

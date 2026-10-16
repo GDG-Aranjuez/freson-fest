@@ -113,6 +113,11 @@ export const contact = {
     messageLabel: "¿Quieres comentarnos algo? (opcional)",
     submitButton: "Contacta con nosotros",
     requiredFootnote: "* campo obligatorio",
+    subject: "Patrocinio FresON Fest",
+    successMessage:
+      "Gracias. Hemos recibido tu mensaje y te responderemos pronto.",
+    formError: "No se ha podido enviar el formulario. Inténtalo de nuevo.",
+    fieldError: "Revisa este campo.",
   },
 };
 

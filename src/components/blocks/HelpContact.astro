@@ -16,6 +16,10 @@ export interface HelpContactContent {
     messageLabel: string;
     requiredFootnote: string;
     submitButton: string;
+    subject: string;
+    successMessage: string;
+    formError: string;
+    fieldError: string;
   };
 }
 
@@ -24,6 +28,7 @@ interface Props {
 }
 
 const { contact } = Astro.props;
+const formspreeId = "mqpewblb";
 ---
 
 <Section
@@ -57,11 +62,17 @@ const { contact } = Astro.props;
         <form
           class="flex w-full flex-col items-start gap-size-0 py-size-6"
           data-contact-form
-          data-mailto={contact.email}
-          action={`mailto:${contact.email}`}
-          method="post"
-          enctype="text/plain"
+          data-formspree-id={formspreeId}
         >
+          <input type="hidden" name="_subject" value={contact.form.subject} />
+          <p
+            class="type-label w-full pb-size-4 text-heading"
+            data-fs-success
+            role="status"
+          >
+            {contact.form.successMessage}
+          </p>
+
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
             <label for="help-name" class="type-label w-full text-subtitle">
               {contact.form.nameLabel} *
@@ -71,8 +82,12 @@ const { contact } = Astro.props;
               id="help-name"
               name="name"
               required
+              data-fs-field
               class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p class="type-label w-full text-highlighted" data-fs-error="name">
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
@@ -83,8 +98,15 @@ const { contact } = Astro.props;
               type="text"
               id="help-company"
               name="company"
+              data-fs-field
               class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p
+              class="type-label w-full text-highlighted"
+              data-fs-error="company"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4">
@@ -96,8 +118,12 @@ const { contact } = Astro.props;
               id="help-email"
               name="email"
               required
+              data-fs-field
               class="h-[55px] w-full border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p class="type-label w-full text-highlighted" data-fs-error="email">
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div class="flex w-full flex-col items-start gap-size-3 py-size-4 lg:gap-size-5 lg:py-size-6">
@@ -109,15 +135,35 @@ const { contact } = Astro.props;
               name="message"
               rows="4"
               required
+              data-fs-field
               class="w-full resize-y border border-stroke-strong bg-surface px-size-6 py-size-3 text-heading focus:outline-none focus:border-brand transition-colors"
             ></textarea>
+            <p
+              class="type-label w-full text-highlighted"
+              data-fs-error="message"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <p class="type-label w-full py-size-6 text-subtitle">
             {contact.form.requiredFootnote}
           </p>
 
-          <Button type="submit" block={true} class="mt-size-6 lg:w-[320px]">
+          <p
+            class="type-label w-full pb-size-4 text-highlighted"
+            data-fs-error=""
+            role="alert"
+          >
+            {contact.form.formError}
+          </p>
+
+          <Button
+            type="submit"
+            block={true}
+            class="mt-size-6 lg:w-[320px]"
+            data-fs-submit-btn
+          >
             {contact.form.submitButton}
           </Button>
         </form>

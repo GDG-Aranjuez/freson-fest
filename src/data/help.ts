@@ -7,6 +7,10 @@ export interface HelpContactForm {
   messageLabel: string;
   requiredFootnote: string;
   submitButton: string;
+  subject: string;
+  successMessage: string;
+  formError: string;
+  fieldError: string;
 }
 
 export const hero = {
@@ -27,5 +31,10 @@ export const contact = {
     messageLabel: "¿Quieres comentarnos algo?",
     requiredFootnote: "* Campo obligatorio",
     submitButton: "Contacta con nosotros",
+    subject: "Ayuda FresON Fest",
+    successMessage:
+      "Gracias. Hemos recibido tu mensaje y te responderemos pronto.",
+    formError: "No se ha podido enviar el formulario. Inténtalo de nuevo.",
+    fieldError: "Revisa este campo.",
   } satisfies HelpContactForm,
 } as const;

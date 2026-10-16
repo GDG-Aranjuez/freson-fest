@@ -17,6 +17,10 @@ export interface SponsorContactContent {
     messageLabel: string;
     submitButton: string;
     requiredFootnote: string;
+    subject: string;
+    successMessage: string;
+    formError: string;
+    fieldError: string;
   };
 }
 
@@ -25,6 +29,7 @@ interface Props {
 }
 
 const { contact } = Astro.props;
+const formspreeId = "mzedygvj";
 ---
 
 <Section class="!py-size-13 lg:py-size-12">
@@ -55,11 +60,17 @@ const { contact } = Astro.props;
         <form
           class="flex flex-col gap-y-6 w-full lg:max-w-[504px]"
           data-contact-form
-          data-mailto={contact.email}
-          action={`mailto:${contact.email}`}
-          method="post"
-          enctype="text/plain"
+          data-formspree-id={formspreeId}
         >
+          <input type="hidden" name="_subject" value={contact.form.subject} />
+          <p
+            class="type-label w-full text-heading"
+            data-fs-success
+            role="status"
+          >
+            {contact.form.successMessage}
+          </p>
+
           <div>
             <label
               for="name"
@@ -72,8 +83,15 @@ const { contact } = Astro.props;
               id="name"
               name="name"
               required
+              data-fs-field
               class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p
+              class="type-label w-full pt-2 text-highlighted"
+              data-fs-error="name"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div>
@@ -87,8 +105,15 @@ const { contact } = Astro.props;
               type="text"
               id="company"
               name="company"
+              data-fs-field
               class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p
+              class="type-label w-full pt-2 text-highlighted"
+              data-fs-error="company"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div>
@@ -103,8 +128,15 @@ const { contact } = Astro.props;
               id="email"
               name="email"
               required
+              data-fs-field
               class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors"
             />
+            <p
+              class="type-label w-full pt-2 text-highlighted"
+              data-fs-error="email"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div>
@@ -118,15 +150,29 @@ const { contact } = Astro.props;
               id="message"
               name="message"
               rows="4"
+              data-fs-field
               class="w-full bg-surface border border-white/10 rounded-none px-4 py-2.5 text-[14px] text-heading focus:outline-none focus:border-brand transition-colors resize-y"
             ></textarea>
+            <p
+              class="type-label w-full pt-2 text-highlighted"
+              data-fs-error="message"
+            >
+              {contact.form.fieldError}
+            </p>
           </div>
 
           <div class="flex flex-col gap-y-4">
             <p class="font-body text-[14px] leading-[1.4] text-subtitle/80 font-normal">
               {contact.form.requiredFootnote}
             </p>
-            <Button type="submit" block={true}>
+            <p
+              class="type-label w-full text-highlighted"
+              data-fs-error=""
+              role="alert"
+            >
+              {contact.form.formError}
+            </p>
+            <Button type="submit" block={true} data-fs-submit-btn>
               {contact.form.submitButton}
             </Button>
           </div>

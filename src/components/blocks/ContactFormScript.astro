@@ -1,25 +1,18 @@
 <script>
-  import { buildContactMailto } from "@/utils/contact-mailto";
+  import { initForm } from "@formspree/ajax";
 
   function initContactForms() {
     document.querySelectorAll("[data-contact-form]").forEach((node) => {
       if (!(node instanceof HTMLFormElement)) return;
       if (node.dataset.bound === "true") return;
+      const formId = node.dataset.formspreeId;
+      if (!formId) return;
       node.dataset.bound = "true";
 
-      node.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const to = node.dataset.mailto;
-        if (!to) return;
-
-        const data = new FormData(node);
-        window.location.href = buildContactMailto({
-          to,
-          name: String(data.get("name") ?? ""),
-          company: String(data.get("company") ?? ""),
-          email: String(data.get("email") ?? ""),
-          message: String(data.get("message") ?? ""),
-        });
+      initForm({
+        formElement: node,
+        formId,
+        useDefaultStyles: false,
       });
     });
   }
@@ -27,3 +20,19 @@
   initContactForms();
   document.addEventListener("astro:page-load", initContactForms);
 </script>
+
+<style is:global>
+  [data-contact-form] [data-fs-error]:not([data-fs-active]),
+  [data-contact-form] [data-fs-success]:not([data-fs-active]) {
+    display: none;
+  }
+
+  [data-contact-form] [data-fs-error][data-fs-active],
+  [data-contact-form] [data-fs-success][data-fs-active] {
+    display: block;
+  }
+
+  [data-contact-form] [data-fs-field][aria-invalid="true"] {
+    border-color: var(--color-brand);
+  }
+</style>
