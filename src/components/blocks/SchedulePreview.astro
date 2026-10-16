@@ -40,8 +40,7 @@ const workshops = sessions.filter((session) => session.type === "Taller");
       </header>
 
       <div class="relative w-full">
-        {/* Pestañas (Tabs) */}
-        <div class="flex gap-1 md:gap-1" role="tablist">
+        <div class="flex items-center" role="tablist">
           <button
             id="tab-charlas"
             type="button"
@@ -49,7 +48,7 @@ const workshops = sessions.filter((session) => session.type === "Taller");
             aria-selected="true"
             aria-controls="panel-charlas"
             data-tab-btn="charlas"
-            class="tab-trapezoid relative z-10 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-surface font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-heading transition-colors lg:text-[20px]"
+            class="relative z-20 flex h-[56px] w-[256px] cursor-pointer items-center justify-center rounded-t-lg bg-[#1f1c18] font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-heading shadow-md transition-all lg:text-[20px]"
           >
             Charlas
           </button>
@@ -60,12 +59,11 @@ const workshops = sessions.filter((session) => session.type === "Taller");
             aria-selected="false"
             aria-controls="panel-workshops"
             data-tab-btn="workshops"
-            class="tab-trapezoid relative z-0 flex h-[56px] w-[256px] cursor-pointer items-center justify-center bg-[#171512] font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-subtitle transition-colors hover:text-heading lg:text-[20px]"
+            class="relative z-10 -ml-6 flex h-[56px] w-[256px] cursor-pointer items-center justify-center rounded-t-lg bg-[#141210] font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-subtitle/60 transition-all hover:text-subtitle hover:opacity-100 lg:text-[20px]"
           >
             Workshops
           </button>
         </div>
-
         {/* Contenedor principal de 1040px */}
         <div class="relative z-10 border border-stroke-strong/30 bg-surface">
           {/* Panel Charlas */}
