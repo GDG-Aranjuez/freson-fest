@@ -24,7 +24,7 @@ import { categories as sponsorCategories } from "@/data/sponsors";
 import { site } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const homeSessions = agenda.days[0]?.sessions ?? [];
+const homeSessions = (agenda.days[0]?.sessions ?? []).slice(0, 9);
 ---
 
 <BaseLayout>
