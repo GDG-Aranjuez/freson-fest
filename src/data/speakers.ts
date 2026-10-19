@@ -28,7 +28,7 @@ export const speakers: Speaker[] = [
     id: 1,
     name: "Sergi",
     lastName: "Olives",
-    role: "Developer Lead",
+    role: "Lead Developer",
     Empresa: "Merkle",
     image: "/speakers/sergi-olives.jpg",
     talkDescription:
@@ -42,7 +42,7 @@ export const speakers: Speaker[] = [
     name: "Laura",
     lastName: "Morillo-Velarde Rodríguez",
     role: "Tech Lead",
-    Empresa: "seedtag",
+    Empresa: "Seedtag",
     image: "/speakers/laura-morillo.jpg",
     talkDescription:
       "Escuela de HechicerIA. Taller práctico sobre cómo integrar herramientas de inteligencia artificial en flujos reales de desarrollo.",
@@ -54,7 +54,7 @@ export const speakers: Speaker[] = [
     id: 3,
     name: "Sergio",
     lastName: "Mahía",
-    role: "Software Engineer",
+    role: "Penetration Tester",
     Empresa: "KPMG",
     image: "/speakers/sergio-mahia.png",
     talkDescription:
@@ -132,7 +132,7 @@ export const speakers: Speaker[] = [
     id: 9,
     name: "Nicolás",
     lastName: "Patarino",
-    role: "Staff Software Engineer",
+    role: "Software Engineer",
     Empresa: "Eventbrite",
     image: "/speakers/nicolas-patarino.jpg",
     talkDescription:
@@ -145,8 +145,8 @@ export const speakers: Speaker[] = [
     id: 10,
     name: "Máximo",
     lastName: "Fernández Núñez",
-    role: "Machine Learning Engineer",
-    Empresa: "unusuals",
+    role: "AI Engineer",
+    Empresa: "MaximoFN",
     image: "/speakers/maximo-fernandez.jpg",
     talkDescription:
       "OpenClaw todo el mundo te enseña a usarlo, nadie a hacerlo. Construyendo herramientas de IA desde los cimientos.",
