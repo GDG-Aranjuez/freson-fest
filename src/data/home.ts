@@ -32,7 +32,7 @@ export interface HighlightImage {
 export const hero = {
   ...eventDate,
   titleLead: "Vuelve el ",
-  titleHighlight: "devfest",
+  titleHighlight: "DevFest",
   titleAfterPart1: " a la",
   titleAfterPart2: "ciudad de Aranjuez",
   subtitle:
