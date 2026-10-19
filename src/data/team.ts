@@ -220,7 +220,9 @@ export const team = {
         },
         {
           id: "dev-carmen",
-          name: "Carmen",
+          name: "Carmen Tajuelo",
+          role: "Fullstack Web Developer",
+          company: "ActioGlobal",
           image: "/devs/Foto_Linkedin_maricarmen.webp",
           socials: {
             linkedin: "https://www.linkedin.com/in/carmentajuelo/",
