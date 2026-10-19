@@ -3,20 +3,20 @@ import Icon from "@/components/ui/Icon.astro";
 import { socialLinks } from "@/data/social";
 ---
 
-<div class="flex items-center justify-center gap-4">
+<div class="flex w-fit items-center justify-center gap-4 md:gap-size-4">
   {socialLinks.map(({ href, label, icon }) => (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      class="size-[26px] md:size-[28px] flex items-center justify-center text-heading hover:text-brand transition-colors shrink-0"
+      class="flex size-[26px] shrink-0 items-center justify-center text-heading transition-colors hover:text-brand md:size-12"
     >
       <span class="block md:hidden">
         <Icon name={icon} size={26} />
       </span>
       <span class="hidden md:block">
-        <Icon name={icon} size={28} />
+        <Icon name={icon} size={icon === "instagram" ? 32 : 36} />
       </span>
     </a>
   ))}

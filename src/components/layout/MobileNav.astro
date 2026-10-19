@@ -1,7 +1,7 @@
 ---
 import Button from "@/components/ui/Button.astro";
 import CloseIcon from "@/components/ui/CloseIcon.astro";
-import { isActive, navLinkClass } from "@/utils/nav";
+import { isActive } from "@/utils/nav";
 import { withBase } from "@/utils/path";
 import type { NavLink } from "@/types/nav";
 
@@ -13,39 +13,43 @@ interface Props {
 }
 
 const { links, pathname, ticketsHref, ticketsLabel } = Astro.props;
-const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
+const linkBase =
+  "flex h-12 w-full items-center justify-center font-body text-base font-medium leading-none";
 ---
 
 <div
   id="nav-mobile"
-  class="hidden lg:hidden fixed inset-0 z-50 bg-page overflow-hidden"
+  class="hidden lg:hidden fixed inset-0 z-[80] bg-page overflow-hidden"
   role="dialog"
   aria-modal="true"
   aria-label="Menú de navegación"
 >
-  <div class="flex flex-col w-full h-dvh px-size-7 pt-size-7 pb-size-12">
-    <div class="flex justify-end w-full shrink-0">
+  <div class="flex h-dvh w-full flex-col px-size-7 pt-size-6 pb-size-12">
+    <div class="flex h-12 w-full shrink-0 items-center justify-end">
       <button
         id="nav-close"
         type="button"
-        class="flex items-center justify-center size-size-11 text-heading hover:text-link transition-colors translate-x-3"
+        class="flex size-6 items-center justify-center text-heading transition-colors hover:text-brand"
         aria-label="Cerrar menú"
       >
-        <CloseIcon />
+        <CloseIcon class="size-6" />
       </button>
     </div>
 
     <nav
-      class="flex flex-col items-center flex-1 min-h-0 w-full"
+      class="flex min-h-0 w-full flex-1 flex-col items-center"
       aria-label="Navegación móvil"
     >
-      <div class="flex flex-col items-center justify-center flex-1 min-h-0 overflow-y-auto gap-size-4 w-full max-w-[280px]">
+      <div class="flex w-full max-w-xs flex-col items-center gap-size-7 overflow-y-auto pt-size-10">
         {links.map(({ href, label }) => {
           const active = isActive(pathname, href);
           return (
             <a
               href={withBase(href)}
-              class={navLinkClass(active, linkBase)}
+              class:list={[
+                linkBase,
+                active ? "text-brand" : "text-heading hover:text-brand",
+              ]}
               aria-current={active ? "page" : undefined}
             >
               {label}
@@ -53,11 +57,12 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
           );
         })}
       </div>
+      <div class="min-h-size-8 w-full flex-1"></div>
       <Button
         href={ticketsHref}
         size="small"
         block
-        class="max-w-[280px] shrink-0 mt-size-6"
+        class="h-12 w-full max-w-[15.25rem] shrink-0"
       >
         {ticketsLabel}
       </Button>
@@ -85,6 +90,8 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
       iconOpen?.classList.toggle("hidden", open);
       iconClose?.classList.toggle("hidden", !open);
       document.body.classList.toggle("overflow-hidden", open);
+      document.documentElement.style.overflow = open ? "hidden" : "";
+      document.querySelector("header")?.classList.toggle("invisible", open);
     }
 
     toggle.addEventListener("click", () => {
@@ -112,6 +119,8 @@ const linkBase = "btn-menu flex items-center justify-center h-12 w-full";
 
   document.addEventListener("astro:page-load", () => {
     document.body.classList.remove("overflow-hidden");
+    document.documentElement.style.overflow = "";
+    document.querySelector("header")?.classList.remove("invisible");
     initMobileNav();
   });
 </script>

@@ -45,7 +45,7 @@ const hasSpeakers = speakers.length > 0;
         <>
           <div class="flex items-center justify-between pb-size-6 pt-size-4 lg:justify-end lg:gap-[20px] lg:pb-size-8">
             <div
-              class="flex items-center gap-[4px] font-body text-[14px] font-medium leading-[1.2] tracking-[0] text-[#D5CABF] tabular-nums lg:text-[20px]"
+              class="flex items-center gap-[4px] font-body text-[14px] font-medium leading-[1.2] tracking-[0] text-subtitle tabular-nums lg:text-[20px]"
               aria-live="polite"
               aria-atomic="true"
             >
@@ -76,7 +76,7 @@ const hasSpeakers = speakers.length > 0;
             {speakers.map((speaker) => (
               <article
                 id={`speaker-${speaker.id}`}
-                class="flex h-[388px] min-h-[388px] w-[274px] flex-none snap-start flex-col overflow-hidden rounded-none border border-[#272421] bg-[#1A1814] lg:h-[424px] lg:min-h-[424px] lg:w-[300px]"
+                class="flex h-[388px] min-h-[388px] w-[274px] flex-none snap-start flex-col overflow-hidden rounded-none border border-stroke bg-surface lg:h-[424px] lg:min-h-[424px] lg:w-[300px]"
                 data-speaker-card
               >
                 <img

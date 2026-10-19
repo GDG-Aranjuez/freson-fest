@@ -1,11 +1,11 @@
 ---
-import type { AgendaSession } from "@/data/agenda";
+import type { AgendaSessionView } from "@/data/agenda";
 
 interface Props {
-  session: AgendaSession;
+  session: AgendaSessionView;
 }
 
-const { startTime, endTime, title } = Astro.props.session;
+const { id, startTime, endTime, title } = Astro.props.session;
 
 const lowerTitle = title.toLowerCase();
 const isApertura =
@@ -20,7 +20,10 @@ const isPaella =
   lowerTitle.includes("comida");
 ---
 
-<div class="group relative flex w-full items-center text-[18px] md:text-[20px] border border-[#272421] bg-[#171512] px-4 md:px-6 py-4 md:py-5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-[#1a1714]">
+<div
+  id={id}
+  class="group relative flex w-full scroll-mt-28 items-center border-b border-stroke bg-surface px-4 py-4 text-[18px] transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-surface-raised min-[833px]:border min-[833px]:px-6 min-[833px]:py-5 min-[833px]:text-[20px]"
+>
   {/* Izquierda: Horas */}
   <div class="flex shrink-0 flex-col items-center pt-0.5 w-[60px] md:w-[70px] z-10">
     <time class="font-body text-[16px] md:text-[20px] font-regular text-center leading-none text-brand mt-2">

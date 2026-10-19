@@ -6,7 +6,7 @@ import Section from "@/components/ui/Section.astro";
 import type { Speaker } from "@/data/speakers";
 
 interface Props {
-  speakers: Speaker[];
+  speakers: { speaker: Speaker; talk?: { id: string; title: string } }[];
   heading: string;
   ticketsCta: { href: string; label: string };
   ticketsFootnote: string;
@@ -14,41 +14,51 @@ interface Props {
 
 const { speakers, heading, ticketsCta, ticketsFootnote } = Astro.props;
 
+const mobileHeadingLead = "El talento ";
+const mobileHeadingRest = heading.startsWith(mobileHeadingLead)
+  ? heading.slice(mobileHeadingLead.length)
+  : "";
+
 const hasSpeakers = speakers.length > 0;
 ---
 
-<Section class="!pt-size-13 !pb-size-15" ariaLabelledby="speaker-list-heading">
+<Section
+  class="!pt-size-9 !pb-size-15 lg:!pt-size-11"
+  ariaLabelledby="speaker-list-heading"
+>
   <Container class="mx-auto max-w-[1200px]">
     <div class="mx-auto w-full max-w-[480px] lg:max-w-none">
-      <header class="pb-size-7 text-left">
+      <header class="pb-size-8 text-left lg:pb-size-7">
         <h2
           id="speaker-list-heading"
-          class="type-h2 text-heading max-w-[750px] font-display
-            font-semibold text-[32px] leading-[1.1]"
+          class="type-h2 max-w-[343px] text-heading lg:max-w-[700px] lg:text-[32px] lg:leading-[1.15]"
         >
           <span aria-hidden="true" class="lg:hidden">
+            {mobileHeadingRest ? (
+              <>
+                El talento
+                <br />
+                {mobileHeadingRest}
+              </>
+            ) : (
+              heading
+            )}
+          </span>
+          <span aria-hidden="true" class="hidden lg:inline">
             {heading}
           </span>
           <span class="sr-only">{heading}</span>
         </h2>
-
-        <p
-          class="hidden pt-size-8 font-['Plus_Jakarta_Sans'] text-[18px]
-            font-medium uppercase leading-none tracking-normal
-            text-[#F37D16] lg:block"
-        >
-          {heading}
-        </p>
       </header>
 
       {hasSpeakers ? (
         <ul class="flex w-full list-none flex-col p-0">
-          {speakers.map((speaker) => (
-            <SpeakerCard speaker={speaker} />
+          {speakers.map(({ speaker, talk }) => (
+            <SpeakerCard speaker={speaker} talk={talk} />
           ))}
         </ul>
       ) : (
-        <p class="pt-size-6 font-body text-[16px] text-[#D5CABF]">
+        <p class="pt-size-6 font-body text-[16px] text-subtitle">
           No hay ponentes disponibles.
         </p>
       )}

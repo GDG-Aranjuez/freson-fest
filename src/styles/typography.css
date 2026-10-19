@@ -17,15 +17,17 @@
     font-family: var(--font-display);
     font-size: var(--font-size-h1);
     font-weight: 800;
-    line-height: 1;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
     color: var(--color-heading);
   }
 
   .type-h2 {
     font-family: var(--font-display);
     font-size: var(--font-size-h2);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: 600;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
     color: var(--color-heading);
   }
 
@@ -33,7 +35,8 @@
     font-family: var(--font-display);
     font-size: var(--font-size-h3);
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
     color: var(--color-heading);
   }
 
@@ -41,7 +44,8 @@
     font-family: var(--font-display);
     font-size: var(--font-size-h4);
     font-weight: 600;
-    line-height: 1.1;
+    line-height: 0.8;
+    letter-spacing: -0.02em;
     color: var(--color-heading);
   }
 
@@ -49,7 +53,17 @@
     font-family: var(--font-display);
     font-size: var(--font-size-h5);
     font-weight: 500;
-    line-height: 1.1;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-heading);
+  }
+
+  .type-h6 {
+    font-family: var(--font-display);
+    font-size: var(--font-size-h6);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.02em;
     color: var(--color-heading);
   }
 
@@ -112,7 +126,7 @@
   .type-caption {
     font-family: var(--font-body);
     font-size: var(--font-size-caption);
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.2;
     color: var(--color-muted);
   }
@@ -144,39 +158,43 @@
 
     .type-h2 {
       font-size: var(--font-size-h2-lg);
-      font-weight: 600;
+      line-height: 0.9;
     }
 
     .type-h3 {
       font-size: var(--font-size-h3-lg);
+      line-height: 0.9;
     }
 
     .type-h4 {
       font-size: var(--font-size-h4-lg);
+      line-height: 0.9;
     }
 
     .type-h5 {
       font-size: var(--font-size-h5-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .type-h6 {
+      font-size: var(--font-size-h6-lg);
+      line-height: 0.9;
     }
 
     .type-highlight {
-      font-family: var(--font-body);
       font-size: var(--font-size-highlight-lg);
       font-weight: 700;
     }
 
     .type-subtitle {
       font-size: var(--font-size-subtitle-lg);
-      line-height: 1.2;
+      font-weight: 400;
+      line-height: 1.4;
     }
 
     .type-eyebrow,
     .type-eyebrow-medium {
       font-size: var(--font-size-eyebrow-lg);
-    }
-
-    .type-eyebrow-medium {
-      font-weight: 400;
     }
 
     .type-paragraph-l {
@@ -193,6 +211,7 @@
 
     .type-caption {
       font-size: var(--font-size-caption-lg);
+      line-height: 1.4;
     }
 
     .type-label {
@@ -286,8 +305,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: auto;
-    padding: var(--spacing-size-2) 0;
+    height: var(--spacing-size-10);
+    padding: var(--spacing-size-6) 0 0;
     background: transparent;
     color: var(--color-action-ghost-text);
     font-family: var(--font-body);
@@ -295,6 +314,10 @@
     font-weight: 500;
     line-height: 1;
     letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    border-radius: var(--radius-1);
     transition:
       color 0.15s,
       border-color 0.15s;
@@ -302,24 +325,28 @@
 
   .btn-ghost:hover {
     color: var(--color-action-ghost-hover-text);
+    border-bottom-color: var(--color-action-ghost-hover-text);
+  }
+
+  .btn-ghost[aria-current="page"] {
+    color: var(--color-action-ghost-active-text);
+    border-bottom-color: var(--color-action-ghost-active-text);
   }
 
   .btn-ghost:active {
     color: var(--color-action-ghost-pressed-text);
+    border-bottom-color: var(--color-action-ghost-pressed-text);
   }
 
   .btn-ghost:disabled,
   .btn-ghost[aria-disabled="true"] {
     color: var(--color-action-ghost-disabled-text);
+    border-bottom-color: transparent;
     pointer-events: none;
   }
 
   .btn-ghost--underline {
-    height: var(--spacing-size-10);
-    padding-top: var(--spacing-size-6);
-    padding-bottom: 0;
-    border-bottom: 1px solid currentColor;
-    border-radius: var(--radius-1);
+    border-bottom-color: currentColor;
   }
 
   .btn-destination {
@@ -399,8 +426,8 @@
   }
 
   .btn-menu[aria-current="page"] {
-    color: var(--color-link);
-    border-color: var(--color-link);
+    color: var(--color-action-ghost-active-text);
+    border-color: transparent;
   }
 
   .countdown-num {

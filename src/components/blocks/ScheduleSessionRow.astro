@@ -1,46 +1,67 @@
 ---
-import type { AgendaSession } from "@/data/agenda";
+import type { AgendaSessionView } from "@/data/agenda";
 import AgendaNetworkingRow from "./AgendaNetworkingRow.astro";
 
 interface Props {
-  session: AgendaSession;
+  session: AgendaSessionView;
 }
 
 const { session } = Astro.props;
 
-const isNetworking =
-  session.type === "Networking" ||
-  (!session.speaker && !session.role && !session.speakers);
+const isNetworking = session.kind === "break";
 
 const hasExpandableContent = Boolean(session.description);
+
+const people = session.speakers;
+
+function companyName(company?: string) {
+  return company?.replace(/^@/, "").trim() ?? "";
+}
+
+function roleLine(role?: string, company?: string) {
+  return [role, companyName(company)].filter(Boolean).join(" | ");
+}
+
+function companyHandle(company?: string) {
+  if (!company) return "";
+  return company.startsWith("@") ? company : `@${company}`;
+}
 ---
 
 {isNetworking ? (
   <AgendaNetworkingRow session={session} />
 ) : (
-  <div class="agenda-card group relative flex w-full flex-col md:flex-row items-start justify-start border border-[#272421] bg-[#171512] px-4 md:px-6 py-4 md:py-5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:z-30 hover:-translate-y-1 hover:border-brand hover:bg-[#1a1714] hover:shadow-[0_10px_30px_rgba(255,158,102,0.18)] gap-4 md:gap-10 cursor-pointer">
-    {/* Contenedor superior: Horas + Título */}
-    <div class="flex flex-row items-start gap-4 md:contents w-full">
-      {/* Izquierda: Horas */}
-      <div class="flex shrink-0 flex-col items-center pt-0.5 w-[60px] md:w-[70px]">
-        <time class="font-body text-[16px] md:text-[20px] font-regular text-center leading-none text-brand mt-2">
+  <div
+    id={session.id}
+    class:list={[
+      "agenda-card group relative flex w-full scroll-mt-28 flex-col items-start justify-start gap-6 border-b border-stroke bg-surface px-4 py-5 transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] min-[833px]:flex-row min-[833px]:gap-10 min-[833px]:border min-[833px]:px-6 min-[833px]:py-5 min-[833px]:hover:z-30 min-[833px]:hover:-translate-y-1 min-[833px]:hover:border-brand min-[833px]:hover:bg-surface-raised min-[833px]:hover:shadow-[0_10px_30px_rgba(255,158,102,0.18)]",
+    ]}
+    data-expandable={hasExpandableContent ? "true" : undefined}
+    data-expanded="false"
+  >
+    {/* Horas + título. En <833px el ponente queda debajo; desde 833px, a la derecha. */}
+    <div class="flex w-full min-w-0 flex-1 flex-row items-start gap-4 min-[833px]:gap-10">
+      <div class="flex w-[52px] shrink-0 flex-col items-start md:w-[70px] md:items-center">
+        <time class="font-body text-[16px] font-regular leading-none text-brand md:text-[20px]">
           {session.startTime}
         </time>
-        <span class="mt-2 font-body text-[12px] md:text-[14px] font-regular text-center leading-none text-subtitle/50">
+        <span class="mt-1 font-body text-[12px] font-regular leading-none text-subtitle/70 md:mt-2 md:text-[14px]">
           {session.endTime}
         </span>
       </div>
 
-      {/* Centro: Título, Descripción y Badge */}
-      <div class="flex flex-1 flex-col min-w-0">
-        <h3 class="font-display text-[16px] md:text-[24px] font-medium leading-snug text-heading">
+      <div class="flex min-w-0 flex-1 flex-col">
+        <h3 class="font-display text-[20px] font-medium leading-[1.15] tracking-[-0.02em] text-heading md:text-[24px] md:leading-snug md:tracking-normal">
           {session.title}
         </h3>
 
         {hasExpandableContent && (
-          <div class="mobile-details hidden md:block transition-all duration-300 ease-in-out">
+          <div
+            id={`${session.id}-details`}
+            class="mobile-details hidden transition-all duration-300 ease-in-out md:block"
+          >
             {session.description && (
-              <p class="mt-2 font-body text-[12px] md:text-[14px] font-regular leading-relaxed text-subtitle/70 max-w-[480px] whitespace-pre-line">
+              <p class="mt-2 max-w-[480px] whitespace-pre-line font-body text-[12px] font-regular leading-relaxed text-subtitle/70 md:text-[14px]">
                 {session.description}
               </p>
             )}
@@ -49,111 +70,128 @@ const hasExpandableContent = Boolean(session.description);
       </div>
     </div>
 
-    {/* Derecha: Ponente */}
-    {((session.speakers && session.speakers.length > 0) ||
-      (session.speaker && session.speaker !== "Por confirmar")) && (
-      <div class="flex shrink-0 flex-col gap-3 w-full md:w-[300px] md:ml-auto md:self-start border-[#272421] md:border-t-0 pt-3 md:pt-0 mt-3 md:mt-0">
-        {session.speakers ? (
-          session.speakers.map((s) => (
-            <div class="flex items-center gap-3 min-w-0">
-              {s.image ? (
-                <img
-                  src={s.image}
-                  alt={s.name}
-                  class="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover shrink-0 border border-[#272421]"
-                />
-              ) : (
-                <div class="flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-[#272421] font-body text-xs font-medium text-heading shrink-0">
-                  {s.name.slice(0, 2).toUpperCase()}
-                </div>
-              )}
-              <div class="flex flex-col text-left min-w-0">
-                <span class="font-body text-[14px] md:text-[18px] font-medium leading-tight text-heading truncate">
-                  {s.name}
-                </span>
-                {s.role && (
-                  <span class="mt-0.5 font-body text-[12px] md:text-[14px] font-medium leading-tight text-brand truncate">
-                    {s.role}
+    {/* Móvil: el avatar queda en la columna de la hora y el nombre alineado con el título. El + cierra la fila, centrado con el ponente. */}
+    {people.length > 0 && (
+      <div class="flex w-full items-center gap-2 md:max-[832px]:pl-[86px] min-[833px]:ml-auto min-[833px]:w-[400px] min-[833px]:shrink-0 min-[833px]:items-start min-[833px]:self-start">
+        <div class="flex min-w-0 flex-1 flex-col gap-3">
+          {people.map((person) => (
+            <div class="flex min-w-0 items-center gap-4 min-[833px]:gap-3">
+              <div class="flex w-[52px] shrink-0 justify-start md:w-auto">
+                {person.image ? (
+                  <img
+                    src={person.image}
+                    alt=""
+                    class="h-12 w-12 shrink-0 rounded-full object-cover min-[833px]:h-14 min-[833px]:w-14"
+                  />
+                ) : (
+                  <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-stroke font-body text-xs font-medium text-heading min-[833px]:h-14 min-[833px]:w-14">
+                    {person.name.slice(0, 2).toUpperCase()}
+                  </div>
+                )}
+              </div>
+              <div class="flex min-w-0 flex-1 flex-col text-left">
+                {person.href ? (
+                  <a
+                    href={person.href}
+                    class="speaker-name font-body text-[15px] font-medium leading-tight text-heading underline decoration-current underline-offset-[3px] md:text-[18px] md:no-underline min-[833px]:whitespace-nowrap"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {person.name}
+                  </a>
+                ) : (
+                  <span class="speaker-name font-body text-[15px] font-medium leading-tight text-heading underline decoration-current underline-offset-[3px] md:text-[18px] md:no-underline min-[833px]:whitespace-nowrap">
+                    {person.name}
                   </span>
                 )}
-                {s.company && (
-                  <span class="mt-0.5 font-body text-[12px] md:text-[14px] leading-tight text-subtitle/60 truncate">
-                    {s.company}
+                {roleLine(person.role, person.company) && (
+                  <span class="mt-1 font-body text-[13px] font-medium leading-snug text-brand md:text-[14px] min-[833px]:whitespace-nowrap">
+                    {roleLine(person.role, person.company)}
+                  </span>
+                )}
+                {person.company && (
+                  <span class="mt-0.5 font-body text-[13px] leading-snug text-subtitle/70 md:text-[14px] min-[833px]:whitespace-nowrap">
+                    {companyHandle(person.company)}
                   </span>
                 )}
               </div>
             </div>
-          ))
-        ) : (
-          <div class="flex items-center gap-3 min-w-0">
-            {session.image ? (
-              <img
-                src={session.image}
-                alt={session.speaker}
-                class="h-10 w-10 md:h-14 md:w-14 rounded-full object-cover shrink-0 border border-[#272421]"
-              />
-            ) : (
-              <div class="flex h-10 w-10 md:h-14 md:w-14 items-center justify-center rounded-full bg-[#272421] font-body text-xs font-medium text-heading shrink-0">
-                {session.speaker?.slice(0, 2).toUpperCase()}
-              </div>
-            )}
-            <div class="flex flex-col text-left min-w-0">
-              <span class="font-body text-[14px] md:text-[20px] font-medium leading-tight text-heading truncate">
-                {session.speaker}
-              </span>
-              {session.role && (
-                <span class="mt-0.5 font-body text-[12px] md:text-[16px] font-medium leading-tight text-brand truncate">
-                  {session.role}
-                </span>
-              )}
-              {session.company && (
-                <span class="mt-0.5 font-body text-[12px] md:text-[16px] leading-tight text-subtitle/60 truncate">
-                  {session.company}
-                </span>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    )}
+          ))}
+        </div>
 
-    {/* Ícono '+' */}
-    {hasExpandableContent && (
-      <div class="expand-icon absolute bottom-3 right-4 md:hidden text-subtitle/40 text-xl font-light select-none pointer-events-none transition-transform duration-300">
-        +
+        {hasExpandableContent && (
+          <button
+            type="button"
+            class="expand-toggle flex h-11 w-11 shrink-0 items-center justify-center self-center text-subtitle md:hidden"
+            aria-expanded="false"
+            aria-label="Mostrar descripción"
+            aria-controls={`${session.id}-details`}
+          >
+            <span
+              class="expand-icon select-none font-body text-[32px] font-light leading-none"
+              aria-hidden="true"
+            >
+              +
+            </span>
+          </button>
+        )}
       </div>
     )}
   </div>
 )}
 
+<style>
+  @media (max-width: 767px) {
+    .agenda-card[data-expanded="true"] {
+      z-index: 20;
+      background-color: var(--color-surface-raised) !important;
+      box-shadow:
+        inset 0 0 0 1px var(--color-brand),
+        0 10px 30px rgba(255, 158, 102, 0.18) !important;
+    }
+  }
+</style>
+
 <script>
   function initAgendaCards() {
-    document.querySelectorAll(".agenda-card").forEach((card) => {
-      if (!card.hasAttribute("data-expand-init")) {
-        card.setAttribute("data-expand-init", "true");
-        card.addEventListener("click", () => {
-          if (window.innerWidth < 768) {
+    document
+      .querySelectorAll(".agenda-card[data-expandable]")
+      .forEach((card) => {
+        if (
+          card instanceof HTMLElement &&
+          !card.hasAttribute("data-expand-init")
+        ) {
+          card.setAttribute("data-expand-init", "true");
+
+          const toggle = (event?: Event) => {
+            if (window.innerWidth >= 768) return;
+
+            const target = event?.target;
+            if (target instanceof Element && target.closest("a")) return;
+
             const details = card.querySelector(".mobile-details");
             const icon = card.querySelector(".expand-icon");
-            if (details) {
-              const isHidden = details.classList.toggle("hidden");
+            const button = card.querySelector(".expand-toggle");
+            if (!details) return;
 
-              // Borde y sombra naranja al expandir
-              card.classList.toggle("border-brand", !isHidden);
-              card.classList.toggle(
-                "shadow-[0_10px_30px_rgba(255,158,102,0.18)]",
-                !isHidden
+            const willOpen = details.classList.contains("hidden");
+            details.classList.toggle("hidden", !willOpen);
+            card.dataset.expanded = String(willOpen);
+
+            if (button) {
+              button.setAttribute("aria-expanded", String(willOpen));
+              button.setAttribute(
+                "aria-label",
+                willOpen ? "Ocultar descripción" : "Mostrar descripción"
               );
-              card.classList.toggle("bg-[#1a1714]", !isHidden);
-
-              if (icon) {
-                icon.textContent = isHidden ? "+" : "−";
-              }
             }
-          }
-        });
-      }
-    });
+
+            if (icon) icon.textContent = willOpen ? "−" : "+";
+          };
+
+          card.addEventListener("click", toggle);
+        }
+      });
   }
 
   // Inicializar al cargar el DOM inicialmente

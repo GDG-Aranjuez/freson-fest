@@ -3,40 +3,37 @@ import FaqList from "@/components/blocks/FaqList.astro";
 import HeroRipple from "@/components/blocks/HeroRipple.astro";
 import SpeakerList from "@/components/blocks/SpeakerList.astro";
 import { previewFaqs } from "@/data/faqs";
+import { talkForSpeaker } from "@/data/agenda";
 import { hero, speakers } from "@/data/speakers";
 import { ticketCtas } from "@/data/tickets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<BaseLayout title="Ponentes">
+<BaseLayout title="Speakers">
   <HeroRipple
     headingId="speakers-hero-heading"
-    class="relative bg-page overflow-hidden !py-size-9 lg:!pt-size-13 lg:!pb-size-15"
+    class="relative overflow-hidden bg-page !py-size-13 lg:!py-0"
   >
-    <div class="mx-auto flex w-full max-w-[480px] flex-col items-center text-center lg:max-w-none">
-      <p class="w-full pb-size-6 text-center font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden">
+    <div class="mx-auto flex w-full max-w-[343px] flex-col items-center text-center lg:min-h-[500px] lg:max-w-[700px] lg:justify-center">
+      <p class="pb-0 text-center font-body text-[15px] font-medium uppercase leading-none tracking-normal text-brand lg:hidden">
         {hero.eyebrow}
       </p>
 
       <h1
         id="speakers-hero-heading"
-        class="mx-auto w-full max-w-[541px] pb-size-6 font-display font-extrabold text-[48px] leading-[1.05] text-center text-heading lg:max-w-none lg:pb-size-9 lg:text-[96px]"
+        class="type-h1 mt-size-4 w-full text-center lg:mt-0 lg:leading-[0.8]"
       >
-        <span class="lg:hidden">
-          <span class="block">{hero.title}</span>
-          <span class="block text-highlighted">{hero.highlightedTitle}</span>
-        </span>
-        <span class="hidden lg:block">{hero.desktopTitle}</span>
+        <span class="block">{hero.title}</span>
+        <span class="block text-highlighted">{hero.highlightedTitle}</span>
       </h1>
-
-      <p class="w-full pb-size-2 pt-size-11 text-center font-['Plus_Jakarta_Sans'] text-[15px] font-medium uppercase leading-none tracking-normal text-[#F37D16] lg:hidden">
-        {hero.ourSpeakersLabel}
-      </p>
     </div>
   </HeroRipple>
 
   <SpeakerList
-    speakers={speakers}
+    speakers={speakers.map((speaker) => ({
+      speaker,
+      talk: talkForSpeaker(speaker.id),
+    }))}
     heading={hero.ourSpeakersLabel}
     ticketsCta={ticketCtas.primary}
     ticketsFootnote={ticketCtas.primary.footnote}

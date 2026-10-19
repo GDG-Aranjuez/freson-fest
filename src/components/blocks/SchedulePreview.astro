@@ -3,10 +3,10 @@ import GhostLink from "@/components/blocks/GhostLink.astro";
 import ScheduleSessionRow from "@/components/blocks/ScheduleSessionRow.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import type { AgendaSession } from "@/data/agenda";
+import type { AgendaSessionView } from "@/data/agenda";
 
 interface Props {
-  sessions: AgendaSession[];
+  sessions: AgendaSessionView[];
   eyebrow: string;
   heading: string;
   cta: { href: string; label: string };
@@ -14,11 +14,9 @@ interface Props {
 
 const { sessions, eyebrow, heading, cta } = Astro.props;
 
-const talks = sessions.filter(
-  (session) => session.type === "Charla" || session.type === "Panel"
-);
+const talks = sessions.filter((session) => session.track === "auditorium");
 
-const workshops = sessions.filter((session) => session.type === "Taller");
+const workshops = sessions.filter((session) => session.track === "workshop");
 ---
 
 <Section
@@ -48,7 +46,7 @@ const workshops = sessions.filter((session) => session.type === "Taller");
             aria-selected="true"
             aria-controls="panel-charlas"
             data-tab-btn="charlas"
-            class="relative z-20 flex h-[56px] w-[256px] cursor-pointer items-center justify-center rounded-t-lg bg-[#1f1c18] font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-heading shadow-md transition-all lg:text-[20px]"
+            class="schedule-tab relative flex h-12 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-t-2xl font-display text-[16px] font-medium leading-[1.1] transition-all md:h-14 md:w-[256px] md:flex-none md:rounded-t-lg md:text-[18px] lg:text-[20px]"
           >
             Charlas
           </button>
@@ -59,13 +57,13 @@ const workshops = sessions.filter((session) => session.type === "Taller");
             aria-selected="false"
             aria-controls="panel-workshops"
             data-tab-btn="workshops"
-            class="relative z-10 -ml-6 flex h-[56px] w-[256px] cursor-pointer items-center justify-center rounded-t-lg bg-[#141210] font-display text-[16px] md:text-[18px] font-medium leading-[1.1] text-subtitle/60 transition-all hover:text-subtitle hover:opacity-100 lg:text-[20px]"
+            class="schedule-tab relative -ml-5 flex h-12 min-w-0 flex-1 cursor-pointer items-center justify-center rounded-t-2xl font-display text-[16px] font-medium leading-[1.1] transition-all md:-ml-6 md:h-14 md:w-[256px] md:flex-none md:rounded-t-lg md:text-[18px] lg:text-[20px]"
           >
             Workshops
           </button>
         </div>
         {/* Contenedor principal de 1040px */}
-        <div class="relative z-10 border border-stroke-strong/30 bg-surface">
+        <div class="relative z-10 border border-stroke bg-surface">
           {/* Panel Charlas */}
           <div
             id="panel-charlas"
@@ -96,7 +94,7 @@ const workshops = sessions.filter((session) => session.type === "Taller");
             </div>
           </div>
 
-          <div class="flex justify-end border-t border-stroke-strong/20 bg-surface px-6 py-4">
+          <div class="flex justify-center border-t border-stroke bg-surface px-4 py-5 md:justify-end md:px-6">
             <GhostLink href={cta.href} label={cta.label} />
           </div>
         </div>
@@ -106,8 +104,23 @@ const workshops = sessions.filter((session) => session.type === "Taller");
 </Section>
 
 <style>
-  .tab-trapezoid {
-    clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 100%, 0 100%);
+  .schedule-tab[aria-selected="true"] {
+    z-index: 20;
+    background-color: var(--color-surface-raised);
+    color: var(--color-heading);
+    box-shadow:
+      0 4px 6px -1px rgb(0 0 0 / 0.1),
+      0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .schedule-tab[aria-selected="false"] {
+    z-index: 10;
+    background-color: var(--color-surface);
+    color: color-mix(in srgb, var(--color-subtitle) 60%, transparent);
+  }
+
+  .schedule-tab[aria-selected="false"]:hover {
+    color: var(--color-subtitle);
   }
 </style>
 
@@ -126,16 +139,7 @@ const workshops = sessions.filter((session) => session.type === "Taller");
           const target = btn.dataset.tabBtn;
 
           tabBtns.forEach((b) => {
-            const isSelected = b === btn;
-            b.setAttribute("aria-selected", String(isSelected));
-
-            if (isSelected) {
-              b.classList.remove("bg-[#171512]", "text-subtitle", "z-0");
-              b.classList.add("bg-surface", "text-heading", "z-10");
-            } else {
-              b.classList.remove("bg-surface", "text-heading", "z-10");
-              b.classList.add("bg-[#171512]", "text-subtitle", "z-0");
-            }
+            b.setAttribute("aria-selected", String(b === btn));
           });
 
           tabPanels.forEach((panel) => {
@@ -150,6 +154,47 @@ const workshops = sessions.filter((session) => session.type === "Taller");
     });
   }
 
-  initializeAgendaTabs();
-  document.addEventListener("astro:page-load", initializeAgendaTabs);
+  function showAgendaTab(root: Element, tabName: string) {
+    root
+      .querySelectorAll<HTMLButtonElement>("[data-tab-btn]")
+      .forEach((btn) => {
+        btn.setAttribute(
+          "aria-selected",
+          String(btn.dataset.tabBtn === tabName)
+        );
+      });
+    root.querySelectorAll<HTMLElement>("[data-tab-panel]").forEach((panel) => {
+      panel.classList.toggle("hidden", panel.dataset.tabPanel !== tabName);
+    });
+  }
+
+  function revealSessionFromHash() {
+    const id = decodeURIComponent(window.location.hash.replace(/^#/, ""));
+    if (!id) return;
+
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    const panel = target.closest<HTMLElement>("[data-tab-panel]");
+    const tabName = panel?.dataset.tabPanel;
+    const root = target.closest("[data-schedule-preview]");
+    if (panel?.classList.contains("hidden") && tabName && root) {
+      showAgendaTab(root, tabName);
+    }
+
+    requestAnimationFrame(() => {
+      target.scrollIntoView({ block: "center" });
+    });
+  }
+
+  function bootAgenda() {
+    initializeAgendaTabs();
+    revealSessionFromHash();
+  }
+
+  bootAgenda();
+  document.addEventListener("DOMContentLoaded", bootAgenda);
+  window.addEventListener("load", revealSessionFromHash);
+  window.addEventListener("hashchange", revealSessionFromHash);
+  document.addEventListener("astro:page-load", bootAgenda);
 </script>

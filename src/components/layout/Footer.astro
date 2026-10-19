@@ -3,7 +3,9 @@ import SocialLinks from "@/components/layout/SocialLinks.astro";
 import Container from "@/components/ui/Container.astro";
 import { footerMeta, footerSections } from "@/data/footer";
 import { site } from "@/data/site";
-import { withBase } from "@/utils/path";
+import { isExternalHref, withBase } from "@/utils/path";
+
+const conductIsExternal = isExternalHref(footerMeta.conduct.href);
 ---
 
 <footer class="bg-surface font-body">
@@ -13,7 +15,7 @@ import { withBase } from "@/utils/path";
       <div class="flex w-full max-w-[358px] flex-col items-center border-t border-stroke-strong pt-size-9">
         <!-- Branding, Colaboración y Redes Sociales -->
         <div class="flex w-full flex-col items-center pb-size-8">
-          <p class="type-paragraph-m pb-size-6 text-center text-body">
+          <p class="type-paragraph-m pb-size-6 text-center whitespace-pre-line text-body">
             {footerMeta.tagline}
           </p>
 
@@ -99,7 +101,9 @@ import { withBase } from "@/utils/path";
         <div class="flex flex-col gap-size-2 pt-size-2">
           <a
             href={withBase(footerMeta.conduct.href)}
-            class="py-size-2 text-center type-paragraph-l text-body hover:text-heading transition-colors"
+            class="py-size-2 text-center type-paragraph-l text-body underline decoration-from-font hover:text-heading transition-colors"
+            target={conductIsExternal ? "_blank" : undefined}
+            rel={conductIsExternal ? "noopener noreferrer" : undefined}
           >
             {footerMeta.conduct.label}
           </a>
@@ -113,77 +117,82 @@ import { withBase } from "@/utils/path";
 
   <!-- Desktop View -->
   <div class="hidden md:block">
-    <Container class="flex flex-col items-center pb-size-13 px-size-8 lg:pl-size-14 lg:pr-size-8">
-      <div class="grid w-full max-w-[1400px] grid-cols-[1fr_auto_auto_auto] gap-x-size-8 items-start pt-size-13 pb-size-10">
-        <!-- Identidad del evento -->
-        <div class="flex flex-col items-start">
-          <p class="type-paragraph-m pb-size-6 text-body">
-            {footerMeta.tagline}
-          </p>
-          <a href={withBase("/")} class="inline-flex pb-size-7">
-            <img
-              src={withBase(site.brand.imagotipo)}
-              alt={site.brand.alt}
-              width="110"
-              height="43"
-              class="h-[43px] w-[110px]"
-            />
-          </a>
-          <p class="type-paragraph-m pb-size-3 text-subtitle">
-            {footerMeta.collaborationLabel}
-          </p>
-          <a
-            href={footerMeta.gdg.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center"
-          >
-            <img
-              src={withBase(footerMeta.gdg.logo)}
-              alt={footerMeta.gdg.alt}
-              width="282"
-              height="24"
-              class="h-6 w-auto max-w-full"
-            />
-          </a>
+    <div class="mx-auto flex w-full max-w-(--content-max) flex-col pb-size-13">
+      <div class="flex w-full items-start px-(--section-px-mobile) pt-size-13 pb-size-10 lg:px-(--section-px-desktop)">
+        <div class="flex min-w-0 flex-1 flex-col items-start pb-size-9">
+          <div class="flex w-full flex-col items-start pr-size-3 pb-size-7">
+            <p class="type-paragraph-s max-w-[320px] pb-size-6 whitespace-pre-line text-body">
+              {footerMeta.tagline}
+            </p>
+            <a href={withBase("/")} class="inline-flex">
+              <img
+                src={withBase(site.brand.imagotipo)}
+                alt={site.brand.alt}
+                width="110"
+                height="43"
+                class="h-[43px] w-[110px]"
+              />
+            </a>
+          </div>
+          <div class="flex w-full flex-col items-start pr-size-6">
+            <p class="type-paragraph-s pb-size-6 text-subtitle">
+              {footerMeta.collaborationLabel}
+            </p>
+            <a
+              href={footerMeta.gdg.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex h-12 max-w-full items-center"
+            >
+              <img
+                src={withBase(footerMeta.gdg.logo)}
+                alt={footerMeta.gdg.alt}
+                width="282"
+                height="24"
+                class="h-6 w-auto max-w-full"
+              />
+            </a>
+          </div>
         </div>
 
-        <!-- Navegación: Evento, Comunidad y Contacto (con redes bajo Contacto) -->
-        {footerSections.map(({ title, links }, index) => (
-          <nav
-            class="flex flex-col items-start"
-            aria-label={`Enlaces del pie de página: ${title}`}
-          >
-            <h3 class="pb-size-5 font-body text-base leading-[1.4] font-normal text-heading">
-              {title}
-            </h3>
-            <ul class="flex flex-col items-start gap-y-2">
-              {links.map(({ href, label }) => (
-                <li>
-                  <a
-                    href={withBase(href)}
-                    class="type-paragraph-m text-highlighted hover:text-brand-hover transition-colors"
-                  >
-                    {label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-            {index === footerSections.length - 1 && (
-              <div class="pt-size-6">
-                <SocialLinks />
-              </div>
-            )}
-          </nav>
-        ))}
+        <div class="flex w-[465px] max-w-full shrink-0 flex-col items-end gap-size-6">
+          <div class="flex w-full items-start">
+            {footerSections.map(({ title, links }) => (
+              <nav
+                class="flex w-1/3 flex-col items-start"
+                aria-label={`Enlaces del pie de página: ${title}`}
+              >
+                <h3 class="pb-size-5 font-body text-base leading-[1.4] font-normal text-heading">
+                  {title}
+                </h3>
+                <ul class="flex w-full flex-col items-start">
+                  {links.map(({ href, label }) => (
+                    <li>
+                      <a
+                        href={withBase(href)}
+                        class="type-paragraph-s inline-flex py-size-2 text-highlighted transition-colors hover:text-brand-hover"
+                      >
+                        {label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            ))}
+          </div>
+          <div class="flex w-full justify-end pt-size-5">
+            <SocialLinks />
+          </div>
+        </div>
       </div>
 
-      <!-- Barra Inferior (Legal y Ayuda) -->
-      <div class="flex w-full max-w-[1400px] items-center pt-size-8">
+      <div class="flex w-full items-center border-t border-stroke px-(--section-px-mobile) pt-size-8 lg:px-(--section-px-desktop)">
         <div class="flex min-w-0 flex-1 items-start py-size-5">
           <a
             href={withBase(footerMeta.conduct.href)}
-            class="type-caption font-medium text-subtitle hover:text-heading transition-colors"
+            class="type-caption font-medium text-subtitle underline decoration-from-font transition-colors hover:text-heading"
+            target={conductIsExternal ? "_blank" : undefined}
+            rel={conductIsExternal ? "noopener noreferrer" : undefined}
           >
             {footerMeta.conduct.label}
           </a>
@@ -191,7 +200,7 @@ import { withBase } from "@/utils/path";
         <div class="flex min-w-0 flex-1 items-center justify-center py-size-5">
           <a
             href={withBase(footerMeta.help.href)}
-            class="flex items-center type-caption font-medium text-subtitle hover:text-heading transition-colors"
+            class="flex items-center type-caption font-medium text-subtitle transition-colors hover:text-heading"
           >
             <img
               src={withBase(footerMeta.helpIcon)}
@@ -210,6 +219,6 @@ import { withBase } from "@/utils/path";
           </p>
         </div>
       </div>
-    </Container>
+    </div>
   </div>
 </footer>

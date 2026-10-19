@@ -10,7 +10,7 @@ import SchedulePreview from "@/components/blocks/SchedulePreview.astro";
 import SpeakerCarousel from "@/components/blocks/SpeakerCarousel.astro";
 import SponsorLogos from "@/components/blocks/SponsorLogos.astro";
 import Ticker from "@/components/blocks/Ticker.astro";
-import { agenda } from "@/data/agenda";
+import { agenda, resolveSessions } from "@/data/agenda";
 import {
   hero,
   highlights,
@@ -24,7 +24,9 @@ import { categories as sponsorCategories } from "@/data/sponsors";
 import { site } from "@/data/site";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
-const homeSessions = (agenda.days[0]?.sessions ?? []).slice(0, 9);
+const homeSessions = resolveSessions(
+  (agenda.days[0]?.sessions ?? []).slice(0, 10)
+);
 ---
 
 <BaseLayout>
@@ -85,7 +87,8 @@ const homeSessions = (agenda.days[0]?.sessions ?? []).slice(0, 9);
   <Highlights highlights={highlights} />
   <SpeakerCarousel
     speakers={speakers}
-    heading="Conoce a los referentes del tech que usas"
+    eyebrow="Speakers"
+    heading="El talento que vas a querer escuchar"
     viewAllHref="/ponentes"
     viewAllLabel="Ver todos los ponentes"
   />

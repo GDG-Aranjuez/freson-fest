@@ -81,7 +81,7 @@ export const highlights = {
       number: "03",
       title: "Aprende haciendo",
       description:
-        "Talleres prácticos además de charlas. Te vas con experiencia y aprendizaje concreto.",
+        "Talleres prácticos además de charlas. Te vas con aprendizaje y experiencia.",
     },
     {
       number: "04",

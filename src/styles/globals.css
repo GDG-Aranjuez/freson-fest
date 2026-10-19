@@ -20,10 +20,9 @@ html {
 body {
   background-color: var(--color-page, #0c0c0b);
   background-image: radial-gradient(
-    ellipse 100% 55% at 50% 85%,
-    rgba(42, 11, 0, 0.5) 0%,
-    rgba(42, 11, 0, 0.5) 50%,
-    transparent 100%
+    ellipse 420% 78% at 50% 90%,
+    rgba(42, 11, 0, 0.24) 0%,
+    rgba(42, 11, 0, 0) 100%
   );
   background-repeat: no-repeat;
   background-size: 100% 100%;

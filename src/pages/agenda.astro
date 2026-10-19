@@ -5,14 +5,14 @@ import HeroRipple from "@/components/blocks/HeroRipple.astro";
 import SchedulePreview from "@/components/blocks/SchedulePreview.astro";
 import Container from "@/components/ui/Container.astro";
 import Section from "@/components/ui/Section.astro";
-import { agenda, hero, schedule } from "@/data/agenda";
+import { agenda, hero, resolveSessions, schedule } from "@/data/agenda";
 import { previewFaqs } from "@/data/faqs";
 import { site } from "@/data/site";
 import { venue } from "@/data/location";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { eventDate } from "@/utils/event-date";
 
-const sessions = agenda.days[0]?.sessions ?? [];
+const sessions = resolveSessions(agenda.days[0]?.sessions ?? []);
 ---
 
 <BaseLayout

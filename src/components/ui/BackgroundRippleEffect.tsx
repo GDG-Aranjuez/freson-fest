@@ -77,7 +77,7 @@ export const BackgroundRippleEffect = () => {
                   height: `${cellWidth}px`,
                   animationDelay: isRippling ? `${delay}ms` : "0ms",
                 }}
-                className={`border-r border-b border-[#272421] w-full cursor-pointer transition-colors duration-200 hover:bg-white/10 ${
+                className={`border-r border-b border-stroke w-full cursor-pointer transition-colors duration-200 hover:bg-white/10 ${
                   isRippling ? "animate-ripple" : ""
                 }`}
                 onAnimationEnd={() => {

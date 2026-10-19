@@ -10,9 +10,9 @@
  */
 
 :root {
-  --palette-orange-25: #fefaf5;
-  --palette-orange-50: #d5cabf;
-  --palette-orange-100: #fcd4b1;
+  --palette-orange-25: #fcfaf7;
+  --palette-orange-50: #dfd6ce;
+  --palette-orange-100: #f7d4b6;
   --palette-orange-200: #f49e52;
   --palette-orange-300: #f37d16;
   --palette-orange-400: #cc6512;
@@ -22,7 +22,7 @@
 
   --palette-stone-50: #f2f0ec;
   --palette-stone-100: #c9c5bc;
-  --palette-stone-200: #898276;
+  --palette-stone-200: #a09a90;
   --palette-stone-300: #43403d;
   --palette-stone-400: #272421;
   --palette-stone-500: #1a1814;
@@ -35,9 +35,10 @@
   --font-size-h3: 2rem; /* 32 */
   --font-size-h4: 1.5rem; /* 24 */
   --font-size-h5: 1.25rem; /* 20 */
+  --font-size-h6: 1.125rem; /* 18 — Figma label says 1.25rem, which is 20px */
   --font-size-highlight: 2.5rem; /* 40 */
   --font-size-subtitle: 1rem; /* 16 */
-  --font-size-eyebrow: 1rem;
+  --font-size-eyebrow: 1rem; /* 16; Figma cell says 15px and 1rem */
   --font-size-paragraph-l: 1rem;
   --font-size-paragraph-m: 0.875rem; /* 14 */
   --font-size-paragraph-s: 0.75rem; /* 12 */
@@ -52,9 +53,10 @@
   --font-size-h3-lg: 2.5rem; /* 40 */
   --font-size-h4-lg: 2rem; /* 32 */
   --font-size-h5-lg: 1.5rem; /* 24 */
-  --font-size-highlight-lg: 4rem; /* 64 */
+  --font-size-h6-lg: 1.25rem; /* 20 */
+  --font-size-highlight-lg: 4rem; /* 64 — Figma rem label says 1.25rem */
   --font-size-subtitle-lg: 1.25rem; /* 20 */
-  --font-size-eyebrow-lg: 1.25rem;
+  --font-size-eyebrow-lg: 1.125rem; /* 18 */
   --font-size-paragraph-l-lg: 1.25rem;
   --font-size-paragraph-m-lg: 1rem;
   --font-size-paragraph-s-lg: 0.875rem;
@@ -66,24 +68,26 @@
   --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
   --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 
-  --color-page: var(--palette-stone-600);
-  --color-surface: var(--palette-stone-500);
-  --color-surface-raised: var(--palette-orange-700);
+  /* Figma background/page on ready-for-dev frames. stone-600 stays #0d0c0a. */
+  --color-page: #0c0c0b;
+  /* Cool near-blacks from the home frame. Orange primitives stay for brand. */
+  --color-surface: #121212;
+  --color-surface-raised: #141414;
   --color-brand: var(--palette-orange-300);
   --color-brand-hover: var(--palette-orange-200);
   --color-brand-muted: var(--palette-stone-300);
 
   --color-heading: var(--palette-orange-25);
-  --color-subtitle: var(--palette-orange-50);
-  --color-body: var(--palette-orange-50);
+  --color-subtitle: #c4c3c1;
+  --color-body: #9b9a97;
   --color-muted: var(--palette-stone-200);
   --color-on-brand: var(--palette-stone-600);
   --color-link: var(--palette-orange-200);
   --color-link-hover: var(--palette-orange-100);
   --color-highlighted: var(--palette-orange-300);
 
-  --color-stroke: var(--palette-stone-400);
-  --color-stroke-strong: var(--palette-stone-300);
+  --color-stroke: #2a2a2a;
+  --color-stroke-strong: #2a2a2a;
   --color-stroke-brand: var(--palette-orange-300);
 
   /* Prefer .btn-* over raw action color utilities */
@@ -100,6 +104,7 @@
   --color-action-secondary-disabled-text: var(--palette-stone-200);
   --color-action-ghost-text: var(--palette-orange-200);
   --color-action-ghost-hover-text: var(--palette-orange-100);
+  --color-action-ghost-active-text: var(--palette-orange-300);
   --color-action-ghost-pressed-text: var(--palette-orange-400);
   --color-action-ghost-disabled-text: var(--palette-stone-200);
 
@@ -107,7 +112,7 @@
   --color-agenda-title: var(--palette-stone-50);
   --color-agenda-highlight-bg: var(--palette-orange-700);
   --color-agenda-highlight-text: var(--palette-orange-100);
-  --color-agenda-divider: var(--palette-stone-400);
+  --color-agenda-divider: #2a2a2a;
 
   --color-gradient: var(--palette-amber-100);
   --color-pill-stroke: var(--palette-stone-100); /* Brego pill */

@@ -1,13 +1,16 @@
 import { contactMailto, site } from "@/data/site";
-import { eventDate } from "@/utils/event-date";
 import type { FooterSection } from "@/types/footer";
+import { eventDate } from "@/utils/event-date";
 
 export const footerMeta = {
   tagline: "Fresón Fest · Comunidad de\ndesarrolladores Google en Aranjuez.",
   collaborationLabel: "Con la colaboración de",
   copyright: `© ${eventDate.dateYear}, ${site.name}`,
   help: { href: "/ayuda", label: "¿Necesitas ayuda?" },
-  conduct: { href: "/codigo-conducta", label: "Código de conducta" },
+  conduct: {
+    href: "https://developers.google.com/events/gdd-europe/code-of-conduct?hl=es-419",
+    label: "Código de conducta",
+  },
   helpIcon: "/icons/lifebuoy.svg",
   gdg: {
     href: "https://gdg.community.dev/gdg-aranjuez/",
@@ -38,7 +41,7 @@ export const footerSections: FooterSection[] = [
     links: [
       { href: contactMailto, label: "Correo electrónico" },
       { href: "/patrocinadores#contacto", label: "Hazte patrocinador" },
-      { href: "/cfp", label: "Propón una charla" },
+      // { href: "/cfp", label: "Propón una charla" },
     ],
   },
 ];
