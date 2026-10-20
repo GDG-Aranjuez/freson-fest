@@ -14,9 +14,20 @@ interface Props {
 
 const { sessions, eyebrow, heading, cta } = Astro.props;
 
-const talks = sessions.filter((session) => session.track === "auditorium");
+const talks = sessions.filter(
+  (session) => session.track === "auditorium" || session.track === "shared"
+);
 
-const workshops = sessions.filter((session) => session.track === "workshop");
+const workshops = sessions
+  .filter(
+    (session) => session.track === "workshop" || session.track === "shared"
+  )
+  .sort((a, b) => a.startTime.localeCompare(b.startTime))
+  .map((session) =>
+    session.track === "shared"
+      ? { ...session, id: `workshops-${session.id}` }
+      : session
+  );
 ---
 
 <Section
