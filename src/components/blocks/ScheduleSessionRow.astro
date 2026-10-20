@@ -14,14 +14,6 @@ const hasExpandableContent = Boolean(session.description);
 
 const people = session.speakers;
 
-function companyName(company?: string) {
-  return company?.replace(/^@/, "").trim() ?? "";
-}
-
-function roleLine(role?: string, company?: string) {
-  return [role, companyName(company)].filter(Boolean).join(" | ");
-}
-
 function companyHandle(company?: string) {
   if (!company) return "";
   return company.startsWith("@") ? company : `@${company}`;
@@ -104,9 +96,9 @@ function companyHandle(company?: string) {
                     {person.name}
                   </span>
                 )}
-                {roleLine(person.role, person.company) && (
+                {person.role && (
                   <span class="mt-1 font-body text-[13px] font-medium leading-snug text-brand md:text-[14px] min-[833px]:whitespace-nowrap">
-                    {roleLine(person.role, person.company)}
+                    {person.role}
                   </span>
                 )}
                 {person.company && (
