@@ -12,8 +12,8 @@ import {
 /** What happens in the slot. Breaks are not talks. */
 export type SessionKind = "talk" | "workshop" | "break" | "panel" | "keynote";
 
-/** Which list the slot belongs to. Breaks share the auditorium track. */
-export type SessionTrack = "auditorium" | "workshop";
+/** Which list the slot belongs to. Shared activities appear in both lists. */
+export type SessionTrack = "auditorium" | "workshop" | "shared";
 
 /**
  * A slot on the schedule. People are ids from speakers, team, or agendaGuests.
@@ -100,7 +100,7 @@ export const agenda: AgendaContent = {
           endTime: "09:30",
           title: "Apertura y Registro",
           kind: "break",
-          track: "auditorium",
+          track: "shared",
           location: "Auditorio",
         },
         {
@@ -143,7 +143,7 @@ export const agenda: AgendaContent = {
           endTime: "11:35",
           title: "Café con churros",
           kind: "break",
-          track: "auditorium",
+          track: "shared",
           location: "Auditorio",
         },
         {
@@ -237,7 +237,7 @@ export const agenda: AgendaContent = {
           endTime: "15:15",
           title: "Paella",
           kind: "break",
-          track: "auditorium",
+          track: "shared",
           location: "Auditorio",
         },
         {
@@ -311,7 +311,7 @@ export const agenda: AgendaContent = {
           endTime: "19:00",
           title: "Cierre y sorteos",
           kind: "break",
-          track: "auditorium",
+          track: "shared",
           location: "Auditorio",
         },
       ],
