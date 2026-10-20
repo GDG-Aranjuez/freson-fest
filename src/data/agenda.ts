@@ -161,7 +161,7 @@ export const agenda: AgendaContent = {
         {
           id: "session-19",
           startTime: "10:00",
-          endTime: "11:15",
+          endTime: "11:10",
           title: "El canario en la sala de máquinas",
           kind: "workshop",
           track: "workshop",
