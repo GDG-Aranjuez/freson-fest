@@ -150,7 +150,7 @@
     color: var(--color-link-hover);
   }
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     .type-h1 {
       font-size: var(--font-size-h1-lg);
       line-height: 0.9;
@@ -264,7 +264,7 @@
     width: 100%;
   }
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     .btn-primary--block {
       display: inline-flex;
       width: auto;
@@ -384,7 +384,7 @@
     opacity: 0;
   }
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     .btn-destination {
       height: var(--spacing-size-10);
       width: auto;
@@ -439,7 +439,7 @@
     opacity: 0.9;
   }
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     .countdown-num {
       font-size: var(--font-size-highlight-lg);
     }
@@ -453,7 +453,7 @@
     color: var(--color-body);
   }
 
-  @media (width >= 64rem) {
+  @media (width >=64rem) {
     .countdown-label {
       font-size: var(--font-size-caption-lg);
     }
@@ -469,5 +469,41 @@
     align-items: center;
     color: var(--color-body);
     opacity: 0.4;
+  }
+
+  .countdown-clock {
+    display: contents;
+  }
+
+  .countdown-live {
+    display: none;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    white-space: nowrap;
+    color: var(--color-heading);
+    opacity: 0.9;
+  }
+
+  @media (width >=64rem) {
+    .countdown-live {
+      font-size: var(--font-size-h3-lg);
+    }
+  }
+
+  .hero-countdown.is-live {
+    align-items: center;
+  }
+
+  .hero-countdown.is-live .countdown-clock {
+    display: none;
+  }
+
+  .hero-countdown.is-live .countdown-live {
+    display: block;
   }
 }

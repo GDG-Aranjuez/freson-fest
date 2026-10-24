@@ -8,43 +8,51 @@ const { targetDate, class: className = "" } = Astro.props;
 ---
 
 <div
-  class:list={["hero-countdown flex items-end gap-size-6", className]}
+  class:list={[
+    "hero-countdown flex items-end justify-center gap-size-6",
+    className,
+  ]}
   data-event-start={targetDate}
   aria-label="Cuenta atrás para el evento"
   role="timer"
 >
-  <div class="flex flex-col items-center justify-center gap-size-1">
-    <span class="countdown-num" data-countdown="days">
-      --
+  <p class="countdown-live" data-countdown-live>
+    Ya ha empezado
+  </p>
+  <div class="countdown-clock" data-countdown-clock>
+    <div class="flex flex-col items-center justify-center gap-size-1">
+      <span class="countdown-num" data-countdown="days">
+        --
+      </span>
+      <span class="countdown-label">días</span>
+    </div>
+    <span class="countdown-sep" aria-hidden="true">
+      :
     </span>
-    <span class="countdown-label">días</span>
-  </div>
-  <span class="countdown-sep" aria-hidden="true">
-    :
-  </span>
-  <div class="flex flex-col items-center justify-center gap-size-1">
-    <span class="countdown-num" data-countdown="hours">
-      --
+    <div class="flex flex-col items-center justify-center gap-size-1">
+      <span class="countdown-num" data-countdown="hours">
+        --
+      </span>
+      <span class="countdown-label">horas</span>
+    </div>
+    <span class="countdown-sep" aria-hidden="true">
+      :
     </span>
-    <span class="countdown-label">horas</span>
-  </div>
-  <span class="countdown-sep" aria-hidden="true">
-    :
-  </span>
-  <div class="flex flex-col items-center justify-center gap-size-1">
-    <span class="countdown-num" data-countdown="minutes">
-      --
+    <div class="flex flex-col items-center justify-center gap-size-1">
+      <span class="countdown-num" data-countdown="minutes">
+        --
+      </span>
+      <span class="countdown-label">minutos</span>
+    </div>
+    <span class="countdown-sep" aria-hidden="true">
+      :
     </span>
-    <span class="countdown-label">minutos</span>
-  </div>
-  <span class="countdown-sep" aria-hidden="true">
-    :
-  </span>
-  <div class="flex flex-col items-center justify-center gap-size-1">
-    <span class="countdown-num" data-countdown="seconds">
-      --
-    </span>
-    <span class="countdown-label">segundos</span>
+    <div class="flex flex-col items-center justify-center gap-size-1">
+      <span class="countdown-num" data-countdown="seconds">
+        --
+      </span>
+      <span class="countdown-label">segundos</span>
+    </div>
   </div>
 </div>
 
@@ -58,12 +66,28 @@ const { targetDate, class: className = "" } = Astro.props;
     return Number.isNaN(ms) ? null : ms;
   }
 
+  function markLive(root: Element) {
+    root.classList.add("is-live");
+    root.setAttribute("role", "status");
+    root.setAttribute("aria-label", "Ya ha empezado");
+  }
+
   function tick() {
+    let running = false;
+
     document.querySelectorAll(".hero-countdown").forEach((root) => {
+      if (root.classList.contains("is-live")) return;
+
       const start = eventStartMs(root);
       if (start === null) return;
 
-      const diff = Math.max(0, start - Date.now());
+      const diff = start - Date.now();
+      if (diff <= 0) {
+        markLive(root);
+        return;
+      }
+
+      running = true;
       const days = Math.floor(diff / 86_400_000);
       const hours = Math.floor((diff % 86_400_000) / 3_600_000);
       const minutes = Math.floor((diff % 3_600_000) / 60_000);
@@ -78,12 +102,21 @@ const { targetDate, class: className = "" } = Astro.props;
       set("minutes", minutes);
       set("seconds", seconds);
     });
+
+    return running;
   }
 
   function initCountdown() {
-    tick();
+    const running = tick();
     if (countdownInterval) clearInterval(countdownInterval);
-    countdownInterval = setInterval(tick, 1_000);
+    countdownInterval = running
+      ? setInterval(() => {
+          if (!tick() && countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = undefined;
+          }
+        }, 1_000)
+      : undefined;
   }
 
   initCountdown();
