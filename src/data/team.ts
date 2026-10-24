@@ -191,7 +191,7 @@ export const team = {
           name: "Luis Octavio Mota Verdasco",
           role: "Site Reliability Engineering",
           projectRole: "Tech Lead",
-          image: "/devs/lucho.png",
+          image: "/devs/lucho.webp",
           socials: {
             linkedin: "https://www.linkedin.com/in/luisoctaviomotaverdasco",
             github: "https://github.com/lucho00cuba",
